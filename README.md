@@ -1,4 +1,4 @@
-# 2024 Team SH07 Main Project
+# 2024 Team SH07 Main
 
 
 
