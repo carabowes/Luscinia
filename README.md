@@ -53,7 +53,7 @@ When you're ready to make this README your own, just edit this file and use the 
 Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
 
 ## Name
-Choose a self-explaining name for your project.
+Project Luscinia
 
 ## Description
 Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
@@ -74,7 +74,10 @@ Use examples liberally, and show the expected output if you can. It's helpful to
 Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
 
 ## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+November Sprint: Prototype (low fidelity, demostrates MVP, main and sub can be subjected to change)
+January Sprint: Alpha (medium fidelity, completed MVP, main mechanic cannot be changed, sub can be changed.)
+Final Demostration: Beta (high fidelity, low to no polish, main and sub cannot be changed)
+Final Product Gold (publishable product)
 
 ## Contributing
 State if you are open to contributions and what your requirements are for accepting them.
