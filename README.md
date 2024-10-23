@@ -75,8 +75,11 @@ Tell people where they can go to for help. It can be any combination of an issue
 
 ## Roadmap
 November Sprint: Prototype (low fidelity, demostrates MVP, main and sub can be subjected to change)
-January Sprint: Alpha (medium fidelity, completed MVP, main mechanic cannot be changed, sub can be changed.)
+
+January Sprint: Alpha (medium fidelity, completed MVP, main mechanic cannot be changed, sub can be changed)
+
 Final Demostration: Beta (high fidelity, low to no polish, main and sub cannot be changed)
+
 Final Product Gold (publishable product)
 
 ## Contributing
