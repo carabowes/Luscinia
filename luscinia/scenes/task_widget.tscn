@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp3ypaulk2p3d"]
+
+[ext_resource type="Texture2D" uid="uid://bbqlrq08p3n1b" path="res://resources/ui/taskWidgetBackground9Slice.png" id="1_673sv"]
+[ext_resource type="Texture2D" uid="uid://dg01boigrppxu" path="res://resources/ui/starTaskIcon.png" id="2_nlt36"]
+
+[node name="TaskWidget" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CurrentSize" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.348
+anchor_top = 0.23
+anchor_right = 0.652
+anchor_bottom = 0.77
+offset_left = 0.103973
+offset_top = -0.0400085
+offset_right = -0.104004
+offset_bottom = 0.039978
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="WidgetBackground" type="NinePatchRect" parent="CurrentSize"]
+self_modulate = Color(0.952022, 0.540952, 1.54018e-06, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_673sv")
+region_rect = Rect2(0, 0, 500, 500)
+patch_margin_left = 165
+patch_margin_top = 165
+patch_margin_right = 165
+patch_margin_bottom = 165
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="CurrentSize/WidgetBackground"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.121212
+anchor_top = 0.121
+anchor_right = 0.873
+anchor_bottom = 0.873112
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_nlt36")
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressBar" type="ProgressBar" parent="CurrentSize"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.089
+anchor_top = 1.14029
+anchor_right = 1.089
+anchor_bottom = 1.243
+offset_left = 0.15
+offset_top = -0.100037
+offset_right = -0.150024
+offset_bottom = -0.0500488
+grow_horizontal = 2
+grow_vertical = 0
+value = 50.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
