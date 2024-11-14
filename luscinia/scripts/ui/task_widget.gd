@@ -4,10 +4,15 @@ extends Control
 
 enum LevelOfDetail {LOW, MEDIUM, HIGH}
 
-@export var current_level_of_detail : LevelOfDetail:
-	set(lod):
-		change_level_of_detail(lod)
-		current_level_of_detail = lod
+@export var current_level_of_detail : LevelOfDetail
+@export var task_info_text: String:
+	set(text):
+		task_info_text = text
+		set_task_info()
+@export var task_icon: Texture:
+	set(icon):
+		task_icon = icon
+		set_task_info()
 
 #Low Med and High refer to the level of detail these elements should be show on
 @onready var _progressBarLowMed = $WidgetBackground/ProgressBarLowMed
@@ -20,24 +25,34 @@ enum LevelOfDetail {LOW, MEDIUM, HIGH}
 
 func _process(_delta: float) -> void:
 	if Input.is_key_pressed(KEY_1):
-		current_level_of_detail = LevelOfDetail.LOW
+		set_level_of_detail(LevelOfDetail.LOW)
 	if Input.is_key_pressed(KEY_2):
-		current_level_of_detail = LevelOfDetail.MEDIUM
+		set_level_of_detail(LevelOfDetail.MEDIUM)
 	if Input.is_key_pressed(KEY_3):
-		current_level_of_detail = LevelOfDetail.HIGH
+		set_level_of_detail(LevelOfDetail.HIGH)
 
 
-func change_level_of_detail(lod):
+func set_level_of_detail(lod):
+	current_level_of_detail = lod
 	match lod:
 		LevelOfDetail.LOW:
-			switch_to_low_lod()
+			_switch_to_low_lod()
 		LevelOfDetail.MEDIUM:
-			switch_to_med_lod()
+			_switch_to_med_lod()
 		LevelOfDetail.HIGH:
-			switch_to_high_lod()
+			_switch_to_high_lod()
 
 
-func switch_to_low_lod():
+#Should be some sort of object that is passed in, but for now we will just use
+#properties from this task and then update when they are set
+func set_task_info():
+	$WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/TaskInfoLabel.text = task_info_text
+	$WidgetBackground/TaskInfoMed.text = task_info_text
+	$WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer/TaskIcon.texture = task_icon
+	pass
+
+
+func _switch_to_low_lod():
 	$".".custom_minimum_size = Vector2(48, 48)
 	_progressBarLowMed.visible = true
 	_taskInfoMed.visible = false
@@ -47,7 +62,7 @@ func switch_to_low_lod():
 	_taskIconMargin.add_theme_constant_override("margin_top", 0)
 
 
-func switch_to_med_lod():
+func _switch_to_med_lod():
 	$".".custom_minimum_size = Vector2(48, 48)
 	_progressBarLowMed.visible = true
 	_taskInfoMed.visible = true
@@ -57,7 +72,7 @@ func switch_to_med_lod():
 	_taskIconMargin.add_theme_constant_override("margin_top", 0)
 
 
-func switch_to_high_lod():
+func _switch_to_high_lod():
 	$".".custom_minimum_size = Vector2(220, 120)
 	_progressBarLowMed.visible = false
 	_taskInfoMed.visible = false
