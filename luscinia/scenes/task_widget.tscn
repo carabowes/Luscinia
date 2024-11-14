@@ -1,13 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dp3ypaulk2p3d"]
 
+[ext_resource type="StyleBox" uid="uid://wlfk11s2ym4x" path="res://resources/ui/themes/primary_accent.tres" id="1_mtsjj"]
 [ext_resource type="Texture2D" uid="uid://dg01boigrppxu" path="res://resources/ui/starTaskIcon.png" id="2_nlt36"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7jmx1"]
-bg_color = Color(1, 0.584314, 0, 1)
-corner_radius_top_left = 24
-corner_radius_top_right = 24
-corner_radius_bottom_right = 24
-corner_radius_bottom_left = 24
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhecv"]
 bg_color = Color(0.52549, 0.34902, 0.0980392, 1)
@@ -16,12 +10,9 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rw1d1"]
-bg_color = Color(1, 0.584314, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="LabelSettings" id="LabelSettings_sr43u"]
+line_spacing = -2.0
+font_color = Color(0, 0, 0, 1)
 
 [node name="TaskWidget" type="Control"]
 layout_mode = 3
@@ -41,16 +32,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_7jmx1")
+theme_override_styles/panel = ExtResource("1_mtsjj")
 
-[node name="ProgressBar" type="ProgressBar" parent="WidgetBackground"]
+[node name="ProgressBarLowMed" type="ProgressBar" parent="WidgetBackground"]
 layout_mode = 1
 offset_left = -3.0
 offset_top = -10.0
 offset_right = 51.0
 offset_bottom = -4.0
 theme_override_styles/background = SubResource("StyleBoxFlat_dhecv")
-theme_override_styles/fill = SubResource("StyleBoxFlat_rw1d1")
+theme_override_styles/fill = ExtResource("1_mtsjj")
 value = 25.0
 show_percentage = false
 
@@ -73,3 +64,19 @@ layout_mode = 2
 layout_mode = 2
 texture = ExtResource("2_nlt36")
 expand_mode = 2
+
+[node name="TaskInfoMed" type="Label" parent="WidgetBackground"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = 4.0
+offset_right = 48.0
+offset_bottom = 53.0
+text = "Providing Aid"
+label_settings = SubResource("LabelSettings_sr43u")
+horizontal_alignment = 1
+autowrap_mode = 2
