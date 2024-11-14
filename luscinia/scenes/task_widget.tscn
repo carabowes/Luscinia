@@ -1,25 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://dp3ypaulk2p3d"]
+[gd_scene load_steps=10 format=3 uid="uid://dp3ypaulk2p3d"]
 
 [ext_resource type="StyleBox" uid="uid://wlfk11s2ym4x" path="res://resources/ui/themes/primary_accent.tres" id="1_mtsjj"]
 [ext_resource type="Texture2D" uid="uid://dg01boigrppxu" path="res://resources/ui/starTaskIcon.png" id="2_nlt36"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhecv"]
 bg_color = Color(0.52549, 0.34902, 0.0980392, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="LabelSettings" id="LabelSettings_sr43u"]
 line_spacing = -2.0
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s0nn8"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_mkf73"]
+line_spacing = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_koxl4"]
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_xeijb"]
+font_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcwqi"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="TaskWidget" type="Control"]
 layout_mode = 3
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 32.0
-offset_bottom = 32.0
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -52,10 +75,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="WidgetInfo" type="HBoxContainer" parent="WidgetBackground/InfoMarginContrainer"]
 layout_mode = 2
@@ -66,6 +89,160 @@ texture = ExtResource("2_nlt36")
 expand_mode = 2
 
 [node name="TaskInfoMed" type="Label" parent="WidgetBackground"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = 4.0
+offset_right = 48.0
+offset_bottom = 53.0
+text = "Providing Aid"
+label_settings = SubResource("LabelSettings_sr43u")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="WidgetBackground2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 204.0
+offset_top = 2.0
+offset_right = 356.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_mtsjj")
+
+[node name="InfoMarginContrainer" type="MarginContainer" parent="WidgetBackground2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="WidgetInfo" type="HBoxContainer" parent="WidgetBackground2/InfoMarginContrainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="WidgetBackground2/InfoMarginContrainer/WidgetInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WidgetBackground2/InfoMarginContrainer/WidgetInfo/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="MarginContainer" type="MarginContainer" parent="WidgetBackground2/InfoMarginContrainer/WidgetInfo/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="TaskIcon" type="TextureRect" parent="WidgetBackground2/InfoMarginContrainer/WidgetInfo/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+size_flags_stretch_ratio = 0.6
+texture = ExtResource("2_nlt36")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="ProgressBarLowMed" type="ProgressBar" parent="WidgetBackground2/InfoMarginContrainer/WidgetInfo/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+theme_override_styles/background = SubResource("StyleBoxFlat_dhecv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_s0nn8")
+value = 25.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="WidgetBackground2/InfoMarginContrainer/WidgetInfo/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.2
+text = "2 hrs"
+label_settings = SubResource("LabelSettings_mkf73")
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="WidgetBackground2/InfoMarginContrainer/WidgetInfo"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 2.0
+theme_override_constants/margin_top = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="WidgetBackground2/InfoMarginContrainer/WidgetInfo/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_stretch_ratio = 0.6
+
+[node name="Label" type="Label" parent="WidgetBackground2/InfoMarginContrainer/WidgetInfo/MarginContainer2/VBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Providing Aid in Koza"
+label_settings = SubResource("LabelSettings_koxl4")
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WidgetBackground2/InfoMarginContrainer/WidgetInfo/MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="TextureRect" type="TextureRect" parent="WidgetBackground2/InfoMarginContrainer/WidgetInfo/MarginContainer2/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_nlt36")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="WidgetBackground2/InfoMarginContrainer/WidgetInfo/MarginContainer2/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 8
+text = "20"
+label_settings = SubResource("LabelSettings_xeijb")
+
+[node name="TextureRect2" type="TextureRect" parent="WidgetBackground2/InfoMarginContrainer/WidgetInfo/MarginContainer2/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_nlt36")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label2" type="Label" parent="WidgetBackground2/InfoMarginContrainer/WidgetInfo/MarginContainer2/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 8
+text = "10"
+label_settings = SubResource("LabelSettings_xeijb")
+
+[node name="MarginContainer" type="MarginContainer" parent="WidgetBackground2/InfoMarginContrainer/WidgetInfo/MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 3
+
+[node name="Button" type="Button" parent="WidgetBackground2/InfoMarginContrainer/WidgetInfo/MarginContainer2/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_jcwqi")
+text = "view more"
+
+[node name="TaskInfoMed" type="Label" parent="WidgetBackground2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
