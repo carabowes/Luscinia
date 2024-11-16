@@ -7,7 +7,7 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	self.pressed.connect(self.button_pressed)
-	
+
 func button_pressed():
 	message_list.visible = true
 	gm.message_amount += 1

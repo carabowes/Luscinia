@@ -11,6 +11,5 @@ func _process(delta: float) -> void:
 	else:
 		alert.visible = true
 
-
 func print_msg_amt():
 	print(str(message_amount))
