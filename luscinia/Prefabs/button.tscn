@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://chi1ovd807bam"]
-
-[ext_resource type="Script" path="res://Scripts/messageButton.gd" id="1_kv383"]
-
-[node name="Button" type="Button"]
-custom_minimum_size = Vector2(0, 50)
-text = "k"
-autowrap_mode = 1
-script = ExtResource("1_kv383")

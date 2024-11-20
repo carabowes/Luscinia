@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Luscinia"
+run/main_scene="res://task-assignment.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://Sprites/icon.svg"
 
 [display]
 
-window/size/viewport_width=576
-window/size/viewport_height=1024
+window/size/viewport_width=360
+window/size/viewport_height=800
 window/size/window_width_override=288
 window/size/window_height_override=512
 window/stretch/mode="canvas_items"
@@ -30,6 +31,7 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true

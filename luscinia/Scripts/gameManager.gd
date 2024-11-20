@@ -4,6 +4,7 @@ extends Control
 
 var message_amount: int = 0
 @export var show_alert: bool = false
+@export var messages: Array[String] = []
 
 func _process(delta: float) -> void:
 	if(!show_alert):

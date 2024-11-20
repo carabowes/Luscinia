@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/opacity.gd" id="3_en26w"]
 [ext_resource type="Script" path="res://Scripts/messageBoardControl.gd" id="5_lc24h"]
 
-[node name="Control" type="Control"]
+[node name="GameManager" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,12 +15,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sof0y")
 show_alert = true
+messages = Array[String](["task lego city", "test message 2", "test message 3"])
 
 [node name="Map" type="Node2D" parent="."]
 
 [node name="Testmap" type="Sprite2D" parent="Map"]
-position = Vector2(287.356, 511.39)
-scale = Vector2(1.28859, 1.2205)
+position = Vector2(179.598, 399.523)
+scale = Vector2(0.805368, 0.953515)
 texture = ExtResource("1_pj2qy")
 script = ExtResource("3_en26w")
 opacity = 0.8
@@ -83,7 +84,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/ScrollContainer"]
-custom_minimum_size = Vector2(572, 1)
+custom_minimum_size = Vector2(360, 1)
 layout_mode = 2
 theme_override_constants/separation = 7
 script = ExtResource("5_lc24h")
