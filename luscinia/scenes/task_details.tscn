@@ -1,0 +1,526 @@
+[gd_scene load_steps=19 format=3 uid="uid://fwblpvq8owlw"]
+
+[ext_resource type="Script" path="res://nodes/time_progress_bar.gd" id="1_stskc"]
+[ext_resource type="Texture2D" uid="uid://c863dc1kr3gcq" path="res://resources/ui/godotTaskIcon.png" id="2_y8fa5"]
+[ext_resource type="Texture2D" uid="uid://dg01boigrppxu" path="res://resources/ui/starTaskIcon.png" id="3_yid0v"]
+[ext_resource type="StyleBox" uid="uid://wlfk11s2ym4x" path="res://resources/ui/themes/primary_accent.tres" id="4_r3l8y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swbtu"]
+bg_color = Color(0.956863, 0.929412, 0.952941, 1)
+
+[sub_resource type="Theme" id="Theme_71kbt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fdyfv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2l6xi"]
+font_size = 24
+font_color = Color(1, 0.584314, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyk4g"]
+bg_color = Color(0.52549, 0.34902, 0.0980392, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2btxq"]
+bg_color = Color(1, 0.584314, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_p5ny5"]
+font_size = 14
+outline_size = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_v4t23"]
+font_color = Color(0.290196, 0.266667, 0.34902, 1)
+outline_color = Color(0.290196, 0.266667, 0.34902, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j5ce7"]
+font_size = 12
+font_color = Color(0.290196, 0.266667, 0.34902, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lglql"]
+font_size = 10
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sm5ac"]
+font_color = Color(0.290196, 0.266667, 0.34902, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d3nhl"]
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_57w7t"]
+font_color = Color(0.290196, 0.266667, 0.34902, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_aslgx"]
+font_color = Color(0.384314, 0.360784, 0.435294, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+offset_right = 360.0
+offset_bottom = 800.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_swbtu")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme = SubResource("Theme_71kbt")
+
+[node name="ReturnButton" type="Button" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_fdyfv")
+text = "<= Return to Map"
+
+[node name="Task Title" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Providing Aid in Koza "
+label_settings = SubResource("LabelSettings_2l6xi")
+autowrap_mode = 2
+
+[node name="PaddingBar" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" node_paths=PackedStringArray("text_label")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_xyk4g")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2btxq")
+value = 80.0
+show_percentage = false
+script = ExtResource("1_stskc")
+total_task_time = 10.0
+text_label = NodePath("Label")
+padding = 5
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ProgressBar"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = -11.0
+offset_right = -7.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "2hrs left"
+label_settings = SubResource("LabelSettings_p5ny5")
+vertical_alignment = 1
+
+[node name="PaddingBar2" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="TaskStatusTitle" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+text = "Task Status"
+label_settings = SubResource("LabelSettings_v4t23")
+autowrap_mode = 2
+
+[node name="TaskStatusText" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+text = "Alvin, Theodore and Simone are currently giving out aid in Koza. They have given aid to 93 people so far. They will be heading back to HQ in approximately 1 hour."
+label_settings = SubResource("LabelSettings_j5ce7")
+autowrap_mode = 2
+
+[node name="PaddingBar3" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="StaffOnTaskTitle" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+text = "Staff on Task"
+label_settings = SubResource("LabelSettings_v4t23")
+autowrap_mode = 2
+
+[node name="StaffOnTask" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+
+[node name="StaffHBox" type="HBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/StaffOnTask"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StaffIcon" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/StaffOnTask/StaffHBox"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="Profile" type="TextureRect" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/StaffOnTask/StaffHBox/StaffIcon"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0666667
+anchor_top = 0.0533333
+anchor_right = 0.933333
+anchor_bottom = 0.746667
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_y8fa5")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Name" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/StaffOnTask/StaffHBox/StaffIcon"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.418
+anchor_right = 1.0
+anchor_bottom = 0.418
+offset_top = 27.65
+offset_bottom = 39.65
+text = "Alvin"
+label_settings = SubResource("LabelSettings_lglql")
+horizontal_alignment = 1
+
+[node name="StaffIcon2" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/StaffOnTask/StaffHBox"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="Profile" type="TextureRect" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/StaffOnTask/StaffHBox/StaffIcon2"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0666667
+anchor_top = 0.0533333
+anchor_right = 0.933333
+anchor_bottom = 0.746667
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_y8fa5")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Name" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/StaffOnTask/StaffHBox/StaffIcon2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.418
+anchor_right = 1.0
+anchor_bottom = 0.418
+offset_top = 27.65
+offset_bottom = 39.65
+text = "Theodore"
+label_settings = SubResource("LabelSettings_lglql")
+horizontal_alignment = 1
+
+[node name="StaffIcon3" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/StaffOnTask/StaffHBox"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="Profile" type="TextureRect" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/StaffOnTask/StaffHBox/StaffIcon3"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0666667
+anchor_top = 0.0533333
+anchor_right = 0.933333
+anchor_bottom = 0.746667
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_y8fa5")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Name" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/StaffOnTask/StaffHBox/StaffIcon3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.418
+anchor_right = 1.0
+anchor_bottom = 0.418
+offset_top = 27.65
+offset_bottom = 39.65
+text = "Simone"
+label_settings = SubResource("LabelSettings_lglql")
+horizontal_alignment = 1
+
+[node name="PaddingBar4" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="TaskLogTitle" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Task Log"
+label_settings = SubResource("LabelSettings_sm5ac")
+
+[node name="PaddingBar6" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="TaskLog" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Events" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/TaskLog"]
+modulate = Color(0.47451, 0.454902, 0.494118, 1)
+layout_mode = 2
+size_flags_vertical = 0
+text = "- Travel to dock"
+label_settings = SubResource("LabelSettings_d3nhl")
+
+[node name="Events2" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/TaskLog"]
+modulate = Color(0.47451, 0.454902, 0.494118, 1)
+layout_mode = 2
+size_flags_vertical = 0
+text = "- Retrieve Aid"
+label_settings = SubResource("LabelSettings_d3nhl")
+
+[node name="Events3" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/TaskLog"]
+modulate = Color(0.47451, 0.454902, 0.494118, 1)
+layout_mode = 2
+size_flags_vertical = 0
+text = "- Travel to Koza"
+label_settings = SubResource("LabelSettings_d3nhl")
+
+[node name="Events4" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/TaskLog"]
+self_modulate = Color(1, 0.584314, 0, 1)
+layout_mode = 2
+size_flags_vertical = 0
+text = "- Hand out aid in Koza"
+label_settings = SubResource("LabelSettings_d3nhl")
+
+[node name="Events5" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/TaskLog"]
+self_modulate = Color(0.384314, 0.360784, 0.435294, 1)
+layout_mode = 2
+size_flags_vertical = 0
+text = "- Travel back to HQ"
+label_settings = SubResource("LabelSettings_d3nhl")
+
+[node name="PaddingBar5" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="ResourcesUsedTitle" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Resources Used"
+label_settings = SubResource("LabelSettings_57w7t")
+
+[node name="ResourcesUsed" type="GridContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Resource" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResourceHBox" type="HBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed/Resource"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResourceIconb" type="TextureRect" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed/Resource/ResourceHBox"]
+self_modulate = Color(0.290196, 0.266667, 0.34902, 1)
+layout_mode = 2
+texture = ExtResource("3_yid0v")
+expand_mode = 2
+
+[node name="Padding" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed/Resource/ResourceHBox"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+
+[node name="ResourceAmount" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed/Resource/ResourceHBox"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_aslgx")
+
+[node name="Resource2" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResourceHBox" type="HBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed/Resource2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResourceIconb" type="TextureRect" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed/Resource2/ResourceHBox"]
+self_modulate = Color(0.290196, 0.266667, 0.34902, 1)
+layout_mode = 2
+texture = ExtResource("3_yid0v")
+expand_mode = 2
+
+[node name="Padding" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed/Resource2/ResourceHBox"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+
+[node name="ResourceAmount" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed/Resource2/ResourceHBox"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_aslgx")
+
+[node name="Resource3" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResourceHBox" type="HBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed/Resource3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResourceIconb" type="TextureRect" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed/Resource3/ResourceHBox"]
+self_modulate = Color(0.290196, 0.266667, 0.34902, 1)
+layout_mode = 2
+texture = ExtResource("3_yid0v")
+expand_mode = 2
+
+[node name="Padding" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed/Resource3/ResourceHBox"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+
+[node name="ResourceAmount" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed/Resource3/ResourceHBox"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_aslgx")
+
+[node name="Resource4" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResourceHBox" type="HBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed/Resource4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResourceIconb" type="TextureRect" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed/Resource4/ResourceHBox"]
+self_modulate = Color(0.290196, 0.266667, 0.34902, 1)
+layout_mode = 2
+texture = ExtResource("3_yid0v")
+expand_mode = 2
+
+[node name="Padding" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed/Resource4/ResourceHBox"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+
+[node name="ResourceAmount" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/ResourcesUsed/Resource4/ResourceHBox"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_aslgx")
+
+[node name="PaddingBar7" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="OnCompletionTitle" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "On Completion
+"
+label_settings = SubResource("LabelSettings_57w7t")
+
+[node name="OnCompletion" type="GridContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Resource" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/OnCompletion"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResourceHBox" type="HBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/OnCompletion/Resource"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResourceIconb" type="TextureRect" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/OnCompletion/Resource/ResourceHBox"]
+self_modulate = Color(0.290196, 0.266667, 0.34902, 1)
+layout_mode = 2
+texture = ExtResource("3_yid0v")
+expand_mode = 2
+
+[node name="Padding" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/OnCompletion/Resource/ResourceHBox"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+
+[node name="ResourceAmount" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/OnCompletion/Resource/ResourceHBox"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_aslgx")
+
+[node name="EndEarlyButton" type="Button" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.996078, 0.968627, 1, 1)
+theme_override_styles/normal = ExtResource("4_r3l8y")
+text = "    End Early    "
