@@ -133,11 +133,13 @@ size_flags_horizontal = 8
 size_flags_stretch_ratio = 0.6
 
 [node name="TaskInfoLabel" type="Label" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(100, 45)
 layout_mode = 2
 text = "Providing Aid in Koza"
 label_settings = SubResource("LabelSettings_koxl4")
+vertical_alignment = 1
 autowrap_mode = 2
+text_overrun_behavior = 3
 
 [node name="ResourcesContainer" type="HBoxContainer" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer"]
 layout_mode = 2
@@ -204,6 +206,7 @@ text = "Providing Aid"
 label_settings = SubResource("LabelSettings_sr43u")
 horizontal_alignment = 1
 autowrap_mode = 2
+text_overrun_behavior = 3
 
 [node name="ProgressBarLowMed" type="ProgressBar" parent="WidgetBackground"]
 layout_mode = 0

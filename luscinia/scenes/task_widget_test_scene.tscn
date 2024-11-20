@@ -14,6 +14,7 @@ grow_vertical = 2
 
 [node name="TaskWidget" parent="." instance=ExtResource("1_cbihi")]
 layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.6
 anchor_top = 0.3425
 anchor_right = 0.6
@@ -23,6 +24,7 @@ task_icon = ExtResource("2_1dxaf")
 
 [node name="TaskWidget2" parent="." instance=ExtResource("1_cbihi")]
 layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.163889
 anchor_top = 0.68875
 anchor_right = 0.163889
@@ -32,15 +34,17 @@ task_icon = ExtResource("2_1dxaf")
 
 [node name="TaskWidget3" parent="." instance=ExtResource("1_cbihi")]
 layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.708333
 anchor_top = 0.71
 anchor_right = 0.708333
 anchor_bottom = 0.71
-task_info_text = "Running Errands"
+task_info_text = "Super long task name to check wrapping"
 task_icon = ExtResource("3_10eyg")
 
 [node name="TaskWidget4" parent="." instance=ExtResource("1_cbihi")]
 layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.202778
 anchor_top = 0.10625
 anchor_right = 0.202778
