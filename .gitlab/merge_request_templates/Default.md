@@ -1,5 +1,5 @@
 ### Description
-This merge request addresses, and describe the problem or user story being addressed.
+What is the purpose of this merge request.
 
 ### Changes Made
 Provide code snippets or screenshots as needed.
