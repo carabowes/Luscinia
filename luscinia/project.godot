@@ -11,9 +11,16 @@ config_version=5
 [application]
 
 config/name="Luscinia"
+run/main_scene="res://scenes/task_widget_test_scene.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=360
+window/size/viewport_height=800
+
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
