@@ -62,11 +62,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 3
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 2
-offset_right = 360.0
-offset_bottom = 800.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -174,7 +176,6 @@ autowrap_mode = 2
 
 [node name="StaffOnTask2" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_ykrfx")]
 layout_mode = 2
-staff_names = Array[String](["Alvin", "Theodore"])
 
 [node name="PaddingBar4" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
@@ -182,16 +183,19 @@ custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
 [node name="TaskLogTitle" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
 text = "Task Log"
 label_settings = SubResource("LabelSettings_sm5ac")
 
 [node name="PaddingBar6" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 
 [node name="TaskLog" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Events" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/TaskLog"]
@@ -230,6 +234,7 @@ text = "- Travel back to HQ"
 label_settings = SubResource("LabelSettings_d3nhl")
 
 [node name="PaddingBar5" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+visible = false
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
