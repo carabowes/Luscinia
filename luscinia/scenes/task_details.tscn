@@ -1,9 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://fwblpvq8owlw"]
+[gd_scene load_steps=18 format=3 uid="uid://b4vjsqw6fc5tj"]
 
 [ext_resource type="Script" path="res://nodes/time_progress_bar.gd" id="1_stskc"]
 [ext_resource type="PackedScene" uid="uid://4bvycj7ktd5x" path="res://nodes/task_details/staff_on_task.tscn" id="2_ykrfx"]
 [ext_resource type="Texture2D" uid="uid://dg01boigrppxu" path="res://resources/ui/starTaskIcon.png" id="3_yid0v"]
-[ext_resource type="StyleBox" uid="uid://wlfk11s2ym4x" path="res://resources/ui/themes/primary_accent.tres" id="4_r3l8y"]
+[ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://resources/ui/themes/details_page_theme.tres" id="4_yi0aj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swbtu"]
 bg_color = Color(0.956863, 0.929412, 0.952941, 1)
@@ -163,11 +163,13 @@ label_settings = SubResource("LabelSettings_j5ce7")
 autowrap_mode = 2
 
 [node name="PaddingBar3" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+visible = false
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
 [node name="StaffOnTaskTitle" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 text = "Staff on Task"
@@ -175,6 +177,7 @@ label_settings = SubResource("LabelSettings_v4t23")
 autowrap_mode = 2
 
 [node name="StaffOnTask2" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_ykrfx")]
+visible = false
 layout_mode = 2
 
 [node name="PaddingBar4" type="Panel" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -420,6 +423,5 @@ custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_colors/font_color = Color(0.996078, 0.968627, 1, 1)
-theme_override_styles/normal = ExtResource("4_r3l8y")
+theme = ExtResource("4_yi0aj")
 text = "    End Early    "
