@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Message" load_steps=8 format=3 uid="uid://i6gtnhbk02dj"]
+
+[ext_resource type="Script" path="res://scripts/resources/prerequisite.gd" id="1_fr0jb"]
+[ext_resource type="Script" path="res://scripts/resources/message.gd" id="2_3uf3s"]
+[ext_resource type="Script" path="res://scripts/resources/task_data.gd" id="3_tk13b"]
+[ext_resource type="Resource" uid="uid://dhlk7klo8dvp1" path="res://task_data/test_task_data.tres" id="4_i240x"]
+[ext_resource type="Script" path="res://scripts/resources/event_effect.gd" id="5_yuc18"]
+
+[sub_resource type="Resource" id="Resource_8ghh3"]
+script = ExtResource("1_fr0jb")
+task_id = Array[int]([])
+events = Array[int]([])
+chance = 0.5
+
+[sub_resource type="Resource" id="Resource_pdlbb"]
+script = ExtResource("3_tk13b")
+task_id = 1
+name = ""
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("5_yuc18")]([])
+
+[resource]
+script = ExtResource("2_3uf3s")
+message = "Hi there. We need help!"
+responses = Array[String](["Yes! We will give you help!", "No, cant help :("])
+tasks = Array[ExtResource("3_tk13b")]([ExtResource("4_i240x"), SubResource("Resource_pdlbb")])
+prerequisites = Array[ExtResource("1_fr0jb")]([SubResource("Resource_8ghh3")])
+antirequisites = Array[ExtResource("1_fr0jb")]([])
+turns_to_answer = 5
+is_repeatable = true
