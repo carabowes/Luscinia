@@ -21,7 +21,7 @@ extends Resource
 ## Dictionary of Event to Array of Event 
 @export var effects_of_random_events : Array[EventEffect]
 
-func _init(task_id = 0, name = "", icon = null, start_location = Vector2.ZERO, end_location = Vector2.ZERO, resources_required = {}, resources_gained = {}, expected_completion_time = 0, effects_of_random_events = []) -> void:
+func _init(task_id = 0, name = "", icon = null, start_location = Vector2.ZERO, end_location = Vector2.ZERO, resources_required = {}, resources_gained = {}, expected_completion_time = 0, effects_of_random_events : Array[EventEffect] = []) -> void:
 	self.task_id = task_id
 	self.name = name
 	self.icon = icon

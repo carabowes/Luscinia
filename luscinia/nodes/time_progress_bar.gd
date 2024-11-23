@@ -5,6 +5,7 @@ class_name TimeProgressBar
 @export var total_task_time: float = 0:
 	set(value):
 		total_task_time = value
+		max_value = total_task_time
 		update_text()
 @export var text_label: Label
 @export var padding: int = 10:
@@ -30,5 +31,3 @@ func _value_changed(new_value: float) -> void:
 	update_text()
 	if Engine.is_editor_hint():
 		queue_redraw()
-	
-	
