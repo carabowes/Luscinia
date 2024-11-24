@@ -1,9 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://b4vjsqw6fc5tj"]
+[gd_scene load_steps=18 format=3 uid="uid://b4vjsqw6fc5tj"]
 
-[ext_resource type="Script" path="res://scenes/task_details.gd" id="1_dalyu"]
+[ext_resource type="Script" path="res://scripts/ui/task_details.gd" id="1_dalyu"]
 [ext_resource type="Script" path="res://nodes/time_progress_bar.gd" id="1_stskc"]
 [ext_resource type="PackedScene" uid="uid://4bvycj7ktd5x" path="res://nodes/task_details/staff_on_task.tscn" id="2_ykrfx"]
-[ext_resource type="Texture2D" uid="uid://dg01boigrppxu" path="res://resources/ui/starTaskIcon.png" id="3_yid0v"]
+[ext_resource type="PackedScene" uid="uid://bxndjmqmmnwuu" path="res://nodes/task_details/task_resources.tscn" id="4_xomxh"]
 [ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://resources/ui/themes/details_page_theme.tres" id="4_yi0aj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swbtu"]
@@ -52,9 +52,6 @@ font_size = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_57w7t"]
 font_color = Color(0.290196, 0.266667, 0.34902, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_aslgx"]
-font_color = Color(0.384314, 0.360784, 0.435294, 1)
 
 [node name="TaskDetails" type="Control"]
 layout_mode = 3
@@ -105,7 +102,7 @@ theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxFlat_fdyfv")
 text = "<= Return to Map"
 
-[node name="Task Title" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements"]
+[node name="TaskTitle" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Providing Aid in Koza "
@@ -122,6 +119,7 @@ custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_xyk4g")
 theme_override_styles/fill = SubResource("StyleBoxFlat_2btxq")
+max_value = 7.0
 value = 7.0
 show_percentage = false
 script = ExtResource("1_stskc")
@@ -141,7 +139,7 @@ offset_right = -7.0
 offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "7hrs left"
+text = "0hrs left"
 label_settings = SubResource("LabelSettings_p5ny5")
 vertical_alignment = 1
 
@@ -250,129 +248,16 @@ size_flags_vertical = 0
 text = "Resources Used"
 label_settings = SubResource("LabelSettings_57w7t")
 
-[node name="ResourcesUsed" type="GridContainer" parent="Background/ScrollContainer/MarginContainer/Elements"]
+[node name="ResourcesUsed" parent="Background/ScrollContainer/MarginContainer/Elements" instance=ExtResource("4_xomxh")]
+modulate = Color(0.290196, 0.266667, 0.34902, 1)
 layout_mode = 2
-columns = 3
-
-[node name="Resource" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed"]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(50, 20)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ResourceHBox" type="HBoxContainer" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed/Resource"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ResourceIconb" type="TextureRect" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed/Resource/ResourceHBox"]
-self_modulate = Color(0.290196, 0.266667, 0.34902, 1)
-layout_mode = 2
-texture = ExtResource("3_yid0v")
-expand_mode = 2
-
-[node name="Padding" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed/Resource/ResourceHBox"]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(3, 0)
-layout_mode = 2
-
-[node name="ResourceAmount" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed/Resource/ResourceHBox"]
-layout_mode = 2
-text = "1"
-label_settings = SubResource("LabelSettings_aslgx")
-
-[node name="Resource2" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed"]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(50, 20)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ResourceHBox" type="HBoxContainer" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed/Resource2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ResourceIconb" type="TextureRect" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed/Resource2/ResourceHBox"]
-self_modulate = Color(0.290196, 0.266667, 0.34902, 1)
-layout_mode = 2
-texture = ExtResource("3_yid0v")
-expand_mode = 2
-
-[node name="Padding" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed/Resource2/ResourceHBox"]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(3, 0)
-layout_mode = 2
-
-[node name="ResourceAmount" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed/Resource2/ResourceHBox"]
-layout_mode = 2
-text = "1"
-label_settings = SubResource("LabelSettings_aslgx")
-
-[node name="Resource3" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed"]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(50, 20)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ResourceHBox" type="HBoxContainer" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed/Resource3"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ResourceIconb" type="TextureRect" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed/Resource3/ResourceHBox"]
-self_modulate = Color(0.290196, 0.266667, 0.34902, 1)
-layout_mode = 2
-texture = ExtResource("3_yid0v")
-expand_mode = 2
-
-[node name="Padding" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed/Resource3/ResourceHBox"]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(3, 0)
-layout_mode = 2
-
-[node name="ResourceAmount" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed/Resource3/ResourceHBox"]
-layout_mode = 2
-text = "1"
-label_settings = SubResource("LabelSettings_aslgx")
-
-[node name="Resource4" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed"]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(50, 20)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ResourceHBox" type="HBoxContainer" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed/Resource4"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ResourceIconb" type="TextureRect" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed/Resource4/ResourceHBox"]
-self_modulate = Color(0.290196, 0.266667, 0.34902, 1)
-layout_mode = 2
-texture = ExtResource("3_yid0v")
-expand_mode = 2
-
-[node name="Padding" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed/Resource4/ResourceHBox"]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(3, 0)
-layout_mode = 2
-
-[node name="ResourceAmount" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed/Resource4/ResourceHBox"]
-layout_mode = 2
-text = "1"
-label_settings = SubResource("LabelSettings_aslgx")
+ui_color = Color(0.290196, 0.266667, 0.34902, 1)
+resources = {
+0: 1,
+1: 3,
+2: 2,
+3: 4
+}
 
 [node name="PaddingBar7" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements"]
 modulate = Color(1, 1, 1, 0)
@@ -386,39 +271,13 @@ text = "On Completion
 "
 label_settings = SubResource("LabelSettings_57w7t")
 
-[node name="OnCompletion" type="GridContainer" parent="Background/ScrollContainer/MarginContainer/Elements"]
+[node name="OnCompletion" parent="Background/ScrollContainer/MarginContainer/Elements" instance=ExtResource("4_xomxh")]
+modulate = Color(0.290196, 0.266667, 0.34902, 1)
 layout_mode = 2
-columns = 3
-
-[node name="Resource" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements/OnCompletion"]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(50, 20)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="ResourceHBox" type="HBoxContainer" parent="Background/ScrollContainer/MarginContainer/Elements/OnCompletion/Resource"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ResourceIconb" type="TextureRect" parent="Background/ScrollContainer/MarginContainer/Elements/OnCompletion/Resource/ResourceHBox"]
-self_modulate = Color(0.290196, 0.266667, 0.34902, 1)
-layout_mode = 2
-texture = ExtResource("3_yid0v")
-expand_mode = 2
-
-[node name="Padding" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements/OnCompletion/Resource/ResourceHBox"]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(3, 0)
-layout_mode = 2
-
-[node name="ResourceAmount" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements/OnCompletion/Resource/ResourceHBox"]
-layout_mode = 2
-text = "1"
-label_settings = SubResource("LabelSettings_aslgx")
+ui_color = Color(0.290196, 0.266667, 0.34902, 1)
+resources = {
+0: 6
+}
 
 [node name="EndEarlyButton" type="Button" parent="Background/ScrollContainer/MarginContainer/Elements"]
 custom_minimum_size = Vector2(0, 35)

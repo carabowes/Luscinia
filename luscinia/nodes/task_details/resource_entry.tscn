@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://df5nbiygwfdeb"]
+
+[ext_resource type="Texture2D" uid="uid://dg01boigrppxu" path="res://resources/ui/starTaskIcon.png" id="1_0xhix"]
+[ext_resource type="Script" path="res://nodes/task_details/resource_ui_entry.gd" id="1_4qxd5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rc13s"]
+
+[node name="Resource" type="Panel" node_paths=PackedStringArray("amount_text", "image")]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(50, 20)
+size_flags_horizontal = 3
+script = ExtResource("1_4qxd5")
+amount_text = NodePath("ResourceHBox/ResourceAmount")
+image = NodePath("ResourceHBox/ResourceIcon")
+resource_type = 3
+amount = 1
+
+[node name="ResourceHBox" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResourceIcon" type="TextureRect" parent="ResourceHBox"]
+layout_mode = 2
+texture = ExtResource("1_0xhix")
+expand_mode = 2
+
+[node name="Padding" type="Panel" parent="ResourceHBox"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+
+[node name="ResourceAmount" type="Label" parent="ResourceHBox"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_rc13s")
