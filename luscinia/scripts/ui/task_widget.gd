@@ -40,11 +40,20 @@ func set_level_of_detail(lod):
 			_switch_to_high_lod()
 
 
+func _draw() -> void:
+	if(task_info != null):
+		set_task_info()
+
+
 func set_task_info():
 	$WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/TaskInfoLabel.text = task_info.task_data.name
 	$WidgetBackground/TaskInfoMed.text = task_info.task_data.name
 	$WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer/TaskIcon.texture = task_info.task_data.icon
-
+	$WidgetBackground/ProgressBarLowMed.max_value = task_info.get_total_time()
+	$WidgetBackground/ProgressBarLowMed.value = task_info.current_progress
+	$WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer/ProgressBarHigh.max_value = task_info.get_total_time()
+	$WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer/ProgressBarHigh.value = task_info.current_progress
+	$WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer/HoursLeftLabelHigh.text = str(task_info.get_remaining_time()) + " hrs"
 
 func _switch_to_low_lod():
 	$".".custom_minimum_size = Vector2(48, 48)

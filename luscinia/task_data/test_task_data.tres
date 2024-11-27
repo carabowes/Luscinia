@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/resources/event_effect.gd" id="1_hibar"]
 [ext_resource type="Script" path="res://scripts/resources/task_data.gd" id="2_8y5wc"]
 [ext_resource type="Script" path="res://scripts/resources/effect.gd" id="2_67mdc"]
-[ext_resource type="Texture2D" uid="uid://c863dc1kr3gcq" path="res://sprites/ui/godotTaskIcon.png" id="3_56gen"]
+[ext_resource type="Texture2D" uid="uid://c863dc1kr3gcq" path="res://sprites/ui/godotTaskIcon.png" id="3_t6vgv"]
 
 [sub_resource type="Resource" id="Resource_aoge5"]
 script = ExtResource("2_67mdc")
@@ -21,7 +21,7 @@ effects = Array[ExtResource("2_67mdc")]([SubResource("Resource_aoge5")])
 script = ExtResource("2_8y5wc")
 task_id = 0
 name = "Test Task"
-icon = ExtResource("3_56gen")
+icon = ExtResource("3_t6vgv")
 start_location = Vector2(0, 0)
 end_location = Vector2(5, 5)
 resources_required = {
