@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg01boigrppxu"
-path="res://.godot/imported/starTaskIcon.png-26efd56ddf4f91e41912aebb7e1f2460.ctex"
+uid="uid://c863dc1kr3gcq"
+path="res://.godot/imported/godotTaskIcon.png-804c7c7771f3bd9cedaa46290391c283.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/ui/starTaskIcon.png"
-dest_files=["res://.godot/imported/starTaskIcon.png-26efd56ddf4f91e41912aebb7e1f2460.ctex"]
+source_file="res://sprites/ui/godotTaskIcon.png"
+dest_files=["res://.godot/imported/godotTaskIcon.png-804c7c7771f3bd9cedaa46290391c283.ctex"]
 
 [params]
 

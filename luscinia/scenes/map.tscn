@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://g3quwshdv0wn"]
 
-[ext_resource type="Texture2D" uid="uid://c5tv206f6s8ns" path="res://resources/freetownmap.png" id="1_lett5"]
+[ext_resource type="Texture2D" uid="uid://c5tv206f6s8ns" path="res://sprites/freetownmap.png" id="1_lett5"]
 [ext_resource type="Script" path="res://scenes/map.gd" id="1_xeldf"]
 
 [node name="MapView" type="Control"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://dp3ypaulk2p3d"]
 
-[ext_resource type="StyleBox" uid="uid://wlfk11s2ym4x" path="res://resources/ui/themes/primary_accent.tres" id="1_mtsjj"]
+[ext_resource type="StyleBox" uid="uid://wlfk11s2ym4x" path="res://sprites/ui/themes/primary_accent.tres" id="1_mtsjj"]
 [ext_resource type="Script" path="res://scripts/ui/task_widget.gd" id="1_y4lne"]
-[ext_resource type="Texture2D" uid="uid://dg01boigrppxu" path="res://resources/ui/starTaskIcon.png" id="2_nlt36"]
+[ext_resource type="Texture2D" uid="uid://dg01boigrppxu" path="res://sprites/ui/starTaskIcon.png" id="2_nlt36"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhecv"]
 bg_color = Color(0.52549, 0.34902, 0.0980392, 1)

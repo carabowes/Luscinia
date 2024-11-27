@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bsymsb27llawe"]
 
 [ext_resource type="Script" path="res://nodes/task_details/staff_icon.gd" id="1_4p7yv"]
-[ext_resource type="Texture2D" uid="uid://c863dc1kr3gcq" path="res://resources/ui/godotTaskIcon.png" id="1_onib0"]
+[ext_resource type="Texture2D" uid="uid://c863dc1kr3gcq" path="res://sprites/ui/godotTaskIcon.png" id="1_onib0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2iwtg"]
 font_size = 10

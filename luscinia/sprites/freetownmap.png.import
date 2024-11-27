@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c863dc1kr3gcq"
-path="res://.godot/imported/godotTaskIcon.png-12382ef1552dc16b7175d848c1b9b403.ctex"
+uid="uid://c5tv206f6s8ns"
+path="res://.godot/imported/freetownmap.png-97cf14f508876b7cb80b37d7760028b3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/ui/godotTaskIcon.png"
-dest_files=["res://.godot/imported/godotTaskIcon.png-12382ef1552dc16b7175d848c1b9b403.ctex"]
+source_file="res://sprites/freetownmap.png"
+dest_files=["res://.godot/imported/freetownmap.png-97cf14f508876b7cb80b37d7760028b3.ctex"]
 
 [params]
 

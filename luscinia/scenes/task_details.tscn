@@ -1,10 +1,10 @@
 [gd_scene load_steps=18 format=3 uid="uid://b4vjsqw6fc5tj"]
 
 [ext_resource type="Script" path="res://scripts/ui/task_details.gd" id="1_dalyu"]
-[ext_resource type="Script" path="res://nodes/time_progress_bar.gd" id="1_stskc"]
+[ext_resource type="Script" path="res://nodes/task_details/time_progress_bar.gd" id="1_stskc"]
 [ext_resource type="PackedScene" uid="uid://4bvycj7ktd5x" path="res://nodes/task_details/staff_on_task.tscn" id="2_ykrfx"]
 [ext_resource type="PackedScene" uid="uid://bxndjmqmmnwuu" path="res://nodes/task_details/task_resources.tscn" id="4_xomxh"]
-[ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://resources/ui/themes/details_page_theme.tres" id="4_yi0aj"]
+[ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://sprites/ui/themes/details_page_theme.tres" id="4_yi0aj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swbtu"]
 bg_color = Color(0.956863, 0.929412, 0.952941, 1)
