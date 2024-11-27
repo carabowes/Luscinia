@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Luscinia"
-run/main_scene="res://scenes/task_widget_test_scene.tscn"
+run/main_scene="res://Scenes/resource_page.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+ResourceManager="*res://Scripts/resource_manager.gd"
 
 [display]
 

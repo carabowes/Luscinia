@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://da0l1xitf07a2"]
+
+[ext_resource type="Script" path="res://Scripts/resource_page.gd" id="1_3ccde"]
+[ext_resource type="Texture2D" uid="uid://dm70f566o3s32" path="res://Sprites/Dollar sign.png" id="2_dleto"]
+[ext_resource type="Texture2D" uid="uid://dmrhlqq3p4y0g" path="res://Sprites/Package.png" id="3_rp6st"]
+[ext_resource type="Texture2D" uid="uid://chgb1pq7fpd4c" path="res://Sprites/Truck.png" id="4_a5ikk"]
+[ext_resource type="Texture2D" uid="uid://bib3v5a1f2b2o" path="res://Sprites/User.png" id="5_idmol"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tws4w"]
+bg_color = Color(0.956863, 0.929412, 0.952941, 1)
+
+[node name="resource-page" type="Node2D"]
+position = Vector2(-1, 1)
+script = ExtResource("1_3ccde")
+
+[node name="Background" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_right = 360.0
+offset_bottom = 799.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tws4w")
+
+[node name="Return Button" type="Button" parent="."]
+offset_left = 24.0
+offset_top = 112.0
+offset_right = 192.0
+offset_bottom = 145.0
+text = " <- Return to Map "
+
+[node name="Funding" type="Sprite2D" parent="."]
+position = Vector2(228, 378)
+scale = Vector2(1.66667, 1.54167)
+texture = ExtResource("2_dleto")
+
+[node name="Supplies" type="Sprite2D" parent="."]
+position = Vector2(224.5, 250.5)
+scale = Vector2(1.875, 1.625)
+texture = ExtResource("3_rp6st")
+
+[node name="Vehicles" type="Sprite2D" parent="."]
+position = Vector2(88.5, 382.5)
+scale = Vector2(2.04167, 1.54167)
+texture = ExtResource("4_a5ikk")
+
+[node name="Personel" type="Sprite2D" parent="."]
+position = Vector2(90.5, 264.5)
+scale = Vector2(1.625, 1.45833)
+texture = ExtResource("5_idmol")
+
+[connection signal="pressed" from="Return Button" to="." method="_on_return_button_pressed"]
