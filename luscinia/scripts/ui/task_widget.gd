@@ -5,14 +5,11 @@ extends Control
 enum LevelOfDetail {LOW, MEDIUM, HIGH}
 
 @export var current_level_of_detail : LevelOfDetail
-@export var task_info_text: String:
-	set(text):
-		task_info_text = text
+@export var task_info : TaskInstance:
+	set(value):
+		task_info = value
 		set_task_info()
-@export var task_icon: Texture:
-	set(icon):
-		task_icon = icon
-		set_task_info()
+@export var task_details_page : TaskDetails
 
 #Low Med and High refer to the level of detail these elements should be show on
 @onready var _progressBarLowMed = $WidgetBackground/ProgressBarLowMed
@@ -43,13 +40,10 @@ func set_level_of_detail(lod):
 			_switch_to_high_lod()
 
 
-#Should be some sort of object that is passed in, but for now we will just use
-#properties from this task and then update when they are set
 func set_task_info():
-	$WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/TaskInfoLabel.text = task_info_text
-	$WidgetBackground/TaskInfoMed.text = task_info_text
-	$WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer/TaskIcon.texture = task_icon
-	pass
+	$WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/TaskInfoLabel.text = task_info.task_data.name
+	$WidgetBackground/TaskInfoMed.text = task_info.task_data.name
+	$WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer/TaskIcon.texture = task_info.task_data.icon
 
 
 func _switch_to_low_lod():
@@ -80,3 +74,7 @@ func _switch_to_high_lod():
 	_progressBarHigh.visible = true
 	_hoursLeftLabelHigh.visible = true
 	_taskIconMargin.add_theme_constant_override("margin_top", 8)
+
+
+func _show_task_details_page():
+	task_details_page.show_details(task_info)

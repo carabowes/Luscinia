@@ -1,8 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://cotdxsg88ioys"]
+[gd_scene load_steps=6 format=3 uid="uid://cotdxsg88ioys"]
 
 [ext_resource type="PackedScene" uid="uid://dp3ypaulk2p3d" path="res://scenes/task_widget.tscn" id="1_cbihi"]
-[ext_resource type="Texture2D" uid="uid://c863dc1kr3gcq" path="res://resources/ui/godotTaskIcon.png" id="2_1dxaf"]
-[ext_resource type="Texture2D" uid="uid://dg01boigrppxu" path="res://resources/ui/starTaskIcon.png" id="3_10eyg"]
+[ext_resource type="PackedScene" uid="uid://b4vjsqw6fc5tj" path="res://scenes/task_details.tscn" id="2_5aumr"]
+[ext_resource type="Script" path="res://scripts/resources/task_instance.gd" id="2_q7wdd"]
+[ext_resource type="Resource" uid="uid://dhlk7klo8dvp1" path="res://task_data/test_task_data.tres" id="3_y4qax"]
+
+[sub_resource type="Resource" id="Resource_pocp7"]
+script = ExtResource("2_q7wdd")
+task_data = ExtResource("3_y4qax")
+current_status = 0
+current_progress = 1
+extra_time = 0
+current_location = Vector2(0, 0)
+is_completed = false
+actual_resources = {}
 
 [node name="TaskWidgetTestScene" type="Control"]
 layout_mode = 3
@@ -12,42 +23,46 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TaskWidget" parent="." instance=ExtResource("1_cbihi")]
+[node name="TaskWidget" parent="." node_paths=PackedStringArray("task_details_page") instance=ExtResource("1_cbihi")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.6
 anchor_top = 0.3425
 anchor_right = 0.6
 anchor_bottom = 0.3425
-task_info_text = "Falling Over"
-task_icon = ExtResource("2_1dxaf")
+task_info = SubResource("Resource_pocp7")
+task_details_page = NodePath("../TaskDetailsPage")
 
-[node name="TaskWidget2" parent="." instance=ExtResource("1_cbihi")]
+[node name="TaskWidget2" parent="." node_paths=PackedStringArray("task_details_page") instance=ExtResource("1_cbihi")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.163889
 anchor_top = 0.68875
 anchor_right = 0.163889
 anchor_bottom = 0.68875
-task_info_text = "Sitting"
-task_icon = ExtResource("2_1dxaf")
+task_info = SubResource("Resource_pocp7")
+task_details_page = NodePath("../TaskDetailsPage")
 
-[node name="TaskWidget3" parent="." instance=ExtResource("1_cbihi")]
+[node name="TaskWidget3" parent="." node_paths=PackedStringArray("task_details_page") instance=ExtResource("1_cbihi")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.708333
 anchor_top = 0.71
 anchor_right = 0.708333
 anchor_bottom = 0.71
-task_info_text = "Super long task name to check wrapping"
-task_icon = ExtResource("3_10eyg")
+task_info = SubResource("Resource_pocp7")
+task_details_page = NodePath("../TaskDetailsPage")
 
-[node name="TaskWidget4" parent="." instance=ExtResource("1_cbihi")]
+[node name="TaskWidget4" parent="." node_paths=PackedStringArray("task_details_page") instance=ExtResource("1_cbihi")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.202778
 anchor_top = 0.10625
 anchor_right = 0.202778
 anchor_bottom = 0.10625
-task_info_text = "Digging Holes"
-task_icon = ExtResource("3_10eyg")
+task_info = SubResource("Resource_pocp7")
+task_details_page = NodePath("../TaskDetailsPage")
+
+[node name="TaskDetailsPage" parent="." instance=ExtResource("2_5aumr")]
+visible = false
+layout_mode = 1

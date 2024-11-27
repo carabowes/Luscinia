@@ -218,3 +218,5 @@ theme_override_styles/background = SubResource("StyleBoxFlat_dhecv")
 theme_override_styles/fill = ExtResource("1_mtsjj")
 value = 25.0
 show_percentage = false
+
+[connection signal="pressed" from="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ViewMoreButtonMargin/ViewMoreButton" to="." method="_show_task_details_page"]

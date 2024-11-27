@@ -25,6 +25,10 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
 window/handheld/orientation=1
 
+[dotnet]
+
+project/assembly_name="Luscinia"
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true

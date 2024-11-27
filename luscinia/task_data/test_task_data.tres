@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="TaskData" load_steps=7 format=3 uid="uid://dhlk7klo8dvp1"]
+
+[ext_resource type="Script" path="res://scripts/resources/event_effect.gd" id="1_hibar"]
+[ext_resource type="Script" path="res://scripts/resources/task_data.gd" id="2_8y5wc"]
+[ext_resource type="Script" path="res://scripts/resources/effect.gd" id="2_67mdc"]
+[ext_resource type="Texture2D" uid="uid://c863dc1kr3gcq" path="res://resources/ui/godotTaskIcon.png" id="3_56gen"]
+
+[sub_resource type="Resource" id="Resource_aoge5"]
+script = ExtResource("2_67mdc")
+effect_type = 0
+resource_type = 2
+change_amount = -2
+chance = 0.6
+
+[sub_resource type="Resource" id="Resource_d84e4"]
+script = ExtResource("1_hibar")
+event = 0
+effects = Array[ExtResource("2_67mdc")]([SubResource("Resource_aoge5")])
+
+[resource]
+script = ExtResource("2_8y5wc")
+task_id = 0
+name = "Test Task"
+icon = ExtResource("3_56gen")
+start_location = Vector2(0, 0)
+end_location = Vector2(5, 5)
+resources_required = {
+0: 2,
+1: 4,
+2: 10,
+3: 5
+}
+resources_gained = {
+0: 5
+}
+expected_completion_time = 8
+effects_of_random_events = Array[ExtResource("1_hibar")]([SubResource("Resource_d84e4")])
