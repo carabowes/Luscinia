@@ -9,11 +9,19 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tws4w"]
 bg_color = Color(0.956863, 0.929412, 0.952941, 1)
 
-[node name="resource-page" type="Node2D"]
-position = Vector2(-1, 1)
+[node name="resource-page" type="Control"]
+layout_mode = 3
+anchor_left = -0.003
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.08
+offset_top = 1.0
+offset_right = -361.0
+offset_bottom = -799.0
 script = ExtResource("1_3ccde")
 
 [node name="Background" type="Panel" parent="."]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -33,24 +41,112 @@ offset_right = 192.0
 offset_bottom = 145.0
 text = " <- Return to Map "
 
-[node name="Funding" type="Sprite2D" parent="."]
-position = Vector2(228, 378)
-scale = Vector2(1.66667, 1.54167)
+[node name="Funding" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 411.0
+offset_right = 260.0
+offset_bottom = 461.0
+scale = Vector2(1.621, 1.5)
 texture = ExtResource("2_dleto")
 
-[node name="Supplies" type="Sprite2D" parent="."]
-position = Vector2(224.5, 250.5)
-scale = Vector2(1.875, 1.625)
+[node name="Supplies" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 219.0
+offset_right = 246.0
+offset_bottom = 269.0
+scale = Vector2(1.731, 1.5)
 texture = ExtResource("3_rp6st")
 
-[node name="Vehicles" type="Sprite2D" parent="."]
-position = Vector2(88.5, 382.5)
-scale = Vector2(2.04167, 1.54167)
+[node name="Vehicles" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 413.0
+offset_right = 119.0
+offset_bottom = 463.0
+scale = Vector2(1.986, 1.5)
 texture = ExtResource("4_a5ikk")
 
-[node name="Personel" type="Sprite2D" parent="."]
-position = Vector2(90.5, 264.5)
-scale = Vector2(1.625, 1.45833)
+[node name="Personel" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 221.0
+offset_right = 121.0
+offset_bottom = 271.0
+scale = Vector2(1.672, 1.5)
 texture = ExtResource("5_idmol")
+
+[node name="People Text" type="Label" parent="."]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 185.0
+offset_right = 141.0
+offset_bottom = 208.0
+theme_override_colors/font_color = Color(0.0235294, 0.0235294, 0.0235294, 1)
+text = "Personel"
+
+[node name="Supplies Text" type="Label" parent="."]
+offset_left = 208.0
+offset_top = 187.0
+offset_right = 276.0
+offset_bottom = 210.0
+theme_override_colors/font_color = Color(0.0235294, 0.0235294, 0.0235294, 1)
+text = "Supplies
+"
+
+[node name="Vehicles Text" type="Label" parent="."]
+offset_left = 76.0
+offset_top = 386.0
+offset_right = 144.0
+offset_bottom = 409.0
+theme_override_colors/font_color = Color(0.0235294, 0.0235294, 0.0235294, 1)
+text = "Vehicles
+"
+
+[node name="Funding Text" type="Label" parent="."]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 386.0
+offset_right = 277.0
+offset_bottom = 409.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Funding"
+
+[node name="Funding Output" type="Label" parent="."]
+offset_left = 216.0
+offset_top = 494.0
+offset_right = 284.0
+offset_bottom = 517.0
+theme_override_colors/font_color = Color(0.0235294, 0.0235294, 0.0235294, 1)
+text = "Supplies
+"
+
+[node name="Vehicles Output" type="Label" parent="."]
+offset_left = 82.0
+offset_top = 492.0
+offset_right = 150.0
+offset_bottom = 515.0
+theme_override_colors/font_color = Color(0.0235294, 0.0235294, 0.0235294, 1)
+text = "Supplies
+"
+
+[node name="Supplies Output" type="Label" parent="."]
+offset_left = 206.0
+offset_top = 300.0
+offset_right = 274.0
+offset_bottom = 323.0
+theme_override_colors/font_color = Color(0.0235294, 0.0235294, 0.0235294, 1)
+text = "Supplies
+"
+
+[node name="Personel Output" type="Label" parent="."]
+offset_left = 79.0
+offset_top = 299.0
+offset_right = 147.0
+offset_bottom = 322.0
+theme_override_colors/font_color = Color(0.0235294, 0.0235294, 0.0235294, 1)
+text = "Supplies
+"
 
 [connection signal="pressed" from="Return Button" to="." method="_on_return_button_pressed"]
