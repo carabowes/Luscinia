@@ -149,6 +149,7 @@ custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
 [node name="TaskStatusTitle" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements"]
+visible = false
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 text = "Task Status"
@@ -156,6 +157,7 @@ label_settings = SubResource("LabelSettings_v4t23")
 autowrap_mode = 2
 
 [node name="TaskStatusText" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements"]
+visible = false
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 text = "Alvin, Theodore and Simone are currently giving out aid in Koza. They have given aid to 93 people so far. They will be heading back to HQ in approximately 1 hour."

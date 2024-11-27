@@ -54,6 +54,7 @@ func set_task_info():
 	$WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer/ProgressBarHigh.max_value = task_info.get_total_time()
 	$WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer/ProgressBarHigh.value = task_info.current_progress
 	$WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer/HoursLeftLabelHigh.text = str(task_info.get_remaining_time()) + " hrs"
+	
 
 func _switch_to_low_lod():
 	$".".custom_minimum_size = Vector2(48, 48)
