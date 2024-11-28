@@ -7,11 +7,16 @@ func _ready() -> void:
 	resources = ResourceManager.resources
 	available_resources = ResourceManager.available_resources
 	update_all_labels()
+
+func _process(delta: float) -> void:
+	update_all_labels()
+	
 	
 	
 
 
 func _on_return_button_pressed() -> void:
+	ResourceManager.remove_resources("funds", 10)
 	print(ResourceManager.resources["funds"])
 	
 func update_label(label_name: String, resource_name: String):
@@ -26,8 +31,8 @@ func update_label(label_name: String, resource_name: String):
 
 
 func update_all_labels() -> void:
-	update_label("Personel Output", "people")
-	update_label("Funding Output", "funds")
-	update_label("Vehicles Output", "vehicles")
-	update_label("Supplies Output", "supplies")
+	update_label("Background/GridContainer/Personel Output", "people")
+	update_label("Background/GridContainer/Funding Output", "funds")
+	update_label("Background/GridContainer/Vehicles Output", "vehicles")
+	update_label("Background/GridContainer/Supplies Output", "supplies")
 	

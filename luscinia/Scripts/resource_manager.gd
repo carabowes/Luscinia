@@ -19,6 +19,19 @@ func remove_resources(resource_name: String, amount: int):
 	else:
 		print("Resource not found:", resource_name)
 
+func add_available_resources(resource_name: String, amount: int):
+	if resource_name in resources:
+		available_resources[resource_name] += amount
+	else:
+		print("Resource not found:", resource_name)
+
+func remove_available_resources(resource_name: String, amount: int):
+	if resource_name in resources:
+		available_resources[resource_name] -= amount
+	else:
+		print("Resource not found:", resource_name)
+
+
 
 
 
