@@ -10,7 +10,7 @@ var current_scale : float = 1
 var is_dragging = false
 var last_mouse_position = Vector2.ZERO
 
-@export var map_size = Vector2(2500,1866)
+@export var map_size = Vector2(3500,1866)
 @export var viewport_size = Vector2(1054, 933)
 
 func _ready() -> void:
@@ -65,12 +65,16 @@ func clamp_position() -> void:
 		var scaled_map_size = map_size * current_scale
 		
 		var min_x = viewport_size.x - scaled_map_size.x if scaled_map_size.x > viewport_size.x else 0
-		var min_y = viewport_size.y - scaled_map_size.y if scaled_map_size.y > viewport_size.y else 0
 		var max_x = 0 if scaled_map_size.x > viewport_size.x else viewport_size.x - scaled_map_size.x
+		var min_y = viewport_size.y - scaled_map_size.y if scaled_map_size.y > viewport_size.y else 0
 		var max_y = 0 if scaled_map_size.y > viewport_size.y else viewport_size.y - scaled_map_size.y
 		
-		
-			
+		if scaled_map_size.x < viewport_size.x:
+			min_x = (viewport_size.x - scaled_map_size.x) / 2
+			max_x = min_x
+		if scaled_map_size.y < viewport_size.y:
+			min_y = (viewport_size.y - scaled_map_size.y) / 2
+			max_y = min_y
 			
 			
 		map.position.x = clamp(map.position.x, min_x, max_x)
