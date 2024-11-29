@@ -14,7 +14,7 @@ class_name TaskResources
 		_add_elements()
 		queue_redraw()
 
-var resource_entry_path = "res://nodes/task_details/resource_entry.tscn"
+var resource_entry_path = "res://Nodes/TaskDetails/resource_entry.tscn"
 
 func _add_elements():
 	for child in get_children():

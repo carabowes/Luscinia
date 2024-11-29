@@ -9,6 +9,6 @@ task_data = ExtResource("2_7emoc")
 current_status = 0
 current_progress = 3
 extra_time = 0
-current_location = Vector2(600, 400)
+current_location = Vector2(550, 720)
 is_completed = false
 actual_resources = {}

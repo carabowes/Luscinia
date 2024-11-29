@@ -1,13 +1,12 @@
 extends Control
 
+signal zoom_changed
+
 @export var zoom_speed : float = 0.1
 @export var min_zoom : float = 0.5  
 @export var max_zoom : float = 2.0
 @export var pan_speed : float = 500
 @onready var map = $MapTexture
-
-signal zoom_changed
-
 var current_scale : float = 1
 var is_dragging = false
 var last_mouse_position = Vector2.ZERO
@@ -55,14 +54,12 @@ func handle_wheel_input(delta_zoom: float, global_mouse_position: Vector2):
 	
 	if current_scale == prev_scale:
 		return
-	
+
 	var scale_ratio = current_scale / prev_scale
 	map.scale = Vector2.ONE * current_scale
 	var focal_point_delta = local_mouse_position * (scale_ratio - 1)
-	map.position -= focal_point_delta
-	
+	map.position -= focal_point_delta	
 	zoom_changed.emit()
-	
 	clamp_position()
 
 

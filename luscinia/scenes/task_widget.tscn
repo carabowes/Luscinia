@@ -63,6 +63,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(24, 24)
+mouse_filter = 2
 theme_override_styles/panel = ExtResource("1_mtsjj")
 
 [node name="InfoMarginContrainer" type="MarginContainer" parent="WidgetBackground"]

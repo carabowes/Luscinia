@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cotdxsg88ioys"]
 
-[ext_resource type="PackedScene" uid="uid://dp3ypaulk2p3d" path="res://scenes/task_widget.tscn" id="1_cbihi"]
-[ext_resource type="PackedScene" uid="uid://b4vjsqw6fc5tj" path="res://scenes/task_details.tscn" id="2_5aumr"]
+[ext_resource type="PackedScene" uid="uid://dp3ypaulk2p3d" path="res://Scenes/task_widget.tscn" id="1_cbihi"]
+[ext_resource type="PackedScene" uid="uid://b4vjsqw6fc5tj" path="res://Scenes/task_details.tscn" id="2_5aumr"]
 [ext_resource type="Script" path="res://Scripts/Resources/task_instance.gd" id="2_q7wdd"]
 [ext_resource type="Resource" uid="uid://dhlk7klo8dvp1" path="res://TaskData/test_task_data.tres" id="3_y4qax"]
 
@@ -20,12 +20,9 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 3.0
-offset_right = 5.0
-offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="TaskWidget" parent="." node_paths=PackedStringArray("task_details_page") instance=ExtResource("1_cbihi")]
 layout_mode = 1
