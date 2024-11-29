@@ -1,10 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://da0l1xitf07a2"]
+[gd_scene load_steps=3 format=3 uid="uid://da0l1xitf07a2"]
 
 [ext_resource type="Script" path="res://Scripts/resource_page.gd" id="1_3ccde"]
-[ext_resource type="Texture2D" uid="uid://dm70f566o3s32" path="res://Sprites/Dollar sign.png" id="2_dleto"]
-[ext_resource type="Texture2D" uid="uid://dmrhlqq3p4y0g" path="res://Sprites/Package.png" id="3_rp6st"]
-[ext_resource type="Texture2D" uid="uid://chgb1pq7fpd4c" path="res://Sprites/Truck.png" id="4_a5ikk"]
-[ext_resource type="Texture2D" uid="uid://bib3v5a1f2b2o" path="res://Sprites/User.png" id="5_idmol"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tws4w"]
 bg_color = Color(0.956863, 0.929412, 0.952941, 1)
@@ -18,6 +14,8 @@ offset_left = 0.08
 offset_top = 1.0
 offset_right = -361.0
 offset_bottom = -799.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_3ccde")
 
 [node name="Background" type="Panel" parent="."]
@@ -59,14 +57,12 @@ text = "Funding"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Personel" type="TextureRect" parent="Background/GridContainer"]
+[node name="Personel Icon" type="TextureRect" parent="Background/GridContainer"]
 layout_mode = 2
-texture = ExtResource("5_idmol")
 stretch_mode = 3
 
-[node name="Funding" type="TextureRect" parent="Background/GridContainer"]
+[node name="Funding Icon" type="TextureRect" parent="Background/GridContainer"]
 layout_mode = 2
-texture = ExtResource("2_dleto")
 stretch_mode = 3
 
 [node name="Personel Output" type="Label" parent="Background/GridContainer"]
@@ -104,14 +100,12 @@ text = "Vehicles
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Supplies" type="TextureRect" parent="Background/GridContainer"]
+[node name="Supplies Icon" type="TextureRect" parent="Background/GridContainer"]
 layout_mode = 2
-texture = ExtResource("3_rp6st")
 stretch_mode = 3
 
-[node name="Vehicles" type="TextureRect" parent="Background/GridContainer"]
+[node name="Vehicles Icon" type="TextureRect" parent="Background/GridContainer"]
 layout_mode = 2
-texture = ExtResource("4_a5ikk")
 stretch_mode = 5
 
 [node name="Supplies Output" type="Label" parent="Background/GridContainer"]
