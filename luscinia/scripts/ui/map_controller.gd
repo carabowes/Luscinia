@@ -51,14 +51,14 @@ func handle_wheel_input(delta_zoom: float, global_mouse_position: Vector2):
 	var prev_scale = current_scale
 	current_scale += delta_zoom
 	current_scale = clamp(current_scale, min_zoom, max_zoom)
-	
+
 	if current_scale == prev_scale:
 		return
 
 	var scale_ratio = current_scale / prev_scale
 	map.scale = Vector2.ONE * current_scale
 	var focal_point_delta = local_mouse_position * (scale_ratio - 1)
-	map.position -= focal_point_delta	
+	map.position -= focal_point_delta
 	zoom_changed.emit()
 	clamp_position()
 
