@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c863dc1kr3gcq"
-path="res://.godot/imported/godotTaskIcon.png-804c7c7771f3bd9cedaa46290391c283.ctex"
+path="res://.godot/imported/godotTaskIcon.png-a5df09993c0172a1a5316db41757ae16.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/ui/godotTaskIcon.png"
-dest_files=["res://.godot/imported/godotTaskIcon.png-804c7c7771f3bd9cedaa46290391c283.ctex"]
+source_file="res://Sprites/UI/godotTaskIcon.png"
+dest_files=["res://.godot/imported/godotTaskIcon.png-a5df09993c0172a1a5316db41757ae16.ctex"]
 
 [params]
 

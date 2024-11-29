@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://bau28uma7h4s8"]
 
-[ext_resource type="StyleBox" uid="uid://xav1djfvn3g8" path="res://sprites/ui/themes/orange_buttons.tres" id="1_hnlvl"]
+[ext_resource type="StyleBox" uid="uid://xav1djfvn3g8" path="res://Sprites/UI/themes/orange_buttons.tres" id="1_hnlvl"]
 
 [resource]
 Button/colors/font_color = Color(0.956863, 0.929412, 0.952941, 1)

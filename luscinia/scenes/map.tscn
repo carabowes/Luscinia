@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://djfodjryat72c"]
 
-[ext_resource type="Texture2D" uid="uid://c5tv206f6s8ns" path="res://sprites/freetownmap.png" id="1_lett5"]
-[ext_resource type="Script" path="res://scripts/ui/map.gd" id="1_xeldf"]
+[ext_resource type="Script" path="res://Scripts/UI/map.gd" id="1_035y5"]
+[ext_resource type="Texture2D" uid="uid://c5tv206f6s8ns" path="res://Sprites/freetownmap.png" id="1_lett5"]
 
 [node name="MapView" type="Control"]
 layout_mode = 3
@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_xeldf")
+script = ExtResource("1_035y5")
 
 [node name="MapTexture" type="TextureRect" parent="."]
 layout_mode = 1

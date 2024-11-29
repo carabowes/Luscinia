@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="Message" load_steps=11 format=3 uid="uid://djl64omeph0wp"]
 
-[ext_resource type="Script" path="res://scripts/resources/prerequisite.gd" id="1_fr0jb"]
-[ext_resource type="Script" path="res://scripts/resources/message.gd" id="2_3uf3s"]
-[ext_resource type="Script" path="res://scripts/resources/response.gd" id="2_o3mt8"]
-[ext_resource type="Script" path="res://scripts/resources/task_data.gd" id="3_tk13b"]
-[ext_resource type="Resource" uid="uid://dhlk7klo8dvp1" path="res://task_data/test_task_data.tres" id="4_i240x"]
-[ext_resource type="Script" path="res://scripts/resources/event_effect.gd" id="5_yuc18"]
+[ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="1_fr0jb"]
+[ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="2_3uf3s"]
+[ext_resource type="Script" path="res://Scripts/Resources/response.gd" id="2_o3mt8"]
+[ext_resource type="Script" path="res://Scripts/Resources/task_data.gd" id="3_tk13b"]
+[ext_resource type="Resource" uid="uid://dhlk7klo8dvp1" path="res://TaskData/test_task_data.tres" id="4_i240x"]
+[ext_resource type="Script" path="res://Scripts/Resources/event_effect.gd" id="5_yuc18"]
 
 [sub_resource type="Resource" id="Resource_7ra77"]
 script = ExtResource("1_fr0jb")

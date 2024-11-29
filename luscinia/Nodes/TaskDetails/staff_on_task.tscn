@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://4bvycj7ktd5x"]
 
-[ext_resource type="Script" path="res://nodes/task_details/staff_on_task.gd" id="1_vwu0a"]
+[ext_resource type="Script" path="res://Nodes/TaskDetails/staff_on_task.gd" id="1_vwu0a"]
 
 [node name="StaffOnTask" type="Panel" node_paths=PackedStringArray("staff_hbox_holder")]
 self_modulate = Color(1, 1, 1, 0)
