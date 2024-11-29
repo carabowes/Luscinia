@@ -6,6 +6,8 @@ extends Control
 @export var pan_speed : float = 500
 @onready var map = $MapTexture
 
+signal zoom_changed
+
 var current_scale : float = 1
 var is_dragging = false
 var last_mouse_position = Vector2.ZERO
@@ -58,6 +60,9 @@ func handle_wheel_input(delta_zoom: float, global_mouse_position: Vector2):
 	map.scale = Vector2.ONE * current_scale
 	var focal_point_delta = local_mouse_position * (scale_ratio - 1)
 	map.position -= focal_point_delta
+	
+	zoom_changed.emit()
+	
 	clamp_position()
 
 

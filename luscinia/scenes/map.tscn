@@ -1,10 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://djfodjryat72c"]
+[gd_scene load_steps=7 format=3 uid="uid://djfodjryat72c"]
 
-[ext_resource type="Script" path="res://Scripts/UI/map.gd" id="1_035y5"]
+[ext_resource type="Script" path="res://Scripts/UI/map_controller.gd" id="1_035y5"]
+[ext_resource type="Script" path="res://Scripts/UI/map_tasks.gd" id="1_fg3x3"]
 [ext_resource type="Texture2D" uid="uid://c5tv206f6s8ns" path="res://Sprites/freetownmap.png" id="1_lett5"]
+[ext_resource type="Script" path="res://Scripts/Resources/task_instance.gd" id="2_lc1ul"]
+[ext_resource type="Resource" uid="uid://b1agtkgg8njxh" path="res://TaskData/task_instance_test.tres" id="3_53koh"]
+[ext_resource type="Resource" uid="uid://ckr2e6c3w2rhw" path="res://TaskData/task_instance_test2.tres" id="4_5422a"]
 
-[node name="MapView" type="Control"]
+[node name="Map" type="Control"]
 layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_fg3x3")
+task_instance = Array[ExtResource("2_lc1ul")]([ExtResource("3_53koh"), ExtResource("4_5422a")])
+widget_size = 0.8
+zoom_level_medium_detail = 1.5
+
+[node name="MapView" type="Control" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,8 +26,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_035y5")
+max_zoom = 4.0
 
-[node name="MapTexture" type="TextureRect" parent="."]
+[node name="MapTexture" type="TextureRect" parent="MapView"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

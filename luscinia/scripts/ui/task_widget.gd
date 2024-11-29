@@ -1,3 +1,4 @@
+class_name TaskWidget
 extends Control
 
 #Anywhere the acronym lod has been used, just means level of detail
@@ -46,6 +47,7 @@ func _draw() -> void:
 
 
 func set_task_info():
+	print("Setting task info!")
 	$WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/TaskInfoLabel.text = task_info.task_data.name
 	$WidgetBackground/TaskInfoMed.text = task_info.task_data.name
 	$WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer/TaskIcon.texture = task_info.task_data.icon
