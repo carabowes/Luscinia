@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chgb1pq7fpd4c"
-path="res://.godot/imported/Truck.png-15b88a407bedab33f3b76bd459e31836.ctex"
+uid="uid://dm70f566o3s32"
+path="res://.godot/imported/Dollar sign.png-534d5576a42f6b04cf7312f4ea482877.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Truck.png"
-dest_files=["res://.godot/imported/Truck.png-15b88a407bedab33f3b76bd459e31836.ctex"]
+source_file="res://Sprites/UI/Dollar sign.png"
+dest_files=["res://.godot/imported/Dollar sign.png-534d5576a42f6b04cf7312f4ea482877.ctex"]
 
 [params]
 

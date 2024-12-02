@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://chi1ovd807bam"]
 
-[ext_resource type="Script" path="res://Scripts/messageButton.gd" id="1_vu3dy"]
-[ext_resource type="Script" path="res://Scripts/choiceButton.gd" id="2_2qkf5"]
+[ext_resource type="Script" path="res://Scripts/task_message/message_button.gd" id="1_vu3dy"]
+[ext_resource type="Script" path="res://Scripts/task_message/choice_button.gd" id="2_2qkf5"]
 
 [node name="Button" type="Button"]
 custom_minimum_size = Vector2(360, 50)

@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bnodjjjy3hdxo"]
 
-[ext_resource type="Texture2D" uid="uid://b3of8bihh0aej" path="res://Sprites/testmap.png" id="1_pj2qy"]
-[ext_resource type="Script" path="res://Scripts/gameManager.gd" id="1_sof0y"]
-[ext_resource type="Script" path="res://Scripts/messageAlert.gd" id="2_5u6e4"]
-[ext_resource type="Script" path="res://Scripts/opacity.gd" id="3_en26w"]
-[ext_resource type="Script" path="res://Scripts/messageBoardControl.gd" id="5_lc24h"]
+[ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_oq8wo"]
+[ext_resource type="Texture2D" uid="uid://b3of8bihh0aej" path="res://Sprites/testmap.png" id="2_irbr7"]
+[ext_resource type="Script" path="res://Scripts/sprite_control/opacity.gd" id="3_lidbb"]
+[ext_resource type="Script" path="res://Scripts/task_message/message_alert.gd" id="4_b7pjs"]
+[ext_resource type="Script" path="res://Scripts/task_message/message_board_control.gd" id="5_14q0v"]
 
 [node name="GameManager" type="Control"]
 layout_mode = 3
@@ -13,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_sof0y")
+script = ExtResource("1_oq8wo")
 show_alert = true
 messages = Array[String](["task lego city", "test message 2", "test message 3", "test message 4"])
 
@@ -22,8 +22,8 @@ messages = Array[String](["task lego city", "test message 2", "test message 3", 
 [node name="Testmap" type="Sprite2D" parent="Map"]
 position = Vector2(179.598, 399.523)
 scale = Vector2(0.805368, 0.953515)
-texture = ExtResource("1_pj2qy")
-script = ExtResource("3_en26w")
+texture = ExtResource("2_irbr7")
+script = ExtResource("3_lidbb")
 opacity = 0.8
 
 [node name="Button" type="Button" parent="."]
@@ -34,7 +34,7 @@ anchor_bottom = 0.062
 offset_bottom = 62.512
 theme_override_font_sizes/font_size = 40
 text = "New Message!"
-script = ExtResource("2_5u6e4")
+script = ExtResource("4_b7pjs")
 
 [node name="Control" type="Control" parent="."]
 visible = false
@@ -87,6 +87,6 @@ grow_vertical = 2
 custom_minimum_size = Vector2(360, 1)
 layout_mode = 2
 theme_override_constants/separation = 7
-script = ExtResource("5_lc24h")
+script = ExtResource("5_14q0v")
 msg_amt = Array[int]([1, 2, 1, 2])
 msg_content = Array[String](["This is test for incoming msg 01.1", "this is test for incoming msg 02.1", "this is test for incoming msg 02.2", "3.1", "4.1", "4.2"])

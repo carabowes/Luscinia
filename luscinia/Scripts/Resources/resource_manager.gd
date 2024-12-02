@@ -2,13 +2,13 @@ extends Node2D
 
 
 # Called when the node enters the scene tree for the first time.
-var resources = {"people": 100, "funds": 1000, "vehicles": 80, "supplies": 100000}
-var available_resources = {"people": 100, "vehicles": 80, "supplies": 100000}
+@export var resources = {"people": 100, "funds": 1000, "vehicles": 80, "supplies": 100000}
+@export var available_resources = {"people": 100, "vehicles": 80, "supplies": 100000}
 
 var resource_textures = {
-	"people": preload("res://Sprites/User.png"),
-	"funds": preload("res://Sprites/Dollar sign.png"),
-	"vehicles": preload("res://Sprites/Truck.png"),
+	"people": preload("res://Sprites/UI/User.png"),
+	"funds": preload("res://Sprites/UI/Dollar sign.png"),
+	"vehicles": preload("res://Sprites/UI/Truck.png"),
 	"supplies": preload("res://Sprites/Package.png"),
 }
 

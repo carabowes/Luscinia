@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="TaskInstance" load_steps=3 format=3 uid="uid://ckr2e6c3w2rhw"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/task_instance.gd" id="1_vnaqa"]
-[ext_resource type="Resource" uid="uid://dhlk7klo8dvp1" path="res://TaskData/test_task_data.tres" id="2_gli6e"]
+[ext_resource type="Resource" uid="uid://dhlk7klo8dvp1" path="res://Nodes/task_data/test_task_data.tres" id="2_gli6e"]
 
 [resource]
 script = ExtResource("1_vnaqa")

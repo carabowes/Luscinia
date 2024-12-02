@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://df5nbiygwfdeb"]
 
 [ext_resource type="Texture2D" uid="uid://dg01boigrppxu" path="res://Sprites/UI/starTaskIcon.png" id="1_0xhix"]
-[ext_resource type="Script" path="res://Nodes/TaskDetails/resource_ui_entry.gd" id="1_4qxd5"]
+[ext_resource type="Script" path="res://Nodes/task_details/resource_ui_entry.gd" id="1_4qxd5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rc13s"]
 

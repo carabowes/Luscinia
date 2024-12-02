@@ -8,8 +8,8 @@ extends Panel
 		staff_names = value
 		if(Engine.is_editor_hint()):
 			queue_redraw()
-var staff_icon_image = "res://resources/ui/godotTaskIcon.png"
-var staff_icon = "res://nodes/task_details/staff_icon.tscn"
+var staff_icon_image = "res://Sprites/UI/godotTaskIcon.png"
+var staff_icon = "res://Nodes/task_details/staff_icon.tscn"
 
 
 func _draw() -> void:

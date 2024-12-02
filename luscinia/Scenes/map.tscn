@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://Scripts/UI/map_tasks.gd" id="1_pjqy6"]
 [ext_resource type="Script" path="res://Scripts/Resources/task_instance.gd" id="2_ek8q0"]
-[ext_resource type="Resource" uid="uid://b1agtkgg8njxh" path="res://TaskData/task_instance_test.tres" id="3_go76d"]
-[ext_resource type="Resource" uid="uid://ckr2e6c3w2rhw" path="res://TaskData/task_instance_test2.tres" id="4_my8yx"]
-[ext_resource type="Resource" uid="uid://dow2m3278n4vv" path="res://TaskData/task_instance_test3.tres" id="5_8o748"]
-[ext_resource type="Resource" uid="uid://d0p2p16m3go1h" path="res://TaskData/task_instance_test4.tres" id="6_yevlg"]
+[ext_resource type="Resource" uid="uid://b1agtkgg8njxh" path="res://Nodes/task_data/task_instance_test.tres" id="3_go76d"]
+[ext_resource type="Resource" uid="uid://ckr2e6c3w2rhw" path="res://Nodes/task_data/task_instance_test2.tres" id="4_my8yx"]
+[ext_resource type="Resource" uid="uid://dow2m3278n4vv" path="res://Nodes/task_data/task_instance_test3.tres" id="5_8o748"]
+[ext_resource type="Resource" uid="uid://d0p2p16m3go1h" path="res://Nodes/task_data/task_instance_test4.tres" id="6_yevlg"]
 [ext_resource type="Script" path="res://Scripts/UI/map_controller.gd" id="7_pujv3"]
 [ext_resource type="Texture2D" uid="uid://c5tv206f6s8ns" path="res://Sprites/freetownmap.png" id="8_sd44s"]
 

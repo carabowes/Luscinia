@@ -17,7 +17,7 @@ config/icon="res://Sprites/icon.svg"
 
 [autoload]
 
-ResourceManager="*res://Scripts/resource_manager.gd"
+ResourceManager="*res://Scripts/Resources/resource_manager.gd"
 
 [display]
 

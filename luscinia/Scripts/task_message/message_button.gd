@@ -1,6 +1,6 @@
 extends Node
 
-var messageScene = preload("res://Nodes/text_message.tscn")
+var messageScene = preload("res://Nodes/task_message_buttons/text_message.tscn")
 @export var to_be_deleted: Array[ColorRect] = []
 @onready var msg_board = $".."
 @onready var gm = $"../../../.."
