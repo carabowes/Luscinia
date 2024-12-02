@@ -21,6 +21,10 @@ enum LevelOfDetail {LOW, MEDIUM, HIGH}
 @onready var _hoursLeftLabelHigh = $WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer/HoursLeftLabelHigh
 @onready var _taskIconMargin = $WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin
 @onready var _taskIcon = $WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer/TaskIcon
+@onready var _fundsResourceImage :TextureRect = $WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer/ResourceOneIcon
+@onready var _fundsResourceText = $WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer/ResourceOneLabel
+@onready var _peopleResourceImage : TextureRect = $WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer/ResourceTwoIcon
+@onready var _peopleResourceText = $WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer/ResourceTwoLabel
 
 func set_level_of_detail(lod):
 	current_level_of_detail = lod
@@ -47,7 +51,16 @@ func set_task_info():
 	_progressBarHigh.max_value = task_info.get_total_time()
 	_progressBarHigh.value = task_info.current_progress
 	_hoursLeftLabelHigh.text = str(task_info.get_remaining_time()) + " hrs"
-
+	
+	print(task_info.task_data.resources_gained.keys())
+	if "funds" in task_info.task_data.resources_required.keys():
+		_fundsResourceImage.texture = ResourceManager.get_resource_texture("funds")
+		_fundsResourceText.text = str(task_info.task_data.resources_required["funds"])
+		
+	if "people" in task_info.task_data.resources_required.keys():
+		_peopleResourceImage.texture = ResourceManager.get_resource_texture("people")
+		_peopleResourceText.text = str(task_info.task_data.resources_required["people"])
+		
 
 func _switch_to_low_lod():
 	$".".custom_minimum_size = Vector2(48, 48)

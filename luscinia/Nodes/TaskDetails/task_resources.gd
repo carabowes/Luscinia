@@ -21,7 +21,7 @@ func _add_elements():
 		child.queue_free()
 		
 	for resource_key in resources.keys():
-		if(resources[resource_key] is not int or resource_key is not int):
+		if(resources[resource_key] is not int or resource_key is not String):
 			printerr("Empty key or value in resources dictionary!")
 			continue
 		var resource_entry_instance : ResourceEntry = load(resource_entry_path).instantiate()

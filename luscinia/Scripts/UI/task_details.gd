@@ -9,6 +9,8 @@ func show_details(task_instance : TaskInstance) -> void:
 	$Background/ScrollContainer/MarginContainer/Elements/TaskTitle.text = task_instance.task_data.name
 	$Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed.resources = task_instance.task_data.resources_required
 	$Background/ScrollContainer/MarginContainer/Elements/OnCompletion.resources = task_instance.task_data.resources_gained
+	var resources_used : TaskResources = $Background/ScrollContainer/MarginContainer/Elements/ResourcesUsed
+	resources_used.resources = task_instance.task_data.resources_required
 	visible = true
 	pass
 
