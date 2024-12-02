@@ -1,0 +1,54 @@
+extends Control
+
+# This will be removed and changed with some sort of reference to the singleton task manager once available.
+@export var task_instance : Array[TaskInstance]
+@export var widget_size : float
+@export var zoom_level_medium_detail : float
+
+var task_widgets : Array[TaskWidget]
+var task_widget_prefab = "res://scenes/task_widget.tscn"
+
+
+func _ready() -> void:
+	generate_widgets()
+	$MapView.zoom_changed.connect(render_widgets)
+
+
+func generate_widgets():
+	for task in task_instance:
+		var task_widget_instance : TaskWidget = load(task_widget_prefab).instantiate()
+		task_widget_instance.task_info = task
+		task_widget_instance.position = task.current_location
+		$MapView/MapTexture.add_child(task_widget_instance)
+		task_widgets.append(task_widget_instance)
+		task_widget_instance.connect("widget_selected", update_selected_widget)
+
+
+func set_level_of_details(affect_high_detail_widgets = false):
+	var current_scale = $MapView.current_scale
+	for widget in task_widgets:
+		if widget.current_level_of_detail == widget.LevelOfDetail.HIGH and affect_high_detail_widgets:
+			widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM if current_scale >= zoom_level_medium_detail else widget.LevelOfDetail.LOW)
+		elif widget.current_level_of_detail != widget.LevelOfDetail.HIGH:
+			widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM if current_scale >= zoom_level_medium_detail else widget.LevelOfDetail.LOW)
+
+
+func update_selected_widget(selected_widget : TaskWidget):
+	var current_scale = $MapView.current_scale
+	for widget in task_widgets:
+		if widget != selected_widget:
+			widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM if current_scale >= zoom_level_medium_detail else widget.LevelOfDetail.LOW)
+	$MapView/MapTexture.move_child(selected_widget, $MapView/MapTexture.get_child_count()-1)
+
+
+func render_widgets():
+	for widget in task_widgets:
+		var current_scale = $MapView.current_scale
+		widget.scale = Vector2.ONE * widget_size / current_scale
+		set_level_of_details()
+
+
+func _gui_input(event: InputEvent) -> void:
+	#if the task widget has been clicked off, then make sure theres no high level detail widget
+	if event.is_action_pressed("interact"):
+		set_level_of_details(true)

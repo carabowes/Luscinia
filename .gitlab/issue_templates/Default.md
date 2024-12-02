@@ -1,0 +1,6 @@
+- Add description
+- Add checklist if applicable
+- Add assignee
+- Add time estimate
+- Add milestone
+- Add tags
