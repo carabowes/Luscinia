@@ -1,5 +1,6 @@
 extends Node
 
+signal turn_progressed
 # Timer variables
 @export var cd_minutes: int = 3
 @export var cd_seconds: int = 20
@@ -39,7 +40,6 @@ func _process(delta):
 
 
 func skip_time(skip_minutes: int):
-	print("Skipping time:", skip_minutes, "minutes")
 	var skip_time_seconds = skip_minutes * 60
 	# Adjust the countdown timer
 	if current_time_left > 0:
@@ -53,4 +53,5 @@ func skip_time(skip_minutes: int):
 		if in_game_hours >= 24:  # Handle day overflow
 			in_game_hours -= 24
 			day_counter += 1
+	turn_progressed.emit()
 	print("New in-game time: Day %d, %02d:%02d" % [day_counter, in_game_hours, in_game_minutes])  # Debugging line
