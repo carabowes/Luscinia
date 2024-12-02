@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://demyglfh17k5g"]
+[gd_scene load_steps=6 format=3 uid="uid://demyglfh17k5g"]
 
 [ext_resource type="PackedScene" uid="uid://djfodjryat72c" path="res://Scenes/map.tscn" id="1_7fdga"]
 [ext_resource type="PackedScene" uid="uid://cw1bfk5qtjy3o" path="res://Scenes/resource_manager.tscn" id="1_8r20m"]
 [ext_resource type="PackedScene" uid="uid://desl373b33t23" path="res://Scenes/timer.tscn" id="2_5mpic"]
 [ext_resource type="PackedScene" uid="uid://da0l1xitf07a2" path="res://Scenes/resource_page.tscn" id="4_vi8yg"]
+[ext_resource type="PackedScene" uid="uid://cvex4d7ipjauf" path="res://Scenes/navbar.tscn" id="5_5vcs1"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -15,8 +16,6 @@ grow_vertical = 2
 
 [node name="resource_manager" parent="." instance=ExtResource("1_8r20m")]
 
-[node name="Timer" parent="." instance=ExtResource("2_5mpic")]
-
 [node name="Map" parent="." instance=ExtResource("1_7fdga")]
 
 [node name="resource-page" parent="." instance=ExtResource("4_vi8yg")]
@@ -24,3 +23,10 @@ visible = false
 layout_mode = 1
 offset_left = -0.46
 offset_right = -360.46
+
+[node name="Timer" parent="." instance=ExtResource("2_5mpic")]
+layout_mode = 1
+mouse_filter = 2
+
+[node name="Navbar" parent="." instance=ExtResource("5_5vcs1")]
+layout_mode = 1

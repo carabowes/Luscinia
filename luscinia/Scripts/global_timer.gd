@@ -6,6 +6,7 @@ signal turn_progressed(time_skipped : int)
 @export var cd_seconds: int = 20
 var countdown_duration
 var current_time_left
+var time_step = 60
 
 # Clock variables
 @export var in_game_hours: int = 20  # Measured in horus out of 24
@@ -27,23 +28,22 @@ func _process(delta):
 		second_accumulator -= 1  
 		current_time_left -= 1
 		
-		var minutes_left_after = floor(current_time_left / 60)
-		if minutes_left_after != minutes_left:
-			in_game_minutes += 1
-			
-		if in_game_minutes >= 60:
-			in_game_minutes -= 60
-			in_game_hours += 1
-			if in_game_hours >= 24:
-				in_game_hours = 0
-				day_counter += 1
+		#var minutes_left_after = floor(current_time_left / 60)
+		#if minutes_left_after != minutes_left:
+		#	in_game_minutes += 1
+		#	
+		#if in_game_minutes >= 60:
+		#	in_game_minutes -= 60
+		#	in_game_hours += 1
+		#	if in_game_hours >= 24:
+		#		in_game_hours = 0
+		#		day_counter += 1
 
 
 func skip_time(skip_minutes: int):
 	var skip_time_seconds = skip_minutes * 60
 	# Adjust the countdown timer
-	if current_time_left > 0:
-		current_time_left = max(0, current_time_left - skip_time_seconds)
+	current_time_left = countdown_duration
 	
 	# Adjust the in-game clock
 	in_game_minutes += skip_minutes

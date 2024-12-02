@@ -23,7 +23,7 @@ task_id = 0
 name = "Test Task"
 icon = ExtResource("3_t6vgv")
 start_location = Vector2(0, 0)
-end_location = Vector2(5, 5)
+end_location = Vector2(2000, 1000)
 resources_required = {
 "funds": 10,
 "people": 4,

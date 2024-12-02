@@ -10,6 +10,7 @@ var task_widget_prefab = "res://Scenes/task_widget.tscn"
 
 
 func _ready() -> void:
+	GlobalTimer.turn_progressed.connect(update_widget_task)
 	generate_widgets()
 	$MapView.zoom_changed.connect(render_widgets)
 
@@ -18,10 +19,24 @@ func generate_widgets():
 	for task in task_instance:
 		var task_widget_instance : TaskWidget = load(task_widget_prefab).instantiate()
 		task_widget_instance.task_info = task
+		task.current_location = lerp(task.task_data.start_location, task.task_data.end_location, float(task.current_progress)/float(task.get_total_time()))
 		task_widget_instance.position = task.current_location
 		$MapView/MapTexture.add_child(task_widget_instance)
 		task_widgets.append(task_widget_instance)
 		task_widget_instance.connect("widget_selected", update_selected_widget)
+		render_widgets()
+
+
+func update_widget_task(time : int):
+	print("Time skip!")
+	for task in task_instance:
+		task.current_progress += time/60
+	var num_widgets = range(len(task_widgets))
+	for i in num_widgets:
+		var current_widget = task_widgets[len(task_widgets)-1]
+		current_widget.queue_free()
+		task_widgets.remove_at(len(task_widgets)-1)
+	generate_widgets()
 
 
 func set_level_of_details(affect_high_detail_widgets = false):
