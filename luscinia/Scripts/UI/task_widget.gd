@@ -52,7 +52,6 @@ func set_task_info():
 	_progressBarHigh.value = task_info.current_progress
 	_hoursLeftLabelHigh.text = str(task_info.get_remaining_time()) + " hrs"
 	
-	print(task_info.task_data.resources_gained.keys())
 	if "funds" in task_info.task_data.resources_required.keys():
 		_fundsResourceImage.texture = ResourceManager.get_resource_texture("funds")
 		_fundsResourceText.text = str(task_info.task_data.resources_required["funds"])

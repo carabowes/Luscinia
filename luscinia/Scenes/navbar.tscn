@@ -1,0 +1,74 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvex4d7ipjauf"]
+
+[ext_resource type="Texture2D" uid="uid://crdt0x0jw41ox" path="res://Sprites/UI/ProceedButton.png" id="1_24llj"]
+[ext_resource type="Script" path="res://Scripts/skip_custom_time_button.gd" id="2_ifu5p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h85xp"]
+bg_color = Color(0.9481, 0.912, 0.95, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7tph"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5gp4"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gromn"]
+bg_color = Color(0.6, 0.6, 0.6, 0.0431373)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gtw4"]
+bg_color = Color(0.858218, 0.858218, 0.858218, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="Navbar" type="Panel"]
+custom_minimum_size = Vector2(0, 80)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_h85xp")
+
+[node name="NavbarLayout" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_right = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SkipCustomTimeButton" type="Button" parent="NavbarLayout"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/hover = SubResource("StyleBoxFlat_u7tph")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n5gp4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gromn")
+icon = ExtResource("1_24llj")
+flat = true
+script = ExtResource("2_ifu5p")
+
+[node name="CustomTimePopup" type="Popup" parent="NavbarLayout/SkipCustomTimeButton"]
+auto_translate_mode = 1
+size = Vector2i(81, 36)
+
+[node name="LineEdit" type="LineEdit" parent="NavbarLayout/SkipCustomTimeButton/CustomTimePopup"]
+offset_right = 67.0625
+offset_bottom = 31.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_6gtw4")
+placeholder_text = "Fast Forward Time"
+alignment = 3

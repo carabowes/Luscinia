@@ -18,6 +18,7 @@ config/icon="res://Sprites/icon.svg"
 [autoload]
 
 ResourceManager="*res://Scripts/Resources/resource_manager.gd"
+GlobalTimer="*res://Scripts/global_timer.gd"
 
 [display]
 
