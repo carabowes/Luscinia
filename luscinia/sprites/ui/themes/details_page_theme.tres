@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bau28uma7h4s8"]
+
+[ext_resource type="StyleBox" uid="uid://xav1djfvn3g8" path="res://Sprites/UI/themes/orange_buttons.tres" id="1_hnlvl"]
+
+[resource]
+Button/colors/font_color = Color(0.956863, 0.929412, 0.952941, 1)
+Button/colors/font_focus_color = Color(0.956863, 0.929412, 0.952941, 1)
+Button/colors/font_hover_color = Color(0.956863, 0.929412, 0.952941, 1)
+Button/colors/font_hover_pressed_color = Color(0.956863, 0.929412, 0.952941, 1)
+Button/colors/font_pressed_color = Color(0.956863, 0.929412, 0.952941, 1)
+Button/styles/disabled = ExtResource("1_hnlvl")
+Button/styles/focus = ExtResource("1_hnlvl")
+Button/styles/hover = ExtResource("1_hnlvl")
+Button/styles/normal = ExtResource("1_hnlvl")
+Button/styles/pressed = ExtResource("1_hnlvl")
+Label/colors/font_color = Color(0.317647, 0.294118, 0.372549, 1)
