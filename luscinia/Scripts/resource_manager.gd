@@ -12,6 +12,8 @@ var resource_textures = {
 	"supplies": preload("res://Sprites/Package.png"),
 }
 
+#add resources
+
 func add_resources(resource_name: String, amount: int):
 	if resource_name in resources:
 		resources[resource_name] += amount
