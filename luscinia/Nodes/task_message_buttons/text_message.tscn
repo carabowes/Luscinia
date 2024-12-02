@@ -1,10 +1,14 @@
-[gd_scene format=3 uid="uid://dwindv4flasfq"]
+[gd_scene load_steps=2 format=3 uid="uid://dwindv4flasfq"]
+
+[ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="1_e0hta"]
 
 [node name="message2" type="ColorRect"]
 custom_minimum_size = Vector2(320, 96)
 offset_left = 8.0
 offset_right = 328.0
 offset_bottom = 96.0
+theme = ExtResource("1_e0hta")
+color = Color(0.722656, 0.722656, 0.722656, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
