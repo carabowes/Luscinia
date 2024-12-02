@@ -16,7 +16,7 @@ var message_amount: int = 0
 @export var stability: int = 100
 
 func _process(delta: float) -> void:
-	if(!show_alert):
+	if(!show_alert || messages.size() == message_amount):
 		alert.visible = false
 	else:
 		alert.visible = true

@@ -1,10 +1,14 @@
-[gd_scene format=3 uid="uid://dwindv4flasfq"]
+[gd_scene load_steps=2 format=3 uid="uid://dwindv4flasfq"]
+
+[ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="1_3tgrp"]
 
 [node name="message2" type="ColorRect"]
 custom_minimum_size = Vector2(320, 96)
 offset_left = 8.0
 offset_right = 328.0
 offset_bottom = 96.0
+theme = ExtResource("1_3tgrp")
+color = Color(1, 0.584314, 0, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
@@ -12,7 +16,8 @@ anchor_left = 0.022
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 0.96
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme = ExtResource("1_3tgrp")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 22
 text = "incoming msg 2 lorem ipsum blah blah blah"
 autowrap_mode = 2
