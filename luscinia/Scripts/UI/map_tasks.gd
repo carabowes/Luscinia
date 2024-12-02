@@ -17,6 +17,8 @@ func _ready() -> void:
 
 func generate_widgets():
 	for task in task_instance:
+		if task.is_completed:
+			continue
 		var task_widget_instance : TaskWidget = load(task_widget_prefab).instantiate()
 		task_widget_instance.task_info = task
 		task.current_location = lerp(task.task_data.start_location, task.task_data.end_location, float(task.current_progress)/float(task.get_total_time()))
@@ -31,6 +33,15 @@ func update_widget_task(time : int):
 	print("Time skip!")
 	for task in task_instance:
 		task.current_progress += time/60
+		if task.current_progress >= task.get_total_time() and !task.is_completed:
+			task.is_completed = true
+			for resource in task.task_data.resources_gained.keys():
+				print("Before")
+				print(ResourceManager.resources[resource])
+				ResourceManager.add_resources(resource, task.task_data.resources_gained[resource])
+				print("After")
+				print(ResourceManager.resources[resource])
+	
 	var num_widgets = range(len(task_widgets))
 	for i in num_widgets:
 		var current_widget = task_widgets[len(task_widgets)-1]
