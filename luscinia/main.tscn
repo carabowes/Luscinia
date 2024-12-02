@@ -17,7 +17,15 @@ grow_vertical = 2
 
 [node name="resource_manager" parent="." instance=ExtResource("1_8r20m")]
 
-[node name="Map" parent="." instance=ExtResource("1_7fdga")]
+[node name="Map" parent="." node_paths=PackedStringArray("details_page") instance=ExtResource("1_7fdga")]
+details_page = NodePath("../TaskDetails")
+
+[node name="Navbar" parent="." instance=ExtResource("5_5vcs1")]
+layout_mode = 1
+offset_top = -80.0
+
+[node name="Timer" parent="." instance=ExtResource("2_5mpic")]
+layout_mode = 1
 
 [node name="resource-page" parent="." instance=ExtResource("4_vi8yg")]
 visible = false
@@ -27,11 +35,4 @@ offset_right = -360.46
 
 [node name="TaskDetails" parent="." instance=ExtResource("5_0qr7n")]
 visible = false
-layout_mode = 1
-
-[node name="Navbar" parent="." instance=ExtResource("5_5vcs1")]
-layout_mode = 1
-offset_top = -80.0
-
-[node name="Timer" parent="." instance=ExtResource("2_5mpic")]
 layout_mode = 1
