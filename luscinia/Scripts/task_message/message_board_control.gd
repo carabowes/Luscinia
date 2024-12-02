@@ -11,7 +11,7 @@ extends VBoxContainer
 @export var msg_shown: int
 
 func add_message():
-	var message_instance = load("res://Nodes/task_message_buttons/button.tscn").instantiate()
+	var message_instance = load("res://Nodes/button.tscn").instantiate()
 	message_instance.text = gm.messages[gm.message_amount-1]
 	add_child(message_instance)
 	move_child(message_instance, 0)
