@@ -1,5 +1,5 @@
-class_name TaskDetails
 extends Control
+class_name TaskDetails
 
 
 func show_details(task_instance : TaskInstance) -> void:

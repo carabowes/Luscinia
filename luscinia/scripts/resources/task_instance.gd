@@ -1,5 +1,5 @@
-class_name TaskInstance
 extends Resource
+class_name TaskInstance
 
 #This resource will only be created at runtime
 

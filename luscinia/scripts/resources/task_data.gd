@@ -1,5 +1,5 @@
-class_name TaskData
 extends Resource
+class_name TaskData
 
 
 ## ID of task, is not enforced to be unique by the program. User must ensure task ID is unique.

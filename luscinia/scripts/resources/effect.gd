@@ -1,5 +1,5 @@
-class_name Effect
 extends Resource
+class_name Effect
 
 enum EffectType {RESOURCE, TIME, FAILURE}
 

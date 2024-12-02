@@ -1,5 +1,5 @@
-class_name EventEffect
 extends Resource
+class_name EventEffect
 
 @export var event : Event.EventType
 @export var effects : Array[Effect]

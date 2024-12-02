@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dg01boigrppxu"
-path="res://.godot/imported/starTaskIcon.png-9ebfdd3b21f44c221cdfcbcf547b322c.ctex"
+path="res://.godot/imported/starTaskIcon.png-cf8eafe78c8e07751d2081ff82a277e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/starTaskIcon.png"
-dest_files=["res://.godot/imported/starTaskIcon.png-9ebfdd3b21f44c221cdfcbcf547b322c.ctex"]
+source_file="res://Sprites/ui/starTaskIcon.png"
+dest_files=["res://.godot/imported/starTaskIcon.png-cf8eafe78c8e07751d2081ff82a277e4.ctex"]
 
 [params]
 

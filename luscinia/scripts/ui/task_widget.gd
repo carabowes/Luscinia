@@ -1,5 +1,5 @@
-class_name TaskWidget
 extends Control
+class_name TaskWidget
 
 #Anywhere the acronym lod has been used, just means level of detail
 
