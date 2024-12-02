@@ -1,0 +1,137 @@
+[gd_scene load_steps=3 format=3 uid="uid://da0l1xitf07a2"]
+
+[ext_resource type="Script" path="res://Scripts/resource_page.gd" id="1_3ccde"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tws4w"]
+bg_color = Color(0.956863, 0.929412, 0.952941, 1)
+
+[node name="resource-page" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.08
+offset_top = 1.0
+offset_right = -361.0
+offset_bottom = -799.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3ccde")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+offset_right = 359.0
+offset_bottom = 799.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tws4w")
+
+[node name="GridContainer" type="GridContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.5
+offset_top = -80.0
+offset_right = 68.5
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="People Text" type="Label" parent="Background/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0235294, 0.0235294, 0.0235294, 1)
+theme_override_font_sizes/font_size = 25
+text = "Personel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Funding Text" type="Label" parent="Background/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Funding"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Personel Icon" type="TextureRect" parent="Background/GridContainer"]
+layout_mode = 2
+stretch_mode = 3
+
+[node name="Funding Icon" type="TextureRect" parent="Background/GridContainer"]
+layout_mode = 2
+stretch_mode = 3
+
+[node name="Personel Output" type="Label" parent="Background/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0235294, 0.0235294, 0.0235294, 1)
+theme_override_font_sizes/font_size = 15
+text = "ouput"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Funding Output" type="Label" parent="Background/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0235294, 0.0235294, 0.0235294, 1)
+theme_override_font_sizes/font_size = 15
+text = "output
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Supplies Text" type="Label" parent="Background/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0235294, 0.0235294, 0.0235294, 1)
+theme_override_font_sizes/font_size = 25
+text = "Supplies
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Vehicles Text" type="Label" parent="Background/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0235294, 0.0235294, 0.0235294, 1)
+theme_override_font_sizes/font_size = 25
+text = "Vehicles
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Supplies Icon" type="TextureRect" parent="Background/GridContainer"]
+layout_mode = 2
+stretch_mode = 3
+
+[node name="Vehicles Icon" type="TextureRect" parent="Background/GridContainer"]
+layout_mode = 2
+stretch_mode = 5
+
+[node name="Supplies Output" type="Label" parent="Background/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0235294, 0.0235294, 0.0235294, 1)
+theme_override_font_sizes/font_size = 15
+text = "output
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Vehicles Output" type="Label" parent="Background/GridContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0235294, 0.0235294, 0.0235294, 1)
+theme_override_font_sizes/font_size = 15
+text = "output
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Return Button" type="Button" parent="Background"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 112.0
+offset_right = 192.0
+offset_bottom = 145.0
+text = " <- Return to Map "
+
+[connection signal="pressed" from="Background/Return Button" to="." method="_on_return_button_pressed"]
