@@ -20,6 +20,7 @@ grow_vertical = 2
 [node name="Map" parent="." instance=ExtResource("1_7fdga")]
 
 [node name="resource-page" parent="." instance=ExtResource("4_vi8yg")]
+visible = false
 layout_mode = 1
 offset_left = -0.46
 offset_right = -360.46
