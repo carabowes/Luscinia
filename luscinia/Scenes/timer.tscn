@@ -1,96 +1,69 @@
-[gd_scene load_steps=9 format=3 uid="uid://desl373b33t23"]
+[gd_scene load_steps=4 format=3 uid="uid://desl373b33t23"]
 
 [ext_resource type="Script" path="res://Scripts/UI/ui_timer.gd" id="1_jafkr"]
 [ext_resource type="Texture2D" uid="uid://7v3dgwwsbwqu" path="res://Sprites/clock.png" id="2_2fyrh"]
-[ext_resource type="Texture2D" uid="uid://crdt0x0jw41ox" path="res://Sprites/UI/ProceedButton.png" id="3_oevw8"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ke4om"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-shadow_color = Color(0, 0, 0, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f1y8c"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ct86c"]
-bg_color = Color(0.6, 0.6, 0.6, 0.0431373)
 
 [sub_resource type="LabelSettings" id="LabelSettings_7gidb"]
 line_spacing = 1.0
 font_size = 30
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exh6t"]
-bg_color = Color(0.858218, 0.858218, 0.858218, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[node name="UIControl" type="Control"]
+[node name="Timer" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -179.0
-offset_bottom = -750.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
 size_flags_horizontal = 3
 script = ExtResource("1_jafkr")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 180.0
-offset_bottom = 91.0
+[node name="TimerVBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="HBoxContainer1" type="HBoxContainer" parent="VBoxContainer"]
+[node name="TimerHBox" type="HBoxContainer" parent="TimerVBox"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer1"]
+[node name="TimerCircle" type="TextureRect" parent="TimerVBox/TimerHBox"]
 layout_mode = 2
 texture = ExtResource("2_2fyrh")
 stretch_mode = 5
 
-[node name="TimerBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer1"]
+[node name="TimerBar" type="ProgressBar" parent="TimerVBox/TimerHBox"]
+visible = false
 layout_mode = 2
 max_value = 7200.0
 value = 7200.0
 show_percentage = false
 
-[node name="TimerLabel" type="Label" parent="VBoxContainer/HBoxContainer1"]
+[node name="TimerLabel" type="Label" parent="TimerVBox/TimerHBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "02:13"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="GameTimeHBox" type="HBoxContainer" parent="TimerVBox"]
 layout_mode = 2
 
-[node name="DayLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
+[node name="DayLabel" type="Label" parent="TimerVBox/GameTimeHBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Day 5"
 
-[node name="ClockLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
+[node name="ClockLabel" type="Label" parent="TimerVBox/GameTimeHBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "20:00"
 
-[node name="SkipCustomTimeButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-theme_override_styles/hover = SubResource("StyleBoxFlat_ke4om")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_f1y8c")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ct86c")
-icon = ExtResource("3_oevw8")
-
-[node name="EventPopup" type="Popup" parent="VBoxContainer"]
+[node name="EventPopup" type="Popup" parent="TimerVBox"]
 mode = 2
 size = Vector2i(0, 0)
 
-[node name="Label" type="Label" parent="VBoxContainer/EventPopup"]
+[node name="Label" type="Label" parent="TimerVBox/EventPopup"]
 custom_minimum_size = Vector2(400, 200)
 anchors_preset = 15
 anchor_right = 1.0
@@ -105,20 +78,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="CustomTimePopup" type="Popup" parent="VBoxContainer"]
-size = Vector2i(67, 31)
-
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/CustomTimePopup"]
-offset_right = 67.0625
-offset_bottom = 31.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_exh6t")
-placeholder_text = "Fast Forward Time"
-alignment = 3
-
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/SkipCustomTimeButton" to="." method="_on_skip_custom_time_button_pressed"]
-[connection signal="popup_hide" from="VBoxContainer/EventPopup" to="." method="_on_event_popup_popup_hide"]
-[connection signal="text_submitted" from="VBoxContainer/CustomTimePopup/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="popup_hide" from="TimerVBox/EventPopup" to="." method="_on_event_popup_popup_hide"]
