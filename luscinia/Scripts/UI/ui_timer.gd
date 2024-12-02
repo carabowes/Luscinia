@@ -10,7 +10,7 @@ var random_events = [
 	"you discovered an underground cave exposed by the earthquake."
 ]
 
-@onready var timer_bar = $TimerVBox/TimerHBox/TimerBar
+@onready var timer_bar = $TimerVBox/TimerHBox/AspectRatioContainer/TextureProgressBar
 @onready var timer_label = $TimerVBox/TimerHBox/TimerLabel
 @onready var day_label = $TimerVBox/GameTimeHBox/DayLabel
 @onready var clock_label = $TimerVBox/GameTimeHBox/ClockLabel
@@ -41,6 +41,7 @@ func _process(delta):
 	day_label.text = "Day %d" % GlobalTimer.day_counter
 	timer_label.text = format_time_with_seconds(int(GlobalTimer.current_time_left))
 	clock_label.text = "%02d:%02d" % [GlobalTimer.in_game_hours, GlobalTimer.in_game_minutes]
+	timer_bar.value = GlobalTimer.current_time_left
 
 
 # Perform the time skip
