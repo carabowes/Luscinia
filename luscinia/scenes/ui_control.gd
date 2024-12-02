@@ -83,22 +83,23 @@ func _process(delta):
 	var day_label = get_node("VBoxContainer/HBoxContainer2/DayLabel")
 	
 	second_accumulator += delta
-	if second_accumulator >= 1:  # 1 real-world second passed
-		second_accumulator -= 1  # Reset accumulator
-
+	var minutes_left = floor(current_time_left / 60)
 		# Countdown timer logic
-		if current_time_left > 0:
-			current_time_left -= 1
-			timer_bar.value = current_time_left
-			timer_label.text = format_time_with_seconds(current_time_left)
-
-		# In-game clock logic
-		in_game_minutes += 1
-		if in_game_minutes >= 60:  # Handle minute overflow
+	if current_time_left > 0 and second_accumulator >= 1:
+		second_accumulator -= 1  
+		current_time_left -= 1
+		timer_bar.value = int(current_time_left)
+		timer_label.text = format_time_with_seconds(int(current_time_left))
+		
+		var minutes_left_after = floor(current_time_left / 60)
+		if minutes_left_after != minutes_left:
+			in_game_minutes += 1
+			
+		if in_game_minutes >= 60:
 			in_game_minutes -= 60
 			in_game_hours += 1
-			if in_game_hours >= 24:  # Handle hour overflow
-				in_game_hours -= 24
+			if in_game_hours >= 24:
+				in_game_hours = 0
 				day_counter += 1
 				day_label.text = "Day %d" % day_counter
 
@@ -150,7 +151,9 @@ func skip_time(skip_minutes: int):
 		if in_game_hours >= 24:  # Handle day overflow
 			in_game_hours -= 24
 			day_counter += 1
-	# Update UI labels
+			
+	update_timer_ui()
+	#Update UI labels
 	var day_label = get_node("VBoxContainer/HBoxContainer2/DayLabel")
 	var clock_label = get_node("VBoxContainer/HBoxContainer2/ClockLabel")
 	day_label.text = "Day %d" % day_counter
