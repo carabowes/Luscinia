@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/UI/ui_control.gd" id="1_jafkr"]
 [ext_resource type="Texture2D" uid="uid://7v3dgwwsbwqu" path="res://Sprites/clock.png" id="2_2fyrh"]
-[ext_resource type="Texture2D" uid="uid://duvounvh77gd2" path="res://Sprites/ProceedButton.png" id="3_hvoql"]
+[ext_resource type="Texture2D" uid="uid://crdt0x0jw41ox" path="res://Sprites/UI/ProceedButton.png" id="3_oevw8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ke4om"]
 bg_color = Color(0, 0, 0, 1)
@@ -29,13 +29,7 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[node name="Level" type="Node2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-
-[node name="UILayer" type="CanvasLayer" parent="."]
-
-[node name="UIControl" type="Control" parent="UILayer"]
+[node name="UIControl" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,55 +44,55 @@ script = ExtResource("1_jafkr")
 cd_minutes = 2
 cd_seconds = 12
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/UIControl"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_right = 180.0
 offset_bottom = 91.0
 
-[node name="HBoxContainer1" type="HBoxContainer" parent="UILayer/UIControl/VBoxContainer"]
+[node name="HBoxContainer1" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="UILayer/UIControl/VBoxContainer/HBoxContainer1"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer1"]
 layout_mode = 2
 texture = ExtResource("2_2fyrh")
 stretch_mode = 5
 
-[node name="TimerBar" type="ProgressBar" parent="UILayer/UIControl/VBoxContainer/HBoxContainer1"]
+[node name="TimerBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer1"]
 layout_mode = 2
 max_value = 7200.0
 value = 7200.0
 show_percentage = false
 
-[node name="TimerLabel" type="Label" parent="UILayer/UIControl/VBoxContainer/HBoxContainer1"]
+[node name="TimerLabel" type="Label" parent="VBoxContainer/HBoxContainer1"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "02:13"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UILayer/UIControl/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="DayLabel" type="Label" parent="UILayer/UIControl/VBoxContainer/HBoxContainer2"]
+[node name="DayLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Day 5"
 
-[node name="ClockLabel" type="Label" parent="UILayer/UIControl/VBoxContainer/HBoxContainer2"]
+[node name="ClockLabel" type="Label" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "20:00"
 
-[node name="SkipCustomTimeButton" type="Button" parent="UILayer/UIControl/VBoxContainer/HBoxContainer2"]
+[node name="SkipCustomTimeButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_styles/hover = SubResource("StyleBoxFlat_ke4om")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_f1y8c")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ct86c")
-icon = ExtResource("3_hvoql")
+icon = ExtResource("3_oevw8")
 
-[node name="EventPopup" type="Popup" parent="UILayer/UIControl/VBoxContainer"]
+[node name="EventPopup" type="Popup" parent="VBoxContainer"]
 mode = 2
 size = Vector2i(0, 0)
 
-[node name="Label" type="Label" parent="UILayer/UIControl/VBoxContainer/EventPopup"]
+[node name="Label" type="Label" parent="VBoxContainer/EventPopup"]
 custom_minimum_size = Vector2(400, 200)
 anchors_preset = 15
 anchor_right = 1.0
@@ -113,10 +107,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="CustomTimePopup" type="Popup" parent="UILayer/UIControl/VBoxContainer"]
+[node name="CustomTimePopup" type="Popup" parent="VBoxContainer"]
 size = Vector2i(67, 31)
 
-[node name="LineEdit" type="LineEdit" parent="UILayer/UIControl/VBoxContainer/CustomTimePopup"]
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/CustomTimePopup"]
 offset_right = 67.0625
 offset_bottom = 31.0
 size_flags_horizontal = 3
@@ -127,6 +121,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_exh6t")
 placeholder_text = "Fast Forward Time"
 alignment = 3
 
-[connection signal="pressed" from="UILayer/UIControl/VBoxContainer/HBoxContainer2/SkipCustomTimeButton" to="UILayer/UIControl" method="_on_skip_custom_time_button_pressed"]
-[connection signal="popup_hide" from="UILayer/UIControl/VBoxContainer/EventPopup" to="UILayer/UIControl" method="_on_event_popup_popup_hide"]
-[connection signal="text_submitted" from="UILayer/UIControl/VBoxContainer/CustomTimePopup/LineEdit" to="UILayer/UIControl" method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/SkipCustomTimeButton" to="." method="_on_skip_custom_time_button_pressed"]
+[connection signal="popup_hide" from="VBoxContainer/EventPopup" to="." method="_on_event_popup_popup_hide"]
+[connection signal="text_submitted" from="VBoxContainer/CustomTimePopup/LineEdit" to="." method="_on_line_edit_text_submitted"]
