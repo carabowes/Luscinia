@@ -25,13 +25,13 @@ icon = ExtResource("3_t6vgv")
 start_location = Vector2(0, 0)
 end_location = Vector2(5, 5)
 resources_required = {
-0: 2,
-1: 4,
-2: 10,
-3: 5
+"funds": 10,
+"people": 4,
+"supplies": 5,
+"vehicles": 1
 }
 resources_gained = {
-0: 5
+"supplies": 10
 }
 expected_completion_time = 8
 effects_of_random_events = Array[ExtResource("1_hibar")]([SubResource("Resource_d84e4")])

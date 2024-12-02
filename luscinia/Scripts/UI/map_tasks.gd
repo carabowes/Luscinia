@@ -6,7 +6,7 @@ extends Control
 @export var zoom_level_medium_detail : float
 
 var task_widgets : Array[TaskWidget]
-var task_widget_prefab = "res://scenes/task_widget.tscn"
+var task_widget_prefab = "res://Scenes/task_widget.tscn"
 
 
 func _ready() -> void:

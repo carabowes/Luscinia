@@ -256,10 +256,7 @@ modulate = Color(0.290196, 0.266667, 0.34902, 1)
 layout_mode = 2
 ui_color = Color(0.290196, 0.266667, 0.34902, 1)
 resources = {
-0: 1,
-1: 3,
-2: 2,
-3: 4
+"funds": 5
 }
 
 [node name="PaddingBar7" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements"]

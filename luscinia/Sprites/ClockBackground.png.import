@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c27suyrk8wq"
-path="res://.godot/imported/ClockBackground.png-0d78ffe117c438ef58838a3d5b6310a2.ctex"
+path="res://.godot/imported/ClockBackground.png-114e95e2458ede562527465d2ceed7e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ClockBackground.png"
-dest_files=["res://.godot/imported/ClockBackground.png-0d78ffe117c438ef58838a3d5b6310a2.ctex"]
+source_file="res://Sprites/ClockBackground.png"
+dest_files=["res://.godot/imported/ClockBackground.png-114e95e2458ede562527465d2ceed7e3.ctex"]
 
 [params]
 

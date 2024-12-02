@@ -6,10 +6,9 @@ class_name ResourceEntry
 @export var amount_text : Label
 @export var image : TextureRect
 @export_group("Resource info")
-## Doesn't do anything right now
-@export var resource_type : int
+@export var resource_type : String
 @export var amount : int
 
 func _draw() -> void:
 	amount_text.text = str(amount)
-	#will get the image for the resource from some resource manager and resource_type
+	image.texture = ResourceManager.get_resource_texture(resource_type)
