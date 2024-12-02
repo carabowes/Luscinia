@@ -20,6 +20,7 @@ var random_events = [
 	"you discovered an underground cave exposed by the earthquake."
 ]
 
+
 func _ready():
 	
 	countdown_duration = (cd_minutes * 60) + cd_seconds
@@ -72,6 +73,7 @@ func _ready():
 	
 	set_process(true)
 
+
 # Displays the popup for entering a custom time to skip
 func _on_skip_custom_time_button_pressed():
 	var custom_time_popup = get_node("VBoxContainer/CustomTimePopup")
@@ -79,6 +81,7 @@ func _on_skip_custom_time_button_pressed():
 		custom_time_popup.popup_centered(Vector2(400, 300))
 	else:
 		print("CustomTimePopup node not found!")
+
 
 # Handle custom time input
 func _on_line_edit_text_submitted(new_text: String):
@@ -93,6 +96,7 @@ func _on_line_edit_text_submitted(new_text: String):
 			print("Invalid input: Time must be greater than 0")
 	else:
 		print("Invalid input: Not an integer")
+
 
 # Perform the time skip
 func skip_time(skip_minutes: int):
@@ -141,6 +145,7 @@ func update_timer_ui():
 	if clock_label:
 		clock_label.text = "%02d:%02d" % [in_game_hours, in_game_minutes]
 
+
 # Show a random earthquake-related event
 func show_random_event(skip_minutes: int):
 	var event_popup = get_node("VBoxContainer/EventPopup")
@@ -151,11 +156,12 @@ func show_random_event(skip_minutes: int):
 		print(label.text)
 	else:
 		print("EventPopup node not found!")
-		
-		
+
+
 # Handle Event Popup close
 func _on_event_popup_popup_hide():
 	print("Event popup closed.")
+
 
 # Format time to display MM:SS
 func format_time_with_seconds(seconds: int) -> String:
