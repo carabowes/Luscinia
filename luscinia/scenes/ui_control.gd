@@ -141,7 +141,7 @@ func update_timer_ui():
 	if clock_label:
 		clock_label.text = "%02d:%02d" % [in_game_hours, in_game_minutes]
 
-# Show a random earthquake-related even
+# Show a random earthquake-related event
 func show_random_event(skip_minutes: int):
 	var event_popup = get_node("VBoxContainer/EventPopup")
 	if event_popup:
