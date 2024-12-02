@@ -1,6 +1,7 @@
 extends Control
 
 # This will be removed and changed with some sort of reference to the singleton task manager once available.
+@export var details_page : TaskDetails
 @export var task_instance : Array[TaskInstance]
 @export var widget_size : float
 @export var zoom_level_medium_detail : float
@@ -26,6 +27,7 @@ func generate_widgets():
 		$MapView/MapTexture.add_child(task_widget_instance)
 		task_widgets.append(task_widget_instance)
 		task_widget_instance.connect("widget_selected", update_selected_widget)
+		task_widget_instance.task_details_page = details_page
 		render_widgets()
 
 
