@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b4vjsqw6fc5tj"]
+[gd_scene load_steps=18 format=3 uid="uid://c70krmks36rto"]
 
 [ext_resource type="Script" path="res://Scripts/UI/task_details.gd" id="1_dalyu"]
 [ext_resource type="Script" path="res://Nodes/TaskDetails/time_progress_bar.gd" id="1_stskc"]
