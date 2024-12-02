@@ -15,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sof0y")
 show_alert = true
-messages = Array[String](["task lego city", "test message 2", "test message 3"])
+messages = Array[String](["task lego city", "test message 2", "test message 3", "test message 4"])
 
 [node name="Map" type="Node2D" parent="."]
 
