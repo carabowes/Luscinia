@@ -20,6 +20,8 @@ var random_events = [
 	"you discovered an underground cave exposed by the earthquake."
 ]
 
+var second_accumulator = 0
+
 
 func _ready():
 	
@@ -74,6 +76,36 @@ func _ready():
 	set_process(true)
 
 
+func _process(delta):
+	var timer_bar = get_node("VBoxContainer/HBoxContainer1/TimerBar")
+	var timer_label = get_node("VBoxContainer/HBoxContainer1/TimerLabel")
+	var clock_label = get_node("VBoxContainer/HBoxContainer2/ClockLabel")
+	var day_label = get_node("VBoxContainer/HBoxContainer2/DayLabel")
+	
+	second_accumulator += delta
+	if second_accumulator >= 1:  # 1 real-world second passed
+		second_accumulator -= 1  # Reset accumulator
+
+		# Countdown timer logic
+		if current_time_left > 0:
+			current_time_left -= 1
+			timer_bar.value = current_time_left
+			timer_label.text = format_time_with_seconds(current_time_left)
+
+		# In-game clock logic
+		in_game_minutes += 1
+		if in_game_minutes >= 60:  # Handle minute overflow
+			in_game_minutes -= 60
+			in_game_hours += 1
+			if in_game_hours >= 24:  # Handle hour overflow
+				in_game_hours -= 24
+				day_counter += 1
+				day_label.text = "Day %d" % day_counter
+
+		# Update clock display
+		clock_label.text = "%02d:%02d" % [in_game_hours, in_game_minutes]
+
+
 # Displays the popup for entering a custom time to skip
 func _on_skip_custom_time_button_pressed():
 	var custom_time_popup = get_node("VBoxContainer/CustomTimePopup")
@@ -110,7 +142,7 @@ func skip_time(skip_minutes: int):
 		timer_bar.value = current_time_left
 		timer_label.text = format_time_with_seconds(current_time_left)
 		
-	# Adjust the in-game cloc
+	# Adjust the in-game clock
 	in_game_minutes += skip_minutes
 	while in_game_minutes >= 60:  # Handle hour overflow
 		in_game_minutes -= 60
