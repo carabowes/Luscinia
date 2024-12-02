@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://desl373b33t23"]
 
-[ext_resource type="Script" path="res://scenes/ui_control.gd" id="1_225x1"]
-[ext_resource type="Texture2D" uid="uid://7v3dgwwsbwqu" path="res://assets/clock.png" id="2_2fyrh"]
-[ext_resource type="Texture2D" uid="uid://duvounvh77gd2" path="res://assets/ProceedButton.png" id="3_hvoql"]
+[ext_resource type="Script" path="res://Scenes/ui_control.gd" id="1_225x1"]
+[ext_resource type="Texture2D" uid="uid://7v3dgwwsbwqu" path="res://Sprites/clock.png" id="2_2fyrh"]
+[ext_resource type="Texture2D" uid="uid://duvounvh77gd2" path="res://Sprites/ProceedButton.png" id="3_hvoql"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ke4om"]
 bg_color = Color(0, 0, 0, 1)
