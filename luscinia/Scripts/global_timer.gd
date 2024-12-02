@@ -3,7 +3,7 @@ extends Node
 signal turn_progressed(time_skipped : int)
 # Timer variables
 @export var cd_minutes: int = 3
-@export var cd_seconds: int = 20
+@export var cd_seconds: int = 30
 var countdown_duration
 var current_time_left
 var time_step = 60
@@ -27,6 +27,9 @@ func _process(delta):
 	if current_time_left > 0 and second_accumulator >= 1:
 		second_accumulator -= 1  
 		current_time_left -= 1
+	
+	if current_time_left == 0:
+		skip_time(time_step)
 		
 		#var minutes_left_after = floor(current_time_left / 60)
 		#if minutes_left_after != minutes_left:
