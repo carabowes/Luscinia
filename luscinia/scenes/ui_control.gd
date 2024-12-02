@@ -20,7 +20,6 @@ var random_events = [
 	"you discovered an underground cave exposed by the earthquake."
 ]
 
-# Called when the scene is loaded
 func _ready():
 	
 	countdown_duration = (cd_minutes * 60) + cd_seconds
@@ -73,7 +72,7 @@ func _ready():
 	
 	set_process(true)
 
-# Handle Skip Custom Time Button
+# Displays the popup for entering a custom time to skip
 func _on_skip_custom_time_button_pressed():
 	var custom_time_popup = get_node("VBoxContainer/CustomTimePopup")
 	if custom_time_popup:
@@ -158,7 +157,7 @@ func show_random_event(skip_minutes: int):
 func _on_event_popup_popup_hide():
 	print("Event popup closed.")
 
-# Format time to display HH:MM
+# Format time to display MM:SS
 func format_time_with_seconds(seconds: int) -> String:
 	var minutes = int(seconds) / 60
 	var secs = int(seconds) % 60
