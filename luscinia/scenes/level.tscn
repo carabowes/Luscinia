@@ -1,0 +1,130 @@
+[gd_scene load_steps=9 format=3 uid="uid://desl373b33t23"]
+
+[ext_resource type="Script" path="res://scenes/ui_control.gd" id="1_225x1"]
+[ext_resource type="Texture2D" uid="uid://7v3dgwwsbwqu" path="res://assets/clock.png" id="2_2fyrh"]
+[ext_resource type="Texture2D" uid="uid://duvounvh77gd2" path="res://assets/ProceedButton.png" id="3_hvoql"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ke4om"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f1y8c"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ct86c"]
+bg_color = Color(0.6, 0.6, 0.6, 0.0431373)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7gidb"]
+line_spacing = 1.0
+font_size = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exh6t"]
+bg_color = Color(0.858218, 0.858218, 0.858218, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="Level" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="UIControl" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -578.0
+offset_bottom = -322.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 3
+script = ExtResource("1_225x1")
+cd_minutes = 2
+cd_seconds = 13
+in_game_hours = 23
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UILayer/UIControl"]
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 150.0
+
+[node name="HBoxContainer1" type="HBoxContainer" parent="UILayer/UIControl/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/UIControl/VBoxContainer/HBoxContainer1"]
+layout_mode = 2
+texture = ExtResource("2_2fyrh")
+stretch_mode = 5
+
+[node name="TimerBar" type="ProgressBar" parent="UILayer/UIControl/VBoxContainer/HBoxContainer1"]
+layout_mode = 2
+max_value = 7200.0
+value = 7200.0
+show_percentage = false
+
+[node name="TimerLabel" type="Label" parent="UILayer/UIControl/VBoxContainer/HBoxContainer1"]
+layout_mode = 2
+text = "02:13"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UILayer/UIControl/VBoxContainer"]
+layout_mode = 2
+
+[node name="DayLabel" type="Label" parent="UILayer/UIControl/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Day 5"
+
+[node name="ClockLabel" type="Label" parent="UILayer/UIControl/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "20:00"
+
+[node name="SkipCustomTimeButton" type="Button" parent="UILayer/UIControl/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_ke4om")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_f1y8c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_ct86c")
+icon = ExtResource("3_hvoql")
+
+[node name="EventPopup" type="Popup" parent="UILayer/UIControl/VBoxContainer"]
+mode = 2
+size = Vector2i(0, 0)
+
+[node name="Label" type="Label" parent="UILayer/UIControl/VBoxContainer/EventPopup"]
+custom_minimum_size = Vector2(400, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+label_settings = SubResource("LabelSettings_7gidb")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CustomTimePopup" type="Popup" parent="UILayer/UIControl/VBoxContainer"]
+size = Vector2i(67, 31)
+
+[node name="LineEdit" type="LineEdit" parent="UILayer/UIControl/VBoxContainer/CustomTimePopup"]
+offset_right = 67.0625
+offset_bottom = 31.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_exh6t")
+placeholder_text = "Fast Forward Time"
+alignment = 3
+
+[connection signal="pressed" from="UILayer/UIControl/VBoxContainer/HBoxContainer2/SkipCustomTimeButton" to="UILayer/UIControl" method="_on_skip_custom_time_button_pressed"]
+[connection signal="popup_hide" from="UILayer/UIControl/VBoxContainer/EventPopup" to="UILayer/UIControl" method="_on_event_popup_popup_hide"]
+[connection signal="text_submitted" from="UILayer/UIControl/VBoxContainer/CustomTimePopup/LineEdit" to="UILayer/UIControl" method="_on_line_edit_text_submitted"]

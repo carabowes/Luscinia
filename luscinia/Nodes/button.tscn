@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://chi1ovd807bam"]
+
+[ext_resource type="Script" path="res://Scripts/messageButton.gd" id="1_vu3dy"]
+[ext_resource type="Script" path="res://Scripts/choiceButton.gd" id="2_2qkf5"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(360, 50)
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.06
+offset_bottom = 2.0
+text = "placeholder"
+autowrap_mode = 1
+script = ExtResource("1_vu3dy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.363163, 0.496028, 0.748412, 1)
+
+[node name="Buttons" type="Node2D" parent="ColorRect"]
+
+[node name="Button" type="Button" parent="ColorRect/Buttons"]
+custom_minimum_size = Vector2(0, 70)
+anchors_preset = -1
+anchor_top = 11.52
+anchor_bottom = 11.52
+offset_top = 385.0
+offset_right = 360.0
+offset_bottom = 455.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Choice 1"
+script = ExtResource("2_2qkf5")
+
+[node name="Button2" type="Button" parent="ColorRect/Buttons"]
+custom_minimum_size = Vector2(0, 70)
+anchors_preset = -1
+anchor_top = 13.92
+anchor_right = 45.0
+anchor_bottom = 15.36
+offset_top = 505.0
+offset_right = 360.0
+offset_bottom = 575.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+text = "Choice 2"
+script = ExtResource("2_2qkf5")
