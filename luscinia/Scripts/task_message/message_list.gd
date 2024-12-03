@@ -14,6 +14,6 @@ func add_message():
 
 func add_text_from_task_data():
 	var text = message_manager.message_data[message_amt].message
-	text = text.erase(30)
+	text = text.erase(40,1000)
 	text = text + "..."
 	return text
