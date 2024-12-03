@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvex4d7ipjauf"]
+[gd_scene load_steps=10 format=3 uid="uid://cxv5svgbwbyqo"]
 
 [ext_resource type="Texture2D" uid="uid://crdt0x0jw41ox" path="res://Sprites/UI/ProceedButton.png" id="1_24llj"]
 [ext_resource type="Script" path="res://Scripts/UI/skip_custom_time_button.gd" id="2_ifu5p"]

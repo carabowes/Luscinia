@@ -8,7 +8,7 @@ extends Resource
 ## Chance of prerequisite triggering. 1 is 100% likely.
 @export_range(0,1)  var chance : float
 
-func _init(task_id = [], chance = 0, events = []) -> void:
+func _init(task_id : Array[int] = [], chance = 0, events : Array[Event.EventType]= []) -> void:
 	self.task_id = task_id
 	self.chance = chance
 	self.events = events

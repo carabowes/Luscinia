@@ -1,11 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://djfodjryat72c"]
+[gd_scene load_steps=4 format=3 uid="uid://djfodjryat72c"]
 
 [ext_resource type="Script" path="res://Scripts/UI/map_tasks.gd" id="1_pjqy6"]
-[ext_resource type="Script" path="res://Scripts/Resources/task_instance.gd" id="2_ek8q0"]
-[ext_resource type="Resource" uid="uid://b1agtkgg8njxh" path="res://Nodes/task_data/task_instance_test.tres" id="3_go76d"]
-[ext_resource type="Resource" uid="uid://ckr2e6c3w2rhw" path="res://Nodes/task_data/task_instance_test2.tres" id="4_my8yx"]
-[ext_resource type="Resource" uid="uid://dow2m3278n4vv" path="res://Nodes/task_data/task_instance_test3.tres" id="5_8o748"]
-[ext_resource type="Resource" uid="uid://d0p2p16m3go1h" path="res://Nodes/task_data/task_instance_test4.tres" id="6_yevlg"]
 [ext_resource type="Script" path="res://Scripts/UI/map_controller.gd" id="7_pujv3"]
 [ext_resource type="Texture2D" uid="uid://c5tv206f6s8ns" path="res://Sprites/freetownmap.png" id="8_sd44s"]
 
@@ -15,7 +10,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_pjqy6")
-task_instance = Array[ExtResource("2_ek8q0")]([ExtResource("3_go76d"), ExtResource("4_my8yx"), ExtResource("5_8o748"), ExtResource("6_yevlg")])
 widget_size = 1.0
 zoom_level_medium_detail = 1.5
 

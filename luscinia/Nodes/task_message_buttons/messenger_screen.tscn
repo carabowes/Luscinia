@@ -1,16 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4gt7r5aujypo"]
+[gd_scene load_steps=2 format=3 uid="uid://dfl5n2ga1ulqv"]
 
 [ext_resource type="Script" path="res://Scripts/task_message/message_board_control.gd" id="1_7kuhm"]
 
-[node name="Control" type="Control"]
+[node name="MessageList" type="Control" node_paths=PackedStringArray("message_box")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_7kuhm")
+message_box = NodePath("ScrollContainer/MessageBox")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,10 +29,7 @@ anchor_bottom = 0.96
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="MessageBox" type="VBoxContainer" parent="ScrollContainer"]
 custom_minimum_size = Vector2(360, 1)
 layout_mode = 2
 theme_override_constants/separation = 7
-script = ExtResource("1_7kuhm")
-msg_amt = Array[int]([2, 1, 2, 1])
-msg_content = Array[String](["<Emmet>: Please send us some personnel to retrive your provisions.", "<Emmet>: A bridge collapsed and we cannot reach your camp.", "<Benny>: Hello! We require resources to build a raft to transport goods.", "<Benny>: We will be there shortly!", "<Benny>: The raft has been built!", "<Emmet>: The provisions have been passed over."])
