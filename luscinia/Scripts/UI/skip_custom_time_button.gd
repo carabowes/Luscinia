@@ -12,12 +12,8 @@ func _ready() -> void:
 
 # Displays the popup for entering a custom time to skip
 func _on_skip_custom_time_button_pressed():
-	if(!gm.message_manager.show_alert):
-		#custom_time_popup.popup_centered(Vector2(400, 300))
-		GlobalTimer.skip_time(GlobalTimer.time_step) #skip a turn
-		gm.print_task_progress()
-		gm.incre_game_step()
-
+	#custom_time_popup.popup_centered(Vector2(400, 300))
+	GlobalTimer.skip_time(GlobalTimer.time_step) #skip a turn
 
 # Handle custom time input
 func _on_line_edit_text_submitted(new_text: String):

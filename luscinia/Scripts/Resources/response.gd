@@ -1,4 +1,4 @@
-class_name Repsonse
+class_name Response
 extends Resource
 
 @export var response_text : String

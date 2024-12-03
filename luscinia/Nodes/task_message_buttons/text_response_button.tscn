@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://duyujec4j223o"]
+
+[ext_resource type="Script" path="res://Scripts/task_message/text_response_button.gd" id="1_2vo1h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uygmx"]
+bg_color = Color(0.0943543, 0.677457, 0.98266, 1)
+
+[node name="MessageResponse" type="Button"]
+custom_minimum_size = Vector2(0, 100)
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 45.0
+offset_right = -45.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_uygmx")
+text = "message_response"
+autowrap_mode = 2
+clip_text = true
+script = ExtResource("1_2vo1h")

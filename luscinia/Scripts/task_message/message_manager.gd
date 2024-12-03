@@ -1,36 +1,33 @@
 extends Control
 
-@onready var alert = $Button
-@onready var resource_manager = $"../resource_page"
-@onready var game_manager = $".."
-
 @export_group("Messages")
-@export var message_amount: int = 0
-@export var show_alert: bool = false
-@export var is_reward: bool = false
-@export var messages: Array[String] = []
+@export var message_data : Array[Message]
+
+@export_group("UI Elements")
+@export var message_board : MessageBoard
+@export var message_notif_button : Button
+@export var map_tasks : MapTasks
+
+var message_sent_this_turn = false
+
+var current_message = 0
+
+func _ready() -> void:
+	message_notif_button.pressed.connect(_on_alert_pressed)
+	message_notif_button.visible = true
+	message_board.map = map_tasks
+	message_board.response_picked.connect(func(): message_board.visible = false)
+	GlobalTimer.turn_progressed.connect(func(time : int): message_sent_this_turn = false)
+
+func _on_alert_pressed() -> void:#
+	message_board.visible = true
+	print(message_data)
+	message_board.add_message(message_data[current_message])
+	current_message += 1
+	message_sent_this_turn = true
 
 func _process(delta: float) -> void:
-	if(!show_alert || messages.size() == message_amount):
-		alert.visible = false
+	if message_data.size() == current_message or message_sent_this_turn:
+		message_notif_button.visible = false
 	else:
-		alert.visible = true
-
-func print_msg_amt():
-	print(str(message_amount))
-	
-func decrease_resources(resource: String, amt: int):
-	if(resource == "funds"):
-		ResourceManager.remove_resources(resource,amt)
-	else:
-		ResourceManager.remove_available_resources(resource,amt)
-	resource_manager.resources = ResourceManager.resources
-	resource_manager.available_resources = ResourceManager.available_resources
-	
-func increase_resources(resource: String, amt: int):
-	if(resource == "funds"):
-		ResourceManager.add_resources(resource,amt)
-	else:
-		ResourceManager.add_available_resources(resource,amt)
-	resource_manager.resources = ResourceManager.resources
-	resource_manager.available_resources = ResourceManager.available_resources
+		message_notif_button.visible = true

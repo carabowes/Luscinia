@@ -1,3 +1,4 @@
+class_name MapTasks
 extends Control
 
 # This will be removed and changed with some sort of reference to the singleton task manager once available.
@@ -16,7 +17,20 @@ func _ready() -> void:
 	$MapView.zoom_changed.connect(render_widgets)
 
 
+func add_task_instance(new_instance : TaskInstance):
+	task_instance.append(new_instance)
+	print("Generating new widgets")
+	generate_widgets()
+
+
 func generate_widgets():
+	
+	var num_widgets = range(len(task_widgets))
+	for i in num_widgets:
+		var current_widget = task_widgets[len(task_widgets)-1]
+		current_widget.queue_free()
+		task_widgets.remove_at(len(task_widgets)-1)
+		
 	for task in task_instance:
 		if task.is_completed:
 			continue
@@ -43,12 +57,6 @@ func update_widget_task(time : int):
 				ResourceManager.add_resources(resource, task.task_data.resources_gained[resource])
 				print("After")
 				print(ResourceManager.resources[resource])
-	
-	var num_widgets = range(len(task_widgets))
-	for i in num_widgets:
-		var current_widget = task_widgets[len(task_widgets)-1]
-		current_widget.queue_free()
-		task_widgets.remove_at(len(task_widgets)-1)
 	generate_widgets()
 
 

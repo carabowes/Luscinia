@@ -4,7 +4,7 @@ extends Resource
 ## Message contents
 @export var message : String
 ## Player responses
-@export var responses : Array[Repsonse]
+@export var responses : Array[Response]
 ## Array of prerequisites, conditions for the message to become active
 ## If any of the prerequisites are true the message pops up
 @export var prerequisites : Array[Prerequisite]
@@ -16,7 +16,7 @@ extends Resource
 ## Can the message appear again e.g providing aid messages
 @export var is_repeatable : bool
 
-func _init(message = "", responses = [], prerequisites = [], antirequisites = [], turns_to_answer = 0, is_repeatable = false) -> void:
+func _init(message = "", responses : Array[Response] = [], prerequisites : Array[Prerequisite] = [], antirequisites : Array[Prerequisite] = [], turns_to_answer = 0, is_repeatable = false) -> void:
 	self.message = message
 	self.responses = responses
 	self.prerequisites = prerequisites
