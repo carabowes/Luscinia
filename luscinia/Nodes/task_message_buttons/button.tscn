@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://chi1ovd807bam"]
+[gd_scene load_steps=3 format=3 uid="uid://chi1ovd807bam"]
 
 [ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="1_ckm1s"]
-[ext_resource type="Script" path="res://Scripts/task_message/message_button.gd" id="1_vu3dy"]
-[ext_resource type="Script" path="res://Scripts/task_message/choice_button.gd" id="2_2qkf5"]
+[ext_resource type="Script" path="res://Nodes/task_message_buttons/message_in_list.gd" id="2_hloyx"]
 
 [node name="Button" type="Button"]
 custom_minimum_size = Vector2(360, 50)
@@ -11,47 +10,6 @@ anchor_right = 1.0
 anchor_bottom = 0.06
 offset_bottom = 2.0
 theme = ExtResource("1_ckm1s")
-text = "placeholder"
-autowrap_mode = 1
-script = ExtResource("1_vu3dy")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Buttons" type="Node2D" parent="ColorRect"]
-
-[node name="Button" type="Button" parent="ColorRect/Buttons"]
-custom_minimum_size = Vector2(0, 70)
-anchors_preset = -1
-anchor_top = 11.52
-anchor_bottom = 11.52
-offset_top = 361.0
-offset_right = 360.0
-offset_bottom = 431.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_ckm1s")
-text = "Choice 1"
-script = ExtResource("2_2qkf5")
-
-[node name="Button2" type="Button" parent="ColorRect/Buttons"]
-custom_minimum_size = Vector2(0, 70)
-anchors_preset = -1
-anchor_top = 13.92
-anchor_right = 45.0
-anchor_bottom = 15.36
-offset_top = 465.0
-offset_right = 360.0
-offset_bottom = 535.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 4
-theme = ExtResource("1_ckm1s")
-text = "Choice 2"
-script = ExtResource("2_2qkf5")
+text = "placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder "
+autowrap_mode = 2
+script = ExtResource("2_hloyx")

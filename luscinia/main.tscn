@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://demyglfh17k5g"]
+[gd_scene load_steps=13 format=3 uid="uid://demyglfh17k5g"]
 
 [ext_resource type="PackedScene" uid="uid://djfodjryat72c" path="res://Scenes/map.tscn" id="1_7fdga"]
 [ext_resource type="PackedScene" uid="uid://desl373b33t23" path="res://Scenes/timer.tscn" id="2_5mpic"]
@@ -10,8 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://dfl5n2ga1ulqv" path="res://Nodes/task_message_buttons/messenger_screen.tscn" id="6_877e8"]
 [ext_resource type="Resource" uid="uid://cxwgponxxk2pf" path="res://Nodes/task_data/message_contact.tres" id="6_ntma7"]
 [ext_resource type="PackedScene" uid="uid://bnodjjjy3hdxo" path="res://Scenes/task-assignment.tscn" id="7_g8mic"]
+[ext_resource type="Script" path="res://Scripts/task_message/message_list.gd" id="11_ir8ox"]
 
-[sub_resource type="GDScript" id="GDScript_h7au2"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gfh5b"]
+bg_color = Color(1, 0.584314, 0, 1)
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -20,7 +24,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_h7au2")
 
 [node name="map" parent="." node_paths=PackedStringArray("details_page") instance=ExtResource("1_7fdga")]
 details_page = NodePath("../pages/task_details")
@@ -66,3 +69,56 @@ offset_bottom = 0.0
 [node name="message_page" parent="pages" instance=ExtResource("6_877e8")]
 visible = false
 layout_mode = 1
+
+[node name="text_message_list" type="Control" parent="pages"]
+visible = false
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.997
+offset_bottom = -0.179016
+script = ExtResource("11_ir8ox")
+
+[node name="ColorRect" type="ColorRect" parent="pages/text_message_list"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.074
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.23
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="pages/text_message_list/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.043
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.0799999
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="pages/text_message_list/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.08
+anchor_right = 1.0
+anchor_bottom = 0.02
+offset_top = -0.199997
+offset_bottom = 0.254997
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gfh5b")
+
+[node name="Label" type="Label" parent="pages/text_message_list/ColorRect/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 0.545002
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 41
+text = "Messages"
+horizontal_alignment = 1

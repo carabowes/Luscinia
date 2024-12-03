@@ -5,6 +5,7 @@ extends Control
 
 @export_group("UI Elements")
 @export var message_board : MessageBoard
+@onready var message_list = $"../pages/text_message_list"
 @export var message_notif_button : Button
 @export var map_tasks : MapTasks
 
@@ -20,8 +21,10 @@ func _ready() -> void:
 	GlobalTimer.turn_progressed.connect(func(time : int): message_sent_this_turn = false)
 
 func _on_alert_pressed() -> void:#
+	message_list.visible = true
 	message_board.visible = true
 	print(message_data)
+	message_list.add_message()
 	message_board.add_message(message_data[current_message])
 	current_message += 1
 	message_sent_this_turn = true
