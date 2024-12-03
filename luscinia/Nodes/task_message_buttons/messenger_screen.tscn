@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4gt7r5aujypo"]
+
+[ext_resource type="Script" path="res://Scripts/task_message/message_board_control.gd" id="1_7kuhm"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.96
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+custom_minimum_size = Vector2(360, 1)
+layout_mode = 2
+theme_override_constants/separation = 7
+script = ExtResource("1_7kuhm")
+msg_amt = Array[int]([1, 2, 1, 2])
+msg_content = Array[String](["This is test for incoming msg 01.1", "this is test for incoming msg 02.1", "this is test for incoming msg 02.2", "3.1", "4.1", "4.2"])

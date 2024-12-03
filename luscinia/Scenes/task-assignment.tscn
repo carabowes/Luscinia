@@ -1,15 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnodjjjy3hdxo"]
+[gd_scene load_steps=4 format=3 uid="uid://bnodjjjy3hdxo"]
 
-[ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_oq8wo"]
+[ext_resource type="Script" path="res://Scripts/task_message/message_manager.gd" id="1_oq8wo"]
 [ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="2_fxeco"]
 [ext_resource type="Script" path="res://Scripts/task_message/message_alert.gd" id="4_b7pjs"]
-[ext_resource type="Script" path="res://Scripts/task_message/message_board_control.gd" id="5_14q0v"]
 
-[node name="GameManager" type="Control"]
+[node name="messenger" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -744.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_oq8wo")
@@ -26,37 +26,3 @@ theme = ExtResource("2_fxeco")
 theme_override_font_sizes/font_size = 40
 text = "New Message!"
 script = ExtResource("4_b7pjs")
-
-[node name="Control" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.05
-anchor_right = 1.0
-anchor_bottom = 0.96
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/ScrollContainer"]
-custom_minimum_size = Vector2(360, 1)
-layout_mode = 2
-theme_override_constants/separation = 7
-script = ExtResource("5_14q0v")
-msg_amt = Array[int]([1, 2, 1, 2])
-msg_content = Array[String](["This is test for incoming msg 01.1", "this is test for incoming msg 02.1", "this is test for incoming msg 02.2", "3.1", "4.1", "4.2"])

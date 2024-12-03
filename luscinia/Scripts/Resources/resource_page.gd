@@ -15,8 +15,8 @@ func _process(delta: float) -> void:
 
 
 func _on_return_button_pressed() -> void:
-	ResourceManager.remove_resources("funds", 10)
-	print(ResourceManager.resources["funds"])
+	var main_parent = $"."
+	main_parent.visible = false
 
 
 func update_label(label_name: String, resource_name: String, texture_name: String):
