@@ -2,6 +2,7 @@ class_name MessageBoard
 extends Control
 
 @export var message_box : VBoxContainer
+@export var response_box : VBoxContainer
 var map : MapTasks # this bit is a bit janky
 var text_message_prefab = preload("res://Nodes/task_message_buttons/text_message.tscn")
 var response_button_prefab = preload("res://Nodes/task_message_buttons/text_response_button.tscn")
@@ -25,7 +26,7 @@ func add_responses(response_data : Response) -> void:
 	response_instance.text = response_data.response_text
 	response_instance.initialise_button(response_data.task)
 	response_instance.response_chosen.connect(dispatch_task)
-	message_box.add_child(response_instance)
+	response_box.add_child(response_instance)
 
 func dispatch_task(task_data : TaskData):
 	for resource in task_data.resources_required.keys():
