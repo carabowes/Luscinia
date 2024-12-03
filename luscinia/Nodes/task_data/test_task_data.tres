@@ -31,7 +31,7 @@ resources_required = {
 "vehicles": 1
 }
 resources_gained = {
-"supplies": 10
+"supplies": 0
 }
 expected_completion_time = 8
 effects_of_random_events = Array[ExtResource("1_hibar")]([SubResource("Resource_d84e4")])

@@ -26,6 +26,9 @@ enum LevelOfDetail {LOW, MEDIUM, HIGH}
 @onready var _peopleResourceImage : TextureRect = $WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer/ResourceTwoIcon
 @onready var _peopleResourceText = $WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer/ResourceTwoLabel
 
+func _ready():
+	add_to_group("task_widgets")
+
 func set_level_of_detail(lod):
 	current_level_of_detail = lod
 	match lod:
@@ -98,6 +101,11 @@ func _show_task_details_page():
 	if(task_details_page != null):
 		task_details_page.show_details(task_info)
 
+func get_current_progress():
+	return task_info.current_progress
+
+func set_current_progress(prog: int):
+	task_info.current_progress = prog
 
 func _gui_input(event: InputEvent) -> void:
 	if(event.is_action_pressed("interact")):

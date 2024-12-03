@@ -2,6 +2,7 @@ extends Button
 
 @onready var custom_time_popup = $CustomTimePopup
 @onready var custom_time_input = $CustomTimePopup/LineEdit
+@onready var gm = $"../../.."
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,8 +12,11 @@ func _ready() -> void:
 
 # Displays the popup for entering a custom time to skip
 func _on_skip_custom_time_button_pressed():
-	#custom_time_popup.popup_centered(Vector2(400, 300))
-	GlobalTimer.skip_time(GlobalTimer.time_step) #skip a turn
+	if(!gm.message_manager.show_alert):
+		#custom_time_popup.popup_centered(Vector2(400, 300))
+		GlobalTimer.skip_time(GlobalTimer.time_step) #skip a turn
+		gm.print_task_progress()
+		gm.incre_game_step()
 
 
 # Handle custom time input

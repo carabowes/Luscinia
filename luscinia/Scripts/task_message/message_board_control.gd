@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-@onready var gm = $"../../.."
+@onready var gm = $"../../../"
 @onready var message_list = $"../.."
 #amount of incoming messages based on current iteration of gm msg loop
 @export var msg_amt: Array[int] = []

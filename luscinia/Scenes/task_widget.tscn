@@ -39,7 +39,7 @@ corner_radius_bottom_left = 5
 line_spacing = -2.0
 font_color = Color(0, 0, 0, 1)
 
-[node name="TaskWidget" type="Control"]
+[node name="TaskWidget" type="Control" groups=["task_widgets"]]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 3
 anchors_preset = 0

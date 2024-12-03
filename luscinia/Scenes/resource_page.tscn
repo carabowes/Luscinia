@@ -20,7 +20,7 @@ script = ExtResource("1_3ccde")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 1
-offset_top = 103.0
+offset_top = 95.0
 offset_right = 359.0
 offset_bottom = 727.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_tws4w")
@@ -129,9 +129,10 @@ vertical_alignment = 1
 
 [node name="return_button" type="Button" parent="Background"]
 layout_mode = 0
-offset_left = 0.46
-offset_right = 168.46
-offset_bottom = 33.0
+offset_left = 8.46
+offset_top = 8.0
+offset_right = 176.46
+offset_bottom = 41.0
 text = " <- Return to Map "
 
 [connection signal="pressed" from="Background/return_button" to="." method="_on_return_button_pressed"]

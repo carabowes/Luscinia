@@ -12,5 +12,6 @@ func button_pressed():
 	message_list.visible = true
 	gm.message_amount += 1
 	gm.print_msg_amt()
+	gm.game_manager.incre_game_step()
 	message_board.add_message()
 	#gm.show_alert = false

@@ -32,5 +32,5 @@ custom_minimum_size = Vector2(360, 1)
 layout_mode = 2
 theme_override_constants/separation = 7
 script = ExtResource("1_7kuhm")
-msg_amt = Array[int]([1, 2, 1, 2])
-msg_content = Array[String](["This is test for incoming msg 01.1", "this is test for incoming msg 02.1", "this is test for incoming msg 02.2", "3.1", "4.1", "4.2"])
+msg_amt = Array[int]([2, 1, 2, 1])
+msg_content = Array[String](["<Emmet>: Please send us some personnel to retrive your provisions.", "<Emmet>: A bridge collapsed and we cannot reach your camp.", "<Benny>: Hello! We require resources to build a raft to transport goods.", "<Benny>: We will be there shortly!", "<Benny>: The raft has been built!", "<Emmet>: The provisions have been passed over."])

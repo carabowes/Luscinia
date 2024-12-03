@@ -34,7 +34,6 @@ offset_bottom = -52.0
 layout_mode = 1
 offset_top = 96.0
 offset_bottom = -656.0
-messages = Array[String](["<Emmet>: Slight obstruction in our way...", "<Benny>: Need Assistance...", "<Benny>: Thanks for the help :D...", "<Emmet>: Much Appreciated..."])
 
 [node name="Control" parent="message_manager" instance=ExtResource("6_877e8")]
 visible = false
