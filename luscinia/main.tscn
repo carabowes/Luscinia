@@ -59,6 +59,11 @@ mouse_filter = 2
 [node name="resource_page" parent="pages" instance=ExtResource("4_vi8yg")]
 visible = false
 layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.018
+anchor_bottom = 0.997
+offset_top = 10.926
+offset_bottom = -798.179
 
 [node name="task_details" parent="pages" instance=ExtResource("5_0qr7n")]
 visible = false

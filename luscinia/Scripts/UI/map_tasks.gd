@@ -54,7 +54,9 @@ func update_widget_task(time : int):
 			for resource in task.task_data.resources_gained.keys():
 				print("Before")
 				print(ResourceManager.resources[resource])
-				ResourceManager.add_resources(resource, task.task_data.resources_gained[resource])
+				ResourceManager.add_available_resources(resource, task.task_data.resources_gained[resource])
+				if(resource == "funds"):
+					ResourceManager.add_resources(resource, task.task_data.resources_gained[resource])
 				print("After")
 				print(ResourceManager.resources[resource])
 	generate_widgets()

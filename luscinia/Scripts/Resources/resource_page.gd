@@ -1,7 +1,7 @@
 extends Control
 
-var resources = {}
-var available_resources = {}
+@export var resources = {}
+@export var available_resources = {}
 
 
 func _ready() -> void:
