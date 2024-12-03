@@ -26,7 +26,7 @@ script = ExtResource("1_jafkr")
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 180.0
-offset_bottom = 58.0
+offset_bottom = 59.0
 color = Color(0.94902, 0.913725, 0.94902, 1)
 
 [node name="TimerVBox" type="VBoxContainer" parent="."]
