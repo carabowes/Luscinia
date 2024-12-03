@@ -11,6 +11,8 @@ signal response_picked
 func clear_messages():
 	for child in message_box.get_children():
 		child.queue_free()
+	for child in response_box.get_children():
+		child.queue_free()
 
 
 func add_message(message_data : Message) -> void:
