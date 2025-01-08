@@ -47,8 +47,12 @@ func dispatch_task(task_data : TaskData, response_chosen : Response, sender : Se
 
 func _set_sender_info(sender : Sender):
 	if sender == null:
+		%ContactProfile.self_modulate = Color.BLACK
+		%ContactRelationBar.visible = false
+		%ContactNameLabel.text = "Unknown Messenger"
 		return
 	
+	%ContactRelationBar.visible = true
 	%ContactProfile.texture = sender.image
 	%ContactRelationBar.value = clamp(sender.relationship, -85, 95)
 	%ContactRelationBar.self_modulate = sender.get_relationship_color()
