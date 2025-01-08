@@ -16,6 +16,7 @@ func clear_messages():
 
 
 func add_message(message_data : Message) -> void:
+	_set_sender_info(message_data.sender)
 	var text_message_instance : TextMessage = text_message_prefab.instantiate()
 	text_message_instance.set_text(message_data.message)
 	message_box.add_child(text_message_instance)
@@ -30,14 +31,26 @@ func add_responses(response_data : Response, sender : Sender) -> void:
 	response_instance.response_chosen.connect(dispatch_task)
 	response_box.add_child(response_instance)
 
+
 func dispatch_task(task_data : TaskData, response_chosen : Response, sender : Sender):
 	for resource in task_data.resources_required.keys():
 		if resource == "funds":
 			ResourceManager.remove_resources(resource, task_data.resources_required[resource])
 		else:
 			ResourceManager.remove_available_resources(resource, task_data.resources_required[resource])
-	var new_task_instance = TaskInstance.new(task_data, 0, 0, 0, task_data.start_location, false)
+	var new_task_instance = TaskInstance.new(task_data, 0, 0, 0, task_data.start_location, false, task_data.resources_required, sender)
 	ResourceManager.queue_relationship_change(task_data.task_id, response_chosen.relationship_change)
 	map.add_task_instance(new_task_instance)
 	response_picked.emit()
 	clear_messages()
+
+
+func _set_sender_info(sender : Sender):
+	if sender == null:
+		return
+	
+	%ContactProfile.texture = sender.image
+	%ContactRelationBar.value = clamp(sender.relationship, -85, 95)
+	%ContactRelationBar.self_modulate = sender.get_relationship_color()
+	%ContactNameLabel.text = sender.name
+	%ContactRelationLabel.text = sender.get_relationship_status()

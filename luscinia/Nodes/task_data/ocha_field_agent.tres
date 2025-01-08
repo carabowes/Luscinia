@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Sender" load_steps=3 format=3 uid="uid://fpcxdpnu0kko"]
+
+[ext_resource type="Texture2D" uid="uid://d1cwe1f3jk3ca" path="res://Sprites/icon.svg" id="1_hk1m6"]
+[ext_resource type="Script" path="res://Scripts/Resources/sender.gd" id="1_nnooi"]
+
+[resource]
+script = ExtResource("1_nnooi")
+name = "UN OCHA Agent"
+image = ExtResource("1_hk1m6")
+relationship = 5.0

@@ -59,6 +59,6 @@ func apply_relationship_change(task_id : int, sender : Sender, task_progress : f
 	if not relationships_to_update.has(task_id) or sender == null:
 		return
 	# If a user ends a task early they should not get the full relationship benefits
-	# 0% = -relationship, 50% = 0 relationship, 100% = +relationship
+	# 0% = relationship lost, 50% = 0 no relationship change, 100% = relationship gain
 	sender.relationship += (relationships_to_update[task_id] * task_progress * 2) - relationships_to_update[task_id] 
 	relationships_to_update.erase(task_id)
