@@ -4,15 +4,15 @@ variables:
   EXPORT_NAME: "luscinia"
 
 stages:
-    - export
-    - deploy
+  - export
+  - deploy
 
 windows:
-    stage: export
-    script:
-        - mkdir -v -p build/windows
-        - godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
-    artifacts:
-        names: $EXPORT_NAME-$CI_JOB_NAME
-        paths:
-            - build/windows
+  stage: export
+  script:
+    - mkdir -v -p build/windows
+    - godot -v --headless --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
+  artifacts:
+    name: "$EXPORT_NAME-$CI_JOB_NAME"
+    paths:
+      - build/windows/
