@@ -51,14 +51,11 @@ func update_widget_task(time : int):
 		task.current_progress += time/60
 		if task.current_progress >= task.get_total_time() and !task.is_completed:
 			task.is_completed = true
+			ResourceManager.apply_relationship_change(task.task_data.task_id, task.sender, task.current_progress)
 			for resource in task.task_data.resources_gained.keys():
-				print("Before")
-				print(ResourceManager.resources[resource])
 				ResourceManager.add_available_resources(resource, task.task_data.resources_gained[resource])
 				if(resource == "funds"):
 					ResourceManager.add_resources(resource, task.task_data.resources_gained[resource])
-				print("After")
-				print(ResourceManager.resources[resource])
 	generate_widgets()
 
 
