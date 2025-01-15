@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="5_fxqfx"]
 [ext_resource type="Script" path="res://Scripts/Resources/event_effect.gd" id="5_xlhqo"]
 [ext_resource type="Script" path="res://Scripts/Resources/task_data.gd" id="6_w0hgi"]
-[ext_resource type="Resource" uid="uid://ch08t6jpxmul4" path="res://Nodes/task_data/government.tres" id="8_myast"]
+[ext_resource type="Resource" path="res://Nodes/task_data/government.tres" id="8_myast"]
 
 [sub_resource type="Resource" id="Resource_1u5v2"]
 script = ExtResource("2_4b81d")

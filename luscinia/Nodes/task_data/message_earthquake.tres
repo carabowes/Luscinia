@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="3_pyrkd"]
 [ext_resource type="Resource" uid="uid://bge6mxdj0wv7w" path="res://Nodes/task_data/earthquake_task_full.tres" id="3_x0wr0"]
 [ext_resource type="Resource" uid="uid://g2w6g2nhqskk" path="res://Nodes/task_data/earthquake_task_half.tres" id="4_sqv1u"]
-[ext_resource type="Resource" uid="uid://ch08t6jpxmul4" path="res://Nodes/task_data/government.tres" id="6_iusj1"]
+[ext_resource type="Resource" path="res://Nodes/task_data/government.tres" id="6_iusj1"]
 
 [sub_resource type="Resource" id="Resource_sd1qi"]
 script = ExtResource("2_ltmve")

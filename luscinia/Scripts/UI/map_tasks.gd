@@ -15,6 +15,7 @@ func _ready() -> void:
 	GlobalTimer.turn_progressed.connect(update_widget_task)
 	generate_widgets()
 	$MapView.zoom_changed.connect(render_widgets)
+	details_page.task_cancelled.connect(cancel_task)
 
 
 func add_task_instance(new_instance : TaskInstance):
@@ -43,6 +44,16 @@ func generate_widgets():
 		task_widget_instance.connect("widget_selected", update_selected_widget)
 		task_widget_instance.task_details_page = details_page
 		render_widgets()
+
+
+func cancel_task(task : TaskInstance):
+	task.is_completed = true
+	ResourceManager.apply_relationship_change(task.task_data.task_id, task.sender, task.current_progress)
+	for resource in task.task_data.resources_gained.keys():
+		ResourceManager.add_available_resources(resource, task.task_data.resources_gained[resource])
+		if(resource == "funds"):
+			ResourceManager.add_resources(resource, task.task_data.resources_gained[resource])
+	generate_widgets()
 
 
 func update_widget_task(time : int):
