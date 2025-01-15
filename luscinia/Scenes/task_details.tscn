@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c70krmks36rto"]
+[gd_scene load_steps=21 format=3 uid="uid://c70krmks36rto"]
 
 [ext_resource type="Script" path="res://Scripts/UI/task_details.gd" id="1_dalyu"]
 [ext_resource type="Script" path="res://Nodes/task_details/time_progress_bar.gd" id="1_stskc"]
@@ -52,6 +52,16 @@ font_size = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_57w7t"]
 font_color = Color(0.290196, 0.266667, 0.34902, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l5vve"]
+font_size = 24
+font_color = Color(1, 0.54421, 0.249274, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pwbwb"]
+font_color = Color(0.259294, 0.259294, 0.259294, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a30pv"]
+font_color = Color(0.306923, 0.306923, 0.306923, 1)
 
 [node name="TaskDetails" type="Control"]
 layout_mode = 3
@@ -289,5 +299,133 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("4_yi0aj")
 text = "    End Early    "
+
+[node name="TaskCancelConfirmationPage" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_swbtu")
+
+[node name="Margin" type="MarginContainer" parent="TaskCancelConfirmationPage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 20
+
+[node name="VContainer" type="VBoxContainer" parent="TaskCancelConfirmationPage/Margin"]
+layout_mode = 2
+
+[node name="AreYouSureLabel" type="Label" parent="TaskCancelConfirmationPage/Margin/VContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Are you sure you want to end this task early?"
+label_settings = SubResource("LabelSettings_l5vve")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ProgressBarMargin" type="MarginContainer" parent="TaskCancelConfirmationPage/Margin/VContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="ProgressBar" type="ProgressBar" parent="TaskCancelConfirmationPage/Margin/VContainer/ProgressBarMargin" node_paths=PackedStringArray("text_label")]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_xyk4g")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2btxq")
+max_value = 7.0
+value = 7.0
+show_percentage = false
+script = ExtResource("1_stskc")
+total_task_time = 7.0
+text_label = NodePath("ProgressBarLabel")
+padding = 5
+
+[node name="ProgressBarLabel" type="Label" parent="TaskCancelConfirmationPage/Margin/VContainer/ProgressBarMargin/ProgressBar"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = -11.0
+offset_right = -7.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0hrs left"
+label_settings = SubResource("LabelSettings_p5ny5")
+vertical_alignment = 1
+
+[node name="EndEarlyResourcesLabel" type="Label" parent="TaskCancelConfirmationPage/Margin/VContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Here's how your resources will look like after ending the task early."
+label_settings = SubResource("LabelSettings_pwbwb")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="EndEarlyResources" parent="TaskCancelConfirmationPage/Margin/VContainer" instance=ExtResource("4_xomxh")]
+modulate = Color(0.290196, 0.266667, 0.34902, 1)
+layout_mode = 2
+size_flags_horizontal = 6
+ui_color = Color(0.290196, 0.266667, 0.34902, 1)
+resources = {
+"\"funds\"": 5,
+"another": 5,
+"funds": 5,
+"too": 5
+}
+
+[node name="FullTimeResourcesLabel" type="Label" parent="TaskCancelConfirmationPage/Margin/VContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "This is how your resources would look if you let the task finish to completion."
+label_settings = SubResource("LabelSettings_a30pv")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="FullTimeResources" parent="TaskCancelConfirmationPage/Margin/VContainer" instance=ExtResource("4_xomxh")]
+modulate = Color(0.290196, 0.266667, 0.34902, 1)
+layout_mode = 2
+size_flags_horizontal = 6
+ui_color = Color(0.290196, 0.266667, 0.34902, 1)
+resources = {
+"\"funds\"": 5,
+"another": 5,
+"funds": 5,
+"too": 5
+}
+
+[node name="Buttons" type="HBoxContainer" parent="TaskCancelConfirmationPage/Margin/VContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Cancel" type="Button" parent="TaskCancelConfirmationPage/Margin/VContainer/Buttons"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("4_yi0aj")
+text = "     Cancel     "
+
+[node name="Confirm" type="Button" parent="TaskCancelConfirmationPage/Margin/VContainer/Buttons"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme = ExtResource("4_yi0aj")
+text = "    Confirm    "
 
 [connection signal="pressed" from="Background/ScrollContainer/MarginContainer/Elements/ReturnButton" to="." method="hide_details"]
