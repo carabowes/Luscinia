@@ -4,7 +4,7 @@ variables:
   EXPORT_NAME: "luscinia"
 
 stages:
-  #- test
+  - test
   - export
   - deploy
 
