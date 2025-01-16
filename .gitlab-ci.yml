@@ -11,7 +11,7 @@ stages:
 test:
   stage: test
   script:
-    - godot -v --headless --script addons/gut/gut_cmdln.gd -gtest=res://Tests/ > test_output.log
+    - godot -v --headless --script addons/gut/gut_cmdln.gd -gtest=res://Tests/Unit > test_output.log
   artifacts:
     name: "test-results"
     paths:
