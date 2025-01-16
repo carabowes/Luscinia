@@ -8,21 +8,25 @@ stages:
   - export
   - deploy
 
-# test:
-#   stage: test
-#   script:
-#     - godot -v --headless --script addons/gut/gut_cmdln.gd -gtest=res://Tests/Unit > test_output.log
-#   artifacts:
-#     name: "test-results"
-#     paths:
-#       - test_output.log
-#     when: always
-#   allow_failure: false
+test:
+  stage: test
+  tags:
+    - docker 
+  script:
+    - godot -v --headless --script addons/gut/gut_cmdln.gd -gtest=res://Tests/Unit > test_output.log
+  artifacts:
+    name: "test-results"
+    paths:
+      - test_output.log
+    when: always
+  allow_failure: false
 
 
 
 windows:
   stage: export
+  tags:
+    - docker 
   script:
     - mkdir -v -p build/windows
     - godot -v --headless --export-release "Windows Desktop" luscinia/project.godot ../build/windows/$EXPORT_NAME.exe
