@@ -34,6 +34,10 @@ window/handheld/orientation=1
 
 project/assembly_name="Luscinia"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+
 [input]
 
 interact={
