@@ -901,7 +901,7 @@ func _get_files(path, prefix, suffix):
 	var files = []
 	var directories = []
 	# ignore addons/gut per issue 294
-	if(path == 'res://addons/gut'):
+	if(path == 'res://luscinia/addons/gut'):
 		return [];
 
 	var d = DirAccess.open(path)

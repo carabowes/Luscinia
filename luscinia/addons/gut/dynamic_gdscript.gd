@@ -1,6 +1,6 @@
 @tool
 var default_script_name_no_extension = 'gut_dynamic_script'
-var default_script_resource_path = 'res://addons/gut/not_a_real_file/'
+var default_script_resource_path = 'res://luscinia/addons/gut/not_a_real_file/'
 var default_script_extension = "gd"
 
 var _created_script_count = 0
@@ -30,4 +30,3 @@ func create_script_from_source(source, override_path=null):
 		DynamicScript = result
 
 	return DynamicScript
-

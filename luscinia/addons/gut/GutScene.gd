@@ -92,7 +92,7 @@ func _set_font(rtl, font_name, custom_name):
 		rtl.remove_theme_font_override(custom_name)
 	else:
 		var dyn_font = FontFile.new()
-		dyn_font.load_dynamic_font('res://addons/gut/fonts/' + font_name + '.ttf')
+		dyn_font.load_dynamic_font('res://luscinia/addons/gut/fonts/' + font_name + '.ttf')
 		rtl.add_theme_font_override(custom_name, dyn_font)
 
 
