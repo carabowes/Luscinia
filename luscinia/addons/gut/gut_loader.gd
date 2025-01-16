@@ -35,7 +35,7 @@ static func _static_init() -> void:
 	were_addons_disabled = ProjectSettings.get(str(WARNING_PATH, 'exclude_addons'))
 	ProjectSettings.set(str(WARNING_PATH, 'exclude_addons'), true)
 
-	var WarningsManager = load('res://addons/gut/warnings_manager.gd')
+	var WarningsManager = load('res://luscinia/addons/gut/warnings_manager.gd')
 
 	# Turn everything back on (if it originally was on) if the warnings manager
 	# is disabled.  This makes sure we see all the warnings for all the scripts
@@ -54,7 +54,7 @@ static func _static_init() -> void:
 	# Force a reference to utils.gd by path.  Using the class_name would cause
 	# utils.gd to load when this script loads, before we could turn off the
 	# warnings.
-	var _utils : Object = load('res://addons/gut/utils.gd')
+	var _utils : Object = load('res://luscinia/addons/gut/utils.gd')
 
 	# Since load_all exists on the LazyLoader, it should be done now so nothing
 	# sneaks in later...This essentially defeats the "lazy" part of the
