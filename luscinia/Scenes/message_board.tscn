@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddk4ehj3ui6nt"]
+[gd_scene load_steps=9 format=3 uid="uid://bv56aj10t7ese"]
 
 [ext_resource type="Script" path="res://Scripts/task_message/message_board_control.gd" id="1_t6wdj"]
 [ext_resource type="Texture2D" uid="uid://c27suyrk8wq" path="res://Sprites/ClockBackground.png" id="2_atyv1"]
