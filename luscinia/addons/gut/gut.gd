@@ -1,4 +1,4 @@
-extends 'res://addons/gut/gut_to_move.gd'
+extends 'res://luscinia/addons/gut/gut_to_move.gd'
 class_name GutMain
 ## The GUT brains.
 ##

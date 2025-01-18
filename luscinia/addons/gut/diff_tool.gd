@@ -1,4 +1,4 @@
-extends 'res://addons/gut/compare_result.gd'
+extends 'res://luscinia/addons/gut/compare_result.gd'
 const INDENT = '    '
 enum {
 	DEEP,
