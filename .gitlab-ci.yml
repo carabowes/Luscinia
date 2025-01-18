@@ -4,8 +4,8 @@ variables:
   EXPORT_NAME: "luscinia"
 
 stages:
-  - export
   - test
+  - export
   - deploy
 
 test:
@@ -13,8 +13,8 @@ test:
   tags:
     - docker 
   script:
-    - ls luscinia/
-    - godot -v --headless --path luscinia -s addons/gut/gut_cmdln.gd -gdir=res://Tests/Unit -gexit > test_output.log
+    - godot -v --headless --path ./luscinia -e --quit
+    - godot -v --headless --path ./luscinia -s addons/gut/gut_cmdln.gd -gdir=res://Tests/Unit -gexit > test_output.log
   artifacts:
     name: "test-results"
     paths:
