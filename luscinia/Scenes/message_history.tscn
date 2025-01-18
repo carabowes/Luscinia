@@ -1,71 +1,61 @@
-[gd_scene load_steps=2 format=3 uid="uid://chgfw50bgl4i0"]
+[gd_scene load_steps=2 format=3 uid="uid://c46do5ji6mdhn"]
 
 [ext_resource type="Script" path="res://Scripts/task_message/message_history.gd" id="11_da54n"]
 
-[node name="MessageHistory" type="Control"]
+[node name="message_history" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -800.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("11_da54n")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="MessageListBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 88.0
+offset_bottom = 700.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.956863, 0.929412, 0.952941, 1)
+
+[node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Header" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Header"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ClockPanel" type="Panel" parent="Header/HBoxContainer"]
-layout_mode = 2
-
-[node name="ResourcePanel" type="Panel" parent="Header/HBoxContainer"]
-layout_mode = 2
+offset_left = 13.0
+offset_top = 143.0
+offset_right = 57.0
+offset_bottom = 166.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 0
+text = "Chats"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = 88.0
+offset_bottom = 700.0
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 custom_minimum_size = Vector2(360, 1)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MessageItem" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="return_button" type="Button" parent="."]
 layout_mode = 2
+offset_left = 8.0
+offset_top = 101.0
+offset_right = 155.0
+offset_bottom = 132.0
+text = " <- Return to Map "
 
-[node name="Avatar" type="TextureRect" parent="ScrollContainer/VBoxContainer/MessageItem"]
-layout_mode = 2
-
-[node name="Exclamation" type="TextureRect" parent="ScrollContainer/VBoxContainer/MessageItem/Avatar"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MessageDetails" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/MessageItem"]
-layout_mode = 2
-
-[node name="SenderName" type="Label" parent="ScrollContainer/VBoxContainer/MessageItem/MessageDetails"]
-layout_mode = 2
-
-[node name="MessagePreview" type="Label" parent="ScrollContainer/VBoxContainer/MessageItem/MessageDetails"]
-layout_mode = 2
-
-[node name="TimeStamp" type="Label" parent="ScrollContainer/VBoxContainer/MessageItem"]
-layout_mode = 2
-
-[node name="navbar" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[connection signal="pressed" from="return_button" to="." method="_on_return_button_pressed"]

@@ -6,6 +6,9 @@ extends Control
 var map : MapTasks # this bit is a bit janky
 var text_message_prefab = preload("res://Nodes/task_message_buttons/text_message.tscn")
 var response_button_prefab = preload("res://Nodes/task_message_buttons/text_response_button.tscn")
+
+var message_history = {}  # { "sender_id": [ { message, response, relationship } ] }
+
 signal response_picked
 
 func clear_messages():
@@ -16,6 +19,7 @@ func clear_messages():
 
 
 func add_message(message_data : Message) -> void:
+	save_message_to_history(message_data)
 	_set_sender_info(message_data.sender)
 	var text_message_instance : TextMessage = text_message_prefab.instantiate()
 	text_message_instance.set_text(message_data.message)
@@ -58,3 +62,22 @@ func _set_sender_info(sender : Sender):
 	%ContactRelationBar.self_modulate = sender.get_relationship_color()
 	%ContactNameLabel.text = sender.name
 	%ContactRelationLabel.text = sender.get_relationship_status()
+	
+func save_message_to_history(message_data: Message):
+	if message_data.sender == null:
+		return  # Skip messages without a sender
+	var sender_id = message_data.sender.name
+	if not message_history.has(sender_id):
+		message_history[sender_id] = []  # Initialize sender history
+	message_history[sender_id].append({
+		"message": message_data.message,
+		"responses": message_data.responses,
+		"relationship": message_data.sender.relationship
+	})
+	
+func load_messages_for_sender(sender: Sender, messages: Array):
+	clear_messages()  # Clear current messages
+	_set_sender_info(sender)  # Update sender info (profile, name, etc.)
+
+	for message_data in messages:
+		add_message(message_data)  # Add each message to the message box
