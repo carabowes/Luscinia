@@ -1,15 +1,15 @@
 @tool
 extends Control
 
-var GutEditorGlobals = load('res://addons/gut/gui/editor_globals.gd')
-var TestScript = load('res://addons/gut/test.gd')
-var GutConfigGui = load('res://addons/gut/gui/gut_config_gui.gd')
-var ScriptTextEditors = load('res://addons/gut/gui/script_text_editor_controls.gd')
+var GutEditorGlobals = load('res://luscinia/addons/gut/gui/editor_globals.gd')
+var TestScript = load('res://luscinia/addons/gut/test.gd')
+var GutConfigGui = load('res://luscinia/addons/gut/gui/gut_config_gui.gd')
+var ScriptTextEditors = load('res://luscinia/addons/gut/gui/script_text_editor_controls.gd')
 
 
 var _interface = null;
 var _is_running = false;
-var _gut_config = load('res://addons/gut/gut_config.gd').new()
+var _gut_config = load('res://luscinia/addons/gut/gut_config.gd').new()
 var _gut_config_gui = null
 var _gut_plugin = null
 var _light_color = Color(0, 0, 0, .5)
@@ -68,7 +68,7 @@ func _ready():
 
 	_ctrls.run_results.set_output_control(_ctrls.output_ctrl)
 
-	var check_import = load('res://addons/gut/images/red.png')
+	var check_import = load('res://luscinia/addons/gut/images/red.png')
 	if(check_import == null):
 		_ctrls.run_results.add_centered_text("GUT got some new images that are not imported yet.  Please restart Godot.")
 		print('GUT got some new images that are not imported yet.  Please restart Godot.')
@@ -102,7 +102,7 @@ func load_shortcuts():
 
 func _is_test_script(script):
 	var from = script.get_base_script()
-	while(from and from.resource_path != 'res://addons/gut/test.gd'):
+	while(from and from.resource_path != 'res://luscinia/addons/gut/test.gd'):
 		from = from.get_base_script()
 
 	return from != null
@@ -149,7 +149,7 @@ func _run_tests():
 	_ctrls.run_results.clear()
 	_ctrls.run_results.add_centered_text('Running...')
 
-	_interface.play_custom_scene('res://addons/gut/gui/run_from_editor.tscn')
+	_interface.play_custom_scene('res://luscinia/addons/gut/gui/run_from_editor.tscn')
 	_is_running = true
 	_ctrls.output_ctrl.add_text('Running...')
 

@@ -1,6 +1,6 @@
 @tool
 
-static var GutUserPreferences = load("res://addons/gut/gui/gut_user_preferences.gd")
+static var GutUserPreferences = load("res://luscinia/addons/gut/gui/gut_user_preferences.gd")
 static var temp_directory = 'user://gut_temp_directory'
 
 static var editor_run_gut_config_path = 'gut_editor_config.json':
@@ -44,4 +44,3 @@ static var user_prefs = _user_prefs :
 
 static func create_temp_directory():
 	DirAccess.make_dir_recursive_absolute(temp_directory)
-

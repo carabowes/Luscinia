@@ -1,7 +1,7 @@
 extends SceneTree
 
-var Optparse = load('res://addons/gut/cli/optparse.gd')
-var WarningsManager = load("res://addons/gut/warnings_manager.gd")
+var Optparse = load('res://luscinia/addons/gut/cli/optparse.gd')
+var WarningsManager = load("res://luscinia/addons/gut/warnings_manager.gd")
 const WARN_VALUE_PRINT_POSITION = 36
 
 var godot_default_warnings = {
@@ -181,10 +181,10 @@ func _setup_options():
 	Each action requires one or more Warning Level Names.
 
 	Warning Level Names:
-	    * current        The current settings for the project.
-	    * godot_default  The default settings for Godot.
-	    * gut_default    The warning settings that is used when developing GUT.
-	    * all_warn       Everything set to warn.
+		* current        The current settings for the project.
+		* godot_default  The default settings for Godot.
+		* gut_default    The warning settings that is used when developing GUT.
+		* all_warn       Everything set to warn.
 	""".dedent()
 
 	opts.add('-h', false, 'Print this help')

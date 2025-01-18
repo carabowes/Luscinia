@@ -3,9 +3,9 @@ extends Control
 
 const RUNNER_JSON_PATH = 'res://.gut_editor_config.json'
 
-var GutConfig = load('res://addons/gut/gut_config.gd')
-var GutRunnerScene = load('res://addons/gut/gui/GutRunner.tscn')
-var GutConfigGui = load('res://addons/gut/gui/gut_config_gui.gd')
+var GutConfig = load('res://luscinia/addons/gut/gut_config.gd')
+var GutRunnerScene = load('res://luscinia/addons/gut/gui/GutRunner.tscn')
+var GutConfigGui = load('res://luscinia/addons/gut/gui/gut_config_gui.gd')
 
 var _config = GutConfig.new()
 var _config_gui = null
@@ -13,8 +13,8 @@ var _gut_runner = GutRunnerScene.instantiate()
 var _has_connected = false
 var _tree_root : TreeItem = null
 
-var _script_icon = load('res://addons/gut/images/Script.svg')
-var _folder_icon = load('res://addons/gut/images/Folder.svg')
+var _script_icon = load('res://luscinia/addons/gut/images/Script.svg')
+var _folder_icon = load('res://luscinia/addons/gut/images/Folder.svg')
 
 var _tree_scripts = {}
 var _tree_directories = {}

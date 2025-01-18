@@ -1,7 +1,7 @@
 @tool
 extends Window
 
-var GutEditorGlobals = load('res://addons/gut/gui/editor_globals.gd')
+var GutEditorGlobals = load('res://luscinia/addons/gut/gui/editor_globals.gd')
 var default_path = GutEditorGlobals.editor_shortcuts_path
 
 @onready var _ctrls = {

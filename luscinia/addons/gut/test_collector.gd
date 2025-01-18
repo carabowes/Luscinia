@@ -23,7 +23,7 @@ func _does_inherit_from_test(thing):
 	var to_return = false
 	if(base_script != null):
 		var base_path = base_script.get_path()
-		if(base_path == 'res://addons/gut/test.gd'):
+		if(base_path == 'res://luscinia/addons/gut/test.gd'):
 			to_return = true
 		else:
 			to_return = _does_inherit_from_test(base_script)
@@ -272,4 +272,3 @@ func get_pending_count():
 	for s in scripts:
 		count += s.get_pending_count()
 	return count
-

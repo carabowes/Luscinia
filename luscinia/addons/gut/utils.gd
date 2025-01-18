@@ -28,128 +28,128 @@ const TEST_STATUSES = {
 }
 
 const DOUBLE_TEMPLATES = {
-	FUNCTION = 'res://addons/gut/double_templates/function_template.txt',
-	INIT = 'res://addons/gut/double_templates/init_template.txt',
-	SCRIPT = 'res://addons/gut/double_templates/script_template.txt',
+	FUNCTION = 'res://luscinia/addons/gut/double_templates/function_template.txt',
+	INIT = 'res://luscinia/addons/gut/double_templates/init_template.txt',
+	SCRIPT = 'res://luscinia/addons/gut/double_templates/script_template.txt',
 }
 
 
-static var GutScene = load('res://addons/gut/GutScene.tscn')
-static var LazyLoader = load('res://addons/gut/lazy_loader.gd')
-static var VersionNumbers = load("res://addons/gut/version_numbers.gd")
-static var WarningsManager = load("res://addons/gut/warnings_manager.gd")
+static var GutScene = load('res://luscinia/addons/gut/GutScene.tscn')
+static var LazyLoader = load('res://luscinia/addons/gut/lazy_loader.gd')
+static var VersionNumbers = load("res://luscinia/addons/gut/version_numbers.gd")
+static var WarningsManager = load("res://luscinia/addons/gut/warnings_manager.gd")
 # --------------------------------
 # Lazy loaded scripts.  These scripts are lazy loaded so that they can be
 # declared, but will not load when this script is loaded.  This gives us a
 # window at the start of a run to adjust warning levels prior to loading
 # everything.
 # --------------------------------
-static var AutoFree = LazyLoader.new('res://addons/gut/autofree.gd'):
+static var AutoFree = LazyLoader.new('res://luscinia/addons/gut/autofree.gd'):
 	get: return AutoFree.get_loaded()
 	set(val): pass
-static var Awaiter = LazyLoader.new('res://addons/gut/awaiter.gd'):
+static var Awaiter = LazyLoader.new('res://luscinia/addons/gut/awaiter.gd'):
 	get: return Awaiter.get_loaded()
 	set(val): pass
-static var Comparator = LazyLoader.new('res://addons/gut/comparator.gd'):
+static var Comparator = LazyLoader.new('res://luscinia/addons/gut/comparator.gd'):
 	get: return Comparator.get_loaded()
 	set(val): pass
-static var CollectedTest = LazyLoader.new('res://addons/gut/collected_test.gd'):
+static var CollectedTest = LazyLoader.new('res://luscinia/addons/gut/collected_test.gd'):
 	get: return CollectedTest.get_loaded()
 	set(val): pass
-static var CollectedScript = LazyLoader.new('res://addons/gut/collected_script.gd'):
+static var CollectedScript = LazyLoader.new('res://luscinia/addons/gut/collected_script.gd'):
 	get: return CollectedScript.get_loaded()
 	set(val): pass
-static var CompareResult = LazyLoader.new('res://addons/gut/compare_result.gd'):
+static var CompareResult = LazyLoader.new('res://luscinia/addons/gut/compare_result.gd'):
 	get: return CompareResult.get_loaded()
 	set(val): pass
-static var DiffFormatter = LazyLoader.new("res://addons/gut/diff_formatter.gd"):
+static var DiffFormatter = LazyLoader.new("res://luscinia/addons/gut/diff_formatter.gd"):
 	get: return DiffFormatter.get_loaded()
 	set(val): pass
-static var DiffTool = LazyLoader.new('res://addons/gut/diff_tool.gd'):
+static var DiffTool = LazyLoader.new('res://luscinia/addons/gut/diff_tool.gd'):
 	get: return DiffTool.get_loaded()
 	set(val): pass
-static var DoubleTools = LazyLoader.new("res://addons/gut/double_tools.gd"):
+static var DoubleTools = LazyLoader.new("res://luscinia/addons/gut/double_tools.gd"):
 	get: return DoubleTools.get_loader()
 	set(val): pass
-static var Doubler = LazyLoader.new('res://addons/gut/doubler.gd'):
+static var Doubler = LazyLoader.new('res://luscinia/addons/gut/doubler.gd'):
 	get: return Doubler.get_loaded()
 	set(val): pass
-static var DynamicGdScript = LazyLoader.new("res://addons/gut/dynamic_gdscript.gd") :
+static var DynamicGdScript = LazyLoader.new("res://luscinia/addons/gut/dynamic_gdscript.gd") :
 	get: return DynamicGdScript.get_loaded()
 	set(val): pass
-static var Gut = LazyLoader.new('res://addons/gut/gut.gd'):
+static var Gut = LazyLoader.new('res://luscinia/addons/gut/gut.gd'):
 	get: return Gut.get_loaded()
 	set(val): pass
-static var GutConfig = LazyLoader.new('res://addons/gut/gut_config.gd'):
+static var GutConfig = LazyLoader.new('res://luscinia/addons/gut/gut_config.gd'):
 	get: return GutConfig.get_loaded()
 	set(val): pass
-static var HookScript = LazyLoader.new('res://addons/gut/hook_script.gd'):
+static var HookScript = LazyLoader.new('res://luscinia/addons/gut/hook_script.gd'):
 	get: return HookScript.get_loaded()
 	set(val): pass
-static var InnerClassRegistry = LazyLoader.new('res://addons/gut/inner_class_registry.gd'):
+static var InnerClassRegistry = LazyLoader.new('res://luscinia/addons/gut/inner_class_registry.gd'):
 	get: return InnerClassRegistry.get_loaded()
 	set(val): pass
-static var InputFactory = LazyLoader.new("res://addons/gut/input_factory.gd"):
+static var InputFactory = LazyLoader.new("res://luscinia/addons/gut/input_factory.gd"):
 	get: return InputFactory.get_loaded()
 	set(val): pass
-static var InputSender = LazyLoader.new("res://addons/gut/input_sender.gd"):
+static var InputSender = LazyLoader.new("res://luscinia/addons/gut/input_sender.gd"):
 	get: return InputSender.get_loaded()
 	set(val): pass
-static var JunitXmlExport = LazyLoader.new('res://addons/gut/junit_xml_export.gd'):
+static var JunitXmlExport = LazyLoader.new('res://luscinia/addons/gut/junit_xml_export.gd'):
 	get: return JunitXmlExport.get_loaded()
 	set(val): pass
-static var Logger = LazyLoader.new('res://addons/gut/logger.gd') : # everything should use get_logger
+static var Logger = LazyLoader.new('res://luscinia/addons/gut/logger.gd') : # everything should use get_logger
 	get: return Logger.get_loaded()
 	set(val): pass
-static var MethodMaker = LazyLoader.new('res://addons/gut/method_maker.gd'):
+static var MethodMaker = LazyLoader.new('res://luscinia/addons/gut/method_maker.gd'):
 	get: return MethodMaker.get_loaded()
 	set(val): pass
-static var OneToMany = LazyLoader.new('res://addons/gut/one_to_many.gd'):
+static var OneToMany = LazyLoader.new('res://luscinia/addons/gut/one_to_many.gd'):
 	get: return OneToMany.get_loaded()
 	set(val): pass
-static var OrphanCounter = LazyLoader.new('res://addons/gut/orphan_counter.gd'):
+static var OrphanCounter = LazyLoader.new('res://luscinia/addons/gut/orphan_counter.gd'):
 	get: return OrphanCounter.get_loaded()
 	set(val): pass
-static var ParameterFactory = LazyLoader.new('res://addons/gut/parameter_factory.gd'):
+static var ParameterFactory = LazyLoader.new('res://luscinia/addons/gut/parameter_factory.gd'):
 	get: return ParameterFactory.get_loaded()
 	set(val): pass
-static var ParameterHandler = LazyLoader.new('res://addons/gut/parameter_handler.gd'):
+static var ParameterHandler = LazyLoader.new('res://luscinia/addons/gut/parameter_handler.gd'):
 	get: return ParameterHandler.get_loaded()
 	set(val): pass
-static var Printers = LazyLoader.new('res://addons/gut/printers.gd'):
+static var Printers = LazyLoader.new('res://luscinia/addons/gut/printers.gd'):
 	get: return Printers.get_loaded()
 	set(val): pass
-static var ResultExporter = LazyLoader.new('res://addons/gut/result_exporter.gd'):
+static var ResultExporter = LazyLoader.new('res://luscinia/addons/gut/result_exporter.gd'):
 	get: return ResultExporter.get_loaded()
 	set(val): pass
-static var ScriptCollector = LazyLoader.new('res://addons/gut/script_parser.gd'):
+static var ScriptCollector = LazyLoader.new('res://luscinia/addons/gut/script_parser.gd'):
 	get: return ScriptCollector.get_loaded()
 	set(val): pass
-static var SignalWatcher = LazyLoader.new('res://addons/gut/signal_watcher.gd'):
+static var SignalWatcher = LazyLoader.new('res://luscinia/addons/gut/signal_watcher.gd'):
 	get: return SignalWatcher.get_loaded()
 	set(val): pass
-static var Spy = LazyLoader.new('res://addons/gut/spy.gd'):
+static var Spy = LazyLoader.new('res://luscinia/addons/gut/spy.gd'):
 	get: return Spy.get_loaded()
 	set(val): pass
-static var Strutils = LazyLoader.new('res://addons/gut/strutils.gd'):
+static var Strutils = LazyLoader.new('res://luscinia/addons/gut/strutils.gd'):
 	get: return Strutils.get_loaded()
 	set(val): pass
-static var Stubber = LazyLoader.new('res://addons/gut/stubber.gd'):
+static var Stubber = LazyLoader.new('res://luscinia/addons/gut/stubber.gd'):
 	get: return Stubber.get_loaded()
 	set(val): pass
-static var StubParams = LazyLoader.new('res://addons/gut/stub_params.gd'):
+static var StubParams = LazyLoader.new('res://luscinia/addons/gut/stub_params.gd'):
 	get: return StubParams.get_loaded()
 	set(val): pass
-static var Summary = LazyLoader.new('res://addons/gut/summary.gd'):
+static var Summary = LazyLoader.new('res://luscinia/addons/gut/summary.gd'):
 	get: return Summary.get_loaded()
 	set(val): pass
-static var Test = LazyLoader.new('res://addons/gut/test.gd'):
+static var Test = LazyLoader.new('res://luscinia/addons/gut/test.gd'):
 	get: return Test.get_loaded()
 	set(val): pass
-static var TestCollector = LazyLoader.new('res://addons/gut/test_collector.gd'):
+static var TestCollector = LazyLoader.new('res://luscinia/addons/gut/test_collector.gd'):
 	get: return TestCollector.get_loaded()
 	set(val): pass
-static var ThingCounter = LazyLoader.new('res://addons/gut/thing_counter.gd'):
+static var ThingCounter = LazyLoader.new('res://luscinia/addons/gut/thing_counter.gd'):
 	get: return ThingCounter.get_loaded()
 	set(val): pass
 # --------------------------------
@@ -590,4 +590,3 @@ static func get_display_size():
 # THE SOFTWARE.
 #
 # ##############################################################################
-

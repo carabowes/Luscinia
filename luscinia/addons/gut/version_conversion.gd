@@ -1,5 +1,5 @@
 class ConfigurationUpdater:
-	var EditorGlobals = load("res://addons/gut/gui/editor_globals.gd")
+	var EditorGlobals = load("res://luscinia/addons/gut/gui/editor_globals.gd")
 
 	func warn(message):
 		print('GUT Warning:  ', message)

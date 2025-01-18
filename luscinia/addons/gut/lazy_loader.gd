@@ -2,8 +2,8 @@
 # ------------------------------------------------------------------------------
 # Static
 # ------------------------------------------------------------------------------
-static var usage_counter = load('res://addons/gut/thing_counter.gd').new()
-static var WarningsManager = load('res://addons/gut/warnings_manager.gd')
+static var usage_counter = load('res://luscinia/addons/gut/thing_counter.gd').new()
+static var WarningsManager = load('res://luscinia/addons/gut/warnings_manager.gd')
 
 static func load_all():
 	for key in usage_counter.things:
@@ -31,4 +31,3 @@ func get_loaded():
 		_loaded = WarningsManager.load_script_ignoring_all_warnings(_path)
 	usage_counter.add(self)
 	return _loaded
-

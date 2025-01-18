@@ -2,7 +2,7 @@
 extends Control
 
 
-var ScriptTextEditors = load('res://addons/gut/gui/script_text_editor_controls.gd')
+var ScriptTextEditors = load('res://luscinia/addons/gut/gui/script_text_editor_controls.gd')
 
 @onready var _ctrls = {
 	btn_script = $HBox/BtnRunScript,
