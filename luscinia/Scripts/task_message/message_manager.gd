@@ -20,7 +20,7 @@ func _ready() -> void:
 	message_board.response_picked.connect(func(): message_board.visible = false)
 	GlobalTimer.turn_progressed.connect(func(time : int): message_sent_this_turn = false)
 
-func _on_alert_pressed() -> void:#
+func _on_alert_pressed() -> void:
 	message_list.visible = true
 	message_board.visible = true
 	print(message_data)

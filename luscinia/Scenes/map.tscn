@@ -1,8 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://djfodjryat72c"]
+[gd_scene load_steps=9 format=3 uid="uid://djfodjryat72c"]
 
 [ext_resource type="Script" path="res://Scripts/UI/map_tasks.gd" id="1_pjqy6"]
+[ext_resource type="PackedScene" uid="uid://blpycpxpswjvq" path="res://testRandomTask.tscn" id="4_r3o02"]
+[ext_resource type="Script" path="res://Scripts/Resources/task_instance.gd" id="5_xryco"]
+[ext_resource type="Resource" uid="uid://ch08t6jpxmul4" path="res://Nodes/task_data/government.tres" id="6_akd7n"]
+[ext_resource type="Resource" uid="uid://bm3ouav22634k" path="res://Nodes/task_data/random_task_1.tres" id="6_m31ao"]
 [ext_resource type="Script" path="res://Scripts/UI/map_controller.gd" id="7_pujv3"]
 [ext_resource type="Texture2D" uid="uid://c5tv206f6s8ns" path="res://Sprites/freetownmap.png" id="8_sd44s"]
+
+[sub_resource type="Resource" id="Resource_vo76d"]
+script = ExtResource("5_xryco")
+task_data = ExtResource("6_m31ao")
+current_status = 0
+current_progress = 0
+extra_time = 0
+current_location = Vector2(550, 400)
+is_completed = false
+actual_resources = {
+"funds": 100,
+"people": 40,
+"supplies": 1000,
+"vehicles": 60
+}
+sender = ExtResource("6_akd7n")
 
 [node name="Map" type="Control"]
 layout_mode = 3
@@ -38,3 +58,31 @@ offset_bottom = 558.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_sd44s")
+
+[node name="RandomTask List" type="Control" parent="MapView/MapTexture"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RandomWidget3" parent="MapView/MapTexture/RandomTask List" instance=ExtResource("4_r3o02")]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 550.0
+offset_top = 600.0
+offset_right = 598.0
+offset_bottom = 648.0
+task_info = SubResource("Resource_vo76d")
+
+[node name="RandomWidget2" parent="MapView/MapTexture/RandomTask List" instance=ExtResource("4_r3o02")]
+visible = false
+offset_left = 4038.0
+offset_top = 3816.0
+offset_right = 4086.0
+offset_bottom = 3864.0
+
+[node name="RandomWidget" parent="MapView/MapTexture/RandomTask List" instance=ExtResource("4_r3o02")]
+visible = false
+offset_left = 1362.0
+offset_top = 1288.0
+offset_right = 1410.0
+offset_bottom = 1336.0

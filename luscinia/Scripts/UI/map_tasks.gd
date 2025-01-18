@@ -24,13 +24,12 @@ func add_task_instance(new_instance : TaskInstance):
 
 
 func generate_widgets():
-	
 	var num_widgets = range(len(task_widgets))
 	for i in num_widgets:
 		var current_widget = task_widgets[len(task_widgets)-1]
 		current_widget.queue_free()
 		task_widgets.remove_at(len(task_widgets)-1)
-		
+
 	for task in task_instance:
 		if task.is_completed:
 			continue

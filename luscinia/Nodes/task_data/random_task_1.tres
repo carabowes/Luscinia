@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="TaskData" load_steps=4 format=3 uid="uid://bm3ouav22634k"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/event_effect.gd" id="1_owwee"]
+[ext_resource type="Texture2D" uid="uid://chgb1pq7fpd4c" path="res://Sprites/UI/Truck.png" id="2_3vt1m"]
+[ext_resource type="Script" path="res://Scripts/Resources/task_data.gd" id="3_udmot"]
+
+[resource]
+script = ExtResource("3_udmot")
+task_id = -50
+name = "Earthquake Response Team"
+icon = ExtResource("2_3vt1m")
+start_location = Vector2(550, 400)
+end_location = Vector2(1000, 1000)
+resources_required = {
+"funds": 100,
+"people": 40,
+"supplies": 1000,
+"vehicles": 60
+}
+resources_gained = {
+"people": 40,
+"vehicles": 60
+}
+expected_completion_time = 8
+effects_of_random_events = Array[ExtResource("1_owwee")]([])
