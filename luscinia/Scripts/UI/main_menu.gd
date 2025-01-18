@@ -5,6 +5,9 @@ func _ready() -> void:
 	%scenario1_button.connect("button_down", change_to_scenario1)
 	%back_button.connect("button_down",backbutton)
 
+func _process(delta: float) -> void:
+	GlobalTimer.second_accumulator = 0
+
 func show_scenariosbutton():
 	hide_playbutton()
 	var tween1 = get_tree().create_tween()

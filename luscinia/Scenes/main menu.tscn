@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bn0e2jolrmehv"]
+[gd_scene load_steps=3 format=3 uid="uid://bn0e2jolrmehv"]
 
 [ext_resource type="Script" path="res://Scripts/UI/main_menu.gd" id="1_qorpv"]
+[ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="2_rhwjc"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -59,14 +60,6 @@ offset_top = -3.05176e-05
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="background/Buttons"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.157
-offset_bottom = -0.0560608
-color = Color(0.933333, 0.560784, 0.176471, 1)
-
 [node name="play_button" type="Button" parent="background/Buttons"]
 unique_name_in_owner = true
 layout_mode = 1
@@ -80,6 +73,7 @@ offset_right = -47.0
 offset_bottom = 0.0479965
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_rhwjc")
 theme_override_font_sizes/font_size = 31
 text = "Play"
 
@@ -96,6 +90,7 @@ offset_right = 296.0
 offset_bottom = 0.048027
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_rhwjc")
 theme_override_font_sizes/font_size = 31
 text = "Scenario 1"
 
@@ -112,6 +107,7 @@ offset_right = 296.0
 offset_bottom = 0.167999
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_rhwjc")
 theme_override_font_sizes/font_size = 31
 text = "Scenario 2"
 
@@ -128,6 +124,7 @@ offset_right = 296.0
 offset_bottom = -0.120026
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_rhwjc")
 theme_override_font_sizes/font_size = 31
 text = "Back"
 
@@ -144,5 +141,6 @@ offset_right = -48.0
 offset_bottom = -3.05176e-05
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_rhwjc")
 theme_override_font_sizes/font_size = 31
 text = "Settings"
