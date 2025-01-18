@@ -14,9 +14,9 @@ var hide_passing = true :
 
 
 var _icons = {
-	red = load('res://luscinia/addons/gut/images/red.png'),
-	green = load('res://luscinia/addons/gut/images/green.png'),
-	yellow = load('res://luscinia/addons/gut/images/yellow.png'),
+	red = load('res://addons/gut/images/red.png'),
+	green = load('res://addons/gut/images/green.png'),
+	yellow = load('res://addons/gut/images/yellow.png'),
 }
 const _col_1_bg_color = Color(0, 0, 0, .1)
 var _max_icon_width = 10

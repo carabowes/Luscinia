@@ -40,7 +40,7 @@ class PackedSceneDouble:
 # ------------------------------------------------------------------------------
 # START Doubler
 # ------------------------------------------------------------------------------
-var _base_script_text = GutUtils.get_file_as_text('res://luscinia/addons/gut/double_templates/script_template.txt')
+var _base_script_text = GutUtils.get_file_as_text('res://addons/gut/double_templates/script_template.txt')
 var _script_collector = GutUtils.ScriptCollector.new()
 # used by tests for debugging purposes.
 var print_source = false

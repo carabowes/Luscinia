@@ -1,7 +1,7 @@
 extends SceneTree
 
-var Optparse = load('res://luscinia/addons/gut/cli/optparse.gd')
-var WarningsManager = load("res://luscinia/addons/gut/warnings_manager.gd")
+var Optparse = load('res://addons/gut/cli/optparse.gd')
+var WarningsManager = load("res://addons/gut/warnings_manager.gd")
 const WARN_VALUE_PRINT_POSITION = 36
 
 var godot_default_warnings = {

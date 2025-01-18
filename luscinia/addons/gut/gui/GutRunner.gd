@@ -17,9 +17,9 @@ extends Node2D
 const EXIT_OK = 0
 const EXIT_ERROR = 1
 
-var Gut = load('res://luscinia/addons/gut/gut.gd')
-var ResultExporter = load('res://luscinia/addons/gut/result_exporter.gd')
-var GutConfig = load('res://luscinia/addons/gut/gut_config.gd')
+var Gut = load('res://addons/gut/gut.gd')
+var ResultExporter = load('res://addons/gut/result_exporter.gd')
+var GutConfig = load('res://addons/gut/gut_config.gd')
 
 var runner_json_path = null
 var result_bbcode_path = null
@@ -141,7 +141,7 @@ func _on_tests_finished():
 # don't have my permission to call this, unless "you" is "me".
 func run_from_editor():
 	_ran_from_editor = true
-	var GutEditorGlobals = load('res://luscinia/addons/gut/gui/editor_globals.gd')
+	var GutEditorGlobals = load('res://addons/gut/gui/editor_globals.gd')
 	runner_json_path = GutUtils.nvl(runner_json_path, GutEditorGlobals.editor_run_gut_config_path)
 	result_bbcode_path = GutUtils.nvl(result_bbcode_path, GutEditorGlobals.editor_run_bbcode_results_path)
 	result_json_path = GutUtils.nvl(result_json_path, GutEditorGlobals.editor_run_json_results_path)

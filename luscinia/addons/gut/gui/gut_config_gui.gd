@@ -1,5 +1,5 @@
-var PanelControls = load("res://luscinia/addons/gut/gui/panel_controls.gd")
-var GutConfig = load('res://luscinia/addons/gut/gut_config.gd')
+var PanelControls = load("res://addons/gut/gui/panel_controls.gd")
+var GutConfig = load('res://addons/gut/gut_config.gd')
 
 const DIRS_TO_LIST = 6
 

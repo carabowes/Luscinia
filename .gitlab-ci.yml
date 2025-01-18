@@ -13,7 +13,7 @@ test:
   tags:
     - docker 
   script:
-    - godot -v --headless --script res://luscinia/addons/gut/gut_cmdln.gd -gtest=res://luscinia/Tests/Unit > test_output.log
+    - godot -v --headless --path "luscinia" -s addons/gut/gut_cmdln.gd -gdir=res://Tests/Unit -gexit
   artifacts:
     name: "test-results"
     paths:

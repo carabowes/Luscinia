@@ -1,8 +1,8 @@
 extends Node
 
-var Optparse = load('res://luscinia/addons/gut/cli/optparse.gd')
-var Gut = load('res://luscinia/addons/gut/gut.gd')
-var GutRunner = load('res://luscinia/addons/gut/gui/GutRunner.tscn')
+var Optparse = load('res://addons/gut/cli/optparse.gd')
+var Gut = load('res://addons/gut/gut.gd')
+var GutRunner = load('res://addons/gut/gui/GutRunner.tscn')
 
 # ------------------------------------------------------------------------------
 # Helper class to resolve the various different places where an option can
@@ -76,7 +76,7 @@ class OptionResolver:
 # Here starts the actual script that uses the Options class to kick off Gut
 # and run your tests.
 # ------------------------------------------------------------------------------
-var _gut_config = load('res://luscinia/addons/gut/gut_config.gd').new()
+var _gut_config = load('res://addons/gut/gut_config.gd').new()
 
 # array of command line options specified
 var _final_opts = []

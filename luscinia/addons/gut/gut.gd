@@ -1,4 +1,4 @@
-extends 'res://luscinia/addons/gut/gut_to_move.gd'
+extends 'res://addons/gut/gut_to_move.gd'
 class_name GutMain
 ## The GUT brains.
 ##
@@ -901,7 +901,7 @@ func _get_files(path, prefix, suffix):
 	var files = []
 	var directories = []
 	# ignore addons/gut per issue 294
-	if(path == 'res://luscinia/addons/gut'):
+	if(path == 'res://addons/gut'):
 		return [];
 
 	var d = DirAccess.open(path)

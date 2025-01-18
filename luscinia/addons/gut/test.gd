@@ -27,7 +27,7 @@ var _summary = {
 }
 
 # This is used to watch signals so we can make assertions about them.
-var _signal_watcher = load('res://luscinia/addons/gut/signal_watcher.gd').new()
+var _signal_watcher = load('res://addons/gut/signal_watcher.gd').new()
 
 # Convenience copy of GutUtils.DOUBLE_STRATEGY
 var DOUBLE_STRATEGY = GutUtils.DOUBLE_STRATEGY
