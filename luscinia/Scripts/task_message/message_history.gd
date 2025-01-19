@@ -1,7 +1,7 @@
 extends Control
 
 @onready var message_list_vbox = $ScrollContainer/MessageListVBox
-@onready var message_board = get_node("/root/main/message_board")
+@onready var message_board = $"../../message_board"
 
 func _ready():
 	if not message_board:
@@ -61,3 +61,27 @@ func _on_sender_selected(event, sender_id):
 		# Load the sender's messages in the MessageBoard
 		var message_board_node = get_tree().root.get_node("main/message_board")
 		message_board_node.load_messages_for_sender(sender, sender_messages)
+#
+#extends Control
+#
+#@onready var message_list = $VBoxContainer  # Path to VBoxContainer for message history
+#
+#func _ready():
+	#populate_message_history()
+#
+#func populate_message_history():
+	#var message_manager = get_node("/root/messenger")  # Adjust path if necessary
+	#if not is_instance_valid(message_manager):
+		#print("Error: Message Manager not found or valid!")
+		#return
+		#
+	#for child in message_list.get_children():
+		#child.queue_free()
+	#for entry in message_manager.message_history:
+		#var history_item = create_history_item(entry)
+		#message_list.add_child(history_item)
+#
+#func create_history_item(entry):
+	#var label = Label.new()
+	#label.text = "[" + entry.sender + "]: " + entry.message + " (Response: " + entry.response + ")"
+	#return label

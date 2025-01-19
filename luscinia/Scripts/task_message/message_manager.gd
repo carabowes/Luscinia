@@ -11,7 +11,9 @@ extends Control
 
 var message_sent_this_turn = false
 
+
 var current_message = 0
+
 
 func _ready() -> void:
 	message_notif_button.pressed.connect(_on_alert_pressed)
@@ -19,7 +21,8 @@ func _ready() -> void:
 	message_board.map = map_tasks
 	message_board.response_picked.connect(func(): message_board.visible = false)
 	GlobalTimer.turn_progressed.connect(func(time : int): message_sent_this_turn = false)
-
+	
+	
 func _on_alert_pressed() -> void:#
 	message_list.visible = true
 	message_board.visible = true
@@ -28,7 +31,8 @@ func _on_alert_pressed() -> void:#
 	message_board.add_message(message_data[current_message])
 	current_message += 1
 	message_sent_this_turn = true
-
+	
+	
 func _process(delta: float) -> void:
 	if message_data.size() == current_message or message_sent_this_turn:
 		message_notif_button.visible = false

@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://bv56aj10t7ese"]
+[gd_scene load_steps=8 format=3 uid="uid://bv56aj10t7ese"]
 
-[ext_resource type="Script" path="res://Scripts/task_message/message_board_control.gd" id="1_t6wdj"]
 [ext_resource type="Texture2D" uid="uid://c27suyrk8wq" path="res://Sprites/ClockBackground.png" id="2_atyv1"]
 [ext_resource type="Texture2D" uid="uid://d1cwe1f3jk3ca" path="res://Sprites/icon.svg" id="3_1qu30"]
 
@@ -21,13 +20,13 @@ font_size = 10
 font_color = Color(0, 0, 0, 1)
 
 [node name="MessageBoard" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_t6wdj")
 
 [node name="MessageListBackground" type="ColorRect" parent="."]
 layout_mode = 1
