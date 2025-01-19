@@ -116,6 +116,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_fdyfv")
 text = "<= Return to Map"
 
 [node name="TaskTitle" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Providing Aid in Koza "
@@ -127,7 +128,8 @@ modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="Background/ScrollContainer/MarginContainer/Elements" node_paths=PackedStringArray("text_label")]
+[node name="TaskProgressBar" type="ProgressBar" parent="Background/ScrollContainer/MarginContainer/Elements" node_paths=PackedStringArray("text_label")]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_xyk4g")
@@ -140,7 +142,7 @@ total_task_time = 7.0
 text_label = NodePath("Label")
 padding = 5
 
-[node name="Label" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements/ProgressBar"]
+[node name="Label" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements/TaskProgressBar"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -264,6 +266,7 @@ text = "Resources Used"
 label_settings = SubResource("LabelSettings_57w7t")
 
 [node name="ResourcesUsed" parent="Background/ScrollContainer/MarginContainer/Elements" instance=ExtResource("4_xomxh")]
+unique_name_in_owner = true
 modulate = Color(0.290196, 0.266667, 0.34902, 1)
 layout_mode = 2
 ui_color = Color(0.290196, 0.266667, 0.34902, 1)
@@ -284,6 +287,7 @@ text = "On Completion
 label_settings = SubResource("LabelSettings_57w7t")
 
 [node name="OnCompletion" parent="Background/ScrollContainer/MarginContainer/Elements" instance=ExtResource("4_xomxh")]
+unique_name_in_owner = true
 modulate = Color(0.290196, 0.266667, 0.34902, 1)
 layout_mode = 2
 ui_color = Color(0.290196, 0.266667, 0.34902, 1)
@@ -301,6 +305,7 @@ theme = ExtResource("4_yi0aj")
 text = "    End Early    "
 
 [node name="TaskCancelConfirmationPage" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -339,7 +344,8 @@ layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
 
-[node name="ProgressBar" type="ProgressBar" parent="TaskCancelConfirmationPage/Margin/VContainer/ProgressBarMargin" node_paths=PackedStringArray("text_label")]
+[node name="EndEarlyProgressBar" type="ProgressBar" parent="TaskCancelConfirmationPage/Margin/VContainer/ProgressBarMargin" node_paths=PackedStringArray("text_label")]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_xyk4g")
@@ -352,7 +358,7 @@ total_task_time = 7.0
 text_label = NodePath("ProgressBarLabel")
 padding = 5
 
-[node name="ProgressBarLabel" type="Label" parent="TaskCancelConfirmationPage/Margin/VContainer/ProgressBarMargin/ProgressBar"]
+[node name="ProgressBarLabel" type="Label" parent="TaskCancelConfirmationPage/Margin/VContainer/ProgressBarMargin/EndEarlyProgressBar"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -377,16 +383,9 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="EndEarlyResources" parent="TaskCancelConfirmationPage/Margin/VContainer" instance=ExtResource("4_xomxh")]
-modulate = Color(0.290196, 0.266667, 0.34902, 1)
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 1)
 layout_mode = 2
-size_flags_horizontal = 6
-ui_color = Color(0.290196, 0.266667, 0.34902, 1)
-resources = {
-"\"funds\"": 5,
-"another": 5,
-"funds": 5,
-"too": 5
-}
 
 [node name="FullTimeResourcesLabel" type="Label" parent="TaskCancelConfirmationPage/Margin/VContainer"]
 layout_mode = 2
@@ -397,22 +396,16 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="FullTimeResources" parent="TaskCancelConfirmationPage/Margin/VContainer" instance=ExtResource("4_xomxh")]
-modulate = Color(0.290196, 0.266667, 0.34902, 1)
+unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 1)
 layout_mode = 2
-size_flags_horizontal = 6
-ui_color = Color(0.290196, 0.266667, 0.34902, 1)
-resources = {
-"\"funds\"": 5,
-"another": 5,
-"funds": 5,
-"too": 5
-}
 
 [node name="Buttons" type="HBoxContainer" parent="TaskCancelConfirmationPage/Margin/VContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Cancel" type="Button" parent="TaskCancelConfirmationPage/Margin/VContainer/Buttons"]
+[node name="CancelEndButton" type="Button" parent="TaskCancelConfirmationPage/Margin/VContainer/Buttons"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -420,7 +413,8 @@ size_flags_vertical = 4
 theme = ExtResource("4_yi0aj")
 text = "     Cancel     "
 
-[node name="Confirm" type="Button" parent="TaskCancelConfirmationPage/Margin/VContainer/Buttons"]
+[node name="ConfirmEndButton" type="Button" parent="TaskCancelConfirmationPage/Margin/VContainer/Buttons"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 size_flags_horizontal = 8

@@ -50,10 +50,13 @@ func finish_task(task : TaskInstance, fully_complete : bool):
 	task.is_completed = true
 	ResourceManager.apply_relationship_change(task.task_data.task_id, task.sender, task.current_progress)
 	for resource in task.task_data.resources_gained.keys():
-		ResourceManager.add_available_resources(resource, task.task_data.resources_gained[resource])
-		if resource == "funds" and fully_complete:
-			ResourceManager.add_resources(resource, task.task_data.resources_gained[resource])
-
+		if fully_complete:
+			if resource != "funds":
+				ResourceManager.add_available_resources(resource, task.task_data.resources_gained[resource])
+			else:
+				ResourceManager.add_resources(resource, task.task_data.resources_gained[resource])
+		elif resource != "funds" and resource != "supplies":
+			ResourceManager.add_available_resources(resource, task.task_data.resources_gained[resource])
 
 func cancel_task(task : TaskInstance):
 	finish_task(task, false)
