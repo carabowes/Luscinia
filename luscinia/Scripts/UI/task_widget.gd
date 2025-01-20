@@ -100,9 +100,6 @@ func _switch_to_high_lod():
 func _show_task_details_page():
 	if(task_details_page != null):
 		task_details_page.show_details(task_info)
-	if(task_details_page == null):
-		task_details_page = $"../../../../../pages/task_details"
-		task_details_page.show_details(task_info)
 
 func get_current_progress():
 	return task_info.current_progress

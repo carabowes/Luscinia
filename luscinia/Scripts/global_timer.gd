@@ -2,16 +2,17 @@ extends Node
 
 signal turn_progressed(time_skipped : int)
 # Timer variables
-@export var cd_minutes: int = 3
-@export var cd_seconds: int = 30
+#personal = 1min, discussion = 5min
+@export var cd_minutes: int = 0
+@export var cd_seconds: int = 0
 var countdown_duration
 var current_time_left
 var time_step = 60
 
 # Clock variables
-@export var in_game_hours: int = 20  # Measured in horus out of 24
+@export var in_game_hours: int = 9  # Measured in horus out of 24
 var in_game_minutes = 0
-var day_counter = 5
+var day_counter = 0
 var second_accumulator = 0
 
 func _ready():
