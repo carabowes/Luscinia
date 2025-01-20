@@ -2,6 +2,8 @@ image: barichello/godot-ci:4.3
 
 variables:
   EXPORT_NAME: "luscinia"
+  ANDROID_SDK_PATH: "C:/Users/jackp/AppData/Local/Android/Sdk"
+  
 
 stages:
   - test
@@ -13,8 +15,7 @@ test:
   tags:
     - docker 
   script:
-    - godot --headless --import --path ./luscinia
-    - godot -v --headless --path ./luscinia -s addons/gut/gut_cmdln.gd -gdir=res://Tests/Unit -gexit > test_output.log
+    - godot -v --headless --script res://luscinia/addons/gut/gut_cmdln.gd -gtest=res://luscinia/Tests/Unit > test_output.log
   artifacts:
     name: "test-results"
     paths:
@@ -35,3 +36,18 @@ windows:
     name: "$EXPORT_NAME-$CI_JOB_NAME"
     paths:
       - build/windows/
+    
+
+android:
+  stage: export
+  tags:
+    - docker
+  script:
+    - mkdir -v -p build/android
+    - export ANDROID_HOME=$ANDROID_SDK_PATH
+    - export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
+    - godot -v --headless --export "Android" luscinia/project.godot ../build/android/$EXPORT_NAME.apk
+  artifacts:
+    name: "$EXPORT_NAME-android"
+    paths:
+      - build/android/ whats wrong with the sdk path
