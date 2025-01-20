@@ -8,7 +8,7 @@ var current_task_instance : TaskInstance
 
 func _ready() -> void:
 	%EndEarlyButton.connect("button_down", _end_early_button_pressed)
-	%CancelEndButton.connect("button_down", func(): %TaskProgressBar.visible = false)
+	%CancelEndButton.connect("button_down", func(): $TaskCancelConfirmationPage.visible = false)
 	%ConfirmEndButton.connect("button_down", _confirm_end_early_button_pressed)
 
 func show_details(task_instance : TaskInstance) -> void:

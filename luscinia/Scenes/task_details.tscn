@@ -386,6 +386,7 @@ autowrap_mode = 2
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 1)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="FullTimeResourcesLabel" type="Label" parent="TaskCancelConfirmationPage/Margin/VContainer"]
 layout_mode = 2
@@ -399,6 +400,7 @@ autowrap_mode = 2
 unique_name_in_owner = true
 self_modulate = Color(1, 1, 1, 1)
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Buttons" type="HBoxContainer" parent="TaskCancelConfirmationPage/Margin/VContainer"]
 layout_mode = 2
