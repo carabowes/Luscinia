@@ -77,6 +77,40 @@ theme = ExtResource("2_rhwjc")
 theme_override_font_sizes/font_size = 31
 text = "Play"
 
+[node name="personalmode_button" type="Button" parent="background/Buttons"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.137
+anchor_right = 1.0
+anchor_bottom = 0.294
+offset_left = 384.0
+offset_top = 0.104027
+offset_right = 296.0
+offset_bottom = 0.048027
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_rhwjc")
+theme_override_font_sizes/font_size = 31
+text = "Single Mode"
+
+[node name="discussionmode_button" type="Button" parent="background/Buttons"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.373
+anchor_right = 1.0
+anchor_bottom = 0.529
+offset_left = 384.0
+offset_top = -0.18399
+offset_right = 296.0
+offset_bottom = 0.167999
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_rhwjc")
+theme_override_font_sizes/font_size = 31
+text = "Disscussion Mode"
+
 [node name="scenario1_button" type="Button" parent="background/Buttons"]
 unique_name_in_owner = true
 layout_mode = 1
@@ -101,9 +135,9 @@ anchors_preset = -1
 anchor_top = 0.373
 anchor_right = 1.0
 anchor_bottom = 0.529
-offset_left = 384.0
+offset_left = 392.0
 offset_top = -0.18399
-offset_right = 296.0
+offset_right = 304.0
 offset_bottom = 0.167999
 grow_horizontal = 2
 grow_vertical = 2
