@@ -46,7 +46,7 @@ android:
     - mkdir -v -p build/android
     - export ANDROID_HOME=$ANDROID_SDK_PATH
     - export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
-    - godot -v --headless --export "Android" luscinia/project.godot ../build/android/$EXPORT_NAME.apk
+    - godot -v --headless --export-release "Android" luscinia/project.godot ../build/android/$EXPORT_NAME.apk
   artifacts:
     name: "$EXPORT_NAME-android"
     paths:
