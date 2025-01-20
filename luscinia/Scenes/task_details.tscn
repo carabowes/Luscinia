@@ -269,7 +269,6 @@ label_settings = SubResource("LabelSettings_57w7t")
 unique_name_in_owner = true
 modulate = Color(0.290196, 0.266667, 0.34902, 1)
 layout_mode = 2
-ui_color = Color(0.290196, 0.266667, 0.34902, 1)
 resources = {
 "funds": 5
 }
@@ -290,7 +289,6 @@ label_settings = SubResource("LabelSettings_57w7t")
 unique_name_in_owner = true
 modulate = Color(0.290196, 0.266667, 0.34902, 1)
 layout_mode = 2
-ui_color = Color(0.290196, 0.266667, 0.34902, 1)
 resources = {
 0: 6
 }

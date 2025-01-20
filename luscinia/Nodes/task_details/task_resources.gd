@@ -1,14 +1,6 @@
 extends GridContainer
 class_name TaskResources
 
-@export_group("UI Options")
-@export var ui_color : Color:
-	set(value):
-		ui_color = value
-		for child in get_children(true):
-			if child.self_modulate == Color.WHITE:
-				child.self_modulate = ui_color
-@export var horizontal_layout : bool
 @export_group("Resources")
 @export var resources : Dictionary:
 	set(value):
@@ -37,4 +29,4 @@ func _add_elements():
 		resource_entry_instance.name = resource_key
 		add_child(resource_entry_instance)
 		resource_entry_instance.set_owner($".")
-		resource_entry_instance.columns = 3 if horizontal_layout else 1
+		resource_entry_instance.columns = 3 
