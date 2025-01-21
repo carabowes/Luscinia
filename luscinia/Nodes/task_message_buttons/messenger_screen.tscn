@@ -20,7 +20,7 @@ bg_color = Color(1, 1, 1, 1)
 font_size = 10
 font_color = Color(0, 0, 0, 1)
 
-[node name="MessageList" type="Control"]
+[node name="MessageList" type="Control" node_paths=PackedStringArray("message_box", "response_box")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,6 +28,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7kuhm")
+message_box = NodePath("MessageListVBox/MessageBoxScroll/MessageBox")
+response_box = NodePath("MessageListVBox/ResponseBoxScoll/ResponseBox")
 
 [node name="MessageListBackground" type="ColorRect" parent="."]
 layout_mode = 1

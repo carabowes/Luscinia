@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://tehp5ciso2t6"]
+[gd_scene load_steps=13 format=3 uid="uid://ynqc8wyjj8r5"]
 
-[ext_resource type="PackedScene" path="res://Scenes/map.tscn" id="1_7fdga"]
+[ext_resource type="PackedScene" uid="uid://cnpov8fcn2j0g" path="res://Scenes/map.tscn" id="1_7fdga"]
 [ext_resource type="PackedScene" uid="uid://desl373b33t23" path="res://Scenes/timer.tscn" id="2_5mpic"]
+[ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="3_7i8ek"]
+[ext_resource type="Resource" uid="uid://cxwgponxxk2pf" path="res://Nodes/task_data/message_contact.tres" id="4_4pwx3"]
 [ext_resource type="PackedScene" uid="uid://dvvers1ky31ox" path="res://Scenes/resource_page.tscn" id="4_vi8yg"]
 [ext_resource type="PackedScene" path="res://Scenes/task_details.tscn" id="5_0qr7n"]
 [ext_resource type="PackedScene" uid="uid://1ygif2bywt5u" path="res://Scenes/navbar.tscn" id="5_5vcs1"]
@@ -26,10 +28,13 @@ grow_vertical = 2
 [node name="map" parent="." node_paths=PackedStringArray("details_page") instance=ExtResource("1_7fdga")]
 details_page = NodePath("../pages/task_details")
 
-[node name="message_manager" parent="." instance=ExtResource("7_g8mic")]
+[node name="message_manager" parent="." node_paths=PackedStringArray("message_board", "map_tasks") instance=ExtResource("7_g8mic")]
 layout_mode = 1
 offset_top = 117.0
 offset_bottom = -635.0
+message_data = Array[ExtResource("3_7i8ek")]([ExtResource("4_4pwx3")])
+message_board = NodePath("../pages/message_page")
+map_tasks = NodePath("../map")
 
 [node name="navbar" parent="." instance=ExtResource("5_5vcs1")]
 layout_mode = 1

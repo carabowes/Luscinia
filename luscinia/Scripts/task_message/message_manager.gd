@@ -26,7 +26,7 @@ func _ready() -> void:
 func _on_alert_pressed() -> void:#
 	message_list.visible = true
 	message_board.visible = true
-	print(message_data)
+	print(message_data[current_message])
 	message_list.add_message()
 	message_board.add_message(message_data[current_message])
 	current_message += 1
