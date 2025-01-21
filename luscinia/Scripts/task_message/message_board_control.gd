@@ -3,7 +3,6 @@ extends Control
 
 @export var message_box : VBoxContainer
 @export var response_box : VBoxContainer
-@export var random_task_messages : Array[Message]
 var map : MapTasks # this bit is a bit janky
 var text_message_prefab = preload("res://Nodes/task_message_buttons/text_message.tscn")
 var response_button_prefab = preload("res://Nodes/task_message_buttons/text_response_button.tscn")
@@ -44,7 +43,6 @@ func dispatch_task(task_data : TaskData, response_chosen : Response, sender : Se
 	map.add_task_instance(new_task_instance)
 	response_picked.emit()
 	clear_messages()
-
 
 func _set_sender_info(sender : Sender):
 	if sender == null:

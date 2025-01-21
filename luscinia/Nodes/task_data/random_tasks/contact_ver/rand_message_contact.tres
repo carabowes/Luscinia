@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="Message" load_steps=13 format=3 uid="uid://b1c14ke0e8om5"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="1_t37qc"]
+[ext_resource type="Script" path="res://Scripts/Resources/response.gd" id="2_q6ylw"]
+[ext_resource type="Resource" uid="uid://b7c850m0hujws" path="res://Nodes/task_data/random_tasks/contact_ver/rand_establish_contact_full.tres" id="3_nhlbg"]
+[ext_resource type="Resource" uid="uid://wue0s80lj0v6" path="res://Nodes/task_data/random_tasks/contact_ver/rand_establish_contact_half.tres" id="4_uaijw"]
+[ext_resource type="Script" path="res://Scripts/Resources/event_effect.gd" id="5_i7fxg"]
+[ext_resource type="Script" path="res://Scripts/Resources/task_data.gd" id="6_3kykk"]
+[ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="7_cwd26"]
+[ext_resource type="Resource" uid="uid://ba5osymta3t6u" path="res://Nodes/task_data/emergencyline.tres" id="8_u3tfo"]
+
+[sub_resource type="Resource" id="Resource_1u5v2"]
+script = ExtResource("2_q6ylw")
+response_text = "okay"
+relationship_change = 0.0
+task = ExtResource("3_nhlbg")
+
+[sub_resource type="Resource" id="Resource_yyyp4"]
+script = ExtResource("2_q6ylw")
+response_text = "eeerm"
+relationship_change = 0.0
+task = ExtResource("4_uaijw")
+
+[sub_resource type="Resource" id="Resource_fyfam"]
+script = ExtResource("6_3kykk")
+task_id = 0
+name = ""
+start_location = Vector2(-1000, -1000)
+end_location = Vector2(-1000, -1000)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("5_i7fxg")]([])
+
+[sub_resource type="Resource" id="Resource_xt23u"]
+script = ExtResource("2_q6ylw")
+response_text = "nah"
+relationship_change = 0.0
+task = SubResource("Resource_fyfam")
+
+[resource]
+script = ExtResource("7_cwd26")
+message = "test lets contact the pepo"
+responses = Array[ExtResource("2_q6ylw")]([SubResource("Resource_1u5v2"), SubResource("Resource_yyyp4"), SubResource("Resource_xt23u")])
+sender = ExtResource("8_u3tfo")
+prerequisites = Array[ExtResource("1_t37qc")]([])
+antirequisites = Array[ExtResource("1_t37qc")]([])
+turns_to_answer = 0
+is_repeatable = false

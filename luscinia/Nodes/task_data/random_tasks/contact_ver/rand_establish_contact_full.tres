@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="TaskData" load_steps=4 format=3 uid="uid://b7c850m0hujws"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/event_effect.gd" id="1_vmqfr"]
+[ext_resource type="Texture2D" uid="uid://c863dc1kr3gcq" path="res://Sprites/UI/godotTaskIcon.png" id="2_45ayp"]
+[ext_resource type="Script" path="res://Scripts/Resources/task_data.gd" id="3_ojlq4"]
+
+[resource]
+script = ExtResource("3_ojlq4")
+task_id = 0
+name = "Establishing Contact with Villages"
+icon = ExtResource("2_45ayp")
+start_location = Vector2(800, 600)
+end_location = Vector2(1000, 400)
+resources_required = {
+"funds": 100,
+"people": 40,
+"supplies": 1000,
+"vehicles": 60
+}
+resources_gained = {
+"people": 40,
+"vehicles": 60
+}
+expected_completion_time = 8
+effects_of_random_events = Array[ExtResource("1_vmqfr")]([])

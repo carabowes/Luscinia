@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Message" load_steps=9 format=3 uid="uid://lsw710x715mw"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="1_ijeum"]
+[ext_resource type="Script" path="res://Scripts/Resources/response.gd" id="2_xktb4"]
+[ext_resource type="Resource" uid="uid://cgle5uiokvu4r" path="res://Nodes/task_data/random_tasks/earthquake ver/rand_earthquake_task_full.tres" id="3_k6041"]
+[ext_resource type="Resource" uid="uid://co5c42hbbpbd4" path="res://Nodes/task_data/random_tasks/earthquake ver/rand_earthquake_task_half.tres" id="4_olejh"]
+[ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="5_ae7fv"]
+[ext_resource type="Resource" uid="uid://ba5osymta3t6u" path="res://Nodes/task_data/emergencyline.tres" id="6_f3jfb"]
+
+[sub_resource type="Resource" id="Resource_sd1qi"]
+script = ExtResource("2_xktb4")
+response_text = "sure"
+relationship_change = 50.0
+task = ExtResource("3_k6041")
+
+[sub_resource type="Resource" id="Resource_esow4"]
+script = ExtResource("2_xktb4")
+response_text = "mayhaps"
+relationship_change = -50.0
+task = ExtResource("4_olejh")
+
+[resource]
+script = ExtResource("5_ae7fv")
+message = "test earthquake rand task 1"
+responses = Array[ExtResource("2_xktb4")]([SubResource("Resource_sd1qi"), SubResource("Resource_esow4")])
+sender = ExtResource("6_f3jfb")
+prerequisites = Array[ExtResource("1_ijeum")]([])
+antirequisites = Array[ExtResource("1_ijeum")]([])
+turns_to_answer = 0
+is_repeatable = false

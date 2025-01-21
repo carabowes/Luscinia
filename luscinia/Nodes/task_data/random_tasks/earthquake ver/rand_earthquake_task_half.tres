@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="TaskData" load_steps=4 format=3 uid="uid://co5c42hbbpbd4"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/event_effect.gd" id="1_cgd6v"]
+[ext_resource type="Texture2D" uid="uid://chgb1pq7fpd4c" path="res://Sprites/UI/Truck.png" id="2_q8ffe"]
+[ext_resource type="Script" path="res://Scripts/Resources/task_data.gd" id="3_mqasb"]
+
+[resource]
+script = ExtResource("3_mqasb")
+task_id = 0
+name = "Small Earthquake Response"
+icon = ExtResource("2_q8ffe")
+start_location = Vector2(800, 600)
+end_location = Vector2(1000, 1000)
+resources_required = {
+"funds": 50,
+"people": 20,
+"supplies": 500,
+"vehicles": 30
+}
+resources_gained = {
+"people": 20,
+"vehicles": 30
+}
+expected_completion_time = 6
+effects_of_random_events = Array[ExtResource("1_cgd6v")]([])
