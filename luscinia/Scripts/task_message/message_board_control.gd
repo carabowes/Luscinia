@@ -44,7 +44,6 @@ func dispatch_task(task_data : TaskData, response_chosen : Response, sender : Se
 	response_picked.emit()
 	clear_messages()
 
-
 func _set_sender_info(sender : Sender):
 	if sender == null:
 		%ContactProfile.self_modulate = Color.BLACK
