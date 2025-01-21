@@ -9,19 +9,19 @@
 
 [sub_resource type="Resource" id="Resource_sd1qi"]
 script = ExtResource("2_xktb4")
-response_text = "sure"
+response_text = "we fix"
 relationship_change = 50.0
 task = ExtResource("3_k6041")
 
 [sub_resource type="Resource" id="Resource_esow4"]
 script = ExtResource("2_xktb4")
-response_text = "mayhaps"
+response_text = "we head back"
 relationship_change = -50.0
 task = ExtResource("4_olejh")
 
 [resource]
 script = ExtResource("5_ae7fv")
-message = "test earthquake rand task 1"
+message = "bridge collapse oh no"
 responses = Array[ExtResource("2_xktb4")]([SubResource("Resource_sd1qi"), SubResource("Resource_esow4")])
 sender = ExtResource("6_f3jfb")
 prerequisites = Array[ExtResource("1_ijeum")]([])
