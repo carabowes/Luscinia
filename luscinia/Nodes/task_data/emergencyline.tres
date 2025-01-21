@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Sender" load_steps=3 format=3 uid="uid://ba5osymta3t6u"]
+
+[ext_resource type="Texture2D" uid="uid://c27suyrk8wq" path="res://Sprites/ClockBackground.png" id="1_g3u2v"]
+[ext_resource type="Script" path="res://Scripts/Resources/sender.gd" id="2_0vb00"]
+
+[resource]
+script = ExtResource("2_0vb00")
+name = "Emergency"
+image = ExtResource("1_g3u2v")
+relationship = 0.0

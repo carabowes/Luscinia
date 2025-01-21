@@ -15,6 +15,7 @@ func _ready() -> void:
 	GlobalTimer.turn_progressed.connect(update_widget_task)
 	generate_widgets()
 	$MapView.zoom_changed.connect(render_widgets)
+	details_page.task_cancelled.connect(cancel_task)
 
 
 func add_task_instance(new_instance : TaskInstance):
@@ -24,13 +25,12 @@ func add_task_instance(new_instance : TaskInstance):
 
 
 func generate_widgets():
-	
 	var num_widgets = range(len(task_widgets))
 	for i in num_widgets:
 		var current_widget = task_widgets[len(task_widgets)-1]
 		current_widget.queue_free()
 		task_widgets.remove_at(len(task_widgets)-1)
-		
+
 	for task in task_instance:
 		if task.is_completed:
 			continue
@@ -45,17 +45,29 @@ func generate_widgets():
 		render_widgets()
 
 
+func finish_task(task : TaskInstance, fully_complete : bool):
+	task.is_completed = true
+	ResourceManager.apply_relationship_change(task.task_data.task_id, task.sender, task.current_progress)
+	for resource in task.task_data.resources_gained.keys():
+		if fully_complete:
+			if resource != "funds":
+				ResourceManager.add_available_resources(resource, task.task_data.resources_gained[resource])
+			else:
+				ResourceManager.add_resources(resource, task.task_data.resources_gained[resource])
+		elif resource != "funds" and resource != "supplies":
+			ResourceManager.add_available_resources(resource, task.task_data.resources_gained[resource])
+
+func cancel_task(task : TaskInstance):
+	finish_task(task, false)
+	generate_widgets()
+
+
 func update_widget_task(time : int):
 	print("Time skip!")
 	for task in task_instance:
 		task.current_progress += time/60
 		if task.current_progress >= task.get_total_time() and !task.is_completed:
-			task.is_completed = true
-			ResourceManager.apply_relationship_change(task.task_data.task_id, task.sender, task.current_progress)
-			for resource in task.task_data.resources_gained.keys():
-				ResourceManager.add_available_resources(resource, task.task_data.resources_gained[resource])
-				if(resource == "funds"):
-					ResourceManager.add_resources(resource, task.task_data.resources_gained[resource])
+			finish_task(task, true)
 	generate_widgets()
 
 
