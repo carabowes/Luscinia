@@ -18,6 +18,7 @@ resources_required = {
 "vehicles": 60
 }
 resources_gained = {
+"funds": 500,
 "people": 40,
 "vehicles": 60
 }
