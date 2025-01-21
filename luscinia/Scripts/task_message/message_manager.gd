@@ -17,6 +17,7 @@ var message_sent_this_turn = false
 @export var current_rand = 0
 @export var send_rand : bool = false
 
+
 func _ready() -> void:
 	randomize()
 	message_notif_button.pressed.connect(_on_alert_pressed)
@@ -36,7 +37,7 @@ func _on_alert_pressed() -> void:
 func _main_messages():
 	message_list.visible = true
 	message_board.visible = true
-	print(message_data)
+	print(message_data[current_message])
 	message_list.add_message()
 	message_board.add_message(message_data[current_message])
 	current_message += 1
