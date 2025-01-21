@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="Message" load_steps=13 format=3 uid="uid://cxwgponxxk2pf"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="1_25c66"]
+[ext_resource type="Script" path="res://Scripts/Resources/response.gd" id="2_4b81d"]
+[ext_resource type="Resource" uid="uid://babufylhko70r" path="res://Nodes/task_data/establish_contact/establish_contact_full.tres" id="3_tym43"]
+[ext_resource type="Resource" uid="uid://qnhpmtjq4dwq" path="res://Nodes/task_data/establish_contact/establish_contact_half.tres" id="4_gk0pg"]
+[ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="5_fxqfx"]
+[ext_resource type="Script" path="res://Scripts/Resources/event_effect.gd" id="5_xlhqo"]
+[ext_resource type="Script" path="res://Scripts/Resources/task_data.gd" id="6_w0hgi"]
+[ext_resource type="Resource" uid="uid://ch08t6jpxmul4" path="res://Nodes/task_data/government.tres" id="8_myast"]
+
+[sub_resource type="Resource" id="Resource_1u5v2"]
+script = ExtResource("2_4b81d")
+response_text = "Great idea, we should priorities this."
+relationship_change = 0.0
+task = ExtResource("3_tym43")
+
+[sub_resource type="Resource" id="Resource_yyyp4"]
+script = ExtResource("2_4b81d")
+response_text = "It's not too important at the moment, we can still send a small team though."
+relationship_change = 0.0
+task = ExtResource("4_gk0pg")
+
+[sub_resource type="Resource" id="Resource_fyfam"]
+script = ExtResource("6_w0hgi")
+task_id = 0
+name = ""
+start_location = Vector2(-1000, -1000)
+end_location = Vector2(-1000, -1000)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("5_xlhqo")]([])
+
+[sub_resource type="Resource" id="Resource_xt23u"]
+script = ExtResource("2_4b81d")
+response_text = "No. We can't afford that at the moment."
+relationship_change = 0.0
+task = SubResource("Resource_fyfam")
+
+[resource]
+script = ExtResource("5_fxqfx")
+message = "We should establish contact with the villages in the hills."
+responses = Array[ExtResource("2_4b81d")]([SubResource("Resource_1u5v2"), SubResource("Resource_yyyp4"), SubResource("Resource_xt23u")])
+sender = ExtResource("8_myast")
+prerequisites = Array[ExtResource("1_25c66")]([])
+antirequisites = Array[ExtResource("1_25c66")]([])
+turns_to_answer = 0
+is_repeatable = false

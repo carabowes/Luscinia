@@ -1,0 +1,29 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bonv4v700npuf"]
+
+[ext_resource type="StyleBox" uid="uid://64k8fyqaprg0" path="res://Sprites/UI/themes/red_buttons.tres" id="1_khqvk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7owwg"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[resource]
+Button/colors/font_color = Color(0.956863, 0.929412, 0.952941, 1)
+Button/colors/font_focus_color = Color(0.956863, 0.929412, 0.952941, 1)
+Button/colors/font_hover_color = Color(0.956863, 0.929412, 0.952941, 1)
+Button/colors/font_hover_pressed_color = Color(0.956863, 0.929412, 0.952941, 1)
+Button/colors/font_pressed_color = Color(0.956863, 0.929412, 0.952941, 1)
+Button/styles/disabled = ExtResource("1_khqvk")
+Button/styles/focus = ExtResource("1_khqvk")
+Button/styles/hover = ExtResource("1_khqvk")
+Button/styles/normal = ExtResource("1_khqvk")
+Button/styles/pressed = ExtResource("1_khqvk")
+Label/colors/font_color = Color(1, 0.584314, 0, 1)
+Panel/styles/panel = SubResource("StyleBoxFlat_7owwg")

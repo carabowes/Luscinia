@@ -1,0 +1,239 @@
+[gd_scene load_steps=16 format=3 uid="uid://blpycpxpswjvq"]
+
+[ext_resource type="Script" path="res://Scripts/UI/task_widget.gd" id="1_fwmx3"]
+[ext_resource type="Script" path="res://Scripts/Resources/task_instance.gd" id="2_s2tcb"]
+[ext_resource type="Resource" uid="uid://ch08t6jpxmul4" path="res://Nodes/task_data/government.tres" id="3_6da4y"]
+[ext_resource type="StyleBox" uid="uid://wlfk11s2ym4x" path="res://Sprites/UI/themes/primary_accent.tres" id="5_3s5qo"]
+[ext_resource type="Texture2D" uid="uid://chgb1pq7fpd4c" path="res://Sprites/UI/Truck.png" id="6_xs722"]
+[ext_resource type="Texture2D" uid="uid://dm70f566o3s32" path="res://Sprites/UI/Dollar sign.png" id="7_fjhek"]
+[ext_resource type="Texture2D" uid="uid://bib3v5a1f2b2o" path="res://Sprites/UI/User.png" id="8_5vlt2"]
+
+[sub_resource type="Resource" id="Resource_ip87u"]
+script = ExtResource("2_s2tcb")
+current_status = 0
+current_progress = 0
+extra_time = 0
+current_location = Vector2(800, 600)
+is_completed = false
+actual_resources = {
+"funds": 100,
+"people": 40,
+"supplies": 1000,
+"vehicles": 60
+}
+sender = ExtResource("3_6da4y")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhecv"]
+bg_color = Color(0.52549, 0.34902, 0.0980392, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s0nn8"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_mkf73"]
+line_spacing = 0.0
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_koxl4"]
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_xeijb"]
+font_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcwqi"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_sr43u"]
+line_spacing = -2.0
+font_color = Color(0, 0, 0, 1)
+
+[node name="RandomWidget" type="Control" groups=["task_widgets"]]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 48.0
+offset_bottom = 48.0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(24, 24)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_fwmx3")
+task_info = SubResource("Resource_ip87u")
+
+[node name="WidgetBackground" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(24, 24)
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("5_3s5qo")
+
+[node name="InfoMarginContrainer" type="MarginContainer" parent="WidgetBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="WidgetInfo" type="HBoxContainer" parent="WidgetBackground/InfoMarginContrainer"]
+layout_mode = 2
+
+[node name="IconInfoMargin" type="MarginContainer" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="IconInfoContainer" type="VBoxContainer" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="TaskIcon" type="TextureRect" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.6
+texture = ExtResource("6_xs722")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="ProgressBarHigh" type="ProgressBar" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.06
+theme_override_styles/background = SubResource("StyleBoxFlat_dhecv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_s0nn8")
+max_value = 8.0
+show_percentage = false
+
+[node name="HoursLeftLabelHigh" type="Label" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.2
+text = "8 hrs"
+label_settings = SubResource("LabelSettings_mkf73")
+horizontal_alignment = 1
+
+[node name="TaskInfoHigh" type="MarginContainer" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 2.0
+theme_override_constants/margin_top = 5
+
+[node name="TaskInfoContainer" type="VBoxContainer" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_stretch_ratio = 0.6
+
+[node name="TaskInfoLabel" type="Label" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer"]
+custom_minimum_size = Vector2(100, 45)
+layout_mode = 2
+text = "Earthquake Response Team"
+label_settings = SubResource("LabelSettings_koxl4")
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 3
+
+[node name="ResourcesContainer" type="HBoxContainer" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="ResourceOneIcon" type="TextureRect" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("7_fjhek")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="ResourceOneLabel" type="Label" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 8
+text = "100"
+label_settings = SubResource("LabelSettings_xeijb")
+
+[node name="ResourceTwoIcon" type="TextureRect" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("8_5vlt2")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="ResourceTwoLabel" type="Label" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 8
+text = "40"
+label_settings = SubResource("LabelSettings_xeijb")
+
+[node name="ViewMoreButtonMargin" type="MarginContainer" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 3
+
+[node name="ViewMoreButton" type="Button" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ViewMoreButtonMargin"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_jcwqi")
+text = "view more"
+
+[node name="TaskInfoMed" type="Label" parent="WidgetBackground"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = 4.0
+offset_right = 48.0
+offset_bottom = 53.0
+text = "Earthquake Response Team"
+label_settings = SubResource("LabelSettings_sr43u")
+horizontal_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 3
+
+[node name="ProgressBarLowMed" type="ProgressBar" parent="WidgetBackground"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -10.0
+offset_right = 51.0
+offset_bottom = -4.0
+theme_override_styles/background = SubResource("StyleBoxFlat_dhecv")
+theme_override_styles/fill = ExtResource("5_3s5qo")
+max_value = 8.0
+show_percentage = false
+
+[connection signal="pressed" from="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ViewMoreButtonMargin/ViewMoreButton" to="." method="_show_task_details_page"]
