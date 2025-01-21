@@ -2,7 +2,7 @@ image: barichello/godot-ci:4.3
 
 variables:
   EXPORT_NAME: "luscinia"
-  ANDROID_SDK_PATH: "C:/Users/jackp/AppData/Local/Android/Sdk"
+  ANDROID_SDK_PATH: "/opt/android-sdk"
   
 
 stages:
@@ -45,9 +45,11 @@ android:
   script:
     - mkdir -v -p build/android
     - export ANDROID_HOME=$ANDROID_SDK_PATH
-    - export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
+    - export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$PATH
+    - yes | $ANDROID_SDK_PATH/cmdline-tools/latest/bin/sdkmanager --licenses
+    - $ANDROID_SDK_PATH/cmdline-tools/latest/bin/sdkmanager "platform-tools" "build-tools;34.0.0" "platforms;android-34"
     - godot -v --headless --export-release "Android" luscinia/project.godot ../build/android/$EXPORT_NAME.apk
   artifacts:
     name: "$EXPORT_NAME-android"
     paths:
-      - build/android/ whats wrong with the sdk path
+      - build/android/
