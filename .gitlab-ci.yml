@@ -63,11 +63,11 @@ android:
     - if: $SECRET_RELEASE_KEYSTORE_USER
     - if: $SECRET_RELEASE_KEYSTORE_PASSWORD
   script:
-    - echo $SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > /root/mygame.keystore
+    - echo $SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > ./mygame.keystore
     - mkdir -v -p build/android
     - EXPORT_DIR="$(readlink -f build)"
     - cd luscinia
-    - sed 's@keystore/release=".*"@keystore/release="'/root/mygame.keystore'"@g' -i export_presets.cfg
+    - sed 's@keystore/release=".*"@keystore/release="'../mygame.keystore'"@g' -i export_presets.cfg
     - sed 's@keystore/release_user=".*"@keystore/release_user="'$SECRET_RELEASE_KEYSTORE_USER'"@g' -i export_presets.cfg
     - sed 's@keystore/release_password=".*"@keystore/release_password="'$SECRET_RELEASE_KEYSTORE_PASSWORD'"@g' -i export_presets.cfg
     - godot --headless --verbose --export-release "Android" ../build/android/$EXPORT_NAME.apk
