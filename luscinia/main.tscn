@@ -83,13 +83,14 @@ layout_mode = 1
 visible = false
 layout_mode = 1
 
-[node name="text_message_list" type="Control" parent="pages"]
+[node name="text_message_list" type="Control" parent="pages" node_paths=PackedStringArray("message_board")]
 visible = false
 layout_mode = 1
 anchor_right = 1.0
 anchor_bottom = 0.997
 offset_bottom = -0.179016
 script = ExtResource("11_ir8ox")
+message_board = NodePath("../message_page")
 
 [node name="ColorRect" type="ColorRect" parent="pages/text_message_list"]
 layout_mode = 1

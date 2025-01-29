@@ -7,7 +7,7 @@ class_name TaskResources
 		resources = value
 		_add_elements()
 
-var resource_entry_path = "res://Nodes/task_details/resource_entry.tscn"
+var resource_entry_path = "res://Scenes/UI/resource_entry.tscn"
 
 
 func set_increments(increments : Dictionary):

@@ -8,6 +8,7 @@ var text_message_prefab = preload("res://Nodes/task_message_buttons/text_message
 var response_button_prefab = preload("res://Nodes/task_message_buttons/text_response_button.tscn")
 signal response_picked
 
+
 func clear_messages():
 	for child in message_box.get_children():
 		child.queue_free()

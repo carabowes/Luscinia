@@ -11,7 +11,7 @@ extends Resource
 ## If any of the prerequisites are true the message pops up
 @export var prerequisites : Array[Prerequisite]
 ## Array of antirequisites, or conditions for message to not become active
-## If any antirequisite is active the message will not pop up even if there is a true prerequisite 
+## If any antirequisite is active the message will not pop up even if there is a true prerequisite
 @export var antirequisites : Array[Prerequisite]
 ## Maximum turns to answer until message dissapears
 @export var turns_to_answer : int
