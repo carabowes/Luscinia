@@ -69,3 +69,6 @@ func skip_time(skip_minutes: int):
 	turns+= 1
 	turn_progressed.emit(skip_minutes)
 	print("New in-game time: Day %d, %02d:%02d" % [day_counter, in_game_hours, in_game_minutes])  # Debugging line
+	
+func start_game():
+	game_start = true

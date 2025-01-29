@@ -3,7 +3,7 @@ extends Control
 
 @export var message_box : VBoxContainer
 @export var response_box : VBoxContainer
-var map : MapTasks # this bit is a bit janky
+var map : TaskWidgetRenderer # this bit is a bit janky
 var text_message_prefab = preload("res://Nodes/task_message_buttons/text_message.tscn")
 var response_button_prefab = preload("res://Nodes/task_message_buttons/text_response_button.tscn")
 signal response_picked
@@ -64,7 +64,7 @@ func _set_sender_info(sender : Sender):
 #
 #@export var message_box : VBoxContainer
 #@export var response_box : VBoxContainer
-#var map : MapTasks # this bit is a bit janky
+#var map : TaskWidgetRenderer # this bit is a bit janky
 #var text_message_prefab = preload("res://Nodes/task_message_buttons/text_message.tscn")
 #var response_button_prefab = preload("res://Nodes/task_message_buttons/text_response_button.tscn")
 #

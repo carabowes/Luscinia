@@ -9,7 +9,7 @@ extends Control
 @onready var message_list = $"../pages/text_message_list"
 @export var message_notif_button : Button
 @export var rand_notif_button : Button
-@export var map_tasks : MapTasks
+@export var map_tasks : TaskWidgetRenderer
 
 var message_sent_this_turn = false
 
