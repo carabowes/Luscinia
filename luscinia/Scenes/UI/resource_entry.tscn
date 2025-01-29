@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://df5nbiygwfdeb"]
 
-[ext_resource type="Script" path="res://Nodes/task_details/resource_ui_entry.gd" id="1_4qxd5"]
+[ext_resource type="Script" path="res://Scripts/UI/resource_ui_entry.gd" id="1_4qxd5"]
 [ext_resource type="Texture2D" uid="uid://dmrhlqq3p4y0g" path="res://Sprites/Package.png" id="2_bsoio"]
 [ext_resource type="Texture2D" uid="uid://d1prnk2q4ke5m" path="res://Sprites/arrow.png" id="3_yp1id"]
 

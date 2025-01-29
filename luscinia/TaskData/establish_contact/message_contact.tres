@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="1_25c66"]
 [ext_resource type="Script" path="res://Scripts/Resources/response.gd" id="2_4b81d"]
-[ext_resource type="Resource" uid="uid://babufylhko70r" path="res://Nodes/task_data/establish_contact/establish_contact_full.tres" id="3_tym43"]
-[ext_resource type="Resource" uid="uid://qnhpmtjq4dwq" path="res://Nodes/task_data/establish_contact/establish_contact_half.tres" id="4_gk0pg"]
+[ext_resource type="Resource" uid="uid://babufylhko70r" path="res://TaskData/establish_contact/establish_contact_full.tres" id="3_tym43"]
+[ext_resource type="Resource" uid="uid://qnhpmtjq4dwq" path="res://TaskData/establish_contact/establish_contact_half.tres" id="4_gk0pg"]
 [ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="5_fxqfx"]
 [ext_resource type="Script" path="res://Scripts/Resources/event_effect.gd" id="5_xlhqo"]
 [ext_resource type="Script" path="res://Scripts/Resources/task_data.gd" id="6_w0hgi"]
-[ext_resource type="Resource" uid="uid://ch08t6jpxmul4" path="res://Nodes/task_data/government.tres" id="8_myast"]
+[ext_resource type="Resource" uid="uid://ch08t6jpxmul4" path="res://TaskData/government.tres" id="8_myast"]
 
 [sub_resource type="Resource" id="Resource_1u5v2"]
 script = ExtResource("2_4b81d")
