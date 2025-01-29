@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxndjmqmmnwuu"]
 
-[ext_resource type="Script" path="res://Nodes/task_details/task_resources.gd" id="1_wkvxj"]
-[ext_resource type="PackedScene" uid="uid://df5nbiygwfdeb" path="res://Nodes/task_details/resource_entry.tscn" id="2_r1vf5"]
+[ext_resource type="Script" path="res://Scripts/UI/task_resources.gd" id="1_wkvxj"]
+[ext_resource type="PackedScene" uid="uid://df5nbiygwfdeb" path="res://Scenes/UI/resource_entry.tscn" id="2_r1vf5"]
 
 [node name="ResourcesUsed" type="GridContainer"]
 self_modulate = Color(0.666913, 0.161946, 0.366191, 1)
