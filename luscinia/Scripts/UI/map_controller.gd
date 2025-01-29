@@ -1,12 +1,11 @@
 extends Control
 
-signal zoom_changed
-
 @export var zoom_speed : float = 0.1
 @export var min_zoom : float = 0.5  
 @export var max_zoom : float = 2.0
 @export var pan_speed : float = 500
 @onready var map = $MapTexture
+
 var current_scale : float = 1
 var is_dragging = false
 var last_mouse_position = Vector2.ZERO
@@ -14,38 +13,38 @@ var last_mouse_position = Vector2.ZERO
 @onready var map_size = map.size
 @onready var viewport_size = Vector2(get_viewport().get_visible_rect().size)
 
+signal zoom_changed
+
 func _ready() -> void:
-	print(viewport_size)
-	print(map_size)
 	var initial_position = (viewport_size - map_size * current_scale) / 2
 	map.position = initial_position
-	clamp_position()
+	_clamp_position()
 
 
 func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_W):
 		map.position.y += pan_speed * delta
-		clamp_position()
+		_clamp_position()
 	if Input.is_key_pressed(KEY_S):
 		map.position.y -= pan_speed * delta
-		clamp_position()
+		_clamp_position()
 	if Input.is_key_pressed(KEY_A):
 		map.position.x += pan_speed * delta
-		clamp_position()
+		_clamp_position()
 	if Input.is_key_pressed(KEY_D):
 		map.position.x -= pan_speed * delta
-		clamp_position()
+		_clamp_position()
+
 
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			handle_wheel_input(zoom_speed, get_global_mouse_position())
-			
+			_handle_wheel_input(zoom_speed, get_global_mouse_position())
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			handle_wheel_input(-zoom_speed, get_global_mouse_position())
+			_handle_wheel_input(-zoom_speed, get_global_mouse_position())
 
 
-func handle_wheel_input(delta_zoom: float, global_mouse_position: Vector2):
+func _handle_wheel_input(delta_zoom: float, global_mouse_position: Vector2):
 	var local_mouse_position = global_mouse_position - map.position
 	var prev_scale = current_scale
 	current_scale += delta_zoom
@@ -59,10 +58,9 @@ func handle_wheel_input(delta_zoom: float, global_mouse_position: Vector2):
 	var focal_point_delta = local_mouse_position * (scale_ratio - 1)
 	map.position -= focal_point_delta
 	zoom_changed.emit()
-	clamp_position()
+	_clamp_position()
 
-
-func clamp_position() -> void:
+func _clamp_position() -> void:
 	var scaled_map_size = map_size * current_scale
 	var min_x = -(scaled_map_size.x - viewport_size.x)
 	var max_x = 0
