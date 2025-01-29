@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://1ygif2bywt5u"]
+[gd_scene load_steps=9 format=3 uid="uid://1ygif2bywt5u"]
 
 [ext_resource type="Texture2D" uid="uid://crdt0x0jw41ox" path="res://Sprites/UI/ProceedButton.png" id="1_24llj"]
 [ext_resource type="Texture2D" uid="uid://dbevrsfktm6jt" path="res://Sprites/UI/MessageButton.png" id="1_hhk0i"]
-[ext_resource type="Script" path="res://Scripts/UI/NavbarButtonHandler.gd" id="2_combined"]
 [ext_resource type="Texture2D" uid="uid://dd65myswp443" path="res://Sprites/commisioned_icons/information_icon.png" id="3_b18yf"]
 [ext_resource type="Texture2D" uid="uid://dwl5qh53md1wx" path="res://Sprites/UI/ExclamationBubble.png" id="3_ohkv6"]
 
@@ -22,13 +21,6 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gromn"]
 bg_color = Color(0.6, 0.6, 0.6, 0.0431373)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gtw4"]
-bg_color = Color(0.858218, 0.858218, 0.858218, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
 
 [node name="Navbar" type="Panel"]
 custom_minimum_size = Vector2(0, 80)
@@ -59,7 +51,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_n5gp4")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gromn")
 icon = ExtResource("1_hhk0i")
 flat = true
-script = ExtResource("2_combined")
 
 [node name="NewMessageNotif" type="TextureRect" parent="NavbarLayout/ViewMessageHistoryButton"]
 layout_mode = 0
@@ -77,7 +68,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_n5gp4")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gromn")
 icon = ExtResource("1_24llj")
 flat = true
-script = ExtResource("2_combined")
 
 [node name="ViewResourcesButton" type="Button" parent="NavbarLayout"]
 layout_mode = 2
@@ -87,4 +77,3 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_n5gp4")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gromn")
 icon = ExtResource("3_b18yf")
 flat = true
-script = ExtResource("2_combined")
