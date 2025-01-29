@@ -3,7 +3,7 @@ extends Control
 
 signal task_cancelled(task_instance: TaskInstance)
 
-var current_task_instance: TaskInstance
+var current_task_instance: TaskInstance 
 
 func _ready() -> void:
 	%EndEarlyButton.connect("button_down", _end_early_button_pressed)
