@@ -2,23 +2,32 @@ class_name Message
 extends Resource
 
 ## Message contents
-@export var message : String
+@export var message: String
 ## Player responses
-@export var responses : Array[Response]
+@export var responses: Array[Response]
 ## Sender of messages
-@export var sender : Sender
+@export var sender: Sender
 ## Array of prerequisites, conditions for the message to become active
 ## If any of the prerequisites are true the message pops up
-@export var prerequisites : Array[Prerequisite]
+@export var prerequisites: Array[Prerequisite]
 ## Array of antirequisites, or conditions for message to not become active
-## If any antirequisite is active the message will not pop up even if there is a true prerequisite 
-@export var antirequisites : Array[Prerequisite]
+## If any antirequisite is active the message will not pop up even if there is a true prerequisite
+@export var antirequisites: Array[Prerequisite]
 ## Maximum turns to answer until message dissapears
-@export var turns_to_answer : int
+@export var turns_to_answer: int
 ## Can the message appear again e.g providing aid messages
-@export var is_repeatable : bool
+@export var is_repeatable: bool
 
-func _init(message = "", responses : Array[Response] = [], sender : Sender = null, prerequisites : Array[Prerequisite] = [], antirequisites : Array[Prerequisite] = [], turns_to_answer = 0, is_repeatable = false) -> void:
+
+func _init(
+	message = "",
+	responses: Array[Response] = [],
+	sender: Sender = null,
+	prerequisites: Array[Prerequisite] = [],
+	antirequisites: Array[Prerequisite] = [],
+	turns_to_answer = 0,
+	is_repeatable = false
+) -> void:
 	self.message = message
 	self.responses = responses
 	self.sender = sender

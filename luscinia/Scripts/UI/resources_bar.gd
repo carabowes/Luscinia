@@ -9,7 +9,7 @@ func _ready() -> void:
 func _add_elements():
 	for child in get_children():
 		child.free()
-	
+
 	for resource_key in resources.keys():
 		if resources[resource_key] is not int or resource_key is not String:
 			continue
