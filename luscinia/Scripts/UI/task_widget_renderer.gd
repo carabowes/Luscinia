@@ -1,13 +1,12 @@
 class_name TaskWidgetRenderer
 extends Control
 
-# This will be removed and changed with some sort of reference to the singleton task manager once available.
-@export var details_page : TaskDetails
-@export var task_instance : Array[TaskInstance]
-@export var widget_size : float
-@export var zoom_level_medium_detail : float
+@export var details_page: TaskDetails
+@export var task_instance: Array[TaskInstance]
+@export var widget_size: float
+@export var zoom_level_medium_detail: float
 
-var task_widgets : Array[TaskWidget]
+var task_widgets: Array[TaskWidget]
 var task_widget_prefab = "res://Scenes/task_widget.tscn"
 
 
@@ -18,7 +17,7 @@ func _ready() -> void:
 	details_page.task_cancelled.connect(cancel_task)
 
 
-func add_task_instance(new_instance : TaskInstance):
+func add_task_instance(new_instance: TaskInstance):
 	task_instance.append(new_instance)
 	_generate_widgets()
 
@@ -26,17 +25,19 @@ func add_task_instance(new_instance : TaskInstance):
 func _generate_widgets():
 	var num_widgets = range(len(task_widgets))
 	for i in num_widgets:
-		var current_widget = task_widgets[len(task_widgets)-1]
+		var current_widget = task_widgets[len(task_widgets) - 1]
 		current_widget.queue_free()
-		task_widgets.remove_at(len(task_widgets)-1)
+		task_widgets.remove_at(len(task_widgets) - 1)
 
 	for task in task_instance:
 		if task.is_completed:
 			continue
-		var task_widget_instance : TaskWidget = load(task_widget_prefab).instantiate()
+		var task_widget_instance: TaskWidget = load(task_widget_prefab).instantiate()
 		task_widget_instance.task_info = task
-		var step_dist = float(task.current_progress)/float(task.get_total_time())
-		task.current_location = lerp(task.task_data.start_location, task.task_data.end_location, step_dist)
+		var step_dist = float(task.current_progress) / float(task.get_total_time())
+		task.current_location = lerp(
+			task.task_data.start_location, task.task_data.end_location, step_dist
+		)
 		task_widget_instance.position = task.current_location
 		$MapController/MapTexture.add_child(task_widget_instance)
 		task_widgets.append(task_widget_instance)
@@ -45,17 +46,23 @@ func _generate_widgets():
 		render_widgets()
 
 
-func _finish_task(task : TaskInstance, fully_complete : bool):
+func _finish_task(task: TaskInstance, fully_complete: bool):
 	task.is_completed = true
-	ResourceManager.apply_relationship_change(task.task_data.task_id, task.sender, task.current_progress)
+	ResourceManager.apply_relationship_change(
+		task.task_data.task_id, task.sender, task.current_progress
+	)
 	for resource in task.task_data.resources_gained.keys():
 		if fully_complete:
 			if resource != "funds":
-				ResourceManager.add_available_resources(resource, task.task_data.resources_gained[resource])
+				ResourceManager.add_available_resources(
+					resource, task.task_data.resources_gained[resource]
+				)
 			else:
 				ResourceManager.add_resources(resource, task.task_data.resources_gained[resource])
 		elif resource != "funds" and resource != "supplies":
-			ResourceManager.add_available_resources(resource, task.task_data.resources_gained[resource])
+			ResourceManager.add_available_resources(
+				resource, task.task_data.resources_gained[resource]
+			)
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -64,15 +71,14 @@ func _gui_input(event: InputEvent) -> void:
 		set_level_of_details(true)
 
 
-func cancel_task(task : TaskInstance):
+func cancel_task(task: TaskInstance):
 	_finish_task(task, false)
 	_generate_widgets()
 
 
-func update_widget_task(time : int):
-	print("Time skip!")
+func update_widget_task(time: int):
 	for task in task_instance:
-		task.current_progress += time/60
+		task.current_progress += time / 60
 		if task.current_progress >= task.get_total_time() and !task.is_completed:
 			_finish_task(task, true)
 	_generate_widgets()
@@ -93,7 +99,7 @@ func set_level_of_details(affect_widgets = false):
 				widget.set_level_of_detail(widget.LevelOfDetail.LOW)
 
 
-func update_widget_detail(selected_widget : TaskWidget):
+func update_widget_detail(selected_widget: TaskWidget):
 	var current_scale = $MapController.current_scale
 	for widget in task_widgets:
 		if widget != selected_widget:
@@ -101,8 +107,10 @@ func update_widget_detail(selected_widget : TaskWidget):
 				widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM)
 			else:
 				widget.set_level_of_detail(widget.LevelOfDetail.LOW)
-	# selected widget is being moved so it is rendered infront of its siblings 
-	$MapController/MapTexture.move_child(selected_widget, $MapController/MapTexture.get_child_count()-1)
+	# selected widget is being moved so it is rendered infront of its siblings
+	$MapController/MapTexture.move_child(
+		selected_widget, $MapController/MapTexture.get_child_count() - 1
+	)
 
 
 func render_widgets():

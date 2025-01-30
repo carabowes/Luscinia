@@ -40,9 +40,11 @@ random_task_data = Array[ExtResource("3_h4e53")]([ExtResource("6_b716w"), ExtRes
 message_board = NodePath("../pages/message_page")
 map_tasks = NodePath("../map")
 
-[node name="navbar" parent="." instance=ExtResource("5_5vcs1")]
+[node name="navbar" parent="." node_paths=PackedStringArray("resource_page", "message_history") instance=ExtResource("5_5vcs1")]
 layout_mode = 1
 offset_top = -80.0
+resource_page = NodePath("../pages/resource_page")
+message_history = NodePath("../pages/message_history")
 
 [node name="timer" parent="." instance=ExtResource("2_5mpic")]
 layout_mode = 1

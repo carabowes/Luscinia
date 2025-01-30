@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cqnceheou4imw"]
 
-[ext_resource type="Script" path="res://Scripts/resources_bar.gd" id="1_cx5qi"]
+[ext_resource type="Script" path="res://Scripts/UI/resources_bar.gd" id="1_qnfym"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1q8c"]
 bg_color = Color(0.947199, 0.947199, 0.947199, 1)
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_cx5qi")
+script = ExtResource("1_qnfym")
 
 [node name="Background" type="Panel" parent="."]
 layout_mode = 0

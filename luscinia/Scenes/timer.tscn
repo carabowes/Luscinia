@@ -1,12 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://desl373b33t23"]
+[gd_scene load_steps=4 format=3 uid="uid://desl373b33t23"]
 
 [ext_resource type="Script" path="res://Scripts/UI/ui_timer.gd" id="1_jafkr"]
 [ext_resource type="Texture2D" uid="uid://7v3dgwwsbwqu" path="res://Sprites/clock.png" id="2_2fyrh"]
 [ext_resource type="Texture2D" uid="uid://c27suyrk8wq" path="res://Sprites/ClockBackground.png" id="2_3ac0l"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_7gidb"]
-line_spacing = 1.0
-font_size = 30
 
 [node name="Timer" type="Control"]
 layout_mode = 3
@@ -48,7 +44,8 @@ layout_mode = 2
 size_flags_horizontal = 0
 stretch_mode = 0
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="TimerVBox/TimerHBox/AspectRatioContainer"]
+[node name="ClockVisual" type="TextureProgressBar" parent="TimerVBox/TimerHBox/AspectRatioContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(24.41, 0)
 layout_mode = 2
 value = 90.0
@@ -57,14 +54,8 @@ nine_patch_stretch = true
 texture_under = ExtResource("2_3ac0l")
 texture_progress = ExtResource("2_2fyrh")
 
-[node name="TimerBar" type="ProgressBar" parent="TimerVBox/TimerHBox"]
-visible = false
-layout_mode = 2
-max_value = 7200.0
-value = 7200.0
-show_percentage = false
-
 [node name="TimerLabel" type="Label" parent="TimerVBox/TimerHBox"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -75,34 +66,15 @@ text = "00:00"
 layout_mode = 2
 
 [node name="DayLabel" type="Label" parent="TimerVBox/GameTimeHBox"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 text = "Day 0"
 
 [node name="ClockLabel" type="Label" parent="TimerVBox/GameTimeHBox"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 text = "00:00"
-
-[node name="EventPopup" type="Popup" parent="TimerVBox"]
-mode = 2
-size = Vector2i(0, 0)
-
-[node name="Label" type="Label" parent="TimerVBox/EventPopup"]
-custom_minimum_size = Vector2(400, 200)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 25
-label_settings = SubResource("LabelSettings_7gidb")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[connection signal="popup_hide" from="TimerVBox/EventPopup" to="." method="_on_event_popup_popup_hide"]

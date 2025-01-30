@@ -1,5 +1,5 @@
-extends GridContainer
 class_name ResourceEntry
+extends GridContainer
 
 @export_group("Resource info")
 @export var resource_type : String
