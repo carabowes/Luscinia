@@ -28,7 +28,6 @@ func _process(delta):
 	if current_time_left == 0:
 		next_turn(time_step)
 
-
 func set_time(minutes: int, seconds: int):
 	if minutes < 0:
 		minutes = 0
