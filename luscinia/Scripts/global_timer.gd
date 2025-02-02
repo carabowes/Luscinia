@@ -6,8 +6,8 @@ signal turn_progressed(time_skipped: int)
 @export var cd_minutes: int = 5
 @export var cd_seconds: int = 0
 var turns: int = 0
-var countdown_duration
-var current_time_left
+var countdown_duration = 0
+var current_time_left = 0
 var time_step = 60  #Measured in minutes
 var game_start: bool = false
 
