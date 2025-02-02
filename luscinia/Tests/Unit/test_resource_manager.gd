@@ -25,7 +25,7 @@ func test_add_available_resources():
 
 func test_remove_available_resources():
 	ResourceManager.remove_available_resources("people", 50)
-	assert_eq(ResourceManager.resources["people"],50,"people should equal 50")
+	assert_eq(ResourceManager.available_resources["people"],50,"people should equal 50")
 
 func test_get_resource_texture():
 	var texture = ResourceManager.get_resource_texture("people")
