@@ -21,11 +21,11 @@ func test_remove_resources_not_negative():
 	
 func test_add_available_resources():
 	ResourceManager.add_available_resources("people", 500)
-	assert_eq(ResourceManager.available_resources["people"],1500,"funds should equal 1500")
+	assert_eq(ResourceManager.available_resources["people"],600,"people should equal 600")
 
 func test_remove_available_resources():
-	ResourceManager.remove_available_resources("people", 500)
-	assert_eq(ResourceManager.resources["people"],500,"funds should equal 500")
+	ResourceManager.remove_available_resources("people", 50)
+	assert_eq(ResourceManager.resources["people"],50,"people should equal 50")
 
 func test_get_resource_texture():
 	var texture = ResourceManager.get_resource_texture("people")
