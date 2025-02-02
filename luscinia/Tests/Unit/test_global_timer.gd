@@ -64,6 +64,15 @@ func test_second_accumulator():
 	assert_almost_eq(GlobalTimer.second_accumulator, 0.0, 0.01)
 
 
+func test_second_accumulator_high_fps(): #10,000fps
+	GlobalTimer.set_time(3, 0)
+	GlobalTimer.start_game()
+	gut.simulate(GlobalTimer, 5000, 0.0001)
+	assert_almost_eq(GlobalTimer.second_accumulator, 0.5, 0.001)
+	gut.simulate(GlobalTimer, 5000, 0.0001)
+	assert_almost_eq(GlobalTimer.second_accumulator, 0.0, 0.001)
+
+
 func test_second_accumulator_game_start():
 	GlobalTimer.set_time(3, 0)
 	GlobalTimer.start_game()
