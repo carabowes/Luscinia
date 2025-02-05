@@ -42,3 +42,4 @@ func get_total_time():
 
 func get_remaining_time():
 	return get_total_time() - current_progress
+	

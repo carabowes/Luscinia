@@ -5,9 +5,7 @@ signal widget_selected(widget: TaskWidget)
 enum LevelOfDetail { LOW, MEDIUM, HIGH }
 
 @export var current_level_of_detail: LevelOfDetail
-@export var task_info: TaskInstance:
-	set(value):
-		task_info = value
+@export var task_info: TaskInstance
 @export var task_details_page: TaskDetails
 
 
