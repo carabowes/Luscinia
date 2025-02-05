@@ -12,6 +12,7 @@ var resource_textures = {
 }
 
 
+
 func add_resources(resource_name: String, amount: int):
 	if resource_name in resources:
 		resources[resource_name] += amount
