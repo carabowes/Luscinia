@@ -7,8 +7,6 @@ signal turn_progressed(time_skipped: int)
 @export var cd_seconds: int = 0
 @export var turns: int = 0
 
-var og_minutes: int
-
 var countdown_duration
 var current_time_left
 var time_step = 60  #Measured in minutes
@@ -35,7 +33,6 @@ func _process(delta):
 
 func set_time(mins: int, sec: int):
 	cd_minutes = mins
-	og_minutes = mins
 	cd_seconds = sec
 	countdown_duration = (cd_minutes * 60) + cd_seconds
 	current_time_left = countdown_duration
@@ -66,8 +63,6 @@ func pause_game():
 
 
 func reset_timer():
-	cd_minutes = og_minutes
-	cd_seconds = 0
 	countdown_duration = (cd_minutes * 60) + cd_seconds
 	current_time_left = countdown_duration
 	turns = 0
