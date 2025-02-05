@@ -12,19 +12,20 @@ stages:
   - export
   - deploy
 
-# test:
-#   stage: test
-#   tags:
-#     - docker 
-#   script:
-#     - godot -v --headless --script res://luscinia/addons/gut/gut_cmdln.gd -gtest=res://luscinia/Tests/Unit > test_output.log
-#   artifacts:
-#     name: "test-results"
-#     paths:
-#       - test_output.log
-#     when: always
-#   allow_failure: false
 
+test:
+  stage: test
+  tags:
+    - docker 
+  script:
+    - godot --headless --import --path ./luscinia
+    - godot -v --headless --path ./luscinia -s addons/gut/gut_cmdln.gd -gdir=res://Tests/Unit -gexit > test_output.log
+  artifacts:
+    name: "test-results"
+    paths:
+      - test_output.log
+    when: always
+  allow_failure: false
 
 
 windows:
@@ -39,9 +40,7 @@ windows:
     paths:
       - build/windows/
     
-
-
-  
+      
 # android_debug:
 #   stage: export
 #   script:
