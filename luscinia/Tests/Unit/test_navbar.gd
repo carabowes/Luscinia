@@ -5,8 +5,7 @@ var resource_page
 var message_history
 
 func before_each():
-	
-	navbar = load("res://Scripts/UI/navbar.gd").new()
+	navbar = load("res://Scenes/navbar.tscn").instantiate()
 	add_child(navbar)
 	resource_page = Control.new()
 	resource_page.visible = false
@@ -16,19 +15,6 @@ func before_each():
 	message_history.visible = false
 	navbar.message_history = message_history
 	
-	var view_resources_button = Button.new()
-	view_resources_button.name = "ViewResourcesButton"
-	navbar.add_child(view_resources_button)
-	
-	var skip_time_button = Button.new()
-	skip_time_button.name = "SkipTimeButton"
-	navbar.add_child(skip_time_button)
-	
-	var view_message_history_button = Button.new()
-	view_message_history_button.name = "ViewMessageHistoryButton"
-	navbar.add_child(view_message_history_button)
-	
-	navbar._ready()
 	
 func after_each():
 	navbar.queue_free()
@@ -37,17 +23,17 @@ func after_each():
 	
 
 func test_button_signals():
-	var view_resources_button = navbar.get_node("%ViewResourcesButton")
-	var skip_time_button = navbar.get_node("%SkipTimeButton")
-	var view_message_history_button = navbar.get_node("%ViewMessageHistoryButton")
+	var _view_resources_button = navbar.get_node("%ViewResourcesButton")
+	var _skip_time_button = navbar.get_node("%SkipTimeButton")
+	var _view_message_history_button = navbar.get_node("%ViewMessageHistoryButton")
 
-	assert_not_null(view_resources_button, "ViewResourcesButton should exist")
-	assert_not_null(skip_time_button, "SkipTimeButton should exist")
-	assert_not_null(view_message_history_button, "ViewMessageHistoryButton should exist")
+	assert_not_null(_view_resources_button, "ViewResourcesButton should exist")
+	assert_not_null(_skip_time_button, "SkipTimeButton should exist")
+	assert_not_null(_view_message_history_button, "ViewMessageHistoryButton should exist")
 
-	assert_true(view_resources_button.is_connected("pressed", Callable(navbar, "_view_resource_button_pressed")), "ViewResourcesButton should be connected to pressed signal")
-	assert_true(skip_time_button.is_connected("pressed", Callable(navbar, "_skip_time_button_pressed")), "SkipTimeButton should be connected to pressed signal")
-	assert_true(view_message_history_button.is_connected("pressed", Callable(navbar, "_message_button_pressed")), "ViewMessageHistoryButton should be connected to pressed signal")
+	assert_true(_view_resources_button.is_connected("pressed", Callable(navbar, "_view_resource_button_pressed")), "ViewResourcesButton should be connected to pressed signal")
+	assert_true(_skip_time_button.is_connected("pressed", Callable(navbar, "_skip_time_button_pressed")), "SkipTimeButton should be connected to pressed signal")
+	assert_true(_view_message_history_button.is_connected("pressed", Callable(navbar, "_message_button_pressed")), "ViewMessageHistoryButton should be connected to pressed signal")
 
 
 func test_view_resources_button_signal_emits_correctly():
