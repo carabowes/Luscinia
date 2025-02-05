@@ -4,6 +4,7 @@ extends Control
 @export var message_history : Control
 
 func _ready() -> void:
+	
 	%ViewResourcesButton.pressed.connect(_view_resource_button_pressed)
 	%SkipTimeButton.pressed.connect(_skip_time_button_pressed)
 	%ViewMessageHistoryButton.pressed.connect(_message_button_pressed)
