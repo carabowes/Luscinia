@@ -17,9 +17,9 @@ func before_each():
 	
 	
 func after_each():
-	navbar.queue_free()
-	resource_page.queue_free()
-	message_history.queue_free()
+	navbar.free()
+	resource_page.free()
+	message_history.free()
 	
 
 func test_button_signals():
