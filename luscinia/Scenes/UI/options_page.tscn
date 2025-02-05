@@ -1,0 +1,91 @@
+[gd_scene load_steps=3 format=3 uid="uid://do5t8447c3iys"]
+
+[ext_resource type="Script" path="res://Scenes/UI/options_controller.gd" id="1_1b0g0"]
+[ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="2_lrbjw"]
+
+[node name="OptionsPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1b0g0")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.768627)
+
+[node name="TextBackground" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.26
+offset_bottom = -1.52588e-05
+color = Color(1, 0.584314, 0, 1)
+
+[node name="PausedText" type="Label" parent="TextBackground"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_font_sizes/font_size = 84
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 80)
+layout_mode = 2
+anchor_left = 0.044
+anchor_top = 0.32
+anchor_right = 0.467
+anchor_bottom = 0.51
+offset_left = 0.159999
+offset_top = -3.05176e-05
+offset_right = -0.119995
+offset_bottom = -3.05176e-05
+theme = ExtResource("2_lrbjw")
+theme_override_font_sizes/font_size = 32
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 80)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.533
+anchor_top = 0.32
+anchor_right = 0.956
+anchor_bottom = 0.51
+offset_left = 0.11998
+offset_top = -3.05176e-05
+offset_right = -0.160004
+offset_bottom = -3.05176e-05
+theme = ExtResource("2_lrbjw")
+theme_override_font_sizes/font_size = 32
+text = "Restart"
+
+[node name="ExitButton" type="Button" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 80)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.289
+anchor_top = 0.59
+anchor_right = 0.711
+anchor_bottom = 0.78
+offset_left = -0.0400009
+offset_top = -3.05176e-05
+offset_right = 0.0399933
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lrbjw")
+theme_override_font_sizes/font_size = 32
+text = "Exit"

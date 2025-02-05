@@ -61,3 +61,8 @@ func apply_relationship_change(task_id: int, sender: Sender, task_progress: floa
 		(relationships_to_update[task_id] * task_progress * 2) - relationships_to_update[task_id]
 	)
 	relationships_to_update.erase(task_id)
+
+func reset_resources():
+	resources = {"people": 100, "funds": 1000, "vehicles": 80, "supplies": 100000}
+	available_resources = {"people": 100, "vehicles": 80, "supplies": 100000}
+	relationships_to_update.clear()

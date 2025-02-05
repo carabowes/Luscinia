@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://desl373b33t23"]
+[gd_scene load_steps=5 format=3 uid="uid://desl373b33t23"]
 
 [ext_resource type="Script" path="res://Scripts/UI/ui_timer.gd" id="1_jafkr"]
 [ext_resource type="Texture2D" uid="uid://7v3dgwwsbwqu" path="res://Sprites/clock.png" id="2_2fyrh"]
 [ext_resource type="Texture2D" uid="uid://c27suyrk8wq" path="res://Sprites/ClockBackground.png" id="2_3ac0l"]
+[ext_resource type="Texture2D" uid="uid://d2r32fmyi8j47" path="res://Sprites/UI/OptionsButton.png" id="2_e00yx"]
 
 [node name="Timer" type="Control"]
 layout_mode = 3
@@ -24,6 +25,15 @@ layout_mode = 0
 offset_right = 180.0
 offset_bottom = 59.0
 color = Color(0.94902, 0.913725, 0.94902, 1)
+
+[node name="PauseButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 131.0
+offset_top = 4.0
+offset_right = 179.0
+offset_bottom = 52.0
+icon = ExtResource("2_e00yx")
+flat = true
 
 [node name="TimerVBox" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -78,3 +88,5 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 text = "00:00"
+
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]

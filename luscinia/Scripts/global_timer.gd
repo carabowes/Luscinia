@@ -62,9 +62,14 @@ func start_game():
 	game_start = true
 
 
-func reset_clock():
-	turns = 0
+func pause_game():
 	game_start = false
+
+
+func reset_clock():
+	countdown_duration = (cd_minutes * 60) + cd_seconds
+	current_time_left = countdown_duration
+	turns = 0
 	in_game_hours = 0
 	in_game_minutes = 0
 	in_game_days = 0
