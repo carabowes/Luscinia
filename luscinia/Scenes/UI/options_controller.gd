@@ -9,6 +9,7 @@ func _ready() -> void:
 	$RestartButton.connect("pressed", _restart_game)
 	$ExitButton.connect("pressed", _exit_game)
 
+
 func _pause_game():
 	if(self.visible):
 		_resume_game()
@@ -16,15 +17,18 @@ func _pause_game():
 		GlobalTimer.pause_game()
 		self.visible = true
 
+
 func _resume_game():
 	GlobalTimer.start_game()
 	self.visible = false
+
 
 func _restart_game():
 	GlobalTimer.reset_timer()
 	ResourceManager.reset_resources()
 	get_tree().reload_current_scene()
 	GlobalTimer.start_game()
+
 
 func _exit_game():
 	GlobalTimer.reset_timer()

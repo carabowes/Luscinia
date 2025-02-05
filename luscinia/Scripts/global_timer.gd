@@ -72,5 +72,5 @@ func reset_timer():
 	turns = 0
 	in_game_hours = 0
 	in_game_minutes = 0
-	day_counter = 0
+	in_game_days = 0
 	second_accumulator = 0
