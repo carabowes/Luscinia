@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dfl5n2ga1ulqv" path="res://Nodes/task_message_buttons/messenger_screen.tscn" id="6_877e8"]
 [ext_resource type="Resource" uid="uid://lsw710x715mw" path="res://TaskData/random_tasks/earthquake ver/rand_message_earthquake.tres" id="6_b716w"]
 [ext_resource type="Resource" uid="uid://cxwgponxxk2pf" path="res://TaskData/establish_contact/message_contact.tres" id="6_ntma7"]
-[ext_resource type="PackedScene" uid="uid://bnodjjjy3hdxo" path="res://Scenes/task-notification-popup.tscn" id="7_g8mic"]
+[ext_resource type="PackedScene" path="res://Scenes/task-notification-popup.tscn" id="7_g8mic"]
 [ext_resource type="Resource" uid="uid://b1c14ke0e8om5" path="res://TaskData/random_tasks/contact_ver/rand_message_contact.tres" id="7_slelw"]
 [ext_resource type="PackedScene" uid="uid://bwby4es34ntds" path="res://Scenes/UI/options_page.tscn" id="10_sexli"]
 [ext_resource type="Script" path="res://Scripts/task_message/message_list.gd" id="11_ir8ox"]

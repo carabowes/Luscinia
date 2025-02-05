@@ -20,7 +20,7 @@ size_flags_vertical = 0
 mouse_filter = 2
 script = ExtResource("1_jafkr")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 0
 offset_right = 180.0
 offset_bottom = 59.0
