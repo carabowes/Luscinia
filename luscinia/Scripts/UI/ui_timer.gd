@@ -1,12 +1,12 @@
+class_name UITimer
 extends Control
-
 
 func _ready():
 	# Initialize the UI elements
 	%ClockVisual.max_value = GlobalTimer.countdown_duration
 	%ClockVisual.value = GlobalTimer.countdown_duration
 	%TimerLabel.text = format_time_with_seconds(GlobalTimer.current_time_left)
-	%DayLabel.text = "Day %d" % GlobalTimer.day_counter
+	%DayLabel.text = "Day %d" % GlobalTimer.in_game_days
 	%ClockLabel.text = "%02d:%02d" % [GlobalTimer.in_game_hours, GlobalTimer.in_game_minutes]
 	update_timer_ui()
 
@@ -18,7 +18,7 @@ func _process(_delta):
 func update_timer_ui():
 	%ClockVisual.value = GlobalTimer.current_time_left
 	%TimerLabel.text = format_time_with_seconds(GlobalTimer.current_time_left)
-	%DayLabel.text = "Day %d" % GlobalTimer.day_counter
+	%DayLabel.text = "Day %d" % GlobalTimer.in_game_days
 	%ClockLabel.text = "%02d:%02d" % [GlobalTimer.in_game_hours, GlobalTimer.in_game_minutes]
 
 
