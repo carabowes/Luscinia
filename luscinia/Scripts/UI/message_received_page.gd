@@ -11,5 +11,5 @@ func _on_message_received(message : Message):
 		var seperator = %Seperator.duplicate()
 		%MessagesReceived.add_child(seperator)
 		seperator.visible = true
-	%MessagesReceived.add_child(ReceivedMessage.new_instance(message))
+	%MessagesReceived.add_child(ReceivedMessage.new_instance(MessageInstance.new(message)))
 	num_messages += 1
