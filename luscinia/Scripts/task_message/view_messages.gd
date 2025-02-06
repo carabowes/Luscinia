@@ -1,5 +1,5 @@
 extends Node
-@onready var message_history = $"../../../pages/text_message_list"
+@onready var message_history = $"../../../pages/MessagesReceivedPage"
 
 func _ready() -> void:
 	self.pressed.connect(self.button_pressed)

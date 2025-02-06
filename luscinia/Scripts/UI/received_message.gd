@@ -15,6 +15,12 @@ func _draw():
 	_render_message_info()
 
 
+func _gui_input(event: InputEvent) -> void:
+	if event.is_pressed():
+		#Go to messages screen
+		pass
+
+
 func _render_message_info():
 	%MessagePreviewLabel.text = message_info.message.message
 	%ContactNameLabel.text = message_info.message.sender.name

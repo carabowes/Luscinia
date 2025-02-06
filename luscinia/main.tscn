@@ -62,6 +62,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="MessagesReceivedPage" parent="pages" instance=ExtResource("10_f4aa7")]
+visible = false
 layout_mode = 1
 
 [node name="resource_page" parent="pages" instance=ExtResource("4_vi8yg")]

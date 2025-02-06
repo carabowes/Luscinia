@@ -4,6 +4,7 @@ var num_messages = 0
 
 func _ready():
 	MessageManager.message_sent.connect(_on_message_received)
+	%BackButton.pressed.connect(func(): visible = false)
 
 
 func _on_message_received(message : Message):
