@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgnoy8bfkmtnw"]
+
+[ext_resource type="Script" path="res://message_bubble.gd" id="1_uj5uu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_raubo"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="MessageBubble" type="Control"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_uj5uu")
+non_player_color = Color(0.249803, 0.247665, 0.317268, 1)
+player_color = Color(0.254902, 0.560784, 0.870588, 1)
+
+[node name="MessageLayoutController" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+offset_right = 80.0
+offset_bottom = 23.0
+
+[node name="Text" type="Label" parent="MessageLayoutController"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Hi"
+autowrap_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MessageLayoutController/Text"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -10
+theme_override_constants/margin_top = -5
+theme_override_constants/margin_right = -5
+theme_override_constants/margin_bottom = -5
+
+[node name="Background" type="Panel" parent="MessageLayoutController/Text/MarginContainer"]
+unique_name_in_owner = true
+z_index = -1
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_raubo")
