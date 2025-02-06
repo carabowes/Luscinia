@@ -13,11 +13,7 @@ enum MessageStatus {
 
 var current_message_status : MessageStatus 
 var message_info : Message
-var default_message : Message = Message.new("Message failed to load. No message was passed in on initialisation!", [], null, [], [], 3, false)
-
-func _init(message_info : Message = default_message):
-	self.message_info = message_info
-	current_message_status = MessageStatus.UNREAD
+static var default_message : Message = Message.new("Message failed to load. No message was passed in on initialisation!", [], null, [], [], 3, false)
 
 
 func _draw():
@@ -63,3 +59,11 @@ func _render_badge_location():
 	else: #Profile badge
 		%UnreadBadge.visible = false
 		%ContactUnreadBadge.visible = true
+
+
+static func new_instance(message_info : Message = default_message) -> ReceivedMessage:
+	var message_scene : PackedScene = load("res://Scenes/UI/received_message.tscn")
+	var message_object : ReceivedMessage = message_scene.instantiate()
+	message_object.message_info = message_info
+	message_object.current_message_status = MessageStatus.UNREAD
+	return message_object
