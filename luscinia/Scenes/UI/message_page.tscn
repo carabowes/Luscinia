@@ -1,0 +1,205 @@
+[gd_scene load_steps=10 format=3 uid="uid://o1b8jsde2xir"]
+
+[ext_resource type="Script" path="res://Scripts/UI/message_page.gd" id="1_cekrt"]
+[ext_resource type="Texture2D" uid="uid://c27suyrk8wq" path="res://Sprites/ClockBackground.png" id="2_inlp2"]
+[ext_resource type="Texture2D" uid="uid://d1cwe1f3jk3ca" path="res://Sprites/icon.svg" id="3_up2kl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8oni7"]
+bg_color = Color(0.254902, 0.560784, 0.870588, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dojfc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgsef"]
+bg_color = Color(0.277719, 0.329246, 0.374071, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8tnx1"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7kpdu"]
+font_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gfpdc"]
+bg_color = Color(0.254902, 0.560784, 0.870588, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="MessagePage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cekrt")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContactInfo" type="Panel" parent="Layout"]
+custom_minimum_size = Vector2(0, 105)
+layout_mode = 2
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.15
+theme_override_styles/panel = SubResource("StyleBoxFlat_8oni7")
+
+[node name="ContactInfoMargin" type="MarginContainer" parent="Layout/ContactInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="ContactInfoLayout" type="HBoxContainer" parent="Layout/ContactInfo/ContactInfoMargin"]
+layout_mode = 2
+
+[node name="ReturnButton" type="Button" parent="Layout/ContactInfo/ContactInfoMargin/ContactInfoLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.1
+text = "<"
+
+[node name="ContactProfilePadding" type="MarginContainer" parent="Layout/ContactInfo/ContactInfoMargin/ContactInfoLayout"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.15
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="CircleMask" type="TextureRect" parent="Layout/ContactInfo/ContactInfoMargin/ContactInfoLayout/ContactProfilePadding"]
+clip_children = 1
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_inlp2")
+expand_mode = 3
+
+[node name="ContactProfile" type="TextureRect" parent="Layout/ContactInfo/ContactInfoMargin/ContactInfoLayout/ContactProfilePadding/CircleMask"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_up2kl")
+expand_mode = 2
+
+[node name="NameRelationshipContainer" type="Panel" parent="Layout/ContactInfo/ContactInfoMargin/ContactInfoLayout"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.75
+
+[node name="ContactNameLabel" type="Label" parent="Layout/ContactInfo/ContactInfoMargin/ContactInfoLayout/NameRelationshipContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -24.5
+offset_bottom = -1.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+text = "UN OCHA Agent"
+label_settings = SubResource("LabelSettings_dojfc")
+
+[node name="ContactRelationBar" type="ProgressBar" parent="Layout/ContactInfo/ContactInfoMargin/ContactInfoLayout/NameRelationshipContainer/ContactNameLabel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_lgsef")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8tnx1")
+min_value = -100.0
+show_percentage = false
+
+[node name="ContactRelationLabel" type="Label" parent="Layout/ContactInfo/ContactInfoMargin/ContactInfoLayout/NameRelationshipContainer/ContactNameLabel/ContactRelationBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 41.0
+offset_bottom = 17.0
+grow_vertical = 0
+text = "Neutral"
+label_settings = SubResource("LabelSettings_7kpdu")
+
+[node name="MessageScrollBox" type="ScrollContainer" parent="Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.85
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="MessagesMargin" type="MarginContainer" parent="Layout/MessageScrollBox"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 15
+
+[node name="MessagesLayout" type="VBoxContainer" parent="Layout/MessageScrollBox/MessagesMargin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.85
+
+[node name="RespondButtonBackground" type="ColorRect" parent="Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+
+[node name="RespondButtonMargin" type="MarginContainer" parent="Layout/RespondButtonBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="RespondButton" type="Button" parent="Layout/RespondButtonBackground/RespondButtonMargin"]
+custom_minimum_size = Vector2(150, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.15
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_gfpdc")
+text = "Respond"

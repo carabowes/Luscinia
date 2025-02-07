@@ -14,8 +14,15 @@ var message : Message
 var turns_remaining : int
 ## Current status of the message: urnead, read, or replied
 var message_status : MessageStatus
+## The player response to the message
+var player_response : String
 
 func _init(message : Message = default_message) -> void:
 	message_status = MessageStatus.UNREAD
 	self.message = message
 	self.turns_remaining = message.turns_to_answer
+
+
+func reply(response : Response):
+	player_response = response.response_text
+	message_status = MessageStatus.REPLIED
