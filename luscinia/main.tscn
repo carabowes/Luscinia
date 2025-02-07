@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ynqc8wyjj8r5"]
+[gd_scene load_steps=19 format=3 uid="uid://ynqc8wyjj8r5"]
 
 [ext_resource type="PackedScene" uid="uid://cnpov8fcn2j0g" path="res://Scenes/map.tscn" id="1_7fdga"]
 [ext_resource type="PackedScene" uid="uid://desl373b33t23" path="res://Scenes/timer.tscn" id="2_5mpic"]
@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://b1c14ke0e8om5" path="res://TaskData/random_tasks/contact_ver/rand_message_contact.tres" id="7_slelw"]
 [ext_resource type="PackedScene" uid="uid://bef7i4t2wyt6d" path="res://Scenes/UI/message_received_page.tscn" id="10_f4aa7"]
 [ext_resource type="Script" path="res://Scripts/task_message/message_list.gd" id="11_ir8ox"]
+[ext_resource type="PackedScene" uid="uid://bd5rcqi82bp6d" path="res://Scenes/UI/message_response_page.tscn" id="11_j85es"]
 [ext_resource type="PackedScene" uid="uid://dveuyhljvjf4q" path="res://Scenes/message_history.tscn" id="12_upng4"]
 [ext_resource type="PackedScene" uid="uid://o1b8jsde2xir" path="res://Scenes/UI/message_page.tscn" id="16_y6pki"]
 
@@ -66,6 +67,9 @@ mouse_filter = 2
 visible = false
 layout_mode = 1
 message_page = NodePath("../MessagePage")
+
+[node name="MessageResponsePage" parent="pages" instance=ExtResource("11_j85es")]
+layout_mode = 1
 
 [node name="MessagePage" parent="pages" instance=ExtResource("16_y6pki")]
 visible = false

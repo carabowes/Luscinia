@@ -1,0 +1,173 @@
+[gd_scene load_steps=10 format=3 uid="uid://bd5rcqi82bp6d"]
+
+[ext_resource type="Script" path="res://Scripts/UI/message_response_page.gd" id="1_dnwba"]
+[ext_resource type="Script" path="res://Scripts/UI/task_resources.gd" id="2_1xrq8"]
+[ext_resource type="Theme" uid="uid://r2tvepfwkafu" path="res://Themes/primary_button.tres" id="4_svsoh"]
+[ext_resource type="StyleBox" uid="uid://bcv1dloacj3va" path="res://Themes/MessageResponsePage/response_button_chosen_stylebox.tres" id="4_u4y8g"]
+[ext_resource type="StyleBox" uid="uid://cl8rj4khbojqu" path="res://Themes/MessageResponsePage/response_button_stylebox.tres" id="5_474gc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xecw5"]
+font_size = 20
+font_color = Color(0.254902, 0.560784, 0.870588, 1)
+outline_size = 1
+outline_color = Color(0.254902, 0.560784, 0.870588, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sx3y0"]
+font_size = 12
+font_color = Color(0.288518, 0.288518, 0.288518, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g2vq3"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rveik"]
+font_size = 12
+font_color = Color(0.329159, 0.329158, 0.329158, 1)
+
+[node name="MessageResponsePage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dnwba")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 20
+
+[node name="PageLayout" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PageLayout"]
+layout_mode = 2
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="MarginContainer/PageLayout/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Go Back"
+
+[node name="InformationLayout" type="VBoxContainer" parent="MarginContainer/PageLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="TaskTitle" type="Label" parent="MarginContainer/PageLayout/InformationLayout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+text = "Task Title"
+label_settings = SubResource("LabelSettings_xecw5")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="EstimatedTimeLabel" type="Label" parent="MarginContainer/PageLayout/InformationLayout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+text = "ESTIMATED TIME"
+label_settings = SubResource("LabelSettings_sx3y0")
+autowrap_mode = 3
+
+[node name="EstimatedTime" type="Label" parent="MarginContainer/PageLayout/InformationLayout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+text = "8 HOURS"
+label_settings = SubResource("LabelSettings_g2vq3")
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="MarginContainer/PageLayout/InformationLayout"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="GainLabel" type="Label" parent="MarginContainer/PageLayout/InformationLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "GAIN"
+label_settings = SubResource("LabelSettings_sx3y0")
+
+[node name="GainResources" type="GridContainer" parent="MarginContainer/PageLayout/InformationLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 4
+script = ExtResource("2_1xrq8")
+
+[node name="Spacer2" type="Control" parent="MarginContainer/PageLayout/InformationLayout"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="CostLabel" type="Label" parent="MarginContainer/PageLayout/InformationLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "COST"
+label_settings = SubResource("LabelSettings_rveik")
+
+[node name="CostResource" type="GridContainer" parent="MarginContainer/PageLayout/InformationLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 4
+script = ExtResource("2_1xrq8")
+
+[node name="Spacer3" type="Control" parent="MarginContainer/PageLayout/InformationLayout"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+
+[node name="ConfirmButton" type="Button" parent="MarginContainer/PageLayout/InformationLayout"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_svsoh")
+text = "Confirm
+"
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/PageLayout"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0.585062, 0.585062, 0.585062, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PageLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.4
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="ButtonLayout" type="VBoxContainer" parent="MarginContainer/PageLayout/ScrollContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+theme_override_constants/separation = 10
+
+[node name="OptionButton" type="Button" parent="MarginContainer/PageLayout/ScrollContainer/ButtonLayout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/focus = ExtResource("4_u4y8g")
+theme_override_styles/hover_mirrored = ExtResource("5_474gc")
+theme_override_styles/hover = ExtResource("5_474gc")
+theme_override_styles/pressed = ExtResource("4_u4y8g")
+theme_override_styles/normal = ExtResource("5_474gc")
+text = "Option
+"
+autowrap_mode = 3

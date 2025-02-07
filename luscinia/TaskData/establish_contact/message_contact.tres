@@ -11,12 +11,14 @@
 
 [sub_resource type="Resource" id="Resource_1u5v2"]
 script = ExtResource("2_4b81d")
+response_name = "Send a large team"
 response_text = "Great idea, we should priorities this."
 relationship_change = 0.0
 task = ExtResource("3_tym43")
 
 [sub_resource type="Resource" id="Resource_yyyp4"]
 script = ExtResource("2_4b81d")
+response_name = "Send a smal team."
 response_text = "It's not too important at the moment, we can still send a small team though."
 relationship_change = 0.0
 task = ExtResource("4_gk0pg")
@@ -34,6 +36,7 @@ effects_of_random_events = Array[ExtResource("5_xlhqo")]([])
 
 [sub_resource type="Resource" id="Resource_xt23u"]
 script = ExtResource("2_4b81d")
+response_name = "Don't send a team."
 response_text = "No. We can't afford that at the moment."
 relationship_change = 0.0
 task = SubResource("Resource_fyfam")
