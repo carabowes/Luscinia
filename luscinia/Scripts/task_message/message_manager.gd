@@ -13,13 +13,15 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 func _ready():
 	rng.randomize() ##Randomize the RNG for chance-based validation
 	GlobalTimer.turn_progressed.connect(find_messages_to_send)
+	EventBus.task_cancelled.connect(_task_cancelled)
+	EventBus.task_completed.connect(func(task_instace : TaskInstance): task_instances.append(task_instances))
 
 
 func find_messages_to_send(time_progressed: int):
 	var selected_messages: Array[Message]
 	for message in messages_to_send:
 		var antirequisite_failed : bool = false
-		for antirequisite in message.prerequisites:
+		for antirequisite in message.antirequisites:
 			if validate_prerequisite(antirequisite, time_progressed):
 				antirequisite_failed = true
 				break
@@ -47,3 +49,25 @@ func send_message(message : Message):
 
 func validate_prerequisite(prerequisite: Prerequisite, time_progressed: int) -> bool:
 	return prerequisite.validate(task_instances, occurred_events, time_progressed, rng)
+
+
+func _task_cancelled(task_instance : TaskInstance):
+	var cancel_behaviour = task_instance.message.cancel_behaviour
+	var message : Message = task_instance.message
+	if cancel_behaviour == Message.CancelBehaviour.FORCE_RESEND:
+		#This is the only way to queue a message send at the moment. Resending the message to the pool with no prereqs 
+		var message_copy : Message = message.duplicate() 
+		message.prerequisites = []
+		message.antirequisites = []
+		messages_to_send.append(message_copy)
+	elif cancel_behaviour == Message.CancelBehaviour.PREREQ_RESEND:
+		messages_to_send.append(message)
+	elif cancel_behaviour == Message.CancelBehaviour.ACT_AS_COMPLETED:
+		task_instance.is_completed
+		task_instances.append(task_instance)
+	elif cancel_behaviour == Message.CancelBehaviour.PICK_DEFAULT:
+		if message.default_response == -1 or message.default_response >= len(message.responses):
+			return
+		var default_response : Response = message.responses[message.default_response]
+		var new_instance : TaskInstance = TaskInstance.new(default_response.task, 0, 0, 0, Vector2.ZERO, true)
+		task_instances.append(new_instance)

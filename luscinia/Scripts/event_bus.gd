@@ -8,3 +8,7 @@ signal response_option_selected(response : Response, message : Message)
 signal message_received_page_back_button_pressed()
 signal message_viewer_page_back_button_pressed()
 signal message_response_page_back_button_pressed()
+
+#Task signals
+signal task_cancelled(task_instance : TaskInstance)
+signal task_completed(task_instance : TaskInstance)

@@ -20,6 +20,7 @@ func validate(task_instances: Array[TaskInstance], occurred_events: Array[Event.
 	for required_task_id in task_id:
 		var is_task_completed = false
 		for task_instance in task_instances:
+			print(task_instance.task_data.task_id, task_instance.is_completed)
 			if task_instance.task_data.task_id == required_task_id and task_instance.is_completed:
 				is_task_completed = true
 				break
@@ -32,5 +33,4 @@ func validate(task_instances: Array[TaskInstance], occurred_events: Array[Event.
 		return false
 	if rng.randf() > chance:
 		return false
-		
 	return true

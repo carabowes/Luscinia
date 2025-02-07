@@ -1,7 +1,6 @@
 extends Control
 class_name TaskDetails
 
-signal task_cancelled(task_instance : TaskInstance);
 
 var current_task_instance : TaskInstance
 
@@ -60,7 +59,8 @@ func _end_early_button_pressed():
 	print(end_on_time_resources)
 	print(resource_increase_on_time)
 
+
 func _confirm_end_early_button_pressed():
 	$TaskCancelConfirmationPage.visible = false
-	task_cancelled.emit(current_task_instance)
+	EventBus.task_cancelled.emit(current_task_instance)
 	visible = false

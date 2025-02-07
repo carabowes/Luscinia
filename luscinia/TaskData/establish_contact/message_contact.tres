@@ -25,7 +25,7 @@ task = ExtResource("4_gk0pg")
 
 [sub_resource type="Resource" id="Resource_fyfam"]
 script = ExtResource("6_w0hgi")
-task_id = 0
+task_id = 2
 name = ""
 start_location = Vector2(-1000, -1000)
 end_location = Vector2(-1000, -1000)
@@ -45,8 +45,10 @@ task = SubResource("Resource_fyfam")
 script = ExtResource("5_fxqfx")
 message = "We should establish contact with the villages in the hills."
 responses = Array[ExtResource("2_4b81d")]([SubResource("Resource_1u5v2"), SubResource("Resource_yyyp4"), SubResource("Resource_xt23u")])
+default_response = 2
 sender = ExtResource("8_myast")
 prerequisites = Array[ExtResource("1_25c66")]([])
 antirequisites = Array[ExtResource("1_25c66")]([])
 turns_to_answer = 1
 is_repeatable = false
+cancel_behaviour = 1

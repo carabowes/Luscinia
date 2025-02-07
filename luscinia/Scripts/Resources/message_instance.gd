@@ -7,7 +7,7 @@ enum MessageStatus {
 	REPLIED = 2
 }
 
-static var default_message : Message = Message.new("Message failed to load. No message was passed in on initialisation!", [], null, [], [], -1, false)
+static var default_message : Message = Message.new("Message failed to load. No message was passed in on initialisation!", [], -1, null, [], [], -1, false)
 ## Message information that is associated with the instance
 var message : Message
 ## The current number of turns remaining in the message

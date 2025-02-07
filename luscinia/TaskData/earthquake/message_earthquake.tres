@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Message" load_steps=9 format=3 uid="uid://6i0nc5dgh3ql"]
+[gd_resource type="Resource" script_class="Message" load_steps=10 format=3 uid="uid://6i0nc5dgh3ql"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="1_rm0d1"]
 [ext_resource type="Script" path="res://Scripts/Resources/response.gd" id="2_ltmve"]
@@ -6,6 +6,13 @@
 [ext_resource type="Resource" uid="uid://bge6mxdj0wv7w" path="res://TaskData/earthquake/earthquake_task_full.tres" id="3_x0wr0"]
 [ext_resource type="Resource" uid="uid://g2w6g2nhqskk" path="res://TaskData/earthquake/earthquake_task_half.tres" id="4_sqv1u"]
 [ext_resource type="Resource" uid="uid://ch08t6jpxmul4" path="res://TaskData/government.tres" id="6_iusj1"]
+
+[sub_resource type="Resource" id="Resource_62483"]
+script = ExtResource("1_rm0d1")
+task_id = Array[int]([2])
+events = Array[int]([])
+chance = 1.0
+Turn = 0
 
 [sub_resource type="Resource" id="Resource_sd1qi"]
 script = ExtResource("2_ltmve")
@@ -25,8 +32,10 @@ task = ExtResource("4_sqv1u")
 script = ExtResource("3_pyrkd")
 message = "Theres been an earthquake in Freetown. We should send a response team."
 responses = Array[ExtResource("2_ltmve")]([SubResource("Resource_sd1qi"), SubResource("Resource_esow4")])
+default_response = 0
 sender = ExtResource("6_iusj1")
-prerequisites = Array[ExtResource("1_rm0d1")]([])
+prerequisites = Array[ExtResource("1_rm0d1")]([SubResource("Resource_62483")])
 antirequisites = Array[ExtResource("1_rm0d1")]([])
 turns_to_answer = 4
 is_repeatable = false
+cancel_behaviour = 0
