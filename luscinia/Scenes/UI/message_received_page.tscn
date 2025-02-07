@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bef7i4t2wyt6d"]
+[gd_scene load_steps=3 format=3 uid="uid://bef7i4t2wyt6d"]
 
 [ext_resource type="Script" path="res://Scripts/UI/message_received_page.gd" id="1_2yqvd"]
+[ext_resource type="Theme" uid="uid://r2tvepfwkafu" path="res://Themes/primary_button.tres" id="2_6l7lf"]
 
 [node name="MessagesReceivedPage" type="Control"]
 layout_mode = 3
@@ -21,19 +22,20 @@ grow_vertical = 2
 
 [node name="BackButton" type="Button" parent="."]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 113.0
-offset_bottom = 35.0
-text = "Go back"
+offset_left = 19.0
+offset_top = 15.0
+offset_right = 82.0
+offset_bottom = 38.0
+size_flags_horizontal = 0
+theme = ExtResource("2_6l7lf")
+text = "Go Back"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 45.0
+offset_top = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0

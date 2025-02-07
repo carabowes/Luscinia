@@ -11,12 +11,14 @@
 
 [sub_resource type="Resource" id="Resource_1u5v2"]
 script = ExtResource("2_q6ylw")
+response_name = ""
 response_text = "east hills evac"
 relationship_change = 0.0
 task = ExtResource("3_nhlbg")
 
 [sub_resource type="Resource" id="Resource_yyyp4"]
 script = ExtResource("2_q6ylw")
+response_name = ""
 response_text = "west hills evac"
 relationship_change = 0.0
 task = ExtResource("4_uaijw")
@@ -34,6 +36,7 @@ effects_of_random_events = Array[ExtResource("5_i7fxg")]([])
 
 [sub_resource type="Resource" id="Resource_xt23u"]
 script = ExtResource("2_q6ylw")
+response_name = ""
 response_text = "we wait"
 relationship_change = 0.0
 task = SubResource("Resource_fyfam")

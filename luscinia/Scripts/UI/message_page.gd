@@ -1,20 +1,21 @@
 class_name MessagePage
 extends Control
 
-@export var message_response_page : MessageResponsePage
 var message  = preload("res://Scenes/UI/message.tscn")
 
 func _ready():
-	%ReturnButton.pressed.connect(func(): visible = false)
+	EventBus.message_selected.connect(show_message)
+	%BackButton.pressed.connect(func(): EventBus.message_viewer_page_back_button_pressed.emit())
 
 
 func show_message(message_instance : MessageInstance):
 	_clear_old_message()
 	_set_contact_info(message_instance.message.sender)
 	_render_message(message_instance)
+	%RespondButton.visible = message_instance.message_status != MessageInstance.MessageStatus.REPLIED
 	for connection in %RespondButton.pressed.get_connections():
-		%RespondButton.pressed.disconnect(connection)
-	%RespondButton.pressed.connect(func(): visible = false; message_response_page.visible = true; message_response_page.set_message(message_instance.message))
+		%RespondButton.pressed.disconnect(connection["callable"])
+	%RespondButton.pressed.connect(func(): EventBus.message_respond_button_pressed.emit(message_instance.message))
 
 
 func _clear_old_message():

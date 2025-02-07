@@ -1,6 +1,6 @@
 extends Node
 
-signal message_sent(message: Message)
+signal message_sent(message: MessageInstance)
 
 @export var messages_to_send: Array[Message]
 var messages_to_receive: Array[Message]
@@ -24,15 +24,20 @@ func find_messages_to_send(time_progressed: int):
 			if validate_prerequisite(prerequisite):
 				messages_to_receive.append(message)
 				selected_messages.append(message)
-				message_sent.emit(message)
+				send_message(message)
 				break
 		if len(message.prerequisites) == 0:
 			messages_to_receive.append(message)
 			selected_messages.append(message)
-			message_sent.emit(message)
+			send_message(message)
 	for message in selected_messages:
 		messages_to_send.erase(message)
 
+
+func send_message(message : Message):
+	var message_instance = MessageInstance.new(message)
+	EventBus.response_option_selected.connect(func(response : Response, message : Message): if message == message_instance.message: message_instance.reply(response))
+	message_sent.emit(message_instance)
 
 func validate_prerequisite(prerequisite: Prerequisite) -> bool:
 	return true

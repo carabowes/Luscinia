@@ -60,8 +60,10 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_bottom = 10
 
 [node name="BackButton" type="Button" parent="Margin/PageLayout/BackButtonMargin"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
+theme = ExtResource("4_svsoh")
 text = "Go Back"
 
 [node name="InformationLayout" type="VBoxContainer" parent="Margin/PageLayout"]
@@ -143,6 +145,10 @@ custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 color = Color(0.585062, 0.585062, 0.585062, 1)
 
+[node name="Spacer" type="Control" parent="Margin/PageLayout"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
 [node name="OptionScrollContainer" type="ScrollContainer" parent="Margin/PageLayout"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -163,7 +169,7 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 0
 theme_override_styles/focus = ExtResource("4_u4y8g")
 theme_override_styles/hover_mirrored = ExtResource("5_474gc")
 theme_override_styles/hover = ExtResource("5_474gc")
@@ -171,4 +177,4 @@ theme_override_styles/pressed = ExtResource("4_u4y8g")
 theme_override_styles/normal = ExtResource("5_474gc")
 text = "Option
 "
-autowrap_mode = 3
+autowrap_mode = 2

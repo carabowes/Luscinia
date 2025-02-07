@@ -25,7 +25,7 @@ func _ready() -> void:
 	message_board.map = map_tasks
 	message_board.response_picked.connect(func(): message_board.visible = false)
 	GlobalTimer.turn_progressed.connect(func(time : int): message_sent_this_turn = false)
-	MessageManager.message_sent.connect(func(message: Message): message_notif_button.visible = true)
+	MessageManager.message_sent.connect(func(message: MessageInstance): message_notif_button.visible = true)
 
 
 func _on_alert_pressed() -> void:

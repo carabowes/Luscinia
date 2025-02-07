@@ -1,11 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://o1b8jsde2xir"]
+[gd_scene load_steps=13 format=3 uid="uid://o1b8jsde2xir"]
 
 [ext_resource type="Script" path="res://Scripts/UI/message_page.gd" id="1_cekrt"]
+[ext_resource type="Texture2D" uid="uid://dauu8qd5vcq0i" path="res://Sprites/UIElements.png" id="2_2ipfr"]
 [ext_resource type="Texture2D" uid="uid://c27suyrk8wq" path="res://Sprites/ClockBackground.png" id="2_inlp2"]
 [ext_resource type="Texture2D" uid="uid://d1cwe1f3jk3ca" path="res://Sprites/icon.svg" id="3_up2kl"]
+[ext_resource type="Theme" uid="uid://r2tvepfwkafu" path="res://Themes/primary_button.tres" id="4_fowcv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8oni7"]
 bg_color = Color(0.254902, 0.560784, 0.870588, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uongm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrni0"]
+atlas = ExtResource("2_2ipfr")
+region = Rect2(400, 0, 400, 400)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dojfc"]
 
@@ -17,13 +25,6 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_7kpdu"]
 font_size = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gfpdc"]
-bg_color = Color(0.254902, 0.560784, 0.870588, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
 
 [node name="MessagePage" type="Control"]
 layout_mode = 3
@@ -72,13 +73,29 @@ theme_override_constants/margin_bottom = 5
 [node name="ContactInfoLayout" type="HBoxContainer" parent="Layout/ContactInfo/ContactInfoMargin"]
 layout_mode = 2
 
-[node name="ReturnButton" type="Button" parent="Layout/ContactInfo/ContactInfoMargin/ContactInfoLayout"]
+[node name="BackButton" type="Button" parent="Layout/ContactInfo/ContactInfoMargin/ContactInfoLayout"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.1
-text = "<"
+theme_override_colors/icon_hover_color = Color(0.868985, 0.868985, 0.868985, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.843184, 0.843184, 0.843184, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uongm")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_uongm")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_uongm")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_uongm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_uongm")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_uongm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_uongm")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_uongm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_uongm")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_uongm")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uongm")
+text = " "
+icon = SubResource("AtlasTexture_rrni0")
+icon_alignment = 1
+expand_icon = true
 
 [node name="ContactProfilePadding" type="MarginContainer" parent="Layout/ContactInfo/ContactInfoMargin/ContactInfoLayout"]
 custom_minimum_size = Vector2(0, 75)
@@ -181,19 +198,21 @@ size_flags_stretch_ratio = 0.85
 [node name="RespondButtonBackground" type="ColorRect" parent="Layout"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.15
+size_flags_stretch_ratio = 0.2
 
 [node name="RespondButtonMargin" type="MarginContainer" parent="Layout/RespondButtonBackground"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -26.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.15
 theme_override_constants/margin_top = 12
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_bottom = 24
 
 [node name="RespondButton" type="Button" parent="Layout/RespondButtonBackground/RespondButtonMargin"]
 unique_name_in_owner = true
@@ -202,6 +221,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.15
+theme = ExtResource("4_fowcv")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_gfpdc")
 text = "Respond"

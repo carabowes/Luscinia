@@ -10,10 +10,10 @@ func _ready():
 	MessageManager.message_sent.connect(add_message)
 
 
-func add_message(message: Message):
+func add_message(message: MessageInstance):
 	var message_instance : Button = load("res://Nodes/task_message_buttons/button.tscn").instantiate()
-	message_instance.pressed.connect(func():message_board.add_message(message))
-	message_instance.text = add_text_from_task_data(message)
+	message_instance.pressed.connect(func():message_board.add_message(message.message))
+	message_instance.text = add_text_from_task_data(message.message)
 	container.add_child(message_instance)
 	container.move_child(message_instance, 0)
 

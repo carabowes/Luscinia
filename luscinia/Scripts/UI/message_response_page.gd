@@ -1,7 +1,6 @@
 class_name MessageResponsePage
 extends Control
 
-@export var map : MapTasks
 var option_button_prefab : Button
 var option_buttons : Array[Button]
 var option_button_group : ButtonGroup
@@ -11,20 +10,20 @@ func _ready() -> void:
 	option_button_prefab = %OptionButton.duplicate()
 	option_button_group = ButtonGroup.new()
 	option_button_group.allow_unpress = false
+	EventBus.message_respond_button_pressed.connect(set_message)
+	%BackButton.pressed.connect(func(): EventBus.message_response_page_back_button_pressed.emit())
 
 
 func _option_selected(message : Message):
 	var response : Response = message.responses[current_selection]
-	var task_instance : TaskInstance = TaskInstance.new(response.task, 0, 0, 0, response.task.start_location, false, response.task.resources_required, message.sender)
-	map.add_task_instance(task_instance)
-	visible = false
+	EventBus.response_option_selected.emit(response, message)
 
 
 func set_message(message : Message):
 	_render_option_buttons(message)
 	_select_option_button(0, message)
 	for connection in %ConfirmButton.pressed.get_connections():
-		%ConfirmButton.pressed.disconnect(connection)
+		%ConfirmButton.pressed.disconnect(connection["callable"])
 	%ConfirmButton.pressed.connect(func(): _option_selected(message))
 
 
