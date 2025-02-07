@@ -7,10 +7,9 @@ signal widget_selected(widget : TaskWidget)
 enum LevelOfDetail {LOW, MEDIUM, HIGH}
 
 @export var current_level_of_detail : LevelOfDetail
-@export var task_info : TaskInstance:
+var task_info : TaskInstance:
 	set(value):
 		task_info = value
-@export var task_details_page : TaskDetails
 
 #Low Med and High refer to the level of detail these elements should be show on
 @onready var _progressBarLowMed = $WidgetBackground/ProgressBarLowMed
@@ -98,8 +97,7 @@ func _switch_to_high_lod():
 
 
 func _show_task_details_page():
-	if(task_details_page != null):
-		task_details_page.show_details(task_info)
+	EventBus.task_widget_view_details_pressed.emit(task_info)
 
 func get_current_progress():
 	return task_info.current_progress

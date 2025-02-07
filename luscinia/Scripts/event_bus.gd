@@ -12,3 +12,6 @@ signal message_response_page_back_button_pressed()
 #Task signals
 signal task_finished(task_instance : TaskInstance, cancelled : bool)
 signal task_started(task_instace : TaskInstance)
+
+#General UI Signals
+signal task_widget_view_details_pressed(task_instance : TaskInstance)

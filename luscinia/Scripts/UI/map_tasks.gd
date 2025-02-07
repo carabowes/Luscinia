@@ -1,8 +1,6 @@
 class_name MapTasks
 extends Control
 
-# This will be removed and changed with some sort of reference to the singleton task manager once available.
-@export var details_page : TaskDetails
 @export var widget_size : float
 @export var zoom_level_medium_detail : float
 
@@ -23,7 +21,6 @@ func create_widget(task_instance : TaskInstance):
 	$MapView/MapTexture.add_child(task_widget_instance)
 	task_widgets.append(task_widget_instance)
 	task_widget_instance.widget_selected.connect(update_selected_widget)
-	task_widget_instance.task_details_page = details_page
 	EventBus.task_finished.connect(func(task: TaskInstance, cancelled: bool): if task == task_instance: delete_widget(task_widget_instance))
 	render_widgets()
 
