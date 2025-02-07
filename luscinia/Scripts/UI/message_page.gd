@@ -1,10 +1,10 @@
+class_name MessagePage
 extends Control
 
 var message  = preload("res://Scenes/UI/message.tscn")
 
 func _ready():
-	var msg = MessageInstance.new()
-	show_message(msg)
+	%ReturnButton.pressed.connect(func(): visible = false)
 
 
 func show_message(message_instance : MessageInstance):
@@ -23,11 +23,11 @@ func _render_message(message_instance : MessageInstance):
 	message_object.render_message(message_instance.message.message)
 	message_object.is_player_message = false
 	%MessagesLayout.add_child(message_object)
-	
+
 	var spacer = Control.new()
 	spacer.custom_minimum_size.y = 10
 	%MessagesLayout.add_child(spacer)
-	
+
 	if message_instance.player_response:
 		message_object = message.instantiate()
 		message_object.is_player_message = true

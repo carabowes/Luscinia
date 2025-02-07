@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ynqc8wyjj8r5"]
+[gd_scene load_steps=18 format=3 uid="uid://ynqc8wyjj8r5"]
 
 [ext_resource type="PackedScene" uid="uid://cnpov8fcn2j0g" path="res://Scenes/map.tscn" id="1_7fdga"]
 [ext_resource type="PackedScene" uid="uid://desl373b33t23" path="res://Scenes/timer.tscn" id="2_5mpic"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bef7i4t2wyt6d" path="res://Scenes/UI/message_received_page.tscn" id="10_f4aa7"]
 [ext_resource type="Script" path="res://Scripts/task_message/message_list.gd" id="11_ir8ox"]
 [ext_resource type="PackedScene" uid="uid://dveuyhljvjf4q" path="res://Scenes/message_history.tscn" id="12_upng4"]
+[ext_resource type="PackedScene" uid="uid://o1b8jsde2xir" path="res://Scenes/UI/message_page.tscn" id="16_y6pki"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gfh5b"]
 bg_color = Color(1, 0.584314, 0, 1)
@@ -61,7 +62,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MessagesReceivedPage" parent="pages" instance=ExtResource("10_f4aa7")]
+[node name="MessagesReceivedPage" parent="pages" node_paths=PackedStringArray("message_page") instance=ExtResource("10_f4aa7")]
+visible = false
+layout_mode = 1
+message_page = NodePath("../MessagePage")
+
+[node name="MessagePage" parent="pages" instance=ExtResource("16_y6pki")]
 visible = false
 layout_mode = 1
 

@@ -1,6 +1,8 @@
 class_name ReceivedMessage
 extends Control
 
+signal message_clicked(message_instace : MessageInstance)
+
 @export_enum("SideBadge:0", "ProfileBadge:1") var unread_badge_location : int
 @export var answer_now_color: Color
 @export var time_remaining_color: Color
@@ -17,8 +19,7 @@ func _draw():
 
 func _gui_input(event: InputEvent) -> void:
 	if event.is_pressed():
-		#Go to messages screen
-		pass
+		message_clicked.emit(message_info)
 
 
 func _render_message_info():

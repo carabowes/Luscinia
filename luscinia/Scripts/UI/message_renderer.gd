@@ -7,6 +7,7 @@ var is_player_message : bool = false
 func _ready():
 	%BubbleContainer.resized.connect(func(): custom_minimum_size.y = %BubbleContainer.size.y)
 
+
 func render_message(text : String):
 	var messages : PackedStringArray = text.split(".", false)
 	var count = 0

@@ -36,6 +36,7 @@ anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 script = ExtResource("1_b2e25")
+unread_badge_location = 1
 answer_now_color = Color(0.87, 0.25375, 0.1305, 1)
 time_remaining_color = Color(0.122252, 0.122252, 0.122252, 1)
 
