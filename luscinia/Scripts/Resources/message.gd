@@ -6,7 +6,12 @@ extends Resource
 ## Player responses
 @export var responses : Array[Response]
 ## Sender of messages
-@export var sender : Sender
+@export var sender: Sender:
+	get:
+		if sender == null:
+			return Sender.new("Anonymous", load("res://Sprites/icon.svg"), 0)
+		else:
+			return sender
 ## Array of prerequisites, conditions for the message to become active
 ## If any of the prerequisites are true the message pops up
 @export var prerequisites : Array[Prerequisite]

@@ -9,12 +9,14 @@
 
 [sub_resource type="Resource" id="Resource_sd1qi"]
 script = ExtResource("2_xktb4")
+response_name = ""
 response_text = "we fix"
 relationship_change = 50.0
 task = ExtResource("3_k6041")
 
 [sub_resource type="Resource" id="Resource_esow4"]
 script = ExtResource("2_xktb4")
+response_name = ""
 response_text = "we head back"
 relationship_change = -50.0
 task = ExtResource("4_olejh")

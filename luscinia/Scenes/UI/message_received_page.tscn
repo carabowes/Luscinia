@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://bef7i4t2wyt6d"]
+
+[ext_resource type="Script" path="res://Scripts/UI/message_received_page.gd" id="1_2yqvd"]
+[ext_resource type="Theme" uid="uid://r2tvepfwkafu" path="res://Themes/primary_button.tres" id="2_6l7lf"]
+
+[node name="MessagesReceivedPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2yqvd")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 19.0
+offset_top = 15.0
+offset_right = 82.0
+offset_bottom = 38.0
+size_flags_horizontal = 0
+theme = ExtResource("2_6l7lf")
+text = "Go Back"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="MessagesReceived" type="VBoxContainer" parent="ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Seperator" type="MarginContainer" parent="ScrollContainer/MessagesReceived"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="ColorRect" type="ColorRect" parent="ScrollContainer/MessagesReceived/Seperator"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+color = Color(0.646029, 0.646029, 0.646029, 1)

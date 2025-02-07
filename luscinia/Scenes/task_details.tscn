@@ -1,8 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://c70krmks36rto"]
+[gd_scene load_steps=20 format=3 uid="uid://c70krmks36rto"]
 
 [ext_resource type="Script" path="res://Scripts/UI/task_details.gd" id="1_dalyu"]
 [ext_resource type="Script" path="res://Scripts/UI/time_progress_bar.gd" id="1_stskc"]
-[ext_resource type="PackedScene" path="res://Nodes/task_details/staff_on_task.tscn" id="2_ykrfx"]
 [ext_resource type="PackedScene" uid="uid://bxndjmqmmnwuu" path="res://Scenes/UI/task_resources.tscn" id="4_xomxh"]
 [ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="4_yi0aj"]
 
@@ -192,10 +191,6 @@ layout_mode = 2
 text = "Staff on Task"
 label_settings = SubResource("LabelSettings_v4t23")
 autowrap_mode = 2
-
-[node name="StaffOnTask2" parent="Background/ScrollContainer/MarginContainer/Elements" instance=ExtResource("2_ykrfx")]
-visible = false
-layout_mode = 2
 
 [node name="PaddingBar4" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements"]
 modulate = Color(1, 1, 1, 0)

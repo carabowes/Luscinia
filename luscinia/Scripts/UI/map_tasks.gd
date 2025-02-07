@@ -16,6 +16,18 @@ func _ready() -> void:
 	generate_widgets()
 	$MapView.zoom_changed.connect(render_widgets)
 	details_page.task_cancelled.connect(cancel_task)
+	EventBus.response_option_selected.connect(response_selected)
+
+
+func response_selected(response : Response, message : Message):
+	var task_instance : TaskInstance = TaskInstance.new(response.task, 0, 0, 0, response.task.start_location, false, response.task.resources_required, message.sender)
+	var task_data : TaskData = task_instance.task_data
+	for resource in task_data.resources_required.keys():
+		if resource == "funds":
+			ResourceManager.remove_resources(resource, task_data.resources_required[resource])
+		else:
+			ResourceManager.remove_available_resources(resource, task_data.resources_required[resource])
+	add_task_instance(task_instance)
 
 
 func add_task_instance(new_instance : TaskInstance):
