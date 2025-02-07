@@ -48,5 +48,5 @@ responses = Array[ExtResource("2_4b81d")]([SubResource("Resource_1u5v2"), SubRes
 sender = ExtResource("8_myast")
 prerequisites = Array[ExtResource("1_25c66")]([])
 antirequisites = Array[ExtResource("1_25c66")]([])
-turns_to_answer = 0
+turns_to_answer = 1
 is_repeatable = false

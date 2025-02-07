@@ -28,5 +28,5 @@ responses = Array[ExtResource("2_ltmve")]([SubResource("Resource_sd1qi"), SubRes
 sender = ExtResource("6_iusj1")
 prerequisites = Array[ExtResource("1_rm0d1")]([])
 antirequisites = Array[ExtResource("1_rm0d1")]([])
-turns_to_answer = 0
+turns_to_answer = 4
 is_repeatable = false
