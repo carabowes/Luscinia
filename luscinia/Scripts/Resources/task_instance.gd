@@ -37,3 +37,9 @@ func get_total_time():
 
 func get_remaining_time():
 	return get_total_time() - current_progress
+
+
+func update_task(time_progressed : int):
+	current_progress += time_progressed/60
+	if current_progress >= get_total_time():
+		is_completed = true

@@ -26,7 +26,6 @@ func hide_details() -> void:
 
 
 func _end_early_button_pressed():
-	
 	%EndEarlyProgressBar.value = current_task_instance.current_progress
 	%EndEarlyProgressBar.total_task_time = current_task_instance.get_total_time()
 	
@@ -56,11 +55,10 @@ func _end_early_button_pressed():
 	%FullTimeResources.resources = end_on_time_resources
 	%FullTimeResources.set_increments(resource_increase_on_time)
 	$TaskCancelConfirmationPage.visible = true
-	print(end_on_time_resources)
-	print(resource_increase_on_time)
 
 
 func _confirm_end_early_button_pressed():
 	$TaskCancelConfirmationPage.visible = false
-	EventBus.task_cancelled.emit(current_task_instance)
+	if current_task_instance != null:
+		EventBus.task_finished.emit(current_task_instance, true)
 	visible = false
