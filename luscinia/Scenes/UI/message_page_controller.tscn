@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://qkil2mdu7qyx"]
+[gd_scene load_steps=5 format=3 uid="uid://dfodlhyrjguvi"]
 
 [ext_resource type="Script" path="res://Scripts/UI/message_page_controller.gd" id="1_xj5fn"]
-[ext_resource type="PackedScene" uid="uid://o1b8jsde2xir" path="res://Scenes/UI/message_page.tscn" id="2_xj5yt"]
-[ext_resource type="PackedScene" uid="uid://bef7i4t2wyt6d" path="res://Scenes/UI/message_received_page.tscn" id="3_nl5ea"]
-[ext_resource type="PackedScene" uid="uid://bd5rcqi82bp6d" path="res://Scenes/UI/message_response_page.tscn" id="4_dexn5"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/message_page.tscn" id="2_xj5yt"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/message_received_page.tscn" id="3_nl5ea"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/message_response_page.tscn" id="4_dexn5"]
 
 [node name="MessagePageController" type="Control"]
 layout_mode = 3
@@ -12,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_xj5fn")
 
 [node name="MessagePage" parent="." instance=ExtResource("2_xj5yt")]
