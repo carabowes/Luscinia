@@ -196,6 +196,7 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_bottom = 12
 
 [node name="RespondButton" type="Button" parent="Layout/RespondButtonBackground/RespondButtonMargin"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 70)
 layout_mode = 2
 size_flags_horizontal = 4

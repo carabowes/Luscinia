@@ -40,7 +40,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,25 +51,25 @@ theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 20
 
-[node name="PageLayout" type="VBoxContainer" parent="MarginContainer"]
+[node name="PageLayout" type="VBoxContainer" parent="Margin"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PageLayout"]
+[node name="BackButtonMargin" type="MarginContainer" parent="Margin/PageLayout"]
 layout_mode = 2
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_bottom = 10
 
-[node name="Button" type="Button" parent="MarginContainer/PageLayout/MarginContainer"]
+[node name="BackButton" type="Button" parent="Margin/PageLayout/BackButtonMargin"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Go Back"
 
-[node name="InformationLayout" type="VBoxContainer" parent="MarginContainer/PageLayout"]
+[node name="InformationLayout" type="VBoxContainer" parent="Margin/PageLayout"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.6
 
-[node name="TaskTitle" type="Label" parent="MarginContainer/PageLayout/InformationLayout"]
+[node name="TaskTitle" type="Label" parent="Margin/PageLayout/InformationLayout"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
@@ -78,7 +78,7 @@ label_settings = SubResource("LabelSettings_xecw5")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="EstimatedTimeLabel" type="Label" parent="MarginContainer/PageLayout/InformationLayout"]
+[node name="EstimatedTimeLabel" type="Label" parent="Margin/PageLayout/InformationLayout"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
@@ -86,7 +86,7 @@ text = "ESTIMATED TIME"
 label_settings = SubResource("LabelSettings_sx3y0")
 autowrap_mode = 3
 
-[node name="EstimatedTime" type="Label" parent="MarginContainer/PageLayout/InformationLayout"]
+[node name="EstimatedTime" type="Label" parent="Margin/PageLayout/InformationLayout"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
@@ -94,62 +94,63 @@ text = "8 HOURS"
 label_settings = SubResource("LabelSettings_g2vq3")
 autowrap_mode = 3
 
-[node name="Spacer" type="Control" parent="MarginContainer/PageLayout/InformationLayout"]
+[node name="Spacer" type="Control" parent="Margin/PageLayout/InformationLayout"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="GainLabel" type="Label" parent="MarginContainer/PageLayout/InformationLayout"]
+[node name="GainLabel" type="Label" parent="Margin/PageLayout/InformationLayout"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "GAIN"
 label_settings = SubResource("LabelSettings_sx3y0")
 
-[node name="GainResources" type="GridContainer" parent="MarginContainer/PageLayout/InformationLayout"]
+[node name="GainResources" type="GridContainer" parent="Margin/PageLayout/InformationLayout"]
 unique_name_in_owner = true
 layout_mode = 2
 columns = 4
 script = ExtResource("2_1xrq8")
 
-[node name="Spacer2" type="Control" parent="MarginContainer/PageLayout/InformationLayout"]
+[node name="Spacer2" type="Control" parent="Margin/PageLayout/InformationLayout"]
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="CostLabel" type="Label" parent="MarginContainer/PageLayout/InformationLayout"]
+[node name="CostLabel" type="Label" parent="Margin/PageLayout/InformationLayout"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "COST"
 label_settings = SubResource("LabelSettings_rveik")
 
-[node name="CostResource" type="GridContainer" parent="MarginContainer/PageLayout/InformationLayout"]
+[node name="CostResource" type="GridContainer" parent="Margin/PageLayout/InformationLayout"]
 unique_name_in_owner = true
 layout_mode = 2
 columns = 4
 script = ExtResource("2_1xrq8")
 
-[node name="Spacer3" type="Control" parent="MarginContainer/PageLayout/InformationLayout"]
+[node name="Spacer3" type="Control" parent="Margin/PageLayout/InformationLayout"]
 custom_minimum_size = Vector2(0, 14)
 layout_mode = 2
 
-[node name="ConfirmButton" type="Button" parent="MarginContainer/PageLayout/InformationLayout"]
+[node name="ConfirmButton" type="Button" parent="Margin/PageLayout/InformationLayout"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("4_svsoh")
 text = "Confirm
 "
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/PageLayout"]
-custom_minimum_size = Vector2(0, 1)
+[node name="HorizontalRule" type="ColorRect" parent="Margin/PageLayout"]
+custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 color = Color(0.585062, 0.585062, 0.585062, 1)
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PageLayout"]
+[node name="OptionScrollContainer" type="ScrollContainer" parent="Margin/PageLayout"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.4
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="ButtonLayout" type="VBoxContainer" parent="MarginContainer/PageLayout/ScrollContainer"]
+[node name="ButtonLayout" type="VBoxContainer" parent="Margin/PageLayout/OptionScrollContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -158,7 +159,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.6
 theme_override_constants/separation = 10
 
-[node name="OptionButton" type="Button" parent="MarginContainer/PageLayout/ScrollContainer/ButtonLayout"]
+[node name="OptionButton" type="Button" parent="Margin/PageLayout/OptionScrollContainer/ButtonLayout"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
