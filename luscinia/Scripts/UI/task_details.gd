@@ -22,7 +22,6 @@ func show_details(task_instance : TaskInstance) -> void:
 	for connection in %EndEarlyButton.pressed.get_connections(): #Remove previous connections
 		%EndEarlyButton.pressed.disconnect(connection.callable)
 	%EndEarlyButton.pressed.connect(func(): _end_early_button_pressed(task_instance))
-	pass
 
 
 func hide_details() -> void:
