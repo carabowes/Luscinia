@@ -1,10 +1,12 @@
 extends Control
 
+signal back_button_pressed
+signal message_selected(message : MessageInstance)
 var num_messages = 0
 
 func _ready():
 	MessageManager.message_sent.connect(_on_message_received)
-	%BackButton.pressed.connect(func(): EventBus.message_received_page_back_button_pressed.emit())
+	%BackButton.pressed.connect(func(): back_button_pressed.emit())
 
 
 func _on_message_received(message : MessageInstance):
@@ -22,6 +24,6 @@ func _on_message_received(message : MessageInstance):
 
 
 func _message_selected(message_object : ReceivedMessage, message_info : MessageInstance):
-	EventBus.message_selected.emit(message_info)
+	message_selected.emit(message_info)
 	message_info.read();
 	message_object.queue_redraw()

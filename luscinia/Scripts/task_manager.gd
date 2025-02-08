@@ -6,7 +6,7 @@ var completed_tasks: Array[TaskInstance]
 func _ready() -> void:
 	GlobalTimer.turn_progressed.connect(_update_tasks)
 	EventBus.task_finished.connect(_finish_task)
-	EventBus.response_option_selected.connect(_start_task)
+	EventBus.message_responded.connect(_start_task)
 
 
 func _start_task(response : Response, message : Message):
@@ -34,7 +34,6 @@ func _update_tasks(time_progressed : int):
 
 
 func _finish_task(task : TaskInstance, cancelled = false):
-	ResourceManager.apply_relationship_change(task.task_data.task_id, task.sender, task.current_progress)
 	for resource in task.task_data.resources_gained.keys():
 		if not cancelled:
 			if resource != "funds":

@@ -62,5 +62,5 @@ func _end_early_button_pressed(task_instance : TaskInstance):
 
 func _confirm_end_early_button_pressed(task_instance : TaskInstance):
 	$TaskCancelConfirmationPage.visible = false
-	EventBus.task_finished.emit(task_instance, true)
 	visible = false
+	EventBus.task_finished.emit(task_instance, true)

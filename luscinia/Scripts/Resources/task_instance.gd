@@ -14,11 +14,11 @@ enum CurrentStatus {IDLING, WORKING, TRAVELLING}
 @export var is_completed : bool
 @export var actual_resources : Dictionary
 @export var message : Message
-var sender : Sender:
+var sender : Sender: #sender property to allow shorthand of task_instance.sender rather than task_instance.message.sender
 	get:
 		if message:
 			return message.sender
-		return Sender.new("Anonymous", null, 0)
+		return Message.default_sender
 
 func _init(task_data = null, current_status = 0, current_progress = 0, extra_time = 0, current_location = Vector2.ZERO, is_completed = false, actual_resources = {}, message = null) -> void:
 	self.task_data = task_data

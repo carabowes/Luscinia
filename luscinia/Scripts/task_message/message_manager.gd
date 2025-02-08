@@ -12,7 +12,7 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 func _ready():
 	rng.randomize() ##Randomize the RNG for chance-based validation
 	GlobalTimer.turn_progressed.connect(find_messages_to_send)
-	EventBus.task_finished.connect(func(task : TaskInstance, cancelled : bool): if cancelled : _task_cancelled(task))
+	EventBus.task_finished.connect(func(task : TaskInstance, cancelled : bool): if cancelled : _on_task_cancelled(task))
 
 
 func find_messages_to_send(time_progressed: int):
@@ -41,7 +41,11 @@ func find_messages_to_send(time_progressed: int):
 
 func send_message(message : Message):
 	var message_instance = MessageInstance.new(message)
-	EventBus.response_option_selected.connect(func(response : Response, message : Message): if message == message_instance.message: message_instance.reply(response))
+	EventBus.message_responded.connect(
+		func(response : Response, message : Message): 
+			if message == message_instance.message: 
+				message_instance.reply(response)
+	)
 	message_sent.emit(message_instance)
 
 
@@ -49,7 +53,7 @@ func validate_prerequisite(prerequisite: Prerequisite, time_progressed: int) -> 
 	return prerequisite.validate(TaskManager.completed_tasks, occurred_events, time_progressed, rng)
 
 
-func _task_cancelled(task_instance : TaskInstance):
+func _on_task_cancelled(task_instance : TaskInstance):
 	var cancel_behaviour = task_instance.message.cancel_behaviour
 	var message : Message = task_instance.message
 	if cancel_behaviour == Message.CancelBehaviour.FORCE_RESEND:

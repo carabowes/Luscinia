@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfodlhyrjguvi"]
+[gd_scene load_steps=5 format=3 uid="uid://dgxulhtdub243"]
 
 [ext_resource type="Script" path="res://Scripts/UI/message_page_controller.gd" id="1_xj5fn"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/message_page.tscn" id="2_xj5yt"]
-[ext_resource type="PackedScene" uid="uid://cu621iyx3apds" path="res://Scenes/UI/message_received_page.tscn" id="3_nl5ea"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/message_received_page.tscn" id="3_nl5ea"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/message_response_page.tscn" id="4_dexn5"]
 
 [node name="MessagePageController" type="Control"]

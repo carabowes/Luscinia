@@ -1,6 +1,9 @@
 class_name MessageResponsePage
 extends Control
 
+signal back_button_pressed
+signal response_option_selected(response : Response, message : Message)
+
 var option_button_prefab : Button
 var option_buttons : Array[Button]
 var option_button_group : ButtonGroup
@@ -10,13 +13,12 @@ func _ready() -> void:
 	option_button_prefab = %OptionButton.duplicate()
 	option_button_group = ButtonGroup.new()
 	option_button_group.allow_unpress = false
-	EventBus.message_respond_button_pressed.connect(set_message)
-	%BackButton.pressed.connect(func(): EventBus.message_response_page_back_button_pressed.emit())
+	%BackButton.pressed.connect(func(): back_button_pressed.emit())
 
 
 func _option_selected(message : Message):
 	var response : Response = message.responses[current_selection]
-	EventBus.response_option_selected.emit(response, message)
+	response_option_selected.emit(response, message)
 
 
 func set_message(message : Message):

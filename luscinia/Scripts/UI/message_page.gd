@@ -1,11 +1,12 @@
 class_name MessagePage
 extends Control
 
+signal back_button_pressed
+signal respond_button_pressed(message : Message)
 var message  = preload("res://Scenes/UI/message.tscn")
 
 func _ready():
-	EventBus.message_selected.connect(show_message)
-	%BackButton.pressed.connect(func(): EventBus.message_viewer_page_back_button_pressed.emit())
+	%BackButton.pressed.connect(func(): back_button_pressed.emit())
 
 
 func show_message(message_instance : MessageInstance):
@@ -15,7 +16,7 @@ func show_message(message_instance : MessageInstance):
 	%RespondButton.visible = message_instance.message_status != MessageInstance.MessageStatus.REPLIED
 	for connection in %RespondButton.pressed.get_connections():
 		%RespondButton.pressed.disconnect(connection["callable"])
-	%RespondButton.pressed.connect(func(): EventBus.message_respond_button_pressed.emit(message_instance.message))
+	%RespondButton.pressed.connect(func(): respond_button_pressed.emit(message_instance.message))
 
 
 func _clear_old_message():

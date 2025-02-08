@@ -18,10 +18,17 @@ func create_widget(task_instance : TaskInstance):
 	var task_widget_instance : TaskWidget = load(task_widget_prefab).instantiate()
 	task_widget_instance.task_info = task_instance
 	task_widget_instance.position = task_instance.task_data.start_location
+
 	$MapView/MapTexture.add_child(task_widget_instance)
 	task_widgets.append(task_widget_instance)
+
 	task_widget_instance.widget_selected.connect(update_selected_widget)
-	EventBus.task_finished.connect(func(task: TaskInstance, cancelled: bool): if task == task_instance: delete_widget(task_widget_instance))
+	EventBus.task_finished.connect(
+		func(task: TaskInstance, cancelled: bool): 
+			if task == task_instance: 
+				delete_widget(task_widget_instance)
+	)
+
 	render_widgets()
 
 

@@ -12,7 +12,7 @@
 [ext_resource type="Resource" uid="uid://cxwgponxxk2pf" path="res://TaskData/establish_contact/message_contact.tres" id="6_ntma7"]
 [ext_resource type="PackedScene" path="res://Scenes/task-assignment.tscn" id="7_g8mic"]
 [ext_resource type="Resource" uid="uid://b1c14ke0e8om5" path="res://TaskData/random_tasks/contact_ver/rand_message_contact.tres" id="7_slelw"]
-[ext_resource type="PackedScene" uid="uid://qkil2mdu7qyx" path="res://Scenes/UI/message_page_controller.tscn" id="10_gisxo"]
+[ext_resource type="PackedScene" uid="uid://dgxulhtdub243" path="res://Scenes/UI/message_page_controller.tscn" id="10_gisxo"]
 [ext_resource type="Script" path="res://Scripts/task_message/message_list.gd" id="11_ir8ox"]
 [ext_resource type="PackedScene" uid="uid://dveuyhljvjf4q" path="res://Scenes/message_history.tscn" id="12_upng4"]
 
@@ -29,8 +29,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="map" parent="." node_paths=PackedStringArray("details_page") instance=ExtResource("1_7fdga")]
-details_page = NodePath("../pages/task_details")
+[node name="map" parent="." instance=ExtResource("1_7fdga")]
 
 [node name="message_manager" parent="." node_paths=PackedStringArray("message_board", "map_tasks") instance=ExtResource("7_g8mic")]
 layout_mode = 1
