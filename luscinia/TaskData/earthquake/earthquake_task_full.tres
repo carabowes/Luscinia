@@ -13,9 +13,9 @@ start_location = Vector2(800, 600)
 end_location = Vector2(1000, 1000)
 resources_required = {
 "funds": 100,
-"people": 40,
+"people": 400,
 "supplies": 1000,
-"vehicles": 60
+"vehicles": 600
 }
 resources_gained = {
 "funds": 500,

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bd5rcqi82bp6d"]
+[gd_scene load_steps=11 format=3 uid="uid://ccebxac28vd8a"]
 
 [ext_resource type="Script" path="res://Scripts/UI/message_response_page.gd" id="1_dnwba"]
 [ext_resource type="Script" path="res://Scripts/UI/task_resources.gd" id="2_1xrq8"]
@@ -23,6 +23,9 @@ font_color = Color(0, 0, 0, 1)
 font_size = 12
 font_color = Color(0.329159, 0.329158, 0.329158, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_1jwr4"]
+font_color = Color(0.0235294, 0.0235294, 0.0235294, 1)
+
 [node name="MessageResponsePage" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -30,6 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 script = ExtResource("1_dnwba")
 
 [node name="Background" type="ColorRect" parent="."]
@@ -139,6 +143,16 @@ size_flags_horizontal = 4
 theme = ExtResource("4_svsoh")
 text = "Confirm
 "
+
+[node name="InvalidResourcesLabel" type="Label" parent="Margin/PageLayout/InformationLayout"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+text = "You currently don't have enough resources to select this option."
+label_settings = SubResource("LabelSettings_1jwr4")
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="HorizontalRule" type="ColorRect" parent="Margin/PageLayout"]
 custom_minimum_size = Vector2(0, 2)
