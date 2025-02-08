@@ -8,9 +8,9 @@ extends Resource
 ## Chance of prerequisite triggering. 1 is 100% likely.
 @export_range(0,1)  var chance : float
 ## Minimum turn for the prerequisite to be valid
-@export var Turn: int = 0
+@export var turns: int = 0
 
-func _init(task_id : Array[int] = [], chance = 0, events : Array[Event.EventType]= []) -> void:
+func _init(task_id : Array[int] = [], chance: float = 0, events : Array[Event.EventType]= []) -> void:
 	self.task_id = task_id
 	self.chance = chance
 	self.events = events
@@ -28,7 +28,7 @@ func validate(task_instances: Array[TaskInstance], occurred_events: Array[Event.
 	for event in events:
 		if event not in occurred_events:
 			return false
-	if current_turn < Turn:
+	if current_turn < turns:
 		return false
 	if rng.randf() > chance:
 		return false

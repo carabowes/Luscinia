@@ -20,13 +20,13 @@ func find_messages_to_send(time_progressed: int):
 	for message in messages_to_send:
 		var antirequisite_failed : bool = false
 		for antirequisite in message.prerequisites:
-			if validate_prerequisite(antirequisite, time_progressed):
+			if validate_prerequisite(antirequisite, GlobalTimer.turns):
 				antirequisite_failed = true
 				break
 		if antirequisite_failed:
 			continue
 		for prerequisite in message.prerequisites:
-			if validate_prerequisite(prerequisite, time_progressed):
+			if validate_prerequisite(prerequisite, GlobalTimer.turns):
 				messages_to_receive.append(message)
 				selected_messages.append(message)
 				send_message(message)
@@ -45,5 +45,5 @@ func send_message(message : Message):
 	message_sent.emit(message_instance)
 
 
-func validate_prerequisite(prerequisite: Prerequisite, time_progressed: int) -> bool:
-	return prerequisite.validate(task_instances, occurred_events, time_progressed, rng)
+func validate_prerequisite(prerequisite: Prerequisite, current_turn: int) -> bool:
+	return prerequisite.validate(task_instances, occurred_events, current_turn, rng)
