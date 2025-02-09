@@ -9,10 +9,10 @@
 
 [sub_resource type="Resource" id="Resource_62483"]
 script = ExtResource("1_rm0d1")
-task_id = Array[int]([2])
+task_id = Array[String]([])
 events = Array[int]([])
 chance = 1.0
-Turn = 0
+turns = 0
 
 [sub_resource type="Resource" id="Resource_sd1qi"]
 script = ExtResource("2_ltmve")

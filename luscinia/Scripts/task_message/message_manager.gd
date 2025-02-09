@@ -19,7 +19,7 @@ func find_messages_to_send(time_progressed: int):
 	var selected_messages: Array[Message]
 	for message in messages_to_send:
 		var antirequisite_failed : bool = false
-		for antirequisite in message.prerequisites:
+		for antirequisite in message.antirequisites:
 			if validate_prerequisite(antirequisite, GlobalTimer.turns):
 				antirequisite_failed = true
 				break
@@ -49,7 +49,7 @@ func send_message(message : Message):
 	message_sent.emit(message_instance)
 
 
-func _task_cancelled(task_instance : TaskInstance):
+func _on_task_cancelled(task_instance : TaskInstance):
 	var cancel_behaviour = task_instance.message.cancel_behaviour
 	var message : Message = task_instance.message
 	if cancel_behaviour == Message.CancelBehaviour.FORCE_RESEND:
@@ -72,6 +72,6 @@ func _task_cancelled(task_instance : TaskInstance):
 
 
 func validate_prerequisite(prerequisite: Prerequisite, current_turn: int) -> bool:
-	return prerequisite.validate(task_instances, occurred_events, current_turn, rng)
+	return prerequisite.validate(TaskManager.completed_tasks, occurred_events, current_turn, rng)
 
 		#task_instances.append(new_instance)

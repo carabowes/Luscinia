@@ -38,8 +38,6 @@ text = "10000"
 label_settings = SubResource("LabelSettings_rc13s")
 horizontal_alignment = 1
 vertical_alignment = 2
-visible_characters = 4
-visible_ratio = 1.33333
 
 [node name="IncreaseContainer" type="PanelContainer" parent="."]
 self_modulate = Color(1, 1, 1, 0)
