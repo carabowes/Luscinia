@@ -58,6 +58,13 @@ func get_resource_texture(resource_name: String) -> Texture:
 		return null
 
 
+func has_sufficient_resource(resource_name : String, amount : int) -> bool:
+	if resource_name == "funds":
+		return amount <= resources[resource_name]
+	else:
+		return amount <= available_resources[resource_name]
+
+
 func queue_relationship_change(task_id : String, relationship_change : int):
 	relationships_to_update[task_id] = relationship_change
 

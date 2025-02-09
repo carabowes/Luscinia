@@ -52,18 +52,30 @@ func _select_option_button(index : int, message : Message):
 
 
 func _render_response_info(response : Response):
+	var task : TaskData = response.task
 	%TaskTitle.text = response.response_name
-	if response.task != null:
-		if response.task.expected_completion_time == 0:
+	if task != null:
+		if task.expected_completion_time == 0:
 			%EstimatedTime.text = "Choosing not to do anything could have consequences and damage relationships."
 			%EstimatedTimeLabel.visible = false
 		else:
 			%EstimatedTimeLabel.visible = true
-			%EstimatedTime.text = str(response.task.expected_completion_time) + "hrs"
-		%GainLabel.visible =  response.task.resources_gained != {}
-		%GainResources.resources = response.task.resources_gained
-		%CostLabel.visible = response.task.resources_required != {}
-		%CostResource.resources = response.task.resources_required
+			%EstimatedTime.text = str(task.expected_completion_time) + "hrs"
+		%GainLabel.visible =  task.resources_gained != {}
+		%GainResources.resources =task.resources_gained
+		%CostLabel.visible = task.resources_required != {}
+		%CostResource.resources = task.resources_required
+
+		#Resource Validation
+		var insufficient_resources = {}
+		for resource in task.resources_required.keys():
+			if not ResourceManager.has_sufficient_resource(resource, task.resources_required[resource]):
+				insufficient_resources[resource] = -1
+
+		var has_sufficient_resource : bool = len(insufficient_resources) == 0
+		%CostResource.set_increments(insufficient_resources, false)
+		%InvalidResourcesLabel.visible = !has_sufficient_resource
+		%ConfirmButton.visible = has_sufficient_resource
 	else:
 		%EstimatedTime.text = ""
 		%GainResources.resources = {}

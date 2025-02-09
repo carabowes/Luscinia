@@ -10,10 +10,11 @@ class_name TaskResources
 var resource_entry_path = "res://Scenes/UI/resource_entry.tscn"
 
 
-func set_increments(increments : Dictionary):
+func set_increments(increments : Dictionary, show_arrows : bool = true):
 	for child in get_children():
 		if increments.has(child.name):
 			child.increase = increments[child.name]
+			child.show_arrow = show_arrows
 
 
 func _add_elements():
