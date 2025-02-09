@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://7jo2b5uhl6bp"]
+[gd_scene format=3 uid="uid://c6vdptwmxulmg"]
 
 [node name="MessageBoard" type="Control"]
 layout_mode = 3

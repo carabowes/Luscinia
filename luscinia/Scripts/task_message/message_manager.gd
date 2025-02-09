@@ -21,14 +21,14 @@ func find_messages_to_send(time_progressed: int):
 	var selected_messages: Array[Message]
 	for message in messages_to_send:
 		var antirequisite_failed : bool = false
-		for antirequisite in message.antirequisites:
-			if validate_prerequisite(antirequisite, time_progressed):
+		for antirequisite in message.prerequisites:
+			if validate_prerequisite(antirequisite, GlobalTimer.turns):
 				antirequisite_failed = true
 				break
 		if antirequisite_failed:
 			continue
 		for prerequisite in message.prerequisites:
-			if validate_prerequisite(prerequisite, time_progressed):
+			if validate_prerequisite(prerequisite, GlobalTimer.turns):
 				messages_to_receive.append(message)
 				selected_messages.append(message)
 				send_message(message)
@@ -45,10 +45,6 @@ func send_message(message : Message):
 	var message_instance = MessageInstance.new(message)
 	EventBus.response_option_selected.connect(func(response : Response, message : Message): if message == message_instance.message: message_instance.reply(response))
 	message_sent.emit(message_instance)
-
-
-func validate_prerequisite(prerequisite: Prerequisite, time_progressed: int) -> bool:
-	return prerequisite.validate(task_instances, occurred_events, time_progressed, rng)
 
 
 func _task_cancelled(task_instance : TaskInstance):
@@ -71,3 +67,7 @@ func _task_cancelled(task_instance : TaskInstance):
 		var default_response : Response = message.responses[message.default_response]
 		var new_instance : TaskInstance = TaskInstance.new(default_response.task, 0, 0, 0, Vector2.ZERO, true)
 		task_instances.append(new_instance)
+
+
+func validate_prerequisite(prerequisite: Prerequisite, current_turn: int) -> bool:
+	return prerequisite.validate(task_instances, occurred_events, current_turn, rng)
