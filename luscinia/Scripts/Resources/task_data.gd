@@ -3,7 +3,7 @@ class_name TaskData
 
 
 ## ID of task, is not enforced to be unique by the program. User must ensure task ID is unique.
-@export var task_id : int
+@export var task_id : String
 ## Name of task
 @export var name : String
 ## Icon of task
@@ -21,7 +21,7 @@ class_name TaskData
 ## Dictionary of Event to Array of Event 
 @export var effects_of_random_events : Array[EventEffect]
 
-func _init(task_id = 0, name = "", icon = null, start_location = Vector2.ZERO, end_location = Vector2.ZERO, resources_required = {}, resources_gained = {}, expected_completion_time = 0, effects_of_random_events : Array[EventEffect] = []) -> void:
+func _init(task_id = "", name = "", icon = null, start_location = Vector2.ZERO, end_location = Vector2.ZERO, resources_required = {}, resources_gained = {}, expected_completion_time = 0, effects_of_random_events : Array[EventEffect] = []) -> void:
 	self.task_id = task_id
 	self.name = name
 	self.icon = icon
