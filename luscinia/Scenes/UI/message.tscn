@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmlf1sn78h8p7"]
+[gd_scene load_steps=2 format=3 uid="uid://dueqj35bm5f0n"]
 
 [ext_resource type="Script" path="res://Scripts/UI/message_renderer.gd" id="1_w54c5"]
 

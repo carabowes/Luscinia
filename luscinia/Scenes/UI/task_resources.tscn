@@ -12,8 +12,6 @@ grow_horizontal = 2
 size_flags_horizontal = 3
 columns = 3
 script = ExtResource("1_wkvxj")
-ui_color = Color(1, 1, 1, 1)
-horizontal_layout = true
 
 [node name="Resource 0" parent="." instance=ExtResource("2_r1vf5")]
 layout_mode = 2
