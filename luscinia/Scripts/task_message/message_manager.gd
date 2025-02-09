@@ -49,7 +49,7 @@ func send_message(message : Message):
 	message_sent.emit(message_instance)
 
 
-func _on_task_cancelled(task_instance : TaskInstance):
+func _task_cancelled(task_instance : TaskInstance):
 	var cancel_behaviour = task_instance.message.cancel_behaviour
 	var message : Message = task_instance.message
 	if cancel_behaviour == Message.CancelBehaviour.FORCE_RESEND:
@@ -74,3 +74,4 @@ func _on_task_cancelled(task_instance : TaskInstance):
 func validate_prerequisite(prerequisite: Prerequisite, current_turn: int) -> bool:
 	return prerequisite.validate(task_instances, occurred_events, current_turn, rng)
 
+		#task_instances.append(new_instance)
