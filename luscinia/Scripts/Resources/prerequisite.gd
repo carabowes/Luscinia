@@ -32,5 +32,4 @@ func validate(task_instances: Array[TaskInstance], occurred_events: Array[Event.
 		return false
 	if rng.randf() > chance:
 		return false
-		
 	return true

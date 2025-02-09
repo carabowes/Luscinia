@@ -15,12 +15,12 @@ func _ready() -> void:
 	GlobalTimer.turn_progressed.connect(update_widget_task)
 	generate_widgets()
 	$MapView.zoom_changed.connect(render_widgets)
-	details_page.task_cancelled.connect(cancel_task)
+	EventBus.task_cancelled.connect(cancel_task)
 	EventBus.response_option_selected.connect(response_selected)
 
 
 func response_selected(response : Response, message : Message):
-	var task_instance : TaskInstance = TaskInstance.new(response.task, 0, 0, 0, response.task.start_location, false, response.task.resources_required, message.sender)
+	var task_instance : TaskInstance = TaskInstance.new(response.task, 0, 0, 0, response.task.start_location, false, response.task.resources_required, message)
 	var task_data : TaskData = task_instance.task_data
 	for resource in task_data.resources_required.keys():
 		if resource == "funds":
@@ -60,6 +60,8 @@ func generate_widgets():
 func finish_task(task : TaskInstance, fully_complete : bool):
 	task.is_completed = true
 	ResourceManager.apply_relationship_change(task.task_data.task_id, task.sender, task.current_progress)
+	if fully_complete:
+		MessageManager.task_instances.append(task)
 	for resource in task.task_data.resources_gained.keys():
 		if fully_complete:
 			if resource != "funds":
@@ -68,6 +70,7 @@ func finish_task(task : TaskInstance, fully_complete : bool):
 				ResourceManager.add_resources(resource, task.task_data.resources_gained[resource])
 		elif resource != "funds" and resource != "supplies":
 			ResourceManager.add_available_resources(resource, task.task_data.resources_gained[resource])
+
 
 func cancel_task(task : TaskInstance):
 	finish_task(task, false)
