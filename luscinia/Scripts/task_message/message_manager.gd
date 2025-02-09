@@ -73,5 +73,3 @@ func _on_task_cancelled(task_instance : TaskInstance):
 
 func validate_prerequisite(prerequisite: Prerequisite, current_turn: int) -> bool:
 	return prerequisite.validate(TaskManager.completed_tasks, occurred_events, current_turn, rng)
-
-		#task_instances.append(new_instance)

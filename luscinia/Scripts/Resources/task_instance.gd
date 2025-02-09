@@ -13,7 +13,12 @@ enum CurrentStatus {IDLING, WORKING, TRAVELLING}
 @export var current_location : Vector2
 @export var is_completed : bool
 @export var actual_resources : Dictionary
-@export var message : Message
+@export var message : Message:
+	set(value):
+		if not value is Message:
+			push_error("Invalid type assigned to 'message'. Expected 'Message', got '%s'." % value)
+		else:
+			message = value
 var sender : Sender: #sender property to allow shorthand of task_instance.sender rather than task_instance.message.sender
 	get:
 		if message:
