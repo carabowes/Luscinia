@@ -14,9 +14,13 @@ var resource_textures = {
 }
 
 func _ready():
-	EventBus.response_option_selected.connect(
+	EventBus.message_responded.connect(
 		func(response : Response, message : Message):
 			queue_relationship_change(response.task.task_id, response.relationship_change)
+	)
+	EventBus.task_finished.connect(
+		func(task : TaskInstance, cancelled : bool):
+			apply_relationship_change(task.task_data.task_id, task.message.sender, task.current_progress)
 	)
 
 
@@ -74,5 +78,6 @@ func apply_relationship_change(task_id : String, sender : Sender, task_progress 
 		return
 	# If a user ends a task early they should not get the full relationship benefits
 	# 0% = relationship lost, 50% = 0 no relationship change, 100% = relationship gain
-	sender.relationship += (relationships_to_update[task_id] * task_progress * 2) - relationships_to_update[task_id] 
+	var relationship_change = (relationships_to_update[task_id] * task_progress * 2) - relationships_to_update[task_id] 
+	sender.relationship += relationship_change
 	relationships_to_update.erase(task_id)

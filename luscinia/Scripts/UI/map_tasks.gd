@@ -1,9 +1,6 @@
 class_name MapTasks
 extends Control
 
-# This will be removed and changed with some sort of reference to the singleton task manager once available.
-@export var details_page : TaskDetails
-@export var task_instance : Array[TaskInstance]
 @export var widget_size : float
 @export var zoom_level_medium_detail : float
 
@@ -12,78 +9,32 @@ var task_widget_prefab = "res://Scenes/task_widget.tscn"
 
 
 func _ready() -> void:
-	GlobalTimer.turn_progressed.connect(update_widget_task)
-	generate_widgets()
+	EventBus.task_started.connect(func(task : TaskInstance): create_widget(task))
+	GlobalTimer.turn_progressed.connect(func(time : int): render_widgets())
 	$MapView.zoom_changed.connect(render_widgets)
-	EventBus.task_cancelled.connect(cancel_task)
-	EventBus.response_option_selected.connect(response_selected)
 
 
-func response_selected(response : Response, message : Message):
-	var task_instance : TaskInstance = TaskInstance.new(response.task, 0, 0, 0, response.task.start_location, false, response.task.resources_required, message)
-	var task_data : TaskData = task_instance.task_data
-	for resource in task_data.resources_required.keys():
-		if resource == "funds":
-			ResourceManager.remove_resources(resource, task_data.resources_required[resource])
-		else:
-			ResourceManager.remove_available_resources(resource, task_data.resources_required[resource])
-	add_task_instance(task_instance)
+func create_widget(task_instance : TaskInstance):
+	var task_widget_instance : TaskWidget = load(task_widget_prefab).instantiate()
+	task_widget_instance.task_info = task_instance
+	task_widget_instance.position = task_instance.task_data.start_location
+
+	$MapView/MapTexture.add_child(task_widget_instance)
+	task_widgets.append(task_widget_instance)
+
+	task_widget_instance.widget_selected.connect(update_selected_widget)
+	EventBus.task_finished.connect(
+		func(task: TaskInstance, cancelled: bool): 
+			if task == task_instance: 
+				delete_widget(task_widget_instance)
+	)
+
+	render_widgets()
 
 
-func add_task_instance(new_instance : TaskInstance):
-	task_instance.append(new_instance)
-	print("Generating new widgets")
-	generate_widgets()
-
-
-func generate_widgets():
-	var num_widgets = range(len(task_widgets))
-	for i in num_widgets:
-		var current_widget = task_widgets[len(task_widgets)-1]
-		current_widget.queue_free()
-		task_widgets.remove_at(len(task_widgets)-1)
-
-	for task in task_instance:
-		if task.is_completed:
-			continue
-		var task_widget_instance : TaskWidget = load(task_widget_prefab).instantiate()
-		task_widget_instance.task_info = task
-		task.current_location = lerp(task.task_data.start_location, task.task_data.end_location, float(task.current_progress)/float(task.get_total_time()))
-		task_widget_instance.position = task.current_location
-		$MapView/MapTexture.add_child(task_widget_instance)
-		task_widgets.append(task_widget_instance)
-		task_widget_instance.connect("widget_selected", update_selected_widget)
-		task_widget_instance.task_details_page = details_page
-		render_widgets()
-
-
-func finish_task(task : TaskInstance, fully_complete : bool):
-	task.is_completed = true
-	ResourceManager.apply_relationship_change(task.task_data.task_id, task.sender, task.current_progress)
-	if fully_complete:
-		MessageManager.task_instances.append(task)
-	for resource in task.task_data.resources_gained.keys():
-		if fully_complete:
-			if resource != "funds":
-				ResourceManager.add_available_resources(resource, task.task_data.resources_gained[resource])
-			else:
-				ResourceManager.add_resources(resource, task.task_data.resources_gained[resource])
-		elif resource != "funds" and resource != "supplies":
-			ResourceManager.add_available_resources(resource, task.task_data.resources_gained[resource])
-
-
-func cancel_task(task : TaskInstance):
-	finish_task(task, false)
-	generate_widgets()
-
-
-func update_widget_task(time : int):
-	print("Time skip!")
-	for task in task_instance:
-		task.current_progress += time/60
-		if task.current_progress >= task.get_total_time() and !task.is_completed:
-			finish_task(task, true)
-	generate_widgets()
+func delete_widget(task_widget : TaskWidget):
+	task_widget.queue_free()
+	task_widgets.erase(task_widget)
 
 
 func set_level_of_details(affect_high_detail_widgets = false):
@@ -108,6 +59,7 @@ func render_widgets():
 		var current_scale = $MapView.current_scale
 		widget.scale = Vector2.ONE * widget_size / current_scale
 		set_level_of_details()
+		widget.queue_redraw()
 
 
 func _gui_input(event: InputEvent) -> void:

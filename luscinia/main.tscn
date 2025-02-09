@@ -28,8 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="map" parent="." node_paths=PackedStringArray("details_page") instance=ExtResource("1_7fdga")]
-details_page = NodePath("../pages/task_details")
+[node name="map" parent="." instance=ExtResource("1_7fdga")]
 
 [node name="message_manager" parent="." node_paths=PackedStringArray("message_board", "map_tasks") instance=ExtResource("7_g8mic")]
 layout_mode = 1

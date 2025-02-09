@@ -11,12 +11,27 @@ var current_message_page_state : MessagePageState = MessagePageState.CLOSED
 
 func _ready() -> void:
 	EventBus.navbar_message_button_pressed.connect(_navbar_button_pressed)
-	EventBus.message_selected.connect(func(message): _change_page_state(MessagePageState.MESSAGE_VIEWER))
-	EventBus.message_respond_button_pressed.connect(func(message): _change_page_state(MessagePageState.MESSAGE_RESPONSE))
-	EventBus.response_option_selected.connect(func(response, message): _change_page_state(MessagePageState.CLOSED))
-	EventBus.message_received_page_back_button_pressed.connect(func(): _change_page_state(MessagePageState.CLOSED))
-	EventBus.message_viewer_page_back_button_pressed.connect(func(): _change_page_state(MessagePageState.MESSAGE_RECEIVED))
-	EventBus.message_response_page_back_button_pressed.connect(func(): _change_page_state(MessagePageState.MESSAGE_VIEWER))
+
+	%MessagesReceivedPage.message_selected.connect(
+		func(message : MessageInstance): 
+			_change_page_state(MessagePageState.MESSAGE_VIEWER)
+			%MessagePage.show_message(message)
+	)
+	%MessagesReceivedPage.back_button_pressed.connect(func(): _change_page_state(MessagePageState.CLOSED))
+
+	%MessagePage.respond_button_pressed.connect(
+		func(message): 
+			_change_page_state(MessagePageState.MESSAGE_RESPONSE)
+			%MessageResponsePage.set_message(message)
+	)
+	%MessagePage.back_button_pressed.connect(func(): _change_page_state(MessagePageState.MESSAGE_RECEIVED))
+
+	%MessageResponsePage.response_option_selected.connect(
+		func(response : Response, message : Message):
+			_change_page_state(MessagePageState.CLOSED)
+			EventBus.message_responded.emit(response, message)
+	)
+	%MessageResponsePage.back_button_pressed.connect(func(): _change_page_state(MessagePageState.MESSAGE_VIEWER))
 
 
 func _navbar_button_pressed():
