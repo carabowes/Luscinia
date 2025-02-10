@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("3_wtfbc")
-task_id = 2
+task_id = 6
 name = "Establishing Contact with Villages"
 icon = ExtResource("2_sqybv")
 start_location = Vector2(1800, 1400)
