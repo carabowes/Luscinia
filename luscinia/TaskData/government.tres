@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Sender" load_steps=3 format=3 uid="uid://ch08t6jpxmul4"]
 
-[ext_resource type="Texture2D" uid="uid://dg01boigrppxu" path="res://Sprites/UI/starTaskIcon.png" id="1_ymb3s"]
+[ext_resource type="Texture2D" uid="uid://c27suyrk8wq" path="res://Sprites/ClockBackground.png" id="1_8naih"]
 [ext_resource type="Script" path="res://Scripts/Resources/sender.gd" id="2_w2r1h"]
 
 [resource]
 script = ExtResource("2_w2r1h")
 name = "Government"
-image = ExtResource("1_ymb3s")
-relationship = 36.0
+image = ExtResource("1_8naih")
+relationship = -5.0

@@ -22,6 +22,10 @@ GlobalTimer="*res://Scripts/global_timer.gd"
 
 [display]
 
+window/size/viewport_width=360
+window/size/viewport_height=800
+window/size/window_width_override=288
+window/size/window_height_override=512
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_width"
 window/handheld/orientation=1
