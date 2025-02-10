@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Scenario" load_steps=8 format=3 uid="uid://dc4n46la5lkak"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="1_8311e"]
+[ext_resource type="Resource" uid="uid://6i0nc5dgh3ql" path="res://TaskData/earthquake/message_earthquake.tres" id="2_yelwy"]
+[ext_resource type="Resource" uid="uid://cxwgponxxk2pf" path="res://TaskData/establish_contact/message_contact.tres" id="3_t07fd"]
+[ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="4_2lfhe"]
+[ext_resource type="Script" path="res://Scripts/Resources/response.gd" id="5_oxiti"]
+[ext_resource type="Script" path="res://Scripts/Resources/scenario.gd" id="6_vdt81"]
+
+[sub_resource type="Resource" id="Resource_q2te1"]
+script = ExtResource("1_8311e")
+message = ""
+responses = Array[ExtResource("5_oxiti")]([])
+prerequisites = Array[ExtResource("4_2lfhe")]([])
+antirequisites = Array[ExtResource("4_2lfhe")]([])
+turns_to_answer = 0
+is_repeatable = false
+
+[resource]
+script = ExtResource("6_vdt81")
+messages = Array[ExtResource("1_8311e")]([ExtResource("2_yelwy"), ExtResource("3_t07fd"), SubResource("Resource_q2te1")])

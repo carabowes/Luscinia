@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Scenario" load_steps=5 format=3 uid="uid://n0q4thav1bfr"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/scenario.gd" id="1_mpi3k"]
+[ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="1_qpdgy"]
+[ext_resource type="Resource" uid="uid://6i0nc5dgh3ql" path="res://TaskData/earthquake/message_earthquake.tres" id="2_10afv"]
+[ext_resource type="Resource" uid="uid://cxwgponxxk2pf" path="res://TaskData/establish_contact/message_contact.tres" id="3_e84dm"]
+
+[resource]
+script = ExtResource("1_mpi3k")
+messages = Array[ExtResource("1_qpdgy")]([ExtResource("2_10afv"), ExtResource("3_e84dm")])

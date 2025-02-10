@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://wfcc502s03m1"]
+
+[ext_resource type="Script" path="res://Scripts/Editor/task_graph_editor.gd" id="1_e4q15"]
+[ext_resource type="Resource" uid="uid://c6k6oafmmrsjh" path="res://TaskData/Scenarios/992773801.tres" id="2_5bjll"]
+
+[node name="TaskEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GraphEdit" type="GraphEdit" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+grid_pattern = 1
+right_disconnects = true
+script = ExtResource("1_e4q15")
+scenario_to_edit = ExtResource("2_5bjll")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GraphEdit"]
+z_index = 100
+z_as_relative = false
+layout_mode = 1
+offset_left = 304.0
+offset_top = 12.0
+offset_right = 944.0
+offset_bottom = 43.0
+
+[node name="NewTask" type="Button" parent="GraphEdit/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "New Task"
+
+[node name="NewMessage" type="Button" parent="GraphEdit/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "New Message"
+
+[node name="NewPrereq" type="Button" parent="GraphEdit/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "New Prerequisite"
+
+[node name="NewResponse" type="Button" parent="GraphEdit/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "New Response"
+
+[node name="NewSender" type="Button" parent="GraphEdit/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "New Sender"
+
+[node name="SaveButton" type="Button" parent="GraphEdit/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Save
+"
