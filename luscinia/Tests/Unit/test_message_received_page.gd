@@ -1,20 +1,52 @@
 extends GutTest
 
 var received_page_prefab = load("res://Scenes/UI/message_received_page.tscn")
+var sender : GutInputSender
+var page_instance : MessageReceivedPage
 
-func test_receive_page_script_exists():
-	var page : MessageReceivedPage = MessageReceivedPage.new()
-	assert_not_null(page)
+func before_each():
+	page_instance = received_page_prefab.instantiate()
+	add_child_autofree(page_instance)
 
 
-func test_receive_page_scene_exists():
-	var instance = received_page_prefab.instantiate()
-	assert_not_null(instance)
+func after_each():
+	if sender != null:
+		sender.release_all()
+		sender.clear()
 
 
 func test_on_message_received():
-	var instance : MessageReceivedPage = received_page_prefab.instantiate()
-	instance._on_message_received(MessageInstance.new())
-	assert_eq(instance.get_node("%MessagesReceived").get_child_count(), 2) #2 because seperator is there
-	instance._on_message_received(MessageInstance.new())
-	assert_eq(instance.get_node("%MessagesReceived").get_child_count(), 4) #4 because seperator is added
+	page_instance._on_message_received(MessageInstance.new())
+	assert_eq(page_instance.get_node("%MessagesReceived").get_child_count(), 2) #2 because seperator is there
+	page_instance._on_message_received(MessageInstance.new())
+	assert_eq(page_instance.get_node("%MessagesReceived").get_child_count(), 4) #4 because seperator is added
+	assert_eq(page_instance.num_messages, 2)
+
+
+func test_new_message_at_top():
+	page_instance._on_message_received(MessageInstance.new())
+	var top = page_instance.get_node("%MessagesReceived").get_child(0)
+	page_instance._on_message_received(MessageInstance.new())
+	assert_ne(top, page_instance.get_node("%MessagesReceived").get_child(0), "New messages should be at the top of the received messages.")
+
+
+func test_back_button():
+	watch_signals(page_instance)
+	var back_button : Button = page_instance.get_node("%BackButton")
+	back_button.pressed.emit()
+	assert_signal_emitted(page_instance, "back_button_pressed", "back_button_pressed should emit a signal when back button is pressed")
+
+
+func test_message_selected():
+	watch_signals(page_instance)
+	var message_instance = MessageInstance.new()
+	page_instance._on_message_received(message_instance)
+	var message_node = page_instance.get_node("%MessagesReceived").get_child(0)
+	sender = InputSender.new(message_node)
+	sender.action_down("interact")
+	assert_signal_emitted_with_parameters(page_instance, "message_selected", [message_instance])
+
+
+func test_message_sent_connection():
+	MessageManager.message_sent.emit(MessageInstance.new())
+	assert_eq(page_instance.get_node("%MessagesReceived").get_child_count(), 2) #2 because seperator is there
