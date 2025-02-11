@@ -11,6 +11,11 @@ func _ready():
 	_update_layout()
 
 
+func _draw():
+	if is_player_message: 
+		set_player_message_offsets()
+
+
 func set_text(text : String):
 	%MessageLayoutController.size.x = 0
 	%Text.text = text
@@ -24,6 +29,13 @@ func set_player_message(is_player_message : bool):
 	else:
 		%Background.self_modulate = non_player_color
 	_update_layout()
+
+
+func set_player_message_offsets():
+	#Aligns the player messages to the right
+	%MessageLayoutController.offset_right = 0
+	var padding = 10
+	%MessageLayoutController.offset_left = get_viewport_rect().size.x - %Background.size.x - padding
 
 
 func set_join(joined_at_top : bool, joined_at_bottom : bool):
@@ -47,9 +59,7 @@ func _update_layout():
 	%MessageLayoutController.offset_left = 0
 	if %Text.get_line_count() > 1 and %MessageLayoutController.size.x < maximum_size:
 		%MessageLayoutController.custom_minimum_size = Vector2(%MessageLayoutController.size.x + 1, 0)
-	elif is_player_message: #Aligns the player messages to the right, bit janky but this is the only way I've found to do it
-		%MessageLayoutController.offset_left = -%Text.size.x
-		%MessageLayoutController.set_anchors_preset(Control.PRESET_TOP_RIGHT, true)
-		if %MessageLayoutController.offset_left == -maximum_size: #Fixes some weird off by one alignment issue, still misalligned by like 1/3 of pixel but idk man
-			%MessageLayoutController.offset_left+=1
+	elif is_player_message:
+		set_player_message_offsets()
+		queue_redraw()
 	custom_minimum_size.y = %MessageLayoutController.size.y + 6 #+6 for spacing between the bubbles

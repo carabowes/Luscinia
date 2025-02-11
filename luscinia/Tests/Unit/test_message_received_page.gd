@@ -16,7 +16,10 @@ func after_each():
 
 
 func test_on_message_received():
+	assert_eq(page_instance.get_node("%MessagesReceived").get_child_count(), 2) #Seperator and no messages label
+	assert_true(page_instance.get_node("%NoMessagesLabel").visible)
 	page_instance._on_message_received(MessageInstance.new())
+	assert_null(page_instance.get_node_or_null("%NoMessagesLabel")) #Make sure no messages label is gone
 	assert_eq(page_instance.get_node("%MessagesReceived").get_child_count(), 2) #2 because seperator is there
 	page_instance._on_message_received(MessageInstance.new())
 	assert_eq(page_instance.get_node("%MessagesReceived").get_child_count(), 4) #4 because seperator is added
