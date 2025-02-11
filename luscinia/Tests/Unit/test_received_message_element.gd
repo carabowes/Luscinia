@@ -12,6 +12,7 @@ func test_new_instance():
 	var test_instance = instance.new_instance(message)
 	assert_not_null(test_instance)
 	assert_eq(test_instance.message_info, message)
+	test_instance.free()
 
 
 func test_render_badge_side():
@@ -31,22 +32,22 @@ func test_render_badge_profile():
 func test_unread_message_status():
 	instance.message_info.message_status = MessageInstance.MessageStatus.UNREAD
 	instance._render_message_status()
-	assert_eq(instance.get_node("%UnreadBadge").self_modulate.a , 1)
-	assert_eq(instance.get_node("%ContactUnreadBadge").self_modulate.a, 1)
+	assert_eq(instance.get_node("%UnreadBadge").self_modulate.a , 1.0)
+	assert_eq(instance.get_node("%ContactUnreadBadge").self_modulate.a, 1.0)
 
 
 func test_read_message_status():
 	instance.message_info.message_status = MessageInstance.MessageStatus.READ
 	instance._render_message_status()
-	assert_eq(instance.get_node("%UnreadBadge").self_modulate.a , 0)
-	assert_eq(instance.get_node("%ContactUnreadBadge").self_modulate.a, 0)
+	assert_eq(instance.get_node("%UnreadBadge").self_modulate.a , 0.0)
+	assert_eq(instance.get_node("%ContactUnreadBadge").self_modulate.a, 0.0)
 
 
 func test_replied_message_status():
 	instance.message_info.message_status = MessageInstance.MessageStatus.REPLIED
 	instance._render_message_status()
-	assert_eq(instance.get_node("%UnreadBadge").self_modulate.a , 0)
-	assert_eq(instance.get_node("%ContactUnreadBadge").self_modulate.a, 0)
+	assert_eq(instance.get_node("%UnreadBadge").self_modulate.a , 0.0)
+	assert_eq(instance.get_node("%ContactUnreadBadge").self_modulate.a, 0.0)
 	var test_color = Color.DIM_GRAY
 	test_color.a = 0.5
 	assert_eq(instance.get_node("%Layout").modulate,  test_color)
@@ -83,7 +84,7 @@ func test_two_turns_left():
 func test_no_turn_limit():
 	instance.message_info.turns_remaining = -1
 	instance._render_message_info()
-	assert_eq(instance.get_node("%TimeRemainingLabel").self_modulate.a, 0)
+	assert_eq(instance.get_node("%TimeRemainingLabel").self_modulate.a, 0.0)
 
 
 func test_signal_emit_on_press():
