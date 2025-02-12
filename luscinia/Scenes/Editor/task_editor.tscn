@@ -1,65 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://wfcc502s03m1"]
+[gd_scene load_steps=3 format=3 uid="uid://wfcc502s03m1"]
 
 [ext_resource type="Script" path="res://Scripts/Editor/task_graph_editor.gd" id="1_e4q15"]
-[ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="2_ygrak"]
-[ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="3_w2j3w"]
-[ext_resource type="Script" path="res://Scripts/Resources/response.gd" id="4_eu0fw"]
-[ext_resource type="Script" path="res://Scripts/Resources/event_effect.gd" id="5_cl85y"]
-[ext_resource type="Texture2D" uid="uid://dg01boigrppxu" path="res://Sprites/UI/starTaskIcon.png" id="6_k7mrv"]
-[ext_resource type="Script" path="res://Scripts/Resources/task_data.gd" id="7_c5lwl"]
-[ext_resource type="Script" path="res://Scripts/Resources/sender.gd" id="8_i3qq6"]
-[ext_resource type="Script" path="res://Scripts/Resources/scenario.gd" id="9_e11bb"]
-
-[sub_resource type="Resource" id="Resource_6m6il"]
-script = ExtResource("3_w2j3w")
-task_id = Array[int]([1])
-events = Array[int]([])
-chance = 0.58
-min_turn = 0
-max_turn = -1
-
-[sub_resource type="Resource" id="Resource_f31w1"]
-script = ExtResource("7_c5lwl")
-task_id = 4
-name = "Lmao"
-icon = ExtResource("6_k7mrv")
-start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
-resources_required = {}
-resources_gained = {
-"people": 5
-}
-expected_completion_time = 4
-effects_of_random_events = Array[ExtResource("5_cl85y")]([])
-
-[sub_resource type="Resource" id="Resource_owf3g"]
-script = ExtResource("4_eu0fw")
-response_name = ""
-response_text = "asasdasdas"
-relationship_change = 30.0
-task = SubResource("Resource_f31w1")
-
-[sub_resource type="Resource" id="Resource_3jlha"]
-script = ExtResource("8_i3qq6")
-name = "asdasdasd"
-image = ExtResource("6_k7mrv")
-relationship = 47.0
-
-[sub_resource type="Resource" id="Resource_wuphv"]
-script = ExtResource("2_ygrak")
-message = "asdasdasdasdasd"
-responses = Array[ExtResource("4_eu0fw")]([SubResource("Resource_owf3g")])
-default_response = 0
-sender = SubResource("Resource_3jlha")
-prerequisites = Array[ExtResource("3_w2j3w")]([])
-antirequisites = Array[ExtResource("3_w2j3w")]([SubResource("Resource_6m6il")])
-turns_to_answer = 3
-is_repeatable = true
-cancel_behaviour = 0
-
-[sub_resource type="Resource" id="Resource_fomid"]
-script = ExtResource("9_e11bb")
-messages = Array[ExtResource("2_ygrak")]([SubResource("Resource_wuphv")])
+[ext_resource type="Resource" uid="uid://cfpqtf8whqx0v" path="res://TaskData/Scenarios/3183682108.tres" id="2_npu4c"]
 
 [node name="TaskEditor" type="Control"]
 layout_mode = 3
@@ -76,10 +18,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scroll_offset = Vector2(0, -152)
 grid_pattern = 1
 right_disconnects = true
 script = ExtResource("1_e4q15")
-scenario_to_edit = SubResource("Resource_fomid")
+scenario_to_edit = ExtResource("2_npu4c")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GraphEdit"]
 z_index = 100

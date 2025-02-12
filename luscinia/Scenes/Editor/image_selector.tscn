@@ -1,25 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dq1xvqc64ji3l"]
+[gd_scene load_steps=3 format=3 uid="uid://dq1xvqc64ji3l"]
 
 [ext_resource type="Script" path="res://Scripts/Editor/image_selector.gd" id="1_8au7o"]
-[ext_resource type="Texture2D" uid="uid://dg01boigrppxu" path="res://Sprites/UI/starTaskIcon.png" id="2_d1cxc"]
-[ext_resource type="Script" path="res://Scripts/Editor/image_entry.gd" id="2_w2ejc"]
-[ext_resource type="Texture2D" uid="uid://c863dc1kr3gcq" path="res://Sprites/UI/godotTaskIcon.png" id="3_j72gi"]
-[ext_resource type="Texture2D" uid="uid://chgb1pq7fpd4c" path="res://Sprites/UI/Truck.png" id="5_1od2y"]
-
-[sub_resource type="Resource" id="Resource_86jmr"]
-script = ExtResource("2_w2ejc")
-image_name = "Godot"
-image = ExtResource("3_j72gi")
-
-[sub_resource type="Resource" id="Resource_cdeb3"]
-script = ExtResource("2_w2ejc")
-image_name = "Star"
-image = ExtResource("2_d1cxc")
-
-[sub_resource type="Resource" id="Resource_bnbbs"]
-script = ExtResource("2_w2ejc")
-image_name = "Truck"
-image = ExtResource("5_1od2y")
+[ext_resource type="Texture2D" uid="uid://dmrhlqq3p4y0g" path="res://Sprites/Package.png" id="6_4l1bu"]
 
 [node name="ImageSelector" type="Control"]
 custom_minimum_size = Vector2(0, 130)
@@ -29,7 +11,6 @@ anchor_right = 1.0
 offset_bottom = 128.0
 grow_horizontal = 2
 script = ExtResource("1_8au7o")
-images = Array[ExtResource("2_w2ejc")]([SubResource("Resource_86jmr"), SubResource("Resource_cdeb3"), SubResource("Resource_bnbbs")])
 
 [node name="ImageSelectorLayout" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -40,6 +21,7 @@ grow_horizontal = 2
 
 [node name="IconMargin" type="MarginContainer" parent="ImageSelectorLayout"]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 20
@@ -54,30 +36,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Task Icon"
 
-[node name="Icon" type="TextureRect" parent="ImageSelectorLayout/IconMargin/IconLayout"]
+[node name="IconButton" type="Button" parent="ImageSelectorLayout/IconMargin/IconLayout"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
-size_flags_horizontal = 8
-expand_mode = 4
-
-[node name="NewImageMargin" type="MarginContainer" parent="ImageSelectorLayout"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 5
-
-[node name="NewImageLayout" type="HBoxContainer" parent="ImageSelectorLayout/NewImageMargin"]
-layout_mode = 2
-
-[node name="SelectNewImageLabel" type="Label" parent="ImageSelectorLayout/NewImageMargin/NewImageLayout"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Select new image:"
-
-[node name="NewImageOptions" type="OptionButton" parent="ImageSelectorLayout/NewImageMargin/NewImageLayout"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 8
+icon = ExtResource("6_4l1bu")
+icon_alignment = 1
 expand_icon = true

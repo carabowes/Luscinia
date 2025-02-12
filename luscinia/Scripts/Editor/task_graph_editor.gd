@@ -114,7 +114,8 @@ func load_responses(responses : Array[Response], message_node : MessageGraphNode
 		var response_node : ResponseGraphNode = ResponseGraphNode.new(response)
 		setup_node(response_node, response_nodes.append, response_nodes.erase)
 		connect_node(message_node.name, MessageGraphNode.OutPortNums.RESPONSES, response_node.name, ResponseGraphNode.InPortNums.MESSAGE)
-		load_task(response.task, response_node)
+		if response.task != null:
+			load_task(response.task, response_node)
 
 
 func load_task(task : TaskData, response_node : ResponseGraphNode):
