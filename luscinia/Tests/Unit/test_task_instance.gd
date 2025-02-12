@@ -19,6 +19,7 @@ func before_each():
 		test_sender
 	)
 
+
 func test_task_data_initialisation():
 	assert_eq(task_data.task_id, 1, "Task ID should be correctly assigned")
 	assert_eq(task_data.name, "Test", "Task name should be correctly assigned")
@@ -29,7 +30,6 @@ func test_task_data_initialisation():
 	assert_eq(task_data.resources_gained, {"funds":10}, "Resources gained should match the dictionary")
 	assert_eq(task_data.expected_completion_time, 5, "Expected completion time should be correctly assigned")
 	assert_eq(task_data.effects_of_random_events, [], "Effects of random events should be an empty array")
-
 
 
 func test_initialisation():
@@ -44,8 +44,10 @@ func test_initialisation():
 	assert_eq(task_instance.sender.image, null, "Sender image should be null by default")
 	assert_eq(task_instance.sender.relationship, 0, "Relationship should start at neutral (0)")
 
+
 func test_get_total_time():
 	assert_eq(task_instance.get_total_time(), 7, "Total time should be expected completion time (5) + extra time (2)")
+
 
 func test_get_remaining_time():
 	assert_eq(task_instance.get_remaining_time(), 3, "Remaining time should be total time (7) - current progress (4)")
