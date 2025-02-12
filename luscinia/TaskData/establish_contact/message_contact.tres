@@ -41,7 +41,7 @@ task = SubResource("Resource_fyfam")
 [resource]
 script = ExtResource("5_fxqfx")
 message = "We should establish contact with the villages in the hills."
-responses = Array[ExtResource("2_4b81d")]([SubResource("Resource_1u5v2"), SubResource("Resource_yyyp4"), SubResource("Resource_xt23u")])
+responses = [SubResource("Resource_1u5v2"), SubResource("Resource_yyyp4"), SubResource("Resource_xt23u")]
 sender = ExtResource("8_myast")
 prerequisites = Array[ExtResource("1_25c66")]([])
 antirequisites = Array[ExtResource("1_25c66")]([])

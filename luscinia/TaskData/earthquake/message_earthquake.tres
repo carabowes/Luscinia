@@ -22,7 +22,7 @@ task = ExtResource("4_sqv1u")
 [resource]
 script = ExtResource("3_pyrkd")
 message = "Theres been an earthquake in Freetown. We should send a response team."
-responses = Array[ExtResource("2_ltmve")]([SubResource("Resource_sd1qi"), SubResource("Resource_esow4")])
+responses = [SubResource("Resource_sd1qi"), SubResource("Resource_esow4")]
 sender = ExtResource("6_iusj1")
 prerequisites = Array[ExtResource("1_rm0d1")]([])
 antirequisites = Array[ExtResource("1_rm0d1")]([])
