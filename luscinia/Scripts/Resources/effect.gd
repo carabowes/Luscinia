@@ -20,4 +20,4 @@ func _init(effect_type = 0, resource_type = 0, change_amount = 0, chance = 0) ->
 	self.effect_type = effect_type
 	self.resource_type = resource_type
 	self.change_amount = change_amount
-	self.chance = chance
+	self.chance = clamp(chance, 0.0, 1.0)
