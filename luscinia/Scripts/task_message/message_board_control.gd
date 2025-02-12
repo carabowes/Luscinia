@@ -2,6 +2,7 @@ class_name MessageBoard
 extends Control
 
 signal response_picked
+signal resource_spent(name: String, resource: String, amt: int)
 
 @export var message_box : VBoxContainer
 @export var response_box : VBoxContainer
@@ -37,8 +38,10 @@ func dispatch_task(task_data : TaskData, response_chosen : Response, sender : Se
 	for resource in task_data.resources_required.keys():
 		if resource == "funds":
 			ResourceManager.remove_resources(resource, task_data.resources_required[resource])
+			resource_spent.emit(task_data.name, resource, task_data.resources_required[resource])
 		else:
 			ResourceManager.remove_available_resources(resource, task_data.resources_required[resource])
+			resource_spent.emit(task_data.name, resource, task_data.resources_required[resource])
 	var new_task_instance = TaskInstance.new(task_data, 0, 0, 0,
 											task_data.start_location, false,
 											task_data.resources_required, sender)
