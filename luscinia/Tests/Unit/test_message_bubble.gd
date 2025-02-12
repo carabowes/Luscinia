@@ -26,7 +26,7 @@ func test_set_player_message_false():
 func test_set_player_offsets():
 	message_bubble_instance.set_player_message(true)
 	message_bubble_instance.set_player_message_offsets()
-	assert_eq(message_bubble_instance.offset_right, 0)
+	assert_eq(message_bubble_instance.offset_right, 0.0)
 
 
 func test_set_join_non_player():
