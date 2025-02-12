@@ -18,6 +18,8 @@ func _init(sender : Sender):
 
 func reset():
 	for child in get_children():
+		if child.get_index() == 0: #delete button
+			continue
 		child.free()
 	_add_elements()
 

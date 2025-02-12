@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Scenario" load_steps=15 format=3 uid="uid://duit5atxukdeo"]
+[gd_resource type="Resource" script_class="Scenario" load_steps=15 format=3]
 
 [ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="1_22kjx"]
 [ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="2_lfadw"]
@@ -6,9 +6,9 @@
 [ext_resource type="Script" path="res://Scripts/Resources/response.gd" id="3_8xbhe"]
 [ext_resource type="Script" path="res://Scripts/Resources/event_effect.gd" id="4_cvs8s"]
 [ext_resource type="Script" path="res://Scripts/Resources/task_data.gd" id="5_j85s3"]
-[ext_resource type="Texture2D" uid="uid://d1prnk2q4ke5m" path="res://Sprites/arrow.png" id="5_qj6fc"]
+[ext_resource type="Texture2D" path="res://Sprites/arrow.png" id="5_qj6fc"]
 [ext_resource type="Script" path="res://Scripts/Resources/sender.gd" id="6_imb53"]
-[ext_resource type="Texture2D" uid="uid://d1cwe1f3jk3ca" path="res://Sprites/icon.svg" id="7_atwyf"]
+[ext_resource type="Texture2D" path="res://Sprites/icon.svg" id="7_atwyf"]
 
 [sub_resource type="Resource" id="Resource_mhxfq"]
 script = ExtResource("2_lfadw")
@@ -41,7 +41,7 @@ task = SubResource("Resource_emodc")
 script = ExtResource("6_imb53")
 name = "Anonymous"
 image = ExtResource("7_atwyf")
-relationship = 0.0
+relationship = 45.0
 
 [sub_resource type="Resource" id="Resource_qc7dk"]
 script = ExtResource("1_22kjx")
