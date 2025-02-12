@@ -5,6 +5,8 @@ extends Control
 @export var start_task_notif_label: Label
 @export var end_task_notif_label: Label
 
+var showing: bool = false
+
 var task_start_notif_text = ""
 var got_name: bool = false
 
@@ -26,14 +28,19 @@ func format_gained_resource_text(resource: String, amt: int):
 
 
 func show_task_end_notif():
+	$time_skip_notification.visible = false
+	showing = true
 	end_task_notif_label.text = task_end_notif_text
 	task_end_notif_text = ""
 	got_report = false
 	var tween1 = get_tree().create_tween()
 	tween1.tween_property(%task_end_notification,"position", Vector2(0,205),0.2)
-	await get_tree().create_timer(2).timeout #2s
+	await get_tree().create_timer(1.2).timeout #2s
 	var tween2 = get_tree().create_tween()
 	tween2.tween_property(%task_end_notification,"position", Vector2(-360,205),0.2)
+	await get_tree().create_timer(0.25).timeout #2s
+	$time_skip_notification.visible = true
+	showing = false
 
 
 func format_spent_resource_text(name:String, resource: String, amt: int):
@@ -57,7 +64,9 @@ func show_task_start_notif():
 
 
 func show_turn_notif(time_skipped: int):
-	await turn_notif_coroutine(time_skipped)
+	if(!showing):
+		showing = true
+		await turn_notif_coroutine(time_skipped)
 
 
 func turn_notif_coroutine(time_skipped: int):
@@ -68,3 +77,5 @@ func turn_notif_coroutine(time_skipped: int):
 	await get_tree().create_timer(0.5).timeout #2s
 	var tween2 = get_tree().create_tween()
 	tween2.tween_property(%time_skip_notification,"position", Vector2(-360,205),0.2)
+	await get_tree().create_timer(0.2).timeout #2s
+	showing = false

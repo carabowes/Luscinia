@@ -155,32 +155,13 @@ task_widget_renderer = NodePath("../../map")
 start_task_notif_label = NodePath("task_start_notification/start_text")
 end_task_notif_label = NodePath("task_end_notification/end_text")
 
-[node name="time_skip_notification" type="ColorRect" parent="pages/notifications"]
+[node name="task_start_notification" type="ColorRect" parent="pages/notifications"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = -360.0
 offset_top = 205.0
 offset_bottom = 333.0
-color = Color(0.254902, 0.560784, 0.870588, 0.596078)
-
-[node name="skip_text" type="Label" parent="pages/notifications/time_skip_notification"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 48
-text = "Time Skipped!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="task_start_notification" type="ColorRect" parent="pages/notifications"]
-unique_name_in_owner = true
-offset_left = -360.0
-offset_top = 205.0
-offset_bottom = 333.0
-color = Color(0.254902, 0.560784, 0.870588, 0.596078)
+color = Color(0.254902, 0.560784, 0.870588, 1)
 
 [node name="start_text" type="Label" parent="pages/notifications/task_start_notification"]
 layout_mode = 1
@@ -195,10 +176,11 @@ vertical_alignment = 1
 
 [node name="task_end_notification" type="ColorRect" parent="pages/notifications"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = -360.0
 offset_top = 205.0
 offset_bottom = 333.0
-color = Color(0.254902, 0.560784, 0.870588, 0.596078)
+color = Color(0.254902, 0.560784, 0.870588, 1)
 
 [node name="end_text" type="Label" parent="pages/notifications/task_end_notification"]
 layout_mode = 1
@@ -208,6 +190,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="time_skip_notification" type="ColorRect" parent="pages/notifications"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -360.0
+offset_top = 205.0
+offset_bottom = 333.0
+color = Color(0.254902, 0.560784, 0.870588, 1)
+
+[node name="skip_text" type="Label" parent="pages/notifications/time_skip_notification"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Time Skipped!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
