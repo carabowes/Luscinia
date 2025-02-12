@@ -4,6 +4,7 @@ signal message_sent(message: MessageInstance)
 
 @export var messages_to_send: Array[Message]
 var messages_to_receive: Array[Message]
+var unreplied_messages : int = 0
 #var task_completed: Array[TaskData]
 
 var occurred_events: Array[Event.EventType]
@@ -13,7 +14,7 @@ func _ready():
 	rng.randomize() ##Randomize the RNG for chance-based validation
 	GlobalTimer.turn_progressed.connect(find_messages_to_send)
 	EventBus.task_finished.connect(func(task : TaskInstance, cancelled : bool): if cancelled : _on_task_cancelled(task))
-
+	EventBus.message_responded.connect(func(message, response): unreplied_messages -= 1; if unreplied_messages == 0: EventBus.all_messages_read.emit())
 
 func find_messages_to_send(time_progressed: int):
 	var selected_messages: Array[Message]
@@ -37,6 +38,7 @@ func find_messages_to_send(time_progressed: int):
 			send_message(message)
 	for message in selected_messages:
 		messages_to_send.erase(message)
+	unreplied_messages += len(selected_messages)
 
 
 func send_message(message : Message):

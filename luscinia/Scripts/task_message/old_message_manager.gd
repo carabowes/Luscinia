@@ -6,8 +6,6 @@ extends Control
 
 @export_group("UI Elements")
 @export var message_board : MessageBoard
-@onready var message_list = $"../pages/text_message_list"
-@export var message_notif_button : Button
 @export var rand_notif_button : Button
 @export var map_tasks : MapTasks
 
@@ -20,12 +18,9 @@ var message_sent_this_turn = false
 
 func _ready() -> void:
 	randomize()
-	message_notif_button.pressed.connect(_on_alert_pressed)
 	rand_notif_button.pressed.connect(_on_alert_pressed)
-	message_board.map = map_tasks
 	message_board.response_picked.connect(func(): message_board.visible = false)
 	GlobalTimer.turn_progressed.connect(func(time : int): message_sent_this_turn = false)
-	MessageManager.message_sent.connect(func(message: MessageInstance): message_notif_button.visible = true)
 
 
 func _on_alert_pressed() -> void:
