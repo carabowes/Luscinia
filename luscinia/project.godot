@@ -32,7 +32,7 @@ project/assembly_name="Luscinia"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 
@@ -53,3 +53,4 @@ renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true
+<<<<<<<HEAD2d/snap/snap_2d_transforms_to_pixel=true

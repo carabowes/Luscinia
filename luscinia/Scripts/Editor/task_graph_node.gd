@@ -3,8 +3,6 @@ extends TaskEditorGraphNode
 
 var task : TaskData
 
-var change_task_id : Callable
-
 enum InPortNums {
 	RESPONSE = 0
 }
@@ -29,9 +27,12 @@ func _init(task : TaskData):
 	task_name_input.text_changed.connect(_on_task_name_changed)
 	
 	var task_id_input = add_input("Task ID", str(task.task_id))
-	set_port(false, task_id_input.get_index(), SlotType.TASK_TO_PREQ)
 	task_id_input.text_changed.connect(func(text): _on_task_id_changed(text, task_id_input))
-	change_task_id = func(value): task_id_input.text = str(value); task.task_id = int(value)
+	if(task.task_id == ""):
+		task_id_input.self_modulate = Color.RED
+	else:
+		task_id_input.self_modulate = Color.WHITE
+	set_port(false, task_id_input.get_index(), SlotType.TASK_TO_PREQ)
 	
 	var task_time_input = add_input("Expected Completion Time", str(task.expected_completion_time))
 	task_time_input.text_changed.connect(func(text): _on_task_time_changed(text, task_time_input))
@@ -55,13 +56,19 @@ func _on_task_name_changed(new_name : String):
 
 
 func _on_task_id_changed(new_id : String, input : LineEdit):
-	if not new_id.is_valid_int():
-		input.text = str(task.task_id)
-		return
-	task.task_id = new_id.to_int()
+	if new_id == "": 
+		input.self_modulate = Color.RED
+	else:
+		input.self_modulate = Color.WHITE
+	task.task_id = new_id
 
 
 func _on_task_time_changed(new_time : String, input : LineEdit):
+	if new_time == "": 
+		new_time = "-1"
+		input.self_modulate = Color.RED
+	else:
+		input.self_modulate = Color.WHITE
 	if not new_time.is_valid_int():
 		input.text = str(task.expected_completion_time)
 		return
@@ -73,21 +80,24 @@ func _on_image_selected(image : Texture):
 
 
 func _on_resource_required_field_changed(resource: String, new_resource : String, input : Field):
+	if new_resource == "": new_resource = "0"
 	if not new_resource.is_valid_int():
-		input.text = str(task.resources_required[resource]) if task.resources_required.has(resource) else "0"
+		input.field_value = str(task.resources_required[resource]) if task.resources_required.has(resource) else "0"
 		return
 	if new_resource == "0" and task.resources_required.has(resource):
 		task.resources_required.erase(resource)
+		input.field_value = "0"
 	else:
 		task.resources_required[resource] = int(new_resource)
 
 
 func _on_resource_gained_field_changed(resource: String, new_resource : String, input : Field):
 	if not new_resource.is_valid_int():
-		input.text = str(task.resources_gained[resource]) if task.resources_gained.has(resource) else "0"
+		input.field_value = str(task.resources_gained[resource]) if task.resources_gained.has(resource) else "0"
 		return
 	if new_resource == "0" and task.resources_gained.has(resource):
 		task.resources_gained.erase(resource)
+		input.field_value = "0"
 	else:
 		task.resources_gained[resource] = int(new_resource)
 

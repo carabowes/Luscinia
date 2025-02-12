@@ -50,11 +50,11 @@ func get_resource_texture(resource_name: String) -> Texture:
 	return null
 
 
-func queue_relationship_change(task_id: int, relationship_change: int):
+func queue_relationship_change(task_id: String, relationship_change: int):
 	relationships_to_update[task_id] = relationship_change
 
 
-func apply_relationship_change(task_id: int, sender: Sender, task_progress: float):
+func apply_relationship_change(task_id: String, sender: Sender, task_progress: float):
 	if not relationships_to_update.has(task_id) or sender == null:
 		return
 	sender.relationship += (

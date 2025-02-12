@@ -11,19 +11,21 @@
 
 [sub_resource type="Resource" id="Resource_1u5v2"]
 script = ExtResource("2_q6ylw")
+response_name = ""
 response_text = "east hills evac"
 relationship_change = 0.0
 task = ExtResource("3_nhlbg")
 
 [sub_resource type="Resource" id="Resource_yyyp4"]
 script = ExtResource("2_q6ylw")
+response_name = ""
 response_text = "west hills evac"
 relationship_change = 0.0
 task = ExtResource("4_uaijw")
 
 [sub_resource type="Resource" id="Resource_fyfam"]
 script = ExtResource("6_3kykk")
-task_id = 0
+task_id = ""
 name = ""
 start_location = Vector2(-1000, -1000)
 end_location = Vector2(-1000, -1000)
@@ -34,6 +36,7 @@ effects_of_random_events = Array[ExtResource("5_i7fxg")]([])
 
 [sub_resource type="Resource" id="Resource_xt23u"]
 script = ExtResource("2_q6ylw")
+response_name = ""
 response_text = "we wait"
 relationship_change = 0.0
 task = SubResource("Resource_fyfam")
@@ -42,8 +45,10 @@ task = SubResource("Resource_fyfam")
 script = ExtResource("7_cwd26")
 message = "mudslide encountered on the way"
 responses = Array[ExtResource("2_q6ylw")]([SubResource("Resource_1u5v2"), SubResource("Resource_yyyp4"), SubResource("Resource_xt23u")])
+default_response = 0
 sender = ExtResource("8_u3tfo")
 prerequisites = Array[ExtResource("1_t37qc")]([])
 antirequisites = Array[ExtResource("1_t37qc")]([])
 turns_to_answer = 0
 is_repeatable = false
+cancel_behaviour = 0

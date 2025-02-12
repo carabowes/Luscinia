@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dl3fuhnhencjk"]
 
-[ext_resource type="Script" path="res://Scenes/Editor/field.gd" id="1_b7bsm"]
+[ext_resource type="Script" path="res://Scripts/Editor/field.gd" id="1_b7bsm"]
 
 [node name="Field" type="Control"]
 custom_minimum_size = Vector2(0, 40)

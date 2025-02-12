@@ -6,6 +6,7 @@ signal deleted
 var collapsible_container_prefab = preload("res://Scenes/UI/collapsable_container.tscn")
 var field_prefab = preload("res://Scenes/Editor/field.tscn")
 var image_selector_prefab = preload("res://Scenes/Editor/image_selector.tscn")
+var choice_picker_prefab = preload("res://Scenes/Editor/choice_picker.tscn")
 
 enum SlotType {
 	PREQ_TO_MESSAGE,
@@ -22,7 +23,6 @@ var slot_colors = [
 	Color.GREEN_YELLOW,
 	Color.FIREBRICK
 ]
-
 
 func _init():
 	resizable = true
@@ -125,6 +125,14 @@ func add_slider(heading: String, default_value: float, min_value: float, max_val
 	add_child(slider)
 	slider.value_changed.connect(func(value): label.text = heading + ": " + str(value))
 	return slider
+
+
+func add_choice_picker(heading: String, values : Dictionary, default_option) -> ChoicePicker:
+	var choice_picker : ChoicePicker = choice_picker_prefab.instantiate()
+	choice_picker.text = heading
+	choice_picker.set_values(str(default_option), values)
+	add_child(choice_picker)
+	return choice_picker
 
 
 func set_port(is_input : bool, i : int, slot_type : SlotType):

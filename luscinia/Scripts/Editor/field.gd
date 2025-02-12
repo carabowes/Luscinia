@@ -17,3 +17,4 @@ var field_value : String:
 
 func _ready() -> void:
 	%FieldValue.text_submitted.connect(func(val : String): field_changed.emit(field_name, val))
+	%FieldValue.focus_exited.connect(func(): field_changed.emit(field_name, field_value))

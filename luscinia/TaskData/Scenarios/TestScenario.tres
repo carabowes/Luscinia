@@ -1,8 +1,60 @@
-[gd_resource type="Resource" script_class="Scenario" load_steps=3 format=3 uid="uid://duit5atxukdeo"]
+[gd_resource type="Resource" script_class="Scenario" load_steps=15 format=3 uid="uid://duit5atxukdeo"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="1_22kjx"]
+[ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="2_lfadw"]
 [ext_resource type="Script" path="res://Scripts/Resources/scenario.gd" id="2_yn5ci"]
+[ext_resource type="Script" path="res://Scripts/Resources/response.gd" id="3_8xbhe"]
+[ext_resource type="Script" path="res://Scripts/Resources/event_effect.gd" id="4_cvs8s"]
+[ext_resource type="Script" path="res://Scripts/Resources/task_data.gd" id="5_j85s3"]
+[ext_resource type="Texture2D" uid="uid://d1prnk2q4ke5m" path="res://Sprites/arrow.png" id="5_qj6fc"]
+[ext_resource type="Script" path="res://Scripts/Resources/sender.gd" id="6_imb53"]
+[ext_resource type="Texture2D" uid="uid://d1cwe1f3jk3ca" path="res://Sprites/icon.svg" id="7_atwyf"]
+
+[sub_resource type="Resource" id="Resource_mhxfq"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.44
+min_turn = 1
+max_turn = 4
+
+[sub_resource type="Resource" id="Resource_emodc"]
+script = ExtResource("5_j85s3")
+task_id = ""
+name = ""
+icon = ExtResource("5_qj6fc")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_petn6"]
+script = ExtResource("3_8xbhe")
+response_name = "Response"
+response_text = ""
+relationship_change = 0.0
+task = SubResource("Resource_emodc")
+
+[sub_resource type="Resource" id="Resource_iff3j"]
+script = ExtResource("6_imb53")
+name = "Anonymous"
+image = ExtResource("7_atwyf")
+relationship = 0.0
+
+[sub_resource type="Resource" id="Resource_qc7dk"]
+script = ExtResource("1_22kjx")
+message = ""
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_petn6")])
+default_response = 0
+sender = SubResource("Resource_iff3j")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_mhxfq")])
+antirequisites = Array[ExtResource("2_lfadw")]([])
+turns_to_answer = 0
+is_repeatable = false
+cancel_behaviour = 4
 
 [resource]
 script = ExtResource("2_yn5ci")
-messages = Array[ExtResource("1_22kjx")]([])
+messages = Array[ExtResource("1_22kjx")]([SubResource("Resource_qc7dk")])

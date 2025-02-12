@@ -30,7 +30,11 @@ func link_buttons():
 						node.reset())
 		return sender_node
 	
-	%NewTask.pressed.connect(func(): add_node(TaskData.new, TaskGraphNode.new, add_to_task_nodes, remove_from_task_node))
+	var task_creation = func():
+		var new_task = TaskData.new("CHANGE ME")
+		return new_task
+	
+	%NewTask.pressed.connect(func(): add_node(task_creation, TaskGraphNode.new, add_to_task_nodes, remove_from_task_node))
 	%NewMessage.pressed.connect(func(): add_node(Message.new, MessageGraphNode.new, message_nodes.append, message_nodes.erase))
 	%NewPrereq.pressed.connect(func(): add_node(Prerequisite.new, RequisiteGraphNode.new, requisite_nodes.append, requisite_nodes.erase))
 	%NewResponse.pressed.connect(func(): add_node(Response.new, ResponseGraphNode.new, response_nodes.append, response_nodes.erase))
@@ -38,9 +42,7 @@ func link_buttons():
 
 
 func add_to_task_nodes(task_node : TaskGraphNode):
-	var task_id : int = get_valid_task_id(task_node)
-	task_node.change_task_id.call(task_id)
-	task_nodes[task_id] = task_node
+	task_nodes[task_node.task.task_id] = task_node
 
 
 func remove_from_task_node(task_node : TaskGraphNode):
@@ -65,25 +67,8 @@ func center_node(node : GraphNode):
 	node.position_offset = (scroll_offset + size / 2) / zoom - node.size / 2;
 
 
-func get_valid_task_id(task_node : TaskGraphNode) -> int:
-	var task_id = task_node.task.task_id
-	if not task_nodes.has(task_id):
-		return task_id
-	if task_nodes.has(task_id) and task_nodes[task_id] == task_node:
-		return task_id
-	var current_id = task_nodes.keys()[-1]
-	var found = false
-	while not found:
-		if not task_nodes.has(current_id):
-			found = true
-			return current_id
-		current_id += 1
-	return 0
-
-
 func load_scenario(scenario : Scenario):
-	var scenario_copy : Scenario = scenario.duplicate(true)
-	load_messages(scenario_copy.messages)
+	load_messages(scenario.messages)
 
 
 func load_messages(messages : Array[Message]):
@@ -179,9 +164,9 @@ func save_scenario():
 	var messages : Array[Message]
 	for message_node : MessageGraphNode in message_nodes:
 		messages.append(message_node.message)
-	var new_scenario : Scenario = Scenario.new(messages)
+	scenario_to_edit.messages = messages
 	print("Saving...")
 	print(scenario_to_edit.resource_path)
 	var rng : RandomNumberGenerator = RandomNumberGenerator.new()
-	var result = ResourceSaver.save(new_scenario, "res://TaskData/Scenarios/" + str(rng.randi()) + ".tres")
+	var result = ResourceSaver.save(scenario_to_edit)
 	print("Saved with result of ", result)

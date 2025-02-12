@@ -9,12 +9,14 @@
 
 [sub_resource type="Resource" id="Resource_sd1qi"]
 script = ExtResource("2_ltmve")
+response_name = ""
 response_text = "Yes, we will send a full response team."
 relationship_change = 50.0
 task = ExtResource("3_x0wr0")
 
 [sub_resource type="Resource" id="Resource_esow4"]
 script = ExtResource("2_ltmve")
+response_name = ""
 response_text = "Lets send a small team until we know the full picture."
 relationship_change = -50.0
 task = ExtResource("4_sqv1u")
@@ -22,9 +24,11 @@ task = ExtResource("4_sqv1u")
 [resource]
 script = ExtResource("3_pyrkd")
 message = "Theres been an earthquake in Freetown. We should send a response team."
-responses = [SubResource("Resource_sd1qi"), SubResource("Resource_esow4")]
+responses = Array[ExtResource("2_ltmve")]([SubResource("Resource_sd1qi"), SubResource("Resource_esow4")])
+default_response = 0
 sender = ExtResource("6_iusj1")
 prerequisites = Array[ExtResource("1_rm0d1")]([])
 antirequisites = Array[ExtResource("1_rm0d1")]([])
 turns_to_answer = 0
 is_repeatable = false
+cancel_behaviour = 0

@@ -24,19 +24,21 @@ func _init(message : Message):
 	message_input.text_changed.connect(func(): _on_message_contents_changed(message_input.text))
 	
 	add_spacer()
-	var responses_label = Label.new()
-	responses_label.text = "Responses"
-	add_child(responses_label)
-	set_port(false, responses_label.get_index(), SlotType.MESSAGE_TO_RESPONSE)
-	
-	add_spacer()
 	var sender_label = Label.new()
 	sender_label.text = "Sender"
 	add_child(sender_label)
 	set_port(true, sender_label.get_index(), SlotType.SENDER_TO_MESSAGE)
 	
 	add_spacer()
+	var responses_label = Label.new()
+	responses_label.text = "Responses"
+	add_child(responses_label)
+	set_port(false, responses_label.get_index(), SlotType.MESSAGE_TO_RESPONSE)
 	
+	var default_response_input = add_input("Default Response Index", str(message.default_response))
+	default_response_input.text_changed.connect(func(text): _on_default_response_changed(text, default_response_input))
+	
+	add_spacer()
 	var prerequisites_label = Label.new()
 	prerequisites_label.text = "Prerequisites"
 	add_child(prerequisites_label)
@@ -56,17 +58,38 @@ func _init(message : Message):
 	add_spacer()
 	var is_repeatable_check = add_checkbox("Is Repeatable?", message.is_repeatable)
 	is_repeatable_check.pressed.connect(func(): _on_is_repeatable_changed(is_repeatable_check))
-
+	
+	add_spacer()
+	var cancel_behaviour = add_choice_picker("Cancel Behaviour", Message.CancelBehaviour, Message.CancelBehaviour.keys()[message.cancel_behaviour])
+	cancel_behaviour.value_chosen.connect(func(value): message.cancel_behaviour = value; print(message.cancel_behaviour))
+	
 
 func _on_message_contents_changed(contents : String):
 	message.message = contents
 
 
-func _on_turns_to_answer_changed(contents : String, input : LineEdit):
-	if not contents.is_valid_int():
+func _on_default_response_changed(value : String, input : LineEdit):
+	if value == "": 
+		value = "-1"
+		input.self_modulate = Color.RED
+	else:
+		input.self_modulate = Color.WHITE
+	if not value.is_valid_int():
+		input.text = str(message.default_response)
+		return
+	message.default_response = value.to_int()
+
+
+func _on_turns_to_answer_changed(value : String, input : LineEdit):
+	if value == "": 
+		value = "-1"
+		input.self_modulate = Color.RED
+	else:
+		input.self_modulate = Color.WHITE
+	if not value.is_valid_int():
 		input.text = str(message.turns_to_answer)
 		return
-	message.turns_to_answer = contents.to_int()
+	message.turns_to_answer = value.to_int()
 
 
 func _on_is_repeatable_changed(checkbox : CheckBox):
