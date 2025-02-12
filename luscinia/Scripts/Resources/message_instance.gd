@@ -21,6 +21,8 @@ func _init(message : Message = default_message) -> void:
 	message_status = MessageStatus.UNREAD
 	self.message = message
 	self.turns_remaining = message.turns_to_answer
+	if self.turns_remaining < 1:
+		self.turns_remaining = -1
 
 
 func reply(response : Response):

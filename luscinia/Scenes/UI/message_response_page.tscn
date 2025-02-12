@@ -126,7 +126,7 @@ layout_mode = 2
 text = "COST"
 label_settings = SubResource("LabelSettings_rveik")
 
-[node name="CostResource" type="GridContainer" parent="Margin/PageLayout/InformationLayout"]
+[node name="CostResources" type="GridContainer" parent="Margin/PageLayout/InformationLayout"]
 unique_name_in_owner = true
 layout_mode = 2
 columns = 4
