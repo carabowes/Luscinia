@@ -5,6 +5,8 @@ extends Control
 @export var player_color : Color
 var maximum_size = 300
 var is_player_message = false
+var unjoined_corner_radius = 15
+var joined_corner_radius = 5
 
 func _ready():
 	%MessageLayoutController.resized.connect(_update_layout)
@@ -32,27 +34,30 @@ func set_player_message(is_player_message : bool):
 
 
 func set_player_message_offsets():
+	if not is_player_message:
+		return
 	#Aligns the player messages to the right
 	%MessageLayoutController.offset_right = 0
 	var padding = 10
 	%MessageLayoutController.offset_left = get_viewport_rect().size.x - %Background.size.x - padding
 
 
-func set_join(joined_at_top : bool, joined_at_bottom : bool):
+func set_join(joined_at_top : bool, joined_at_bottom : bool) -> StyleBoxFlat:
 	var styling : StyleBoxFlat = StyleBoxFlat.new() 
 	styling.bg_color = Color.WHITE
-	styling.set_corner_radius_all(15)
+	styling.set_corner_radius_all(unjoined_corner_radius)
 	if joined_at_bottom:
 		if is_player_message:
-			styling.corner_radius_bottom_right = 5
+			styling.corner_radius_bottom_right = joined_corner_radius
 		else:
-			styling.corner_radius_bottom_left = 5
+			styling.corner_radius_bottom_left = joined_corner_radius
 	if joined_at_top:
 		if is_player_message:
-			styling.corner_radius_top_right = 5
+			styling.corner_radius_top_right = joined_corner_radius
 		else:
-			styling.corner_radius_top_left = 5
+			styling.corner_radius_top_left = joined_corner_radius
 	%Background.add_theme_stylebox_override("panel", styling)
+	return styling
 
 
 func _update_layout():
