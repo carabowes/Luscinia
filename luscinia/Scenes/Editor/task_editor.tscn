@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://wfcc502s03m1"]
 
 [ext_resource type="Script" path="res://Scripts/Editor/task_graph_editor.gd" id="1_e4q15"]
-[ext_resource type="Resource" uid="uid://c6k6oafmmrsjh" path="res://TaskData/Scenarios/992773801.tres" id="2_5bjll"]
+[ext_resource type="Resource" uid="uid://dwaib1djhiuot" path="res://TaskData/Scenarios/162271512.tres" id="2_bitnc"]
 
 [node name="TaskEditor" type="Control"]
 layout_mode = 3
@@ -21,7 +21,7 @@ grow_vertical = 2
 grid_pattern = 1
 right_disconnects = true
 script = ExtResource("1_e4q15")
-scenario_to_edit = ExtResource("2_5bjll")
+scenario_to_edit = ExtResource("2_bitnc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GraphEdit"]
 z_index = 100

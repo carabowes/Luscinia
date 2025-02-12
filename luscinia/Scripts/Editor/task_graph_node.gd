@@ -26,70 +26,83 @@ func _init(task : TaskData):
 	add_spacer()
 	
 	var task_name_input = add_input("Task Name", task.name)
-	task_name_input.text_submitted.connect(_on_task_name_changed)
+	task_name_input.text_changed.connect(_on_task_name_changed)
 	
 	var task_id_input = add_input("Task ID", str(task.task_id))
 	set_port(false, task_id_input.get_index(), SlotType.TASK_TO_PREQ)
-	task_id_input.text_submitted.connect(_on_task_id_changed)
+	task_id_input.text_changed.connect(func(text): _on_task_id_changed(text, task_id_input))
 	change_task_id = func(value): task_id_input.text = str(value); task.task_id = int(value)
 	
 	var task_time_input = add_input("Expected Completion Time", str(task.expected_completion_time))
-	task_time_input.text_submitted.connect(_on_task_time_changed)
+	task_time_input.text_changed.connect(func(text): _on_task_time_changed(text, task_time_input))
 	
 	var icon_selector : ImageSelector = add_image_selector("Task Icon", task.icon)
 	icon_selector.image_selected.connect(_on_image_selected)
 	
 	var resources_required_fields : Array[Field] = generate_fields_from_resources(task.resources_required)
 	for field in resources_required_fields:
-		field.field_changed.connect(_on_resource_required_field_changed)
+		field.field_changed.connect(func(resource_type, value): _on_resource_required_field_changed(resource_type, value, field))
 	add_collapsible_container("Resources Required", resources_required_fields)
 	
 	var resources_gained_fields : Array[Field] = generate_fields_from_resources(task.resources_gained)
 	for field in resources_gained_fields:
-		field.field_changed.connect(_on_resource_gained_field_changed)
+		field.field_changed.connect(func(resource_type, value): _on_resource_gained_field_changed(resource_type, value, field))
 	add_collapsible_container("Resources Gained", resources_gained_fields)
 
 
 func _on_task_name_changed(new_name : String):
 	task.name = new_name
-	ResourceSaver.save(task)
 
 
-func _on_task_id_changed(new_id : String):
-	var id = int(new_id)
-	if id == 0:
+func _on_task_id_changed(new_id : String, input : LineEdit):
+	if not new_id.is_valid_int():
+		input.text = str(task.task_id)
 		return
-	task.task_id = id
-	ResourceSaver.save(task)
+	task.task_id = new_id.to_int()
 
 
-func _on_task_time_changed(new_time : String):
+func _on_task_time_changed(new_time : String, input : LineEdit):
 	if not new_time.is_valid_int():
+		input.text = str(task.expected_completion_time)
 		return
-	task.expected_completion_time = int(new_time)
-	ResourceSaver.save(task)
+	task.expected_completion_time = new_time.to_int()
 
 
 func _on_image_selected(image : Texture):
 	task.icon = image
-	ResourceSaver.save(task)
 
 
-func _on_resource_required_field_changed(resource: String, new_resource : String):
+func _on_resource_required_field_changed(resource: String, new_resource : String, input : Field):
 	if not new_resource.is_valid_int():
+		input.text = str(task.resources_required[resource]) if task.resources_required.has(resource) else "0"
 		return
 	if new_resource == "0" and task.resources_required.has(resource):
 		task.resources_required.erase(resource)
 	else:
 		task.resources_required[resource] = int(new_resource)
-	ResourceSaver.save(task)
 
 
-func _on_resource_gained_field_changed(resource: String, new_resource : String):
+func _on_resource_gained_field_changed(resource: String, new_resource : String, input : Field):
 	if not new_resource.is_valid_int():
+		input.text = str(task.resources_gained[resource]) if task.resources_gained.has(resource) else "0"
 		return
-	if new_resource == "0" and task.resources_required.has(resource):
+	if new_resource == "0" and task.resources_gained.has(resource):
 		task.resources_gained.erase(resource)
 	else:
 		task.resources_gained[resource] = int(new_resource)
-	ResourceSaver.save(task)
+
+
+func assign_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
+	if in_port == InPortNums.RESPONSE and in_node is ResponseGraphNode:
+		in_node.response.task = task
+	else:
+		return false
+	return true
+
+
+func remove_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
+	if in_port == InPortNums.RESPONSE and in_node is ResponseGraphNode:
+		in_node.response.task = null
+	else:
+		return false
+	return true

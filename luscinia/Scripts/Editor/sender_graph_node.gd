@@ -25,7 +25,7 @@ func reset():
 func _add_elements():
 	var sender_name_input : LineEdit = add_input("Sender Name", sender.name)
 	set_port(false, sender_name_input.get_index(), SlotType.SENDER_TO_MESSAGE)
-	sender_name_input.text_submitted.connect(_on_sender_name_changed)
+	sender_name_input.text_changed.connect(_on_sender_name_changed)
 	
 	var sender_icon_selector : ImageSelector = add_image_selector("Sender Icon", sender.image)
 	sender_icon_selector.image_selected.connect(_on_sender_icon_changed)
@@ -37,17 +37,14 @@ func _add_elements():
 
 func _on_sender_name_changed(new_name : String):
 	sender.name = new_name
-	ResourceSaver.save(sender)
 	information_updated.emit(self)
 
 
 func _on_sender_icon_changed(icon : Texture):
 	sender.image = icon
-	ResourceSaver.save(sender)
 	information_updated.emit(self)
 
 
 func _on_relationship_changed(new_value : float):
 	sender.relationship = new_value
-	ResourceSaver.save(sender)
 	information_updated.emit(self)

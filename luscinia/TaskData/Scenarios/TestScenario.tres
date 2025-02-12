@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Scenario" load_steps=3 format=3 uid="uid://duit5atxukdeo"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="1_22kjx"]
+[ext_resource type="Script" path="res://Scripts/Resources/scenario.gd" id="2_yn5ci"]
+
+[resource]
+script = ExtResource("2_yn5ci")
+messages = Array[ExtResource("1_22kjx")]([])

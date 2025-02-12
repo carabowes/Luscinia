@@ -20,7 +20,8 @@ func _init(message : Message):
 	custom_minimum_size.x = 400
 	title = "Message Node"
 	
-	add_large_input("Message Text", message.message)
+	var message_input = add_large_input("Message Text", message.message)
+	message_input.text_changed.connect(func(): _on_message_contents_changed(message_input.text))
 	
 	add_spacer()
 	var responses_label = Label.new()
@@ -49,27 +50,48 @@ func _init(message : Message):
 	set_port(true, antirequisites_label.get_index(), SlotType.PREQ_TO_MESSAGE)
 	
 	add_spacer()
-	add_input("Turns to answer", str(message.turns_to_answer))
+	var turns_to_answer_input = add_input("Turns to answer", str(message.turns_to_answer))
+	turns_to_answer_input.text_changed.connect(func(text): _on_turns_to_answer_changed(text, turns_to_answer_input))
 	
 	add_spacer()
-	add_checkbox("Is Repeatable?", message.is_repeatable)
+	var is_repeatable_check = add_checkbox("Is Repeatable?", message.is_repeatable)
+	is_repeatable_check.pressed.connect(func(): _on_is_repeatable_changed(is_repeatable_check))
 
 
-func assign_connection(in_port : int, in_node : TaskEditorGraphNode):
-	if in_port == InPortNums.SENDER:
+func _on_message_contents_changed(contents : String):
+	message.message = contents
+
+
+func _on_turns_to_answer_changed(contents : String, input : LineEdit):
+	if not contents.is_valid_int():
+		input.text = str(message.turns_to_answer)
+		return
+	message.turns_to_answer = contents.to_int()
+
+
+func _on_is_repeatable_changed(checkbox : CheckBox):
+	message.is_repeatable = checkbox.button_pressed
+
+
+func assign_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
+	if in_port == InPortNums.SENDER and in_node is SenderGraphNode:
 		message.sender = in_node.sender
-	elif in_port == InPortNums.PREREQUISITES:
+	elif in_port == InPortNums.PREREQUISITES and in_node is RequisiteGraphNode:
 		message.prerequisites.append(in_node.prerequisite)
-	elif in_port == InPortNums.ANTIREQUISITES:
+	elif in_port == InPortNums.ANTIREQUISITES and in_node is RequisiteGraphNode:
 		message.antirequisites.append(in_node.prerequisite)
-	ResourceSaver.save(message)
+	else:
+		return false
+	return true
 
 
-func remove_connection(in_port : int, in_node : TaskEditorGraphNode):
-	if in_port == InPortNums.SENDER:
+func remove_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
+	if in_port == InPortNums.SENDER and in_node is SenderGraphNode:
 		message.sender = null
-	elif in_port == InPortNums.PREREQUISITES:
+	elif in_port == InPortNums.PREREQUISITES and in_node is RequisiteGraphNode:
 		message.prerequisites.erase(in_node.prerequisite)
-	elif in_port == InPortNums.ANTIREQUISITES:
+	elif in_port == InPortNums.ANTIREQUISITES and in_node is RequisiteGraphNode:
 		message.antirequisites.erase(in_node.prerequisite)
-	ResourceSaver.save(message)
+	else:
+		return false
+	return true

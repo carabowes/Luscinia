@@ -155,19 +155,23 @@ func force_one_output_connection(from_node : String, from_port : int):
 func _on_connection_request(from_node : String, from_port : int, to_node : String, to_port : int):
 	var input_node : TaskEditorGraphNode = get_node(from_node)
 	var output_node : TaskEditorGraphNode = get_node(to_node)
+	var sucessful_connection = output_node.assign_connection(to_port, input_node)
+	if not sucessful_connection:
+		return
 	if input_node is SenderGraphNode and output_node is MessageGraphNode:
 		force_one_input_connection(to_node, to_port)
 	if input_node is ResponseGraphNode and output_node is TaskGraphNode:
 		force_one_output_connection(from_node, from_port)
 	connect_node(from_node, from_port, to_node, to_port)
-	output_node.assign_connection(to_port, input_node)
 
 
 func _on_disconnect_request(from_node : String, from_port : int, to_node : String, to_port : int):
 	var input_node : TaskEditorGraphNode = get_node(from_node)
 	var output_node : TaskEditorGraphNode = get_node(to_node)
+	var successful_disconnect = output_node.remove_connection(to_port, input_node)
+	if not successful_disconnect:
+		return
 	disconnect_node(from_node, from_port, to_node, to_port)
-	output_node.remove_connection(to_port, input_node)
 
 
 func save_scenario():

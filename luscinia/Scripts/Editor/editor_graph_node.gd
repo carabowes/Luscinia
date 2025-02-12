@@ -150,9 +150,9 @@ func set_node_theme(node : GraphNode):
 	node.add_theme_stylebox_override("titlebar", theme)
 
 
-func assign_connection(in_port : int, in_node : TaskEditorGraphNode):
-	return
+func assign_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
+	return false
 
 
-func remove_connection(in_port : int, in_node : TaskEditorGraphNode):
-	return
+func remove_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
+	return false
