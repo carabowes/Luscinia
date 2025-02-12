@@ -47,6 +47,7 @@ func _input(event):
 	elif event is InputEventMagnifyGesture:
 		_handle_touch_pinch(event)
 
+
 func _handle_wheel_input(delta_zoom: float, global_mouse_position: Vector2):
 	var local_mouse_position = global_mouse_position - map.position
 	var prev_scale = current_scale
@@ -63,9 +64,11 @@ func _handle_wheel_input(delta_zoom: float, global_mouse_position: Vector2):
 	zoom_changed.emit()
 	_clamp_position()
 
+
 func _handle_touch_pinch(event: InputEventMagnifyGesture):
 	var delta_zoom = (event.factor - 1.0) * zoom_speed
 	_handle_wheel_input(delta_zoom, get_global_mouse_position())
+
 
 func _clamp_position() -> void:
 	var scaled_map_size = map_size * current_scale
@@ -76,6 +79,7 @@ func _clamp_position() -> void:
 	
 	map.position.x = clamp(map.position.x, min_x, max_x)
 	map.position.y = clamp(map.position.y, min_y, max_y)
+
 
 func _handle_touch_drag(event: InputEventScreenDrag) -> void:
 	var prev_scale = current_scale
