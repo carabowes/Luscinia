@@ -11,5 +11,5 @@ extends Resource
 
 func _init(task_id: Array[int] = [], chance = 0, events: Array[Event.EventType] = []) -> void:
 	self.task_id = task_id
-	self.chance = chance
+	self.chance = clamp(chance,0,1)
 	self.events = events
