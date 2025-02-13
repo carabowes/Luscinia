@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Scenario" load_steps=80 format=3 uid="uid://duit5atxukdeo"]
+[gd_resource type="Resource" script_class="Scenario" load_steps=83 format=3 uid="uid://duit5atxukdeo"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="1_22kjx"]
 [ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="2_lfadw"]
@@ -105,7 +105,7 @@ task = SubResource("Resource_e0def")
 script = ExtResource("5_j85s3")
 task_id = "SPST"
 name = "Freetown Search Party"
-start_location = Vector2(0, 0)
+start_location = Vector2(40, 30)
 end_location = Vector2(0, 0)
 resources_required = {
 "people": 10,
@@ -669,6 +669,34 @@ turns_to_answer = 0
 is_repeatable = false
 cancel_behaviour = 4
 
+[sub_resource type="Resource" id="Resource_onv44"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.0
+min_turn = 0
+max_turn = 0
+
+[sub_resource type="Resource" id="Resource_t6l3v"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.0
+min_turn = 0
+max_turn = 0
+
+[sub_resource type="Resource" id="Resource_x1why"]
+script = ExtResource("1_22kjx")
+message = ""
+responses = Array[ExtResource("3_8xbhe")]([])
+default_response = 0
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_t6l3v")])
+antirequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_onv44")])
+turns_to_answer = 0
+is_repeatable = false
+cancel_behaviour = 0
+
 [resource]
 script = ExtResource("2_yn5ci")
-messages = Array[ExtResource("1_22kjx")]([SubResource("Resource_qc7dk"), SubResource("Resource_q6jkm"), SubResource("Resource_mc7s0"), SubResource("Resource_louxg"), SubResource("Resource_7v4cu"), SubResource("Resource_vbcvc"), SubResource("Resource_cxqd1")])
+messages = Array[ExtResource("1_22kjx")]([SubResource("Resource_qc7dk"), SubResource("Resource_q6jkm"), SubResource("Resource_mc7s0"), SubResource("Resource_louxg"), SubResource("Resource_7v4cu"), SubResource("Resource_vbcvc"), SubResource("Resource_cxqd1"), SubResource("Resource_x1why")])

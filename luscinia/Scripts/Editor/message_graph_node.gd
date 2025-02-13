@@ -69,26 +69,20 @@ func _on_message_contents_changed(contents : String):
 
 
 func _on_default_response_changed(value : String, input : LineEdit):
-	if value == "": 
+	if value == "" or not value.is_valid_int() or value .to_int() > len(message.responses): 
 		value = "-1"
 		input.self_modulate = Color.RED
 	else:
 		input.self_modulate = Color.WHITE
-	if not value.is_valid_int():
-		input.text = str(message.default_response)
-		return
 	message.default_response = value.to_int()
 
 
 func _on_turns_to_answer_changed(value : String, input : LineEdit):
-	if value == "": 
+	if value == "" or not value.is_valid_int(): 
 		value = "-1"
 		input.self_modulate = Color.RED
 	else:
 		input.self_modulate = Color.WHITE
-	if not value.is_valid_int():
-		input.text = str(message.turns_to_answer)
-		return
 	message.turns_to_answer = value.to_int()
 
 

@@ -44,26 +44,20 @@ func _on_chance_changed(value):
 
 
 func _on_min_turn_changed(value : String, input : LineEdit):
-	if value == "": 
-		value = "-1"
+	if value == "" or not value.is_valid_int(): 
+		value = "0"
 		input.self_modulate = Color.RED
 	else:
 		input.self_modulate = Color.WHITE
-	if not value.is_valid_int():
-		input.text = str(prerequisite.min_turn)
-		return
 	prerequisite.min_turn = value.to_int()
 
 
 func _on_max_turn_changed(value : String, input : LineEdit):
-	if value == "": 
+	if value == "" or not value.is_valid_int(): 
 		value = "-1"
 		input.self_modulate = Color.RED
 	else:
 		input.self_modulate = Color.WHITE
-	if not value.is_valid_int():
-		input.text = str(prerequisite.max_turn)
-		return
 	prerequisite.max_turn = value.to_int()
 
 

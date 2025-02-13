@@ -8,26 +8,30 @@ var message_nodes : Array[MessageGraphNode]
 var response_nodes : Array[ResponseGraphNode]
 var sender_nodes : Array[SenderGraphNode]
 var unique_senders : Dictionary
+var current_frame : GraphFrame
 
 func _ready():
+	set_resolution()
 	load_scenario(scenario_to_edit)
-	#arrange_nodes()
 	connect_requisites()
 	connection_request.connect(_on_connection_request)
 	disconnection_request.connect(_on_disconnect_request)
 	connection_from_empty.connect(_on_connection_from_empty)
 	connection_to_empty.connect(_on_connection_to_empty)
+	delete_nodes_request.connect(_on_deletion_request)
 	link_buttons()
 	%SaveButton.pressed.connect(save_scenario)
 
 
+func set_resolution():
+	get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
+	get_window().content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
+	get_window().size = DisplayServer.screen_get_size(DisplayServer.get_primary_screen())
+	get_window().mode = Window.MODE_MAXIMIZED
+
+
 func link_buttons():
-	
-	var task_creation = func():
-		var new_task = TaskData.new("CHANGE ME")
-		return new_task
-	
-	%NewTask.pressed.connect(func(): create_node(task_creation, add_task))
+	%NewTask.pressed.connect(func(): create_node(TaskData.new, add_task))
 	%NewMessage.pressed.connect(func(): create_node(Message.new, add_message_node))
 	%NewPrereq.pressed.connect(func(): create_node(Prerequisite.new, add_requisite))
 	%NewResponse.pressed.connect(func(): create_node(Response.new, add_response))
@@ -65,7 +69,7 @@ func remove_from_task_node(task_node : TaskGraphNode):
 func setup_node(node : TaskEditorGraphNode, list_function : Callable, list_deletion_function : Callable):
 	list_function.call(node)
 	add_child(node)
-	node.deleted.connect(func(): list_deletion_function.call(node))
+	node.deleted.connect(func(): remove_all_connections(node); list_deletion_function.call(node))
 
 
 func create_node(data_function : Callable, node_function : Callable, connect_node : TaskEditorGraphNode = null) -> GraphNode:
@@ -92,7 +96,10 @@ func add_message_nodes(messages : Array[Message]):
 	var task_section_size = Vector2(3500, 3000)
 	var current_cell = Vector2(0,0)
 	for message in messages:
-		add_message_node(message, current_cell * task_section_size, true)
+		current_frame = GraphFrame.new()
+		add_child(current_frame)
+		var node = add_message_node(message, current_cell * task_section_size, true)
+		current_frame.title = "Message "  + str(current_cell)
 		current_cell.x += 1
 		if current_cell.x >= 5:
 			current_cell.x = 0
@@ -104,6 +111,7 @@ func add_message_node(message : Message = Message.new(), pos : Vector2 = Vector2
 	setup_node(message_node, message_nodes.append, message_nodes.erase)
 	message_node.position_offset = pos
 	if from_load:
+		attach_graph_element_to_frame(message_node.name, current_frame.name)
 		add_sender(message.sender, message_node, true)
 		add_responses(message.responses, message_node, true)
 		add_requisites(message.prerequisites, message_node, MessageGraphNode.InPortNums.PREREQUISITES, true)
@@ -129,16 +137,17 @@ func add_sender(sender : Sender = null, message_node : MessageGraphNode = null, 
 		connect_node(sender_node.name, SenderGraphNode.OutPortNums.MESSAGE, message_node.name, MessageGraphNode.InPortNums.SENDER)
 	if from_load:
 		sender_node.position_offset = message_node.position_offset - Vector2(400, 100)
-
+		attach_graph_element_to_frame(sender_node.name, current_frame.name)
 	return sender_node
 
 
 func add_responses(responses : Array[Response], message_node : MessageGraphNode, from_load : bool = false):
 	var current_y = 0
+	var start_y = -500 * floor(len(responses)/2)
 	var pos = Vector2.ZERO
 	for response : Response in responses:
 		if message_node != null:
-			pos = message_node.position_offset + Vector2(800, -1000 + current_y * (700))
+			pos = message_node.position_offset + Vector2(800, start_y + current_y * (700))
 			current_y += 1
 		var response_node : ResponseGraphNode = add_response(response, message_node, from_load, pos)
 
@@ -148,6 +157,7 @@ func add_response(response : Response = Response.new(), connect_node : TaskEdito
 	setup_node(response_node, response_nodes.append, response_nodes.erase)
 	if from_load:
 		response_node.position_offset = pos
+		attach_graph_element_to_frame(response_node.name, current_frame.name)
 	if connect_node is MessageGraphNode:
 		connect_node(connect_node.name, MessageGraphNode.OutPortNums.RESPONSES, response_node.name, ResponseGraphNode.InPortNums.MESSAGE)
 	if connect_node is TaskGraphNode:
@@ -162,6 +172,7 @@ func add_task(task : TaskData = TaskData.new(), connect_node : TaskEditorGraphNo
 	setup_node(task_node, add_to_task_nodes, remove_from_task_node)
 	if from_load:
 		task_node.position_offset = connect_node.position_offset + Vector2(800, 0)
+		attach_graph_element_to_frame(task_node.name, current_frame.name)
 	if connect_node is ResponseGraphNode:
 		connect_node(connect_node.name, ResponseGraphNode.OutPortNums.TASK, task_node.name, TaskGraphNode.InPortNums.RESPONSE)
 	elif connect_node is RequisiteGraphNode:
@@ -183,6 +194,8 @@ func add_requisites(requisites : Array[Prerequisite], message_node : MessageGrap
 func add_requisite(requisite : Prerequisite = Prerequisite.new(), connect_node : TaskEditorGraphNode = null, is_antirequisite : bool = false, from_load : bool = false) -> RequisiteGraphNode:
 	var requisite_node : RequisiteGraphNode = RequisiteGraphNode.new(requisite)
 	setup_node(requisite_node, requisite_nodes.append, requisite_nodes.erase)
+	if from_load:
+		attach_graph_element_to_frame(requisite_node.name, current_frame.name)
 	if connect_node is MessageGraphNode:
 		var port_num = MessageGraphNode.InPortNums.ANTIREQUISITES if is_antirequisite else MessageGraphNode.InPortNums.PREREQUISITES
 		connect_node(requisite_node.name, RequisiteGraphNode.OutPortNums.MESSAGE, connect_node.name, port_num)
@@ -256,15 +269,17 @@ func _on_connection_to_empty(from_node : String, from_port : int, release_positi
 	if node_type is RequisiteGraphNode:
 		new_node = create_node(Prerequisite.new, add_requisite, input_node)
 	elif node_type is TaskGraphNode:
-		new_node = create_node(TaskData.new, add_task, input_node)
+		new_node = create_node(TaskData.new, add_task)
+		_on_connection_request(input_node.name, ResponseGraphNode.OutPortNums.TASK, new_node.name, TaskGraphNode.InPortNums.RESPONSE)
 	elif node_type is SenderGraphNode:
 		select_sender()
 	elif node_type is MessageGraphNode:
-		new_node = create_node(Message.new, add_message_node, input_node)
+		new_node = create_node(Message.new, add_message_node)
 		if input_node is SenderGraphNode:
-			_on_connection_request(input_node.name, SenderGraphNode.OutPortNums.MESSAGE, new_node.name, MessageGraphNode.OutPortNums.RESPONSES)
+			_on_connection_request(input_node.name, SenderGraphNode.OutPortNums.MESSAGE, new_node.name, MessageGraphNode.InPortNums.SENDER)
 	elif node_type is ResponseGraphNode:
-		new_node = create_node(Response.new, add_response, input_node)
+		new_node = create_node(Response.new, add_response)
+		_on_connection_request(input_node.name, MessageGraphNode.OutPortNums.RESPONSES, new_node.name, ResponseGraphNode.InPortNums.MESSAGE)
 	if new_node != null:
 		new_node.position_offset = (scroll_offset + release_position)/zoom - (Vector2(new_node.size.x/2, new_node.size.y/2))
 
@@ -276,6 +291,24 @@ func _on_disconnect_request(from_node : String, from_port : int, to_node : Strin
 	if not successful_disconnect:
 		return
 	disconnect_node(from_node, from_port, to_node, to_port)
+
+
+func _on_deletion_request(nodes : Array[StringName]):
+	for node_name in nodes:
+		var element = get_node(NodePath(node_name))
+		if element is GraphFrame:
+			element.queue_free()
+			continue
+		var node : TaskEditorGraphNode = element
+		detach_graph_element_from_frame(node_name)
+		node.delete_node()
+
+
+func remove_all_connections(node: TaskEditorGraphNode):
+	for connection in get_connection_list():
+		if node.name == connection["from_node"] or node.name == connection["to_node"]:
+			print("Disconnecting node")
+			_on_disconnect_request(connection["from_node"], connection["from_port"], connection["to_node"], connection["to_port"])
 
 
 func save_scenario():

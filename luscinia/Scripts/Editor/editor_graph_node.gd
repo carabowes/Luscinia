@@ -7,6 +7,7 @@ var collapsible_container_prefab = preload("res://Scenes/UI/collapsable_containe
 var field_prefab = preload("res://Scenes/Editor/field.tscn")
 var image_selector_prefab = preload("res://Scenes/Editor/image_selector.tscn")
 var choice_picker_prefab = preload("res://Scenes/Editor/choice_picker.tscn")
+var vector_input_prefab = preload("res://Scenes/Editor/vector_input.tscn")
 
 enum SlotType {
 	PREQ_TO_MESSAGE,
@@ -32,7 +33,12 @@ func _init():
 	delete_button.text = "X"
 	delete_button.size_flags_horizontal = Control.SIZE_SHRINK_END
 	add_child(delete_button)
-	delete_button.pressed.connect(func(): queue_free(); deleted.emit())
+	delete_button.pressed.connect(delete_node)
+
+
+func delete_node():
+	queue_free()
+	deleted.emit()
 
 
 func add_input(heading : String, current_value : String) -> LineEdit:
@@ -133,6 +139,14 @@ func add_choice_picker(heading: String, values : Dictionary, default_option) -> 
 	choice_picker.set_values(str(default_option), values)
 	add_child(choice_picker)
 	return choice_picker
+
+
+func add_vector_input(heading : String, default : Vector2) -> VectorInput:
+	var vector_input : VectorInput = vector_input_prefab.instantiate()
+	vector_input.heading = heading
+	vector_input.value = default
+	add_child(vector_input)
+	return vector_input
 
 
 func set_port(is_input : bool, i : int, slot_type : SlotType):

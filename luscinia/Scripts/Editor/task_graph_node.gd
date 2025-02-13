@@ -40,6 +40,9 @@ func _init(task : TaskData):
 	var icon_selector : ImageSelector = add_image_selector("Task Icon", task.icon)
 	icon_selector.image_selected.connect(_on_image_selected)
 	
+	var vector_input : VectorInput = add_vector_input("Location", task.start_location)
+	vector_input.value_changed.connect(func(new_location): task.start_location = new_location)
+	
 	var resources_required_fields : Array[Field] = generate_fields_from_resources(task.resources_required)
 	for field in resources_required_fields:
 		field.field_changed.connect(func(resource_type, value): _on_resource_required_field_changed(resource_type, value, field))
