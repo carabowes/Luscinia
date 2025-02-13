@@ -164,3 +164,11 @@ func assign_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
 
 func remove_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
 	return false
+
+
+func create_node_to_connect_from_empty(in_port: int):
+	return null
+
+
+func create_node_to_connect_to_empty(out_port: int):
+	return null

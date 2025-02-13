@@ -16,7 +16,7 @@ func _init(sender : Sender):
 	_add_elements()
 
 
-func reset():
+func update():
 	for child in get_children():
 		if child.get_index() == 0: #delete button
 			continue
@@ -50,3 +50,9 @@ func _on_sender_icon_changed(icon : Texture):
 func _on_relationship_changed(new_value : float):
 	sender.relationship = new_value
 	information_updated.emit(self)
+
+
+func create_node_to_connect_to_empty(out_port: int):
+	if out_port == OutPortNums.MESSAGE:
+		return MessageGraphNode.new(Message.new())
+	return null

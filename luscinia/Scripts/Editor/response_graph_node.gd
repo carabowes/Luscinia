@@ -66,3 +66,15 @@ func remove_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
 	else:
 		return false
 	return true
+
+
+func create_node_to_connect_from_empty(in_port: int):
+	if in_port == InPortNums.MESSAGE:
+		return MessageGraphNode.new(Message.new())
+	return null
+
+
+func create_node_to_connect_to_empty(out_port: int):
+	if out_port == OutPortNums.TASK:
+		return TaskGraphNode.new(TaskData.new())
+	return null
