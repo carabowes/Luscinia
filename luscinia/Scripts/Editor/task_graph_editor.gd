@@ -11,9 +11,8 @@ var unique_senders : Array[Sender]
 
 func _ready():
 	load_scenario(scenario_to_edit)
-	arrange_nodes()
+	#arrange_nodes()
 	connect_requisites()
-	arrange_nodes()
 	connection_request.connect(_on_connection_request)
 	disconnection_request.connect(_on_disconnect_request)
 	link_buttons()
@@ -97,13 +96,20 @@ func load_scenario(scenario : Scenario):
 
 
 func load_messages(messages : Array[Message]):
+	var task_section_size = Vector2(3500, 3000)
+	var current_cell = Vector2(0,0)
 	for message in messages:
 		var message_node : MessageGraphNode = MessageGraphNode.new(message)
+		message_node.position_offset = current_cell * task_section_size
 		setup_node(message_node, message_nodes.append, message_nodes.erase)
 		load_sender(message.sender, message_node)
 		load_responses(message.responses, message_node)
 		load_requisites(message.prerequisites, message_node, MessageGraphNode.InPortNums.PREREQUISITES)
 		load_requisites(message.antirequisites, message_node, MessageGraphNode.InPortNums.ANTIREQUISITES)
+		current_cell.x += 1
+		if current_cell.x >= 5:
+			current_cell.x = 0
+			current_cell.y += 1
 
 
 func load_sender(sender : Sender, message_node : MessageGraphNode) -> SenderGraphNode:
@@ -120,14 +126,18 @@ func load_sender(sender : Sender, message_node : MessageGraphNode) -> SenderGrap
 		unique_senders.append(sender)
 	if message_node != null:
 		connect_node(sender_node.name, SenderGraphNode.OutPortNums.MESSAGE, message_node.name, MessageGraphNode.InPortNums.SENDER)
+	sender_node.position_offset = message_node.position_offset - Vector2(400, 100)
 	return sender_node
 
 
 func load_responses(responses : Array[Response], message_node : MessageGraphNode):
+	var current_y = 0
 	for response : Response in responses:
 		var response_node : ResponseGraphNode = ResponseGraphNode.new(response)
 		setup_node(response_node, response_nodes.append, response_nodes.erase)
 		connect_node(message_node.name, MessageGraphNode.OutPortNums.RESPONSES, response_node.name, ResponseGraphNode.InPortNums.MESSAGE)
+		response_node.position_offset = message_node.position_offset + Vector2(800, -1000 + current_y * (response_node.size.y + 200))
+		current_y += 1
 		if response.task != null:
 			load_task(response.task, response_node)
 
@@ -136,13 +146,20 @@ func load_task(task : TaskData, response_node : ResponseGraphNode):
 	var task_node : TaskGraphNode = TaskGraphNode.new(task)
 	setup_node(task_node, add_to_task_nodes, remove_from_task_node)
 	connect_node(response_node.name, ResponseGraphNode.OutPortNums.TASK, task_node.name, TaskGraphNode.InPortNums.RESPONSE)
+	task_node.position_offset = response_node.position_offset + Vector2(800, 0)
 
 
 func load_requisites(prerequisites : Array[Prerequisite], message_node : MessageGraphNode, port_num):
+	var x_offset = 800
+	if port_num == MessageGraphNode.InPortNums.ANTIREQUISITES:
+		x_offset = 1200
+	var current_y = 0
 	for prerequisite : Prerequisite in prerequisites:
 		var prereq_node : RequisiteGraphNode = RequisiteGraphNode.new(prerequisite)
 		setup_node(prereq_node, requisite_nodes.append, requisite_nodes.erase)
 		connect_node(prereq_node.name, RequisiteGraphNode.OutPortNums.MESSAGE, message_node.name, port_num)
+		prereq_node.position_offset = message_node.position_offset - Vector2(x_offset, -current_y * (prereq_node.size.y + 50))
+		current_y += 1
 
 
 func connect_requisites():

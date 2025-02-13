@@ -18,8 +18,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+show_grid = false
 grid_pattern = 1
+snapping_enabled = false
 right_disconnects = true
+zoom_min = 0.05
+show_menu = false
 script = ExtResource("1_e4q15")
 scenario_to_edit = ExtResource("2_7xdr5")
 
@@ -27,9 +31,7 @@ scenario_to_edit = ExtResource("2_7xdr5")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 301.0
-offset_right = -76.0
-offset_bottom = 55.0
+offset_bottom = 39.0
 grow_horizontal = 2
 color = Color(0.180392, 0.180392, 0.180392, 1)
 
@@ -37,10 +39,10 @@ color = Color(0.180392, 0.180392, 0.180392, 1)
 z_index = 100
 z_as_relative = false
 layout_mode = 1
-offset_left = 304.0
-offset_top = 12.0
-offset_right = 1068.0
-offset_bottom = 43.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
 mouse_filter = 0
 
 [node name="NewTask" type="Button" parent="HBoxContainer"]
