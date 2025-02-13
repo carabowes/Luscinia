@@ -34,6 +34,10 @@ project/assembly_name="Luscinia"
 
 enabled=PackedStringArray()
 
+[gui]
+
+common/snap_controls_to_pixels=false
+
 [input]
 
 interact={

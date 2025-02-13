@@ -24,8 +24,8 @@ func _init(response : Response):
 	add_child(task_label)
 	set_port(false, task_label.get_index(), SlotType.RESPONSE_TO_TASK)
 	
-	var response_name_input = add_input("Response Name", response.response_text)
-	response_name_input.text_changed.connect(func(): _on_response_name_changed)
+	var response_name_input = add_input("Response Name", response.response_name)
+	response_name_input.text_changed.connect(_on_response_name_changed)
 
 	var response_text_input = add_large_input("Response Text", response.response_text)
 	set_port(true, response_text_input.get_index(), SlotType.MESSAGE_TO_RESPONSE)
@@ -44,14 +44,11 @@ func _on_response_text_changed(contents : String):
 
 
 func _on_relationship_change(value : String, input : LineEdit):
-	if value == "": 
-		value = "-1"
+	if value == "" or not value.is_valid_int(): 
+		value = "0"
 		input.self_modulate = Color.RED
 	else:
 		input.self_modulate = Color.WHITE
-	if not value.is_valid_int():
-		input.text = str(response.relationship_change)
-		return
 	response.relationship_change = value.to_int()
 
 
