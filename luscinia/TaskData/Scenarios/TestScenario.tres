@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Scenario" load_steps=83 format=3 uid="uid://duit5atxukdeo"]
+[gd_resource type="Resource" script_class="Scenario" load_steps=90 format=3]
 
 [ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="1_22kjx"]
 [ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="2_lfadw"]
@@ -6,16 +6,16 @@
 [ext_resource type="Script" path="res://Scripts/Resources/response.gd" id="3_8xbhe"]
 [ext_resource type="Script" path="res://Scripts/Resources/event_effect.gd" id="4_cvs8s"]
 [ext_resource type="Script" path="res://Scripts/Resources/task_data.gd" id="5_j85s3"]
-[ext_resource type="Texture2D" uid="uid://chgb1pq7fpd4c" path="res://Sprites/UI/Truck.png" id="5_mddet"]
+[ext_resource type="Texture2D" path="res://Sprites/UI/Truck.png" id="5_mddet"]
 [ext_resource type="Script" path="res://Scripts/Resources/sender.gd" id="6_imb53"]
-[ext_resource type="Texture2D" uid="uid://d1cwe1f3jk3ca" path="res://Sprites/icon.svg" id="7_atwyf"]
-[ext_resource type="Texture2D" uid="uid://c863dc1kr3gcq" path="res://Sprites/UI/godotTaskIcon.png" id="9_brnnm"]
-[ext_resource type="Texture2D" uid="uid://dbevrsfktm6jt" path="res://Sprites/UI/MessageButton.png" id="10_wwh4f"]
-[ext_resource type="Texture2D" uid="uid://dmrhlqq3p4y0g" path="res://Sprites/Package.png" id="11_n8det"]
-[ext_resource type="Texture2D" uid="uid://7v3dgwwsbwqu" path="res://Sprites/clock.png" id="12_87rmy"]
-[ext_resource type="Texture2D" uid="uid://dwl5qh53md1wx" path="res://Sprites/UI/ExclamationBubble.png" id="13_opq0n"]
-[ext_resource type="Texture2D" uid="uid://c27suyrk8wq" path="res://Sprites/ClockBackground.png" id="13_y8c2f"]
-[ext_resource type="Texture2D" uid="uid://duvounvh77gd2" path="res://Sprites/ProceedButton.png" id="14_gad0m"]
+[ext_resource type="Texture2D" path="res://Sprites/icon.svg" id="7_atwyf"]
+[ext_resource type="Texture2D" path="res://Sprites/UI/godotTaskIcon.png" id="9_brnnm"]
+[ext_resource type="Texture2D" path="res://Sprites/UI/MessageButton.png" id="10_wwh4f"]
+[ext_resource type="Texture2D" path="res://Sprites/Package.png" id="11_n8det"]
+[ext_resource type="Texture2D" path="res://Sprites/clock.png" id="12_87rmy"]
+[ext_resource type="Texture2D" path="res://Sprites/UI/ExclamationBubble.png" id="13_opq0n"]
+[ext_resource type="Texture2D" path="res://Sprites/ClockBackground.png" id="13_y8c2f"]
+[ext_resource type="Texture2D" path="res://Sprites/ProceedButton.png" id="14_gad0m"]
 
 [sub_resource type="Resource" id="Resource_mhxfq"]
 script = ExtResource("2_lfadw")
@@ -126,24 +126,11 @@ response_text = "We can send a small team now."
 relationship_change = 5.0
 task = SubResource("Resource_uqsnc")
 
-[sub_resource type="Resource" id="Resource_7y8wi"]
-script = ExtResource("5_j85s3")
-task_id = "SPNT"
-name = "None"
-icon = ExtResource("7_atwyf")
-start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
-resources_required = {}
-resources_gained = {}
-expected_completion_time = 0
-effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
-
 [sub_resource type="Resource" id="Resource_agp7i"]
 script = ExtResource("3_8xbhe")
 response_name = "Don't send a team"
 response_text = "We're not going to send a team to help."
 relationship_change = 5.0
-task = SubResource("Resource_7y8wi")
 
 [sub_resource type="Resource" id="Resource_iff3j"]
 script = ExtResource("6_imb53")
@@ -162,14 +149,6 @@ antirequisites = Array[ExtResource("2_lfadw")]([])
 turns_to_answer = 6
 is_repeatable = true
 cancel_behaviour = 4
-
-[sub_resource type="Resource" id="Resource_rrtfs"]
-script = ExtResource("2_lfadw")
-task_id = Array[String]([])
-events = Array[int]([])
-chance = 0.0
-min_turn = 1
-max_turn = 1
 
 [sub_resource type="Resource" id="Resource_ip8m3"]
 script = ExtResource("5_j85s3")
@@ -282,7 +261,7 @@ message = "The residents who live near the hills in the east side of Freetown ar
 responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_ir33p"), SubResource("Resource_har8n"), SubResource("Resource_jlr75"), SubResource("Resource_x0feg")])
 default_response = 3
 sender = SubResource("Resource_fojvw")
-prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_rrtfs")])
+prerequisites = Array[ExtResource("2_lfadw")]([])
 antirequisites = Array[ExtResource("2_lfadw")]([])
 turns_to_answer = 1
 is_repeatable = false
@@ -308,7 +287,7 @@ max_turn = -1
 script = ExtResource("2_lfadw")
 task_id = Array[String]([])
 events = Array[int]([])
-chance = 0.7
+chance = 0.71
 min_turn = 5
 max_turn = 5
 
@@ -669,34 +648,122 @@ turns_to_answer = 0
 is_repeatable = false
 cancel_behaviour = 4
 
-[sub_resource type="Resource" id="Resource_onv44"]
+[sub_resource type="Resource" id="Resource_qhpii"]
 script = ExtResource("2_lfadw")
-task_id = Array[String]([])
+task_id = Array[String](["ODNT", "ODST"])
 events = Array[int]([])
 chance = 0.0
 min_turn = 0
 max_turn = 0
 
-[sub_resource type="Resource" id="Resource_t6l3v"]
-script = ExtResource("2_lfadw")
-task_id = Array[String]([])
-events = Array[int]([])
-chance = 0.0
-min_turn = 0
-max_turn = 0
+[sub_resource type="Resource" id="Resource_ptldf"]
+script = ExtResource("5_j85s3")
+task_id = ""
+name = ""
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
 
-[sub_resource type="Resource" id="Resource_x1why"]
+[sub_resource type="Resource" id="Resource_lqca4"]
+script = ExtResource("3_8xbhe")
+response_name = "Response"
+response_text = ""
+relationship_change = 0.0
+task = SubResource("Resource_ptldf")
+
+[sub_resource type="Resource" id="Resource_ip6en"]
+script = ExtResource("5_j85s3")
+task_id = ""
+name = ""
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_cpamr"]
+script = ExtResource("3_8xbhe")
+response_name = "Response"
+response_text = ""
+relationship_change = 0.0
+task = SubResource("Resource_ip6en")
+
+[sub_resource type="Resource" id="Resource_rkpq3"]
 script = ExtResource("1_22kjx")
 message = ""
-responses = Array[ExtResource("3_8xbhe")]([])
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_lqca4"), SubResource("Resource_cpamr")])
 default_response = 0
 sender = SubResource("Resource_fojvw")
-prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_t6l3v")])
-antirequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_onv44")])
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_qhpii")])
+antirequisites = Array[ExtResource("2_lfadw")]([])
+turns_to_answer = 0
+is_repeatable = false
+cancel_behaviour = 0
+
+[sub_resource type="Resource" id="Resource_mvpup"]
+script = ExtResource("5_j85s3")
+task_id = ""
+name = ""
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_6s1nl"]
+script = ExtResource("3_8xbhe")
+response_name = "Response"
+response_text = ""
+relationship_change = 0.0
+task = SubResource("Resource_mvpup")
+
+[sub_resource type="Resource" id="Resource_8ajqx"]
+script = ExtResource("1_22kjx")
+message = ""
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_6s1nl")])
+default_response = 0
+sender = SubResource("Resource_iff3j")
+prerequisites = Array[ExtResource("2_lfadw")]([])
+antirequisites = Array[ExtResource("2_lfadw")]([])
+turns_to_answer = 0
+is_repeatable = false
+cancel_behaviour = 0
+
+[sub_resource type="Resource" id="Resource_npnld"]
+script = ExtResource("5_j85s3")
+task_id = ""
+name = ""
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_jwkrv"]
+script = ExtResource("3_8xbhe")
+response_name = "Response"
+response_text = ""
+relationship_change = 0.0
+task = SubResource("Resource_npnld")
+
+[sub_resource type="Resource" id="Resource_sxmvh"]
+script = ExtResource("1_22kjx")
+message = ""
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_jwkrv")])
+default_response = 0
+sender = SubResource("Resource_iff3j")
+prerequisites = Array[ExtResource("2_lfadw")]([])
+antirequisites = Array[ExtResource("2_lfadw")]([])
 turns_to_answer = 0
 is_repeatable = false
 cancel_behaviour = 0
 
 [resource]
 script = ExtResource("2_yn5ci")
-messages = Array[ExtResource("1_22kjx")]([SubResource("Resource_qc7dk"), SubResource("Resource_q6jkm"), SubResource("Resource_mc7s0"), SubResource("Resource_louxg"), SubResource("Resource_7v4cu"), SubResource("Resource_vbcvc"), SubResource("Resource_cxqd1"), SubResource("Resource_x1why")])
+messages = Array[ExtResource("1_22kjx")]([SubResource("Resource_qc7dk"), SubResource("Resource_q6jkm"), SubResource("Resource_mc7s0"), SubResource("Resource_louxg"), SubResource("Resource_7v4cu"), SubResource("Resource_vbcvc"), SubResource("Resource_cxqd1"), SubResource("Resource_rkpq3"), SubResource("Resource_8ajqx"), SubResource("Resource_sxmvh")])
