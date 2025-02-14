@@ -9,6 +9,8 @@ var message_nodes : Array[MessageGraphNode]
 var response_nodes : Array[ResponseGraphNode]
 var sender_nodes : Array[SenderGraphNode]
 var unique_senders : Dictionary
+	
+var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready():
 	set_resolution()
@@ -50,21 +52,37 @@ func load_saves_from_dir(path = "res://TaskData/EditorSaves"):
 
 
 func load_scenario(scenario : Scenario):
-	add_message_nodes(scenario.messages)
 	for save in saves:
 		if save.scenario == scenario:
 			load_save(save)
-			break
+			return
+	add_message_nodes(scenario.messages)
 
 
 func load_save(save : EditorSave):
 	print("Loading from save")
 	zoom = save.zoom
 	scroll_offset = save.scroll_offset
-	for node_name in save.node_positions.keys():
-		var node = get_node_or_null(node_name)
-		if node != null:
-			node.position_offset = save.node_positions[node_name]
+	for node in save.node_info:
+		var node_resource = node[0]
+		var node_position = node[1]
+		var node_name = node[2]
+		var node_instance = null
+		if node_resource is Message:
+			node_instance = add_message_node(node_resource)
+		elif node_resource is Sender:
+			node_instance = add_sender(node_resource)
+		elif node_resource is Response:
+			node_instance = add_response(node_resource)
+		elif node_resource is TaskData:
+			node_instance = add_task(node_resource)
+		elif node_resource is Prerequisite:
+			node_instance = add_requisite(node_resource)
+		node_instance.position_offset = node_position
+		node_instance.name = node_name
+	for connection in save.connections:
+		print(connection)
+		connect_node(connection["from_node"], connection["from_port"], connection["to_node"], connection["to_port"])
 
 
 func select_sender():
@@ -96,9 +114,9 @@ func remove_from_task_node(task_node : TaskGraphNode):
 
 
 func setup_node(node : TaskEditorGraphNode, list_function : Callable, list_deletion_function : Callable):
-	node.name = "GraphNode"
 	list_function.call(node)
 	add_child(node)
+	node.name = str(rng.randi())
 	node.deleted.connect(func(): remove_all_connections(node); list_deletion_function.call(node))
 
 
@@ -182,7 +200,7 @@ func add_response(response : Response = Response.new(), connect_node : TaskEdito
 		connect_node(connect_node.name, MessageGraphNode.OutPortNums.RESPONSES, response_node.name, ResponseGraphNode.InPortNums.MESSAGE)
 	if connect_node is TaskGraphNode:
 		connect_node(response_node.name, ResponseGraphNode.OutPortNums.TASK, connect_node.name, TaskGraphNode.InPortNums.RESPONSE)
-	if response.task != null:
+	if response.task != null and from_load:
 		add_task(response.task, response_node, from_load)
 	return response_node
 
@@ -329,16 +347,23 @@ func remove_all_connections(node: TaskEditorGraphNode):
 
 func save_editor_state(editor_save: EditorSave, scenario : Scenario) -> EditorSave:
 	if editor_save == null:
-		editor_save = EditorSave.new(scenario, {}, zoom, scroll_offset)
+		editor_save = EditorSave.new(scenario, [], zoom, scroll_offset)
 	else:
 		editor_save.zoom = zoom
 		editor_save.scroll_offset = scroll_offset
-		editor_save.node_positions.clear()
+		editor_save.node_info.clear()
 	for node in get_children():
-		if node is GraphElement:
-			editor_save.node_positions[node.name] = node.position_offset
-		else:
-			print(node.get_index(), node)
+		if node is MessageGraphNode:
+			editor_save.node_info.append([node.message, node.position_offset, node.name])
+		if node is SenderGraphNode:
+			editor_save.node_info.append([node.sender, node.position_offset, node.name])
+		if node is ResponseGraphNode:
+			editor_save.node_info.append([node.response, node.position_offset, node.name])
+		if node is TaskGraphNode:
+			editor_save.node_info.append([node.task, node.position_offset, node.name])
+		if node is RequisiteGraphNode:
+			editor_save.node_info.append([node.prerequisite, node.position_offset, node.name])
+	editor_save.connections = get_connection_list()
 	return editor_save
 
 
@@ -350,8 +375,6 @@ func save_scenario():
 	print("Saving...")
 	var result = ResourceSaver.save(scenario_to_edit)
 	print("Saved with result of ", result)
-	
-	var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 	var editor_save = null
 	var existing_save = false
 	for save in saves:

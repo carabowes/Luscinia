@@ -1,0 +1,1192 @@
+[gd_resource type="Resource" script_class="EditorSave" load_steps=94 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="1_m1yx3"]
+[ext_resource type="Script" path="res://Scripts/Resources/response.gd" id="2_3xigt"]
+[ext_resource type="Script" path="res://Scripts/Resources/event_effect.gd" id="3_d1cgf"]
+[ext_resource type="Texture2D" path="res://Sprites/UI/Truck.png" id="4_lv4yx"]
+[ext_resource type="Script" path="res://Scripts/Resources/task_data.gd" id="5_7wxc4"]
+[ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="6_frvfg"]
+[ext_resource type="Texture2D" path="res://Sprites/icon.svg" id="7_t85jc"]
+[ext_resource type="Script" path="res://Scripts/Resources/sender.gd" id="8_ultmy"]
+[ext_resource type="Texture2D" path="res://Sprites/UI/godotTaskIcon.png" id="9_ocjda"]
+[ext_resource type="Texture2D" path="res://Sprites/UI/MessageButton.png" id="10_l6eyc"]
+[ext_resource type="Texture2D" path="res://Sprites/Package.png" id="11_j03oi"]
+[ext_resource type="Texture2D" path="res://Sprites/clock.png" id="12_nl51b"]
+[ext_resource type="Texture2D" path="res://Sprites/ClockBackground.png" id="13_mfgi5"]
+[ext_resource type="Texture2D" path="res://Sprites/ProceedButton.png" id="14_m71vn"]
+[ext_resource type="Texture2D" path="res://Sprites/UI/ExclamationBubble.png" id="15_6suiu"]
+[ext_resource type="Resource" path="res://TaskData/Scenarios/TestScenario.tres" id="16_b10r1"]
+[ext_resource type="Script" path="res://Scripts/Editor/editor_save.gd" id="17_ss605"]
+
+[sub_resource type="Resource" id="Resource_mhxfq"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 1.0
+min_turn = 1
+max_turn = 1
+
+[sub_resource type="Resource" id="Resource_u4fyv"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 1.0
+min_turn = 7
+max_turn = 7
+
+[sub_resource type="Resource" id="Resource_r4obm"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 1.0
+min_turn = 13
+max_turn = 13
+
+[sub_resource type="Resource" id="Resource_jutn2"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 1.0
+min_turn = 19
+max_turn = 19
+
+[sub_resource type="Resource" id="Resource_emodc"]
+script = ExtResource("5_7wxc4")
+task_id = "SPLT"
+name = "Freetown Search Party"
+icon = ExtResource("4_lv4yx")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {
+"people": 40,
+"supplies": 100,
+"vehicles": 20
+}
+resources_gained = {
+"people": 40,
+"vehicles": 20
+}
+expected_completion_time = 6
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_petn6"]
+script = ExtResource("2_3xigt")
+response_name = "Send a large team"
+response_text = "We can send a large team right now."
+relationship_change = -10.0
+task = SubResource("Resource_emodc")
+
+[sub_resource type="Resource" id="Resource_e0def"]
+script = ExtResource("5_7wxc4")
+task_id = "SPMT"
+name = "Freetown Search Party"
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 0,
+"people": 20,
+"supplies": 50,
+"vehicles": 10
+}
+resources_gained = {
+"people": 20,
+"vehicles": 10
+}
+expected_completion_time = 6
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_s8ujp"]
+script = ExtResource("2_3xigt")
+response_name = "Send a medium team"
+response_text = "We can send a medium team now."
+relationship_change = 10.0
+task = SubResource("Resource_e0def")
+
+[sub_resource type="Resource" id="Resource_uqsnc"]
+script = ExtResource("5_7wxc4")
+task_id = "SPST"
+name = "Freetown Search Party"
+start_location = Vector2(40, 30)
+end_location = Vector2(0, 0)
+resources_required = {
+"people": 10,
+"supplies": 30,
+"vehicles": 5
+}
+resources_gained = {
+"people": 10,
+"vehicles": 5
+}
+expected_completion_time = 6
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_e8oxx"]
+script = ExtResource("2_3xigt")
+response_name = "Send a small team"
+response_text = "We can send a small team now."
+relationship_change = 5.0
+task = SubResource("Resource_uqsnc")
+
+[sub_resource type="Resource" id="Resource_agp7i"]
+script = ExtResource("2_3xigt")
+response_name = "Don't send a team"
+response_text = "We're not going to send a team to help."
+relationship_change = 5.0
+
+[sub_resource type="Resource" id="Resource_iff3j"]
+script = ExtResource("8_ultmy")
+name = "Freetown Government"
+image = ExtResource("7_t85jc")
+relationship = 0.0
+
+[sub_resource type="Resource" id="Resource_qc7dk"]
+script = ExtResource("6_frvfg")
+message = "We need manpower and supplies to help the search efforts taking plae in the city centre and west end of Freetown. Please send what you can"
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_petn6"), SubResource("Resource_s8ujp"), SubResource("Resource_e8oxx"), SubResource("Resource_agp7i")])
+default_response = 3
+sender = SubResource("Resource_iff3j")
+prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_mhxfq"), SubResource("Resource_u4fyv"), SubResource("Resource_r4obm"), SubResource("Resource_jutn2")])
+antirequisites = Array[ExtResource("1_m1yx3")]([])
+turns_to_answer = 6
+is_repeatable = true
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_ip8m3"]
+script = ExtResource("5_7wxc4")
+task_id = "ESAS"
+name = "Air Scout Team"
+icon = ExtResource("9_ocjda")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 10,
+"people": 4,
+"supplies": 0,
+"vehicles": 1
+}
+resources_gained = {
+"people": 4,
+"vehicles": 1
+}
+expected_completion_time = 1
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_ir33p"]
+script = ExtResource("2_3xigt")
+response_name = "Air Scout Team"
+response_text = "We're going to send an air team to scout the area first."
+relationship_change = 0.0
+task = SubResource("Resource_ip8m3")
+
+[sub_resource type="Resource" id="Resource_m5r8g"]
+script = ExtResource("5_7wxc4")
+task_id = "ESGS"
+name = "Ground Scout Team"
+icon = ExtResource("10_l6eyc")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 0,
+"people": 8,
+"supplies": 0,
+"vehicles": 4
+}
+resources_gained = {
+"people": 8,
+"vehicles": 4
+}
+expected_completion_time = 2
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_har8n"]
+script = ExtResource("2_3xigt")
+response_name = "Ground Scout Team"
+response_text = "We're going to send a scouting team on the ground to check out the area first."
+relationship_change = 0.0
+task = SubResource("Resource_m5r8g")
+
+[sub_resource type="Resource" id="Resource_rmtnr"]
+script = ExtResource("5_7wxc4")
+task_id = "ESEVAC"
+name = "Evac Team"
+icon = ExtResource("11_j03oi")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {
+"people": 15,
+"supplies": 50,
+"vehicles": 10
+}
+resources_gained = {
+"people": 15,
+"vehicles": 10
+}
+expected_completion_time = 6
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_jlr75"]
+script = ExtResource("2_3xigt")
+response_name = "Evacuate Now"
+response_text = "We're going to send a team to help evacuate now"
+relationship_change = 0.0
+task = SubResource("Resource_rmtnr")
+
+[sub_resource type="Resource" id="Resource_h1l6m"]
+script = ExtResource("5_7wxc4")
+task_id = "ESNT"
+name = "No Team"
+icon = ExtResource("7_t85jc")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_x0feg"]
+script = ExtResource("2_3xigt")
+response_name = "Send no team"
+response_text = "We aren't going to do anything."
+relationship_change = 0.0
+task = SubResource("Resource_h1l6m")
+
+[sub_resource type="Resource" id="Resource_fojvw"]
+script = ExtResource("8_ultmy")
+name = "UN OCHA Agent"
+image = ExtResource("12_nl51b")
+relationship = 79.0
+
+[sub_resource type="Resource" id="Resource_q6jkm"]
+script = ExtResource("6_frvfg")
+message = "The residents who live near the hills in the east side of Freetown are at high risk of being involved in a mud slide. The earthquake combined with the high rainfall during summer will make this almost certain. A mudslide could be a humanitarian disaster on its own. We should send a team straight away."
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_ir33p"), SubResource("Resource_har8n"), SubResource("Resource_jlr75"), SubResource("Resource_x0feg")])
+default_response = 3
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("1_m1yx3")]([])
+antirequisites = Array[ExtResource("1_m1yx3")]([])
+turns_to_answer = 1
+is_repeatable = false
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_3nh6l"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["ESGS"])
+events = Array[int]([])
+chance = 0.7
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_v7ac2"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["ESAS"])
+events = Array[int]([])
+chance = 0.7
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_5asf0"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.71
+min_turn = 5
+max_turn = 5
+
+[sub_resource type="Resource" id="Resource_nfm3i"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.5
+min_turn = 8
+max_turn = 8
+
+[sub_resource type="Resource" id="Resource_5ldvl"]
+script = ExtResource("5_7wxc4")
+task_id = "MUDSLIDE"
+name = "Mudsldie"
+icon = ExtResource("7_t85jc")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_2qgvb"]
+script = ExtResource("2_3xigt")
+response_name = "Mudslide Starter"
+response_text = ""
+relationship_change = 0.0
+task = SubResource("Resource_5ldvl")
+
+[sub_resource type="Resource" id="Resource_ivkpt"]
+script = ExtResource("8_ultmy")
+name = "Anonymous"
+relationship = 0.0
+
+[sub_resource type="Resource" id="Resource_mc7s0"]
+script = ExtResource("6_frvfg")
+message = "Mudslide Event.
+
+There is a mudslide happening next turn,"
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_2qgvb")])
+default_response = 0
+sender = SubResource("Resource_ivkpt")
+prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_3nh6l"), SubResource("Resource_v7ac2"), SubResource("Resource_5asf0"), SubResource("Resource_nfm3i")])
+antirequisites = Array[ExtResource("1_m1yx3")]([])
+turns_to_answer = 1
+is_repeatable = false
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_bno1o"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["ESAS"])
+events = Array[int]([])
+chance = 1.0
+min_turn = 3
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_4rywa"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["ESGS"])
+events = Array[int]([])
+chance = 0.5
+min_turn = 3
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_0h3k0"]
+script = ExtResource("5_7wxc4")
+task_id = "ODEARLY"
+name = "Starting Oil Defences"
+icon = ExtResource("11_j03oi")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 50,
+"people": 10,
+"vehicles": 10
+}
+resources_gained = {
+"people": 10,
+"vehicles": 10
+}
+expected_completion_time = 1
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_s336w"]
+script = ExtResource("2_3xigt")
+response_name = "Start Defences"
+response_text = "Good idea. Let's begin on defences right away before it gets out of hands"
+relationship_change = 0.0
+task = SubResource("Resource_0h3k0")
+
+[sub_resource type="Resource" id="Resource_kovun"]
+script = ExtResource("5_7wxc4")
+task_id = "ODEARLYNO"
+name = "Nothing"
+icon = ExtResource("7_t85jc")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {
+"people": 0
+}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_lruis"]
+script = ExtResource("2_3xigt")
+response_name = "Do nothing."
+response_text = "We have more important things to focus on at the moment."
+relationship_change = 0.0
+task = SubResource("Resource_kovun")
+
+[sub_resource type="Resource" id="Resource_louxg"]
+script = ExtResource("6_frvfg")
+message = "Our scouting teams have noticed that the earthquakes have caused damaged to the structures in Cline Bay, and there appears to be a large amount of oil leaking into the bay. This could be disastrous for the fishing and shipping industry in the area. We should begin defences straight away."
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_s336w"), SubResource("Resource_lruis")])
+default_response = 0
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_bno1o"), SubResource("Resource_4rywa")])
+antirequisites = Array[ExtResource("1_m1yx3")]([])
+turns_to_answer = 1
+is_repeatable = false
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_hycla"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["ODEARLY"])
+events = Array[int]([])
+chance = 1.0
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_88g0y"]
+script = ExtResource("5_7wxc4")
+task_id = "ODLT"
+name = "Oil Defences"
+icon = ExtResource("13_mfgi5")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 10,
+"people": 15,
+"vehicles": 10
+}
+resources_gained = {
+"people": 15,
+"vehicles": 10
+}
+expected_completion_time = 4
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_3kgi6"]
+script = ExtResource("2_3xigt")
+response_name = "Large Defence Team"
+response_text = "We find this very important, so we will send lots of help!"
+relationship_change = 30.0
+task = SubResource("Resource_88g0y")
+
+[sub_resource type="Resource" id="Resource_p722o"]
+script = ExtResource("5_7wxc4")
+task_id = "ODNT"
+name = "Nothing"
+icon = ExtResource("7_t85jc")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_m026q"]
+script = ExtResource("2_3xigt")
+response_name = "Don't help."
+response_text = "We can't help, sorry."
+relationship_change = -50.0
+task = SubResource("Resource_p722o")
+
+[sub_resource type="Resource" id="Resource_6l5w1"]
+script = ExtResource("5_7wxc4")
+task_id = "ODST"
+name = "Oil Defences"
+icon = ExtResource("14_m71vn")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 5,
+"people": 6,
+"vehicles": 3
+}
+resources_gained = {
+"people": 6,
+"vehicles": 3
+}
+expected_completion_time = 4
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_j34xh"]
+script = ExtResource("2_3xigt")
+response_name = "Small Defence Team"
+response_text = "We find this important, but we don't have too much to spare. We will send a small team"
+relationship_change = 20.0
+task = SubResource("Resource_6l5w1")
+
+[sub_resource type="Resource" id="Resource_2n57b"]
+script = ExtResource("8_ultmy")
+name = "Environmental Agency"
+image = ExtResource("15_6suiu")
+relationship = 0.0
+
+[sub_resource type="Resource" id="Resource_7v4cu"]
+script = ExtResource("6_frvfg")
+message = "Great work on hitting that oil spill early, the chances of containment have improved greatly because of the early action. We would still like to monitor the situation however and would like some help doing this."
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_3kgi6"), SubResource("Resource_m026q"), SubResource("Resource_j34xh")])
+default_response = 0
+sender = SubResource("Resource_2n57b")
+prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_hycla")])
+antirequisites = Array[ExtResource("1_m1yx3")]([])
+turns_to_answer = 3
+is_repeatable = false
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_cu7gj"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["ODEARLY"])
+events = Array[int]([])
+chance = 1.0
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_2xla6"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 1.0
+min_turn = 4
+max_turn = 4
+
+[sub_resource type="Resource" id="Resource_ik32o"]
+script = ExtResource("5_7wxc4")
+task_id = "ODLT"
+name = "Oil Defences"
+icon = ExtResource("13_mfgi5")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 80,
+"people": 15,
+"vehicles": 10
+}
+resources_gained = {
+"people": 15,
+"vehicles": 10
+}
+expected_completion_time = 4
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_7kxht"]
+script = ExtResource("2_3xigt")
+response_name = "Large Defence Team"
+response_text = "We will send a large team now."
+relationship_change = 30.0
+task = SubResource("Resource_ik32o")
+
+[sub_resource type="Resource" id="Resource_ql0bm"]
+script = ExtResource("5_7wxc4")
+task_id = "ODST"
+name = "Oil Defences"
+icon = ExtResource("11_j03oi")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 60,
+"people": 6,
+"vehicles": 3
+}
+resources_gained = {
+"people": 6,
+"vehicles": 3
+}
+expected_completion_time = 4
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_es3k8"]
+script = ExtResource("2_3xigt")
+response_name = "Small Defence Team"
+response_text = "We will send a small team now."
+relationship_change = 0.0
+task = SubResource("Resource_ql0bm")
+
+[sub_resource type="Resource" id="Resource_j0ux1"]
+script = ExtResource("5_7wxc4")
+task_id = "ODNT"
+name = "Nothing"
+icon = ExtResource("7_t85jc")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_jssep"]
+script = ExtResource("2_3xigt")
+response_name = "Don't help."
+response_text = "Cant help. Sorry."
+relationship_change = 0.0
+task = SubResource("Resource_j0ux1")
+
+[sub_resource type="Resource" id="Resource_vbcvc"]
+script = ExtResource("6_frvfg")
+message = "We’ve been alerted of an oil spill in Cline Bay. We need to act now, delaying to take action could let the oil spill further up into the harbor preventing boats from bringing important relief supplies."
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_7kxht"), SubResource("Resource_es3k8"), SubResource("Resource_jssep")])
+default_response = 0
+sender = SubResource("Resource_2n57b")
+prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_2xla6")])
+antirequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_cu7gj")])
+turns_to_answer = 3
+is_repeatable = false
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_mtlys"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["ESAS"])
+events = Array[int]([])
+chance = 1.0
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_q8tjp"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["MUDSLIDE", "ESNT"])
+events = Array[int]([])
+chance = 1.0
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_bi8sx"]
+script = ExtResource("2_3xigt")
+response_name = "Send more help."
+response_text = "We should send more help."
+relationship_change = 0.0
+
+[sub_resource type="Resource" id="Resource_bqilq"]
+script = ExtResource("2_3xigt")
+response_name = "There's enough help."
+response_text = "We don't have enough to send more. Atleast there's already some aid there."
+relationship_change = 0.0
+
+[sub_resource type="Resource" id="Resource_cxqd1"]
+script = ExtResource("6_frvfg")
+message = "There's a mudslide, thanks to our current evacuation team we already have some support there, but it would be nice to send some more."
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_bi8sx"), SubResource("Resource_bqilq")])
+default_response = 0
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_q8tjp")])
+antirequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_mtlys")])
+turns_to_answer = 0
+is_repeatable = false
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_qhpii"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["ODNT", "ODST"])
+events = Array[int]([])
+chance = 0.0
+min_turn = 0
+max_turn = 0
+
+[sub_resource type="Resource" id="Resource_ptldf"]
+script = ExtResource("5_7wxc4")
+task_id = ""
+name = ""
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_lqca4"]
+script = ExtResource("2_3xigt")
+response_name = "Response"
+response_text = ""
+relationship_change = 0.0
+task = SubResource("Resource_ptldf")
+
+[sub_resource type="Resource" id="Resource_ip6en"]
+script = ExtResource("5_7wxc4")
+task_id = ""
+name = ""
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_cpamr"]
+script = ExtResource("2_3xigt")
+response_name = "Response"
+response_text = ""
+relationship_change = 0.0
+task = SubResource("Resource_ip6en")
+
+[sub_resource type="Resource" id="Resource_rkpq3"]
+script = ExtResource("6_frvfg")
+message = ""
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_lqca4"), SubResource("Resource_cpamr")])
+default_response = 0
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_qhpii")])
+antirequisites = Array[ExtResource("1_m1yx3")]([])
+turns_to_answer = 0
+is_repeatable = false
+cancel_behaviour = 0
+
+[sub_resource type="Resource" id="Resource_7qqfh"]
+script = ExtResource("2_3xigt")
+response_name = "Response"
+response_text = ""
+relationship_change = 0.0
+
+[sub_resource type="Resource" id="Resource_qr7ay"]
+script = ExtResource("6_frvfg")
+message = ""
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_7qqfh")])
+default_response = 0
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("1_m1yx3")]([])
+antirequisites = Array[ExtResource("1_m1yx3")]([])
+turns_to_answer = 0
+is_repeatable = false
+cancel_behaviour = 0
+
+[sub_resource type="Resource" id="Resource_7brdm"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.0
+min_turn = 0
+max_turn = 0
+
+[sub_resource type="Resource" id="Resource_5nua3"]
+script = ExtResource("5_7wxc4")
+task_id = "LOL"
+name = ""
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_r8h0b"]
+script = ExtResource("2_3xigt")
+response_name = "Response"
+response_text = ""
+relationship_change = 0.0
+task = SubResource("Resource_5nua3")
+
+[sub_resource type="Resource" id="Resource_ghjan"]
+script = ExtResource("8_ultmy")
+name = "Anonymous"
+relationship = 0.0
+
+[sub_resource type="Resource" id="Resource_d0vqv"]
+script = ExtResource("6_frvfg")
+message = ""
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_r8h0b")])
+default_response = 0
+sender = SubResource("Resource_ghjan")
+prerequisites = Array[ExtResource("1_m1yx3")]([])
+antirequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_7brdm")])
+turns_to_answer = 0
+is_repeatable = false
+cancel_behaviour = 0
+
+[sub_resource type="Resource" id="Resource_c5ulx"]
+script = ExtResource("8_ultmy")
+name = "Anonymous"
+relationship = 0.0
+
+[sub_resource type="Resource" id="Resource_vbofp"]
+script = ExtResource("6_frvfg")
+message = ""
+responses = Array[ExtResource("2_3xigt")]([])
+default_response = 0
+sender = SubResource("Resource_c5ulx")
+prerequisites = Array[ExtResource("1_m1yx3")]([])
+antirequisites = Array[ExtResource("1_m1yx3")]([])
+turns_to_answer = 0
+is_repeatable = false
+cancel_behaviour = 0
+
+[resource]
+script = ExtResource("17_ss605")
+scenario = ExtResource("16_b10r1")
+node_info = Array[Array]([[SubResource("Resource_qc7dk"), Vector2(0, 0), &"276829463"], [SubResource("Resource_iff3j"), Vector2(-400, -100), &"1376811089"], [SubResource("Resource_petn6"), Vector2(800, -1000), &"4213523782"], [SubResource("Resource_emodc"), Vector2(1600, -1000), &"483963684"], [SubResource("Resource_s8ujp"), Vector2(800, -300), &"776926705"], [SubResource("Resource_e0def"), Vector2(1600, -300), &"2661964821"], [SubResource("Resource_e8oxx"), Vector2(800, 400), &"610201967"], [SubResource("Resource_uqsnc"), Vector2(1600, 400), &"1636797479"], [SubResource("Resource_agp7i"), Vector2(800, 1100), &"833244673"], [SubResource("Resource_mhxfq"), Vector2(-800, 0), &"1685232037"], [SubResource("Resource_u4fyv"), Vector2(-800, 345), &"2183902773"], [SubResource("Resource_r4obm"), Vector2(-800, 690), &"3220913367"], [SubResource("Resource_jutn2"), Vector2(-800, 1035), &"831195260"], [SubResource("Resource_q6jkm"), Vector2(3500, 0), &"3502117298"], [SubResource("Resource_fojvw"), Vector2(3100, -100), &"1160565070"], [SubResource("Resource_ir33p"), Vector2(4300, -1000), &"3691279077"], [SubResource("Resource_ip8m3"), Vector2(5100, -1000), &"2701630386"], [SubResource("Resource_har8n"), Vector2(4300, -300), &"3240135881"], [SubResource("Resource_m5r8g"), Vector2(5100, -300), &"2531541088"], [SubResource("Resource_jlr75"), Vector2(4300, 400), &"2237558479"], [SubResource("Resource_rmtnr"), Vector2(5100, 400), &"1216084202"], [SubResource("Resource_x0feg"), Vector2(4300, 1100), &"295444354"], [SubResource("Resource_h1l6m"), Vector2(5100, 1100), &"2093269050"], [SubResource("Resource_mc7s0"), Vector2(7126.61, -2984.77), &"59560783"], [SubResource("Resource_ivkpt"), Vector2(6726.61, -3084.77), &"2439408380"], [SubResource("Resource_2qgvb"), Vector2(7926.61, -2984.77), &"1734128758"], [SubResource("Resource_3nh6l"), Vector2(6326.61, -2984.77), &"3219530344"], [SubResource("Resource_v7ac2"), Vector2(6326.61, -2639.77), &"4111819374"], [SubResource("Resource_5asf0"), Vector2(6326.61, -2294.77), &"1434865693"], [SubResource("Resource_nfm3i"), Vector2(6326.61, -1949.77), &"675940666"], [SubResource("Resource_louxg"), Vector2(10500, 0), &"441962832"], [SubResource("Resource_fojvw"), Vector2(10100, -100), &"610795860"], [SubResource("Resource_s336w"), Vector2(11300, -500), &"984170209"], [SubResource("Resource_0h3k0"), Vector2(12100, -500), &"1312067910"], [SubResource("Resource_lruis"), Vector2(11300, 200), &"4014079586"], [SubResource("Resource_kovun"), Vector2(12100, 200), &"3407544255"], [SubResource("Resource_bno1o"), Vector2(9700, 0), &"2796619533"], [SubResource("Resource_4rywa"), Vector2(9700, 345), &"3995740385"], [SubResource("Resource_7v4cu"), Vector2(14000, 0), &"4234005151"], [SubResource("Resource_2n57b"), Vector2(13600, -100), &"3846061712"], [SubResource("Resource_3kgi6"), Vector2(14800, -500), &"3909647122"], [SubResource("Resource_m026q"), Vector2(14800, 200), &"4021671243"], [SubResource("Resource_p722o"), Vector2(15600, 200), &"3125842807"], [SubResource("Resource_j34xh"), Vector2(14800, 900), &"641516386"], [SubResource("Resource_6l5w1"), Vector2(15600, 900), &"453070203"], [SubResource("Resource_hycla"), Vector2(13200, 0), &"872394878"], [SubResource("Resource_vbcvc"), Vector2(14672.7, -3031.33), &"1183196605"], [SubResource("Resource_2n57b"), Vector2(14272.7, -3131.33), &"2875620737"], [SubResource("Resource_7kxht"), Vector2(15472.7, -3531.33), &"144587492"], [SubResource("Resource_es3k8"), Vector2(15472.7, -2831.33), &"3351445462"], [SubResource("Resource_ql0bm"), Vector2(16272.7, -2831.33), &"2942894052"], [SubResource("Resource_jssep"), Vector2(15472.7, -2131.33), &"1940431015"], [SubResource("Resource_j0ux1"), Vector2(16272.7, -2131.33), &"2589877452"], [SubResource("Resource_2xla6"), Vector2(13872.7, -3031.33), &"1516412788"], [SubResource("Resource_cu7gj"), Vector2(13472.7, -3031.33), &"2251092609"], [SubResource("Resource_cxqd1"), Vector2(11325.1, -1701.06), &"3643751916"], [SubResource("Resource_fojvw"), Vector2(10925.1, -1801.06), &"3364899538"], [SubResource("Resource_bqilq"), Vector2(12125.1, -1501.06), &"1357043898"], [SubResource("Resource_q8tjp"), Vector2(10525.1, -1701.06), &"1757617720"], [SubResource("Resource_mtlys"), Vector2(10125.1, -1701.06), &"3019482411"], [SubResource("Resource_rkpq3"), Vector2(17966.8, -2869.77), &"801410379"], [SubResource("Resource_fojvw"), Vector2(17566.8, -2969.77), &"1838575210"], [SubResource("Resource_lqca4"), Vector2(18766.8, -3369.77), &"1340903682"], [SubResource("Resource_cpamr"), Vector2(18766.8, -2669.77), &"4051422365"], [SubResource("Resource_qhpii"), Vector2(17166.8, -2869.77), &"1366177001"], [SubResource("Resource_fojvw"), Vector2(1737.12, -3301.03), &"2327313897"], [SubResource("Resource_7qqfh"), Vector2(2937.12, -3201.03), &"395231885"], [SubResource("Resource_ik32o"), Vector2(16272.7, -3531.33), &"3881583780"], [SubResource("Resource_ptldf"), Vector2(19566.8, -3369.77), &"4146252511"], [SubResource("Resource_ip6en"), Vector2(19600.6, -2652.89), &"3829973481"], [SubResource("Resource_88g0y"), Vector2(15655.6, -512.355), &"3145373809"], [SubResource("Resource_bi8sx"), Vector2(12125.1, -2201.06), &"295816588"], [SubResource("Resource_5ldvl"), Vector2(8726.61, -2984.77), &"345947825"], [SubResource("Resource_qr7ay"), Vector2(2137.12, -3201.03), &"2246878380"], [SubResource("Resource_7brdm"), Vector2(16205.4, -421.776), &"611761234"], [SubResource("Resource_d0vqv"), Vector2(16709.1, -782.841), &"997239597"], [SubResource("Resource_r8h0b"), Vector2(17348.1, -634.661), &"4083139488"], [SubResource("Resource_5nua3"), Vector2(17751.5, -788.718), &"2793017628"], [SubResource("Resource_vbofp"), Vector2(19379.1, -1205.92), &"3868866416"]])
+zoom = 0.289664
+scroll_offset = Vector2(4837.25, -702.791)
+connections = Array[Dictionary]([{
+"from_node": &"1376811089",
+"from_port": 0,
+"to_node": &"276829463",
+"to_port": 0
+}, {
+"from_node": &"276829463",
+"from_port": 0,
+"to_node": &"4213523782",
+"to_port": 0
+}, {
+"from_node": &"4213523782",
+"from_port": 0,
+"to_node": &"483963684",
+"to_port": 0
+}, {
+"from_node": &"276829463",
+"from_port": 0,
+"to_node": &"776926705",
+"to_port": 0
+}, {
+"from_node": &"776926705",
+"from_port": 0,
+"to_node": &"2661964821",
+"to_port": 0
+}, {
+"from_node": &"276829463",
+"from_port": 0,
+"to_node": &"610201967",
+"to_port": 0
+}, {
+"from_node": &"610201967",
+"from_port": 0,
+"to_node": &"1636797479",
+"to_port": 0
+}, {
+"from_node": &"276829463",
+"from_port": 0,
+"to_node": &"833244673",
+"to_port": 0
+}, {
+"from_node": &"1685232037",
+"from_port": 0,
+"to_node": &"276829463",
+"to_port": 1
+}, {
+"from_node": &"2183902773",
+"from_port": 0,
+"to_node": &"276829463",
+"to_port": 1
+}, {
+"from_node": &"3220913367",
+"from_port": 0,
+"to_node": &"276829463",
+"to_port": 1
+}, {
+"from_node": &"831195260",
+"from_port": 0,
+"to_node": &"276829463",
+"to_port": 1
+}, {
+"from_node": &"1160565070",
+"from_port": 0,
+"to_node": &"3502117298",
+"to_port": 0
+}, {
+"from_node": &"3502117298",
+"from_port": 0,
+"to_node": &"3691279077",
+"to_port": 0
+}, {
+"from_node": &"3691279077",
+"from_port": 0,
+"to_node": &"2701630386",
+"to_port": 0
+}, {
+"from_node": &"3502117298",
+"from_port": 0,
+"to_node": &"3240135881",
+"to_port": 0
+}, {
+"from_node": &"3240135881",
+"from_port": 0,
+"to_node": &"2531541088",
+"to_port": 0
+}, {
+"from_node": &"3502117298",
+"from_port": 0,
+"to_node": &"2237558479",
+"to_port": 0
+}, {
+"from_node": &"2237558479",
+"from_port": 0,
+"to_node": &"1216084202",
+"to_port": 0
+}, {
+"from_node": &"3502117298",
+"from_port": 0,
+"to_node": &"295444354",
+"to_port": 0
+}, {
+"from_node": &"295444354",
+"from_port": 0,
+"to_node": &"2093269050",
+"to_port": 0
+}, {
+"from_node": &"2439408380",
+"from_port": 0,
+"to_node": &"59560783",
+"to_port": 0
+}, {
+"from_node": &"59560783",
+"from_port": 0,
+"to_node": &"1734128758",
+"to_port": 0
+}, {
+"from_node": &"1734128758",
+"from_port": 0,
+"to_node": &"345947825",
+"to_port": 0
+}, {
+"from_node": &"3219530344",
+"from_port": 0,
+"to_node": &"59560783",
+"to_port": 1
+}, {
+"from_node": &"4111819374",
+"from_port": 0,
+"to_node": &"59560783",
+"to_port": 1
+}, {
+"from_node": &"1434865693",
+"from_port": 0,
+"to_node": &"59560783",
+"to_port": 1
+}, {
+"from_node": &"675940666",
+"from_port": 0,
+"to_node": &"59560783",
+"to_port": 1
+}, {
+"from_node": &"610795860",
+"from_port": 0,
+"to_node": &"441962832",
+"to_port": 0
+}, {
+"from_node": &"441962832",
+"from_port": 0,
+"to_node": &"984170209",
+"to_port": 0
+}, {
+"from_node": &"984170209",
+"from_port": 0,
+"to_node": &"1312067910",
+"to_port": 0
+}, {
+"from_node": &"441962832",
+"from_port": 0,
+"to_node": &"4014079586",
+"to_port": 0
+}, {
+"from_node": &"4014079586",
+"from_port": 0,
+"to_node": &"3407544255",
+"to_port": 0
+}, {
+"from_node": &"2796619533",
+"from_port": 0,
+"to_node": &"441962832",
+"to_port": 1
+}, {
+"from_node": &"3995740385",
+"from_port": 0,
+"to_node": &"441962832",
+"to_port": 1
+}, {
+"from_node": &"3846061712",
+"from_port": 0,
+"to_node": &"4234005151",
+"to_port": 0
+}, {
+"from_node": &"4234005151",
+"from_port": 0,
+"to_node": &"3909647122",
+"to_port": 0
+}, {
+"from_node": &"3909647122",
+"from_port": 0,
+"to_node": &"3145373809",
+"to_port": 0
+}, {
+"from_node": &"4234005151",
+"from_port": 0,
+"to_node": &"4021671243",
+"to_port": 0
+}, {
+"from_node": &"4021671243",
+"from_port": 0,
+"to_node": &"3125842807",
+"to_port": 0
+}, {
+"from_node": &"4234005151",
+"from_port": 0,
+"to_node": &"641516386",
+"to_port": 0
+}, {
+"from_node": &"641516386",
+"from_port": 0,
+"to_node": &"453070203",
+"to_port": 0
+}, {
+"from_node": &"872394878",
+"from_port": 0,
+"to_node": &"4234005151",
+"to_port": 1
+}, {
+"from_node": &"2875620737",
+"from_port": 0,
+"to_node": &"1183196605",
+"to_port": 0
+}, {
+"from_node": &"1183196605",
+"from_port": 0,
+"to_node": &"144587492",
+"to_port": 0
+}, {
+"from_node": &"144587492",
+"from_port": 0,
+"to_node": &"3881583780",
+"to_port": 0
+}, {
+"from_node": &"1183196605",
+"from_port": 0,
+"to_node": &"3351445462",
+"to_port": 0
+}, {
+"from_node": &"3351445462",
+"from_port": 0,
+"to_node": &"2942894052",
+"to_port": 0
+}, {
+"from_node": &"1183196605",
+"from_port": 0,
+"to_node": &"1940431015",
+"to_port": 0
+}, {
+"from_node": &"1940431015",
+"from_port": 0,
+"to_node": &"2589877452",
+"to_port": 0
+}, {
+"from_node": &"1516412788",
+"from_port": 0,
+"to_node": &"1183196605",
+"to_port": 1
+}, {
+"from_node": &"2251092609",
+"from_port": 0,
+"to_node": &"1183196605",
+"to_port": 2
+}, {
+"from_node": &"3364899538",
+"from_port": 0,
+"to_node": &"3643751916",
+"to_port": 0
+}, {
+"from_node": &"3643751916",
+"from_port": 0,
+"to_node": &"295816588",
+"to_port": 0
+}, {
+"from_node": &"3643751916",
+"from_port": 0,
+"to_node": &"1357043898",
+"to_port": 0
+}, {
+"from_node": &"1757617720",
+"from_port": 0,
+"to_node": &"3643751916",
+"to_port": 1
+}, {
+"from_node": &"3019482411",
+"from_port": 0,
+"to_node": &"3643751916",
+"to_port": 2
+}, {
+"from_node": &"1838575210",
+"from_port": 0,
+"to_node": &"801410379",
+"to_port": 0
+}, {
+"from_node": &"801410379",
+"from_port": 0,
+"to_node": &"1340903682",
+"to_port": 0
+}, {
+"from_node": &"1340903682",
+"from_port": 0,
+"to_node": &"4146252511",
+"to_port": 0
+}, {
+"from_node": &"801410379",
+"from_port": 0,
+"to_node": &"4051422365",
+"to_port": 0
+}, {
+"from_node": &"4051422365",
+"from_port": 0,
+"to_node": &"3829973481",
+"to_port": 0
+}, {
+"from_node": &"1366177001",
+"from_port": 0,
+"to_node": &"801410379",
+"to_port": 1
+}, {
+"from_node": &"2327313897",
+"from_port": 0,
+"to_node": &"2246878380",
+"to_port": 0
+}, {
+"from_node": &"2246878380",
+"from_port": 0,
+"to_node": &"395231885",
+"to_port": 0
+}, {
+"from_node": &"2531541088",
+"from_port": 0,
+"to_node": &"3219530344",
+"to_port": 0
+}, {
+"from_node": &"2701630386",
+"from_port": 0,
+"to_node": &"4111819374",
+"to_port": 0
+}, {
+"from_node": &"2701630386",
+"from_port": 0,
+"to_node": &"2796619533",
+"to_port": 0
+}, {
+"from_node": &"2531541088",
+"from_port": 0,
+"to_node": &"3995740385",
+"to_port": 0
+}, {
+"from_node": &"1312067910",
+"from_port": 0,
+"to_node": &"872394878",
+"to_port": 0
+}, {
+"from_node": &"1312067910",
+"from_port": 0,
+"to_node": &"2251092609",
+"to_port": 0
+}, {
+"from_node": &"345947825",
+"from_port": 0,
+"to_node": &"1757617720",
+"to_port": 0
+}, {
+"from_node": &"2093269050",
+"from_port": 0,
+"to_node": &"1757617720",
+"to_port": 0
+}, {
+"from_node": &"2701630386",
+"from_port": 0,
+"to_node": &"3019482411",
+"to_port": 0
+}, {
+"from_node": &"2589877452",
+"from_port": 0,
+"to_node": &"1366177001",
+"to_port": 0
+}, {
+"from_node": &"2942894052",
+"from_port": 0,
+"to_node": &"1366177001",
+"to_port": 0
+}, {
+"from_node": &"3145373809",
+"from_port": 0,
+"to_node": &"611761234",
+"to_port": 0
+}, {
+"from_node": &"611761234",
+"from_port": 0,
+"to_node": &"997239597",
+"to_port": 2
+}, {
+"from_node": &"997239597",
+"from_port": 0,
+"to_node": &"4083139488",
+"to_port": 0
+}, {
+"from_node": &"4083139488",
+"from_port": 0,
+"to_node": &"2793017628",
+"to_port": 0
+}])
