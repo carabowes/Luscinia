@@ -13,7 +13,7 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 func _ready():
 	rng.randomize() ##Randomize the RNG for chance-based validation
 	GlobalTimer.turn_progressed.connect(find_messages_to_send)
-	EventBus.task_finished.connect(func(task : TaskInstance, cancelled : bool): if cancelled : _on_task_cancelled(task))
+	EventBus.task_finished.connect(_on_task_finished)
 	EventBus.message_responded.connect(func(message, response): unreplied_messages -= 1; if unreplied_messages == 0: EventBus.all_messages_read.emit())
 
 func find_messages_to_send(time_progressed: int):
@@ -49,6 +49,11 @@ func send_message(message : Message):
 				message_instance.reply(response)
 	)
 	message_sent.emit(message_instance)
+
+
+func _on_task_finished(task_instance : TaskInstance, cancelled : bool):
+	if cancelled:
+		_on_task_cancelled(task_instance)
 
 
 func _on_task_cancelled(task_instance : TaskInstance):
