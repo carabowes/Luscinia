@@ -7,10 +7,14 @@ var scenario_name : String
 ## the messages as everything else is stored in the messages
 var messages : Array[Message]
 ## The amount of time in minutes that the game clock moves forward on a new turn
-var time_step : int
+var time_step : int:
+	set(value):
+		time_step = max(1, value)
 ## The in game time that the scenrio starts at, stored in 24 hour time e.g 16 = 4pm
 ## Min value of 0, Max value of 23
-var starting_hour : int
+var starting_hour : int:
+	set(value):
+		starting_hour = clamp(value, 0, 23)
 ## The resources that the player starts of with
 var resources : Dictionary = {
 	"funds": 100,
@@ -35,6 +39,6 @@ func _init(
 	self.scenario_name = scenario_name
 	self.messages = messages
 	self.time_step = time_step
-	self.starting_hour = clamp(starting_hour, 0, 23)
+	self.starting_hour = starting_hour
 	self.resources = resources
 	self.available_resources = available_resources
