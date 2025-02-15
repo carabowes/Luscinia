@@ -13,8 +13,9 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 func _ready():
 	rng.randomize() ##Randomize the RNG for chance-based validation
 	GlobalTimer.turn_progressed.connect(find_messages_to_send)
-	EventBus.task_finished.connect(func(task : TaskInstance, cancelled : bool): if cancelled : _on_task_cancelled(task))
+	EventBus.task_finished.connect(_on_task_finished)
 	EventBus.message_responded.connect(func(message, response): unreplied_messages -= 1; if unreplied_messages == 0: EventBus.all_messages_read.emit())
+
 
 func find_messages_to_send(time_progressed: int):
 	var selected_messages: Array[Message]
@@ -51,16 +52,23 @@ func send_message(message : Message):
 	message_sent.emit(message_instance)
 
 
+func _on_task_finished(task_instance : TaskInstance, cancelled : bool):
+	if task_instance.message.is_repeatable:
+		messages_to_send.append(task_instance.message)
+	if cancelled:
+		_on_task_cancelled(task_instance)
+
+
 func _on_task_cancelled(task_instance : TaskInstance):
 	var cancel_behaviour = task_instance.message.cancel_behaviour
 	var message : Message = task_instance.message
-	if cancel_behaviour == Message.CancelBehaviour.FORCE_RESEND:
+	if cancel_behaviour == Message.CancelBehaviour.FORCE_RESEND  and not message.is_repeatable:
 		#This is the only way to queue a message send at the moment. Resending the message to the pool with no prereqs 
 		var message_copy : Message = message.duplicate() 
 		message.prerequisites = []
 		message.antirequisites = []
 		messages_to_send.append(message_copy)
-	elif cancel_behaviour == Message.CancelBehaviour.PREREQ_RESEND:
+	elif cancel_behaviour == Message.CancelBehaviour.PREREQ_RESEND and not message.is_repeatable:
 		messages_to_send.append(message)
 	elif cancel_behaviour == Message.CancelBehaviour.ACT_AS_COMPLETED:
 		task_instance.is_completed
