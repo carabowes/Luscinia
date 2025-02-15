@@ -1,21 +1,26 @@
-[gd_resource type="Resource" script_class="Scenario" load_steps=93 format=3 uid="uid://duit5atxukdeo"]
+[gd_resource type="Resource" script_class="Scenario" load_steps=115 format=3 uid="uid://duit5atxukdeo"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="1_22kjx"]
 [ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="2_lfadw"]
 [ext_resource type="Script" path="res://Scripts/Resources/scenario.gd" id="2_yn5ci"]
 [ext_resource type="Script" path="res://Scripts/Resources/response.gd" id="3_8xbhe"]
 [ext_resource type="Script" path="res://Scripts/Resources/event_effect.gd" id="4_cvs8s"]
+[ext_resource type="Texture2D" uid="uid://pi3yjpiiylnu" path="res://Sprites/TaskSprites/TruckAmbulance.png" id="5_8nwon"]
 [ext_resource type="Script" path="res://Scripts/Resources/task_data.gd" id="5_j85s3"]
-[ext_resource type="Texture2D" uid="uid://chgb1pq7fpd4c" path="res://Sprites/UI/Truck.png" id="5_mddet"]
 [ext_resource type="Script" path="res://Scripts/Resources/sender.gd" id="6_imb53"]
+[ext_resource type="Texture2D" uid="uid://b87txx7wt632j" path="res://TaskData/Freetown/FreetownGovLogo.png" id="7_2clqb"]
 [ext_resource type="Texture2D" uid="uid://d1cwe1f3jk3ca" path="res://Sprites/icon.svg" id="7_atwyf"]
-[ext_resource type="Texture2D" uid="uid://c863dc1kr3gcq" path="res://Sprites/UI/godotTaskIcon.png" id="9_brnnm"]
-[ext_resource type="Texture2D" uid="uid://dbevrsfktm6jt" path="res://Sprites/UI/MessageButton.png" id="10_wwh4f"]
-[ext_resource type="Texture2D" uid="uid://dmrhlqq3p4y0g" path="res://Sprites/Package.png" id="11_n8det"]
-[ext_resource type="Texture2D" uid="uid://7v3dgwwsbwqu" path="res://Sprites/clock.png" id="12_87rmy"]
-[ext_resource type="Texture2D" uid="uid://dwl5qh53md1wx" path="res://Sprites/UI/ExclamationBubble.png" id="13_opq0n"]
-[ext_resource type="Texture2D" uid="uid://c27suyrk8wq" path="res://Sprites/ClockBackground.png" id="13_y8c2f"]
-[ext_resource type="Texture2D" uid="uid://duvounvh77gd2" path="res://Sprites/ProceedButton.png" id="14_gad0m"]
+[ext_resource type="Texture2D" uid="uid://b7xngrgi5sx2e" path="res://Sprites/TaskSprites/Oil.png" id="10_aaotd"]
+[ext_resource type="Texture2D" uid="uid://babyw5cjoen2v" path="res://Sprites/TaskSprites/Helicopter.png" id="10_mjnkn"]
+[ext_resource type="Texture2D" uid="uid://d31ak0yhabes8" path="res://Sprites/TaskSprites/Truck.png" id="11_e4xfe"]
+[ext_resource type="Texture2D" uid="uid://c5wkp6rci5gh1" path="res://TaskData/Freetown/EnviroLogo.png" id="12_rj462"]
+[ext_resource type="Texture2D" uid="uid://bfsmjyttjjyud" path="res://TaskData/Freetown/UNOCHALogo.png" id="13_aufgg"]
+[ext_resource type="Texture2D" uid="uid://djqqb6l2e44y8" path="res://Sprites/TaskSprites/HelicopterTruck.png" id="18_h53ag"]
+[ext_resource type="Texture2D" uid="uid://sra7kb2cmemg" path="res://Sprites/TaskSprites/TwoSupplies.png" id="19_4d5cc"]
+[ext_resource type="Texture2D" uid="uid://bfstuqyvoj5bo" path="res://TaskData/Freetown/IRCLogo.png" id="20_dyqjs"]
+[ext_resource type="Texture2D" uid="uid://c18350ftd01gh" path="res://Sprites/TaskSprites/ThreePeople.png" id="21_q6jui"]
+[ext_resource type="Texture2D" uid="uid://dns0bkbbwr6dk" path="res://Sprites/TaskSprites/SixPeople.png" id="22_t7vtt"]
+[ext_resource type="Texture2D" uid="uid://dn4yne00xfker" path="res://Sprites/TaskSprites/TwoMedicalSupplies.png" id="23_q3ta6"]
 
 [sub_resource type="Resource" id="Resource_mhxfq"]
 script = ExtResource("2_lfadw")
@@ -53,17 +58,18 @@ max_turn = 19
 script = ExtResource("5_j85s3")
 task_id = "SPLT"
 name = "Freetown Search Party"
-icon = ExtResource("5_mddet")
-start_location = Vector2(0, 0)
+icon = ExtResource("5_8nwon")
+start_location = Vector2(850, 850)
 end_location = Vector2(0, 0)
 resources_required = {
-"people": 40,
-"supplies": 100,
-"vehicles": 20
+"funds": 100000,
+"people": 60,
+"supplies": 1000,
+"vehicles": 40
 }
 resources_gained = {
-"people": 40,
-"vehicles": 20
+"people": 60,
+"vehicles": 40
 }
 expected_completion_time = 6
 effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
@@ -79,17 +85,18 @@ task = SubResource("Resource_emodc")
 script = ExtResource("5_j85s3")
 task_id = "SPMT"
 name = "Freetown Search Party"
-start_location = Vector2(0, 0)
+icon = ExtResource("5_8nwon")
+start_location = Vector2(850, 850)
 end_location = Vector2(0, 0)
 resources_required = {
-"funds": 0,
-"people": 20,
-"supplies": 50,
-"vehicles": 10
+"funds": 80000,
+"people": 40,
+"supplies": 775,
+"vehicles": 30
 }
 resources_gained = {
-"people": 20,
-"vehicles": 10
+"people": 40,
+"vehicles": 30
 }
 expected_completion_time = 6
 effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
@@ -105,16 +112,18 @@ task = SubResource("Resource_e0def")
 script = ExtResource("5_j85s3")
 task_id = "SPST"
 name = "Freetown Search Party"
-start_location = Vector2(40, 30)
+icon = ExtResource("5_8nwon")
+start_location = Vector2(850, 850)
 end_location = Vector2(0, 0)
 resources_required = {
-"people": 10,
-"supplies": 30,
-"vehicles": 5
+"funds": 50000,
+"people": 20,
+"supplies": 500,
+"vehicles": 15
 }
 resources_gained = {
-"people": 10,
-"vehicles": 5
+"people": 20,
+"vehicles": 15
 }
 expected_completion_time = 6
 effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
@@ -126,16 +135,29 @@ response_text = "We can send a small team now."
 relationship_change = 5.0
 task = SubResource("Resource_uqsnc")
 
+[sub_resource type="Resource" id="Resource_4g0n7"]
+script = ExtResource("5_j85s3")
+task_id = "SPNT"
+name = "No Search Party"
+icon = ExtResource("7_atwyf")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
 [sub_resource type="Resource" id="Resource_agp7i"]
 script = ExtResource("3_8xbhe")
 response_name = "Don't send a team"
 response_text = "We're not going to send a team to help."
 relationship_change = 5.0
+task = SubResource("Resource_4g0n7")
 
 [sub_resource type="Resource" id="Resource_iff3j"]
 script = ExtResource("6_imb53")
 name = "Freetown Government"
-image = ExtResource("7_atwyf")
+image = ExtResource("7_2clqb")
 relationship = 0.0
 
 [sub_resource type="Resource" id="Resource_qc7dk"]
@@ -150,218 +172,39 @@ turns_to_answer = 6
 is_repeatable = true
 cancel_behaviour = 4
 
-[sub_resource type="Resource" id="Resource_ip8m3"]
-script = ExtResource("5_j85s3")
-task_id = "ESAS"
-name = "Air Scout Team"
-icon = ExtResource("9_brnnm")
-start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
-resources_required = {
-"funds": 10,
-"people": 4,
-"supplies": 0,
-"vehicles": 1
-}
-resources_gained = {
-"people": 4,
-"vehicles": 1
-}
-expected_completion_time = 1
-effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
-
-[sub_resource type="Resource" id="Resource_ir33p"]
-script = ExtResource("3_8xbhe")
-response_name = "Air Scout Team"
-response_text = "We're going to send an air team to scout the area first."
-relationship_change = 0.0
-task = SubResource("Resource_ip8m3")
-
-[sub_resource type="Resource" id="Resource_m5r8g"]
-script = ExtResource("5_j85s3")
-task_id = "ESGS"
-name = "Ground Scout Team"
-icon = ExtResource("10_wwh4f")
-start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
-resources_required = {
-"funds": 0,
-"people": 8,
-"supplies": 0,
-"vehicles": 4
-}
-resources_gained = {
-"people": 8,
-"vehicles": 4
-}
-expected_completion_time = 2
-effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
-
-[sub_resource type="Resource" id="Resource_har8n"]
-script = ExtResource("3_8xbhe")
-response_name = "Ground Scout Team"
-response_text = "We're going to send a scouting team on the ground to check out the area first."
-relationship_change = 0.0
-task = SubResource("Resource_m5r8g")
-
-[sub_resource type="Resource" id="Resource_rmtnr"]
-script = ExtResource("5_j85s3")
-task_id = "ESEVAC"
-name = "Evac Team"
-icon = ExtResource("11_n8det")
-start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
-resources_required = {
-"people": 15,
-"supplies": 50,
-"vehicles": 10
-}
-resources_gained = {
-"people": 15,
-"vehicles": 10
-}
-expected_completion_time = 6
-effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
-
-[sub_resource type="Resource" id="Resource_jlr75"]
-script = ExtResource("3_8xbhe")
-response_name = "Evacuate Now"
-response_text = "We're going to send a team to help evacuate now"
-relationship_change = 0.0
-task = SubResource("Resource_rmtnr")
-
-[sub_resource type="Resource" id="Resource_h1l6m"]
-script = ExtResource("5_j85s3")
-task_id = "ESNT"
-name = "No Team"
-icon = ExtResource("7_atwyf")
-start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
-resources_required = {}
-resources_gained = {}
-expected_completion_time = 0
-effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
-
-[sub_resource type="Resource" id="Resource_x0feg"]
-script = ExtResource("3_8xbhe")
-response_name = "Send no team"
-response_text = "We aren't going to do anything."
-relationship_change = 0.0
-task = SubResource("Resource_h1l6m")
-
-[sub_resource type="Resource" id="Resource_fojvw"]
-script = ExtResource("6_imb53")
-name = "UN OCHA Agent"
-image = ExtResource("12_87rmy")
-relationship = 79.0
-
-[sub_resource type="Resource" id="Resource_q6jkm"]
-script = ExtResource("1_22kjx")
-message = "The residents who live near the hills in the east side of Freetown are at high risk of being involved in a mud slide. The earthquake combined with the high rainfall during summer will make this almost certain. A mudslide could be a humanitarian disaster on its own. We should send a team straight away."
-responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_ir33p"), SubResource("Resource_har8n"), SubResource("Resource_jlr75"), SubResource("Resource_x0feg")])
-default_response = 3
-sender = SubResource("Resource_fojvw")
-prerequisites = Array[ExtResource("2_lfadw")]([])
-antirequisites = Array[ExtResource("2_lfadw")]([])
-turns_to_answer = 1
-is_repeatable = false
-cancel_behaviour = 4
-
-[sub_resource type="Resource" id="Resource_3nh6l"]
+[sub_resource type="Resource" id="Resource_4rywa"]
 script = ExtResource("2_lfadw")
-task_id = Array[String](["ESGS"])
+task_id = Array[String](["GRASS"])
 events = Array[int]([])
-chance = 0.7
+chance = 0.75
 min_turn = 0
 max_turn = -1
-
-[sub_resource type="Resource" id="Resource_v7ac2"]
-script = ExtResource("2_lfadw")
-task_id = Array[String](["ESAS"])
-events = Array[int]([])
-chance = 0.7
-min_turn = 0
-max_turn = -1
-
-[sub_resource type="Resource" id="Resource_5asf0"]
-script = ExtResource("2_lfadw")
-task_id = Array[String]([])
-events = Array[int]([])
-chance = 0.71
-min_turn = 5
-max_turn = 5
-
-[sub_resource type="Resource" id="Resource_nfm3i"]
-script = ExtResource("2_lfadw")
-task_id = Array[String]([])
-events = Array[int]([])
-chance = 0.5
-min_turn = 8
-max_turn = 8
-
-[sub_resource type="Resource" id="Resource_5ldvl"]
-script = ExtResource("5_j85s3")
-task_id = "MUDSLIDE"
-name = "Mudsldie"
-icon = ExtResource("7_atwyf")
-start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
-resources_required = {}
-resources_gained = {}
-expected_completion_time = 0
-effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
-
-[sub_resource type="Resource" id="Resource_2qgvb"]
-script = ExtResource("3_8xbhe")
-response_name = "Mudslide Starter"
-response_text = ""
-relationship_change = 0.0
-task = SubResource("Resource_5ldvl")
-
-[sub_resource type="Resource" id="Resource_ivkpt"]
-script = ExtResource("6_imb53")
-name = "Anonymous"
-relationship = 0.0
-
-[sub_resource type="Resource" id="Resource_mc7s0"]
-script = ExtResource("1_22kjx")
-message = "Mudslide Event.
-
-There is a mudslide happening next turn,"
-responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_2qgvb")])
-default_response = 0
-sender = SubResource("Resource_ivkpt")
-prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_3nh6l"), SubResource("Resource_v7ac2"), SubResource("Resource_5asf0"), SubResource("Resource_nfm3i")])
-antirequisites = Array[ExtResource("2_lfadw")]([])
-turns_to_answer = 1
-is_repeatable = false
-cancel_behaviour = 4
 
 [sub_resource type="Resource" id="Resource_bno1o"]
 script = ExtResource("2_lfadw")
-task_id = Array[String](["ESAS"])
+task_id = Array[String](["GRARASS"])
 events = Array[int]([])
 chance = 1.0
-min_turn = 3
+min_turn = 0
 max_turn = -1
 
-[sub_resource type="Resource" id="Resource_4rywa"]
+[sub_resource type="Resource" id="Resource_bbyfs"]
 script = ExtResource("2_lfadw")
-task_id = Array[String](["ESGS"])
+task_id = Array[String](["ARASS"])
 events = Array[int]([])
-chance = 0.5
-min_turn = 3
-max_turn = -1
+chance = 0.75
+min_turn = 0
+max_turn = 0
 
 [sub_resource type="Resource" id="Resource_0h3k0"]
 script = ExtResource("5_j85s3")
 task_id = "ODEARLY"
 name = "Starting Oil Defences"
-icon = ExtResource("11_n8det")
-start_location = Vector2(0, 0)
+icon = ExtResource("10_aaotd")
+start_location = Vector2(1880, 730)
 end_location = Vector2(0, 0)
 resources_required = {
-"funds": 50,
+"funds": 1000000,
 "people": 10,
 "vehicles": 10
 }
@@ -400,13 +243,19 @@ response_text = "We have more important things to focus on at the moment."
 relationship_change = 0.0
 task = SubResource("Resource_kovun")
 
+[sub_resource type="Resource" id="Resource_fojvw"]
+script = ExtResource("6_imb53")
+name = "UN OCHA Agent"
+image = ExtResource("13_aufgg")
+relationship = 0.0
+
 [sub_resource type="Resource" id="Resource_louxg"]
 script = ExtResource("1_22kjx")
 message = "Our scouting teams have noticed that the earthquakes have caused damaged to the structures in Cline Bay, and there appears to be a large amount of oil leaking into the bay. This could be disastrous for the fishing and shipping industry in the area. We should begin defences straight away."
 responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_s336w"), SubResource("Resource_lruis")])
 default_response = 0
 sender = SubResource("Resource_fojvw")
-prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_bno1o"), SubResource("Resource_4rywa")])
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_4rywa"), SubResource("Resource_bno1o"), SubResource("Resource_bbyfs")])
 antirequisites = Array[ExtResource("2_lfadw")]([])
 turns_to_answer = 1
 is_repeatable = false
@@ -420,35 +269,36 @@ chance = 1.0
 min_turn = 0
 max_turn = -1
 
-[sub_resource type="Resource" id="Resource_88g0y"]
+[sub_resource type="Resource" id="Resource_6l5w1"]
 script = ExtResource("5_j85s3")
-task_id = "ODLT"
+task_id = "ODT"
 name = "Oil Defences"
-icon = ExtResource("13_y8c2f")
-start_location = Vector2(0, 0)
+icon = ExtResource("10_aaotd")
+start_location = Vector2(1850, 720)
 end_location = Vector2(0, 0)
 resources_required = {
-"funds": 10,
-"people": 15,
-"vehicles": 10
+"funds": 1000000,
+"people": 8,
+"supplies": 0,
+"vehicles": 4
 }
 resources_gained = {
-"people": 15,
-"vehicles": 10
+"people": 8,
+"vehicles": 4
 }
 expected_completion_time = 4
 effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
 
-[sub_resource type="Resource" id="Resource_3kgi6"]
+[sub_resource type="Resource" id="Resource_j34xh"]
 script = ExtResource("3_8xbhe")
-response_name = "Large Defence Team"
-response_text = "We find this very important, so we will send lots of help!"
-relationship_change = 30.0
-task = SubResource("Resource_88g0y")
+response_name = "Defence Team"
+response_text = "We will send some more supplies to help with the defences."
+relationship_change = 60.0
+task = SubResource("Resource_6l5w1")
 
 [sub_resource type="Resource" id="Resource_p722o"]
 script = ExtResource("5_j85s3")
-task_id = "ODNT"
+task_id = "ODNT2"
 name = "Nothing"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
@@ -465,42 +315,16 @@ response_text = "We can't help, sorry."
 relationship_change = -50.0
 task = SubResource("Resource_p722o")
 
-[sub_resource type="Resource" id="Resource_6l5w1"]
-script = ExtResource("5_j85s3")
-task_id = "ODST"
-name = "Oil Defences"
-icon = ExtResource("14_gad0m")
-start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
-resources_required = {
-"funds": 5,
-"people": 6,
-"vehicles": 3
-}
-resources_gained = {
-"people": 6,
-"vehicles": 3
-}
-expected_completion_time = 4
-effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
-
-[sub_resource type="Resource" id="Resource_j34xh"]
-script = ExtResource("3_8xbhe")
-response_name = "Small Defence Team"
-response_text = "We find this important, but we don't have too much to spare. We will send a small team"
-relationship_change = 20.0
-task = SubResource("Resource_6l5w1")
-
 [sub_resource type="Resource" id="Resource_2n57b"]
 script = ExtResource("6_imb53")
 name = "Environmental Agency"
-image = ExtResource("13_opq0n")
+image = ExtResource("12_rj462")
 relationship = 0.0
 
 [sub_resource type="Resource" id="Resource_7v4cu"]
 script = ExtResource("1_22kjx")
 message = "Great work on hitting that oil spill early, the chances of containment have improved greatly because of the early action. We would still like to monitor the situation however and would like some help doing this."
-responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_3kgi6"), SubResource("Resource_m026q"), SubResource("Resource_j34xh")])
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_j34xh"), SubResource("Resource_m026q")])
 default_response = 0
 sender = SubResource("Resource_2n57b")
 prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_hycla")])
@@ -522,18 +346,18 @@ script = ExtResource("2_lfadw")
 task_id = Array[String]([])
 events = Array[int]([])
 chance = 1.0
-min_turn = 4
-max_turn = 4
+min_turn = 6
+max_turn = 6
 
 [sub_resource type="Resource" id="Resource_ik32o"]
 script = ExtResource("5_j85s3")
 task_id = "ODLT"
 name = "Oil Defences"
-icon = ExtResource("13_y8c2f")
-start_location = Vector2(0, 0)
+icon = ExtResource("10_aaotd")
+start_location = Vector2(1850, 720)
 end_location = Vector2(0, 0)
 resources_required = {
-"funds": 80,
+"funds": 3500000,
 "people": 15,
 "vehicles": 10
 }
@@ -555,16 +379,16 @@ task = SubResource("Resource_ik32o")
 script = ExtResource("5_j85s3")
 task_id = "ODST"
 name = "Oil Defences"
-icon = ExtResource("11_n8det")
-start_location = Vector2(0, 0)
+icon = ExtResource("10_aaotd")
+start_location = Vector2(1850, 720)
 end_location = Vector2(0, 0)
 resources_required = {
-"funds": 60,
-"people": 6,
-"vehicles": 3
+"funds": 2500000,
+"people": 10,
+"vehicles": 5
 }
 resources_gained = {
-"people": 6,
+"people": 10,
 "vehicles": 3
 }
 expected_completion_time = 4
@@ -574,7 +398,7 @@ effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
 script = ExtResource("3_8xbhe")
 response_name = "Small Defence Team"
 response_text = "We will send a small team now."
-relationship_change = 0.0
+relationship_change = 10.0
 task = SubResource("Resource_ql0bm")
 
 [sub_resource type="Resource" id="Resource_j0ux1"]
@@ -582,7 +406,7 @@ script = ExtResource("5_j85s3")
 task_id = "ODNT"
 name = "Nothing"
 icon = ExtResource("7_atwyf")
-start_location = Vector2(0, 0)
+start_location = Vector2(1850, 720)
 end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
@@ -593,7 +417,7 @@ effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
 script = ExtResource("3_8xbhe")
 response_name = "Don't help."
 response_text = "Cant help. Sorry."
-relationship_change = 0.0
+relationship_change = -60.0
 task = SubResource("Resource_j0ux1")
 
 [sub_resource type="Resource" id="Resource_vbcvc"]
@@ -608,58 +432,172 @@ turns_to_answer = 3
 is_repeatable = false
 cancel_behaviour = 4
 
-[sub_resource type="Resource" id="Resource_mtlys"]
+[sub_resource type="Resource" id="Resource_1ot4j"]
 script = ExtResource("2_lfadw")
-task_id = Array[String](["ESAS"])
+task_id = Array[String]([])
 events = Array[int]([])
-chance = 1.0
-min_turn = 0
-max_turn = -1
+chance = 0.5
+min_turn = 2
+max_turn = 6
 
-[sub_resource type="Resource" id="Resource_q8tjp"]
-script = ExtResource("2_lfadw")
-task_id = Array[String](["MUDSLIDE", "ESNT"])
-events = Array[int]([])
-chance = 1.0
-min_turn = 0
-max_turn = -1
+[sub_resource type="Resource" id="Resource_xgsjx"]
+script = ExtResource("5_j85s3")
+task_id = "PRESHELP"
+name = "President Rescue Team"
+icon = ExtResource("18_h53ag")
+start_location = Vector2(1200, 630)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 50000,
+"people": 10,
+"vehicles": 4
+}
+resources_gained = {
+"people": 10,
+"vehicles": 4
+}
+expected_completion_time = 2
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
 
-[sub_resource type="Resource" id="Resource_bi8sx"]
+[sub_resource type="Resource" id="Resource_0db7b"]
 script = ExtResource("3_8xbhe")
-response_name = "Send more help."
-response_text = "We should send more help."
-relationship_change = 0.0
+response_name = "Send a rescue team."
+response_text = "We'll send a team straight away."
+relationship_change = 40.0
+task = SubResource("Resource_xgsjx")
 
-[sub_resource type="Resource" id="Resource_bqilq"]
+[sub_resource type="Resource" id="Resource_q3lt2"]
+script = ExtResource("5_j85s3")
+task_id = "PRESNOHELP"
+name = "No Help"
+icon = ExtResource("7_atwyf")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_qfpoo"]
 script = ExtResource("3_8xbhe")
-response_name = "There's enough help."
-response_text = "We don't have enough to send more. Atleast there's already some aid there."
-relationship_change = 0.0
+response_name = "Don't send a team"
+response_text = "We are sorry to inform you that we can't send a team to help with this."
+relationship_change = -30.0
+task = SubResource("Resource_q3lt2")
 
-[sub_resource type="Resource" id="Resource_cxqd1"]
+[sub_resource type="Resource" id="Resource_8bmwy"]
 script = ExtResource("1_22kjx")
-message = "There's a mudslide, thanks to our current evacuation team we already have some support there, but it would be nice to send some more."
-responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_bi8sx"), SubResource("Resource_bqilq")])
-default_response = 0
-sender = SubResource("Resource_fojvw")
-prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_q8tjp")])
-antirequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_mtlys")])
-turns_to_answer = 0
+message = "The President is trapped under the rubble of his residence. Communication is down, and the situation is politically sensitive. We need a rescue team on-site immediately with  supplies to ensure a successful extraction."
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_0db7b"), SubResource("Resource_qfpoo")])
+default_response = 1
+sender = SubResource("Resource_iff3j")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_1ot4j")])
+antirequisites = Array[ExtResource("2_lfadw")]([])
+turns_to_answer = 1
 is_repeatable = false
 cancel_behaviour = 4
 
-[sub_resource type="Resource" id="Resource_qhpii"]
+[sub_resource type="Resource" id="Resource_n3em8"]
 script = ExtResource("2_lfadw")
-task_id = Array[String](["ODNT", "ODST"])
+task_id = Array[String]([])
 events = Array[int]([])
-chance = 0.0
+chance = 0.7
+min_turn = 7
+max_turn = 9
+
+[sub_resource type="Resource" id="Resource_ibc8y"]
+script = ExtResource("5_j85s3")
+task_id = "NOPRESVEHIC"
+name = "Remove Vehicles"
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {
+"supplies": 2000,
+"vehicles": 10
+}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_benor"]
+script = ExtResource("3_8xbhe")
+response_name = "Acknowledge"
+response_text = "It's upsetting to hear this, hopefully we can make ammends in the future."
+relationship_change = 0.0
+task = SubResource("Resource_ibc8y")
+
+[sub_resource type="Resource" id="Resource_6c75b"]
+script = ExtResource("1_22kjx")
+message = "Government officials are frustrated with the lack of response with helping the president. They are now prioritizing their own logistical operations over coordinating with UN OCHA, reducing available transport support."
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_benor")])
+default_response = 0
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_n3em8")])
+antirequisites = Array[ExtResource("2_lfadw")]([])
+turns_to_answer = 1
+is_repeatable = false
+cancel_behaviour = 0
+
+[sub_resource type="Resource" id="Resource_lb5hw"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 1.0
 min_turn = 0
 max_turn = 0
 
-[sub_resource type="Resource" id="Resource_ptldf"]
+[sub_resource type="Resource" id="Resource_6jwof"]
+script = ExtResource("2_lfadw")
+task_id = Array[String](["SPLT"])
+events = Array[int]([])
+chance = 0.3
+min_turn = 14
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_nhasm"]
+script = ExtResource("2_lfadw")
+task_id = Array[String](["SPMT"])
+events = Array[int]([])
+chance = 0.2
+min_turn = 14
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_fx01e"]
+script = ExtResource("2_lfadw")
+task_id = Array[String](["SPST"])
+events = Array[int]([])
+chance = 0.05
+min_turn = 14
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_a74yy"]
 script = ExtResource("5_j85s3")
-task_id = ""
-name = ""
+task_id = "GOVRES"
+name = "Accept Resources"
+icon = ExtResource("7_atwyf")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {
+"funds": 0,
+"supplies": 2500,
+"vehicles": 5
+}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_lt1vc"]
+script = ExtResource("3_8xbhe")
+response_name = "Accept"
+response_text = "We would gladly accept this aid."
+relationship_change = 10.0
+task = SubResource("Resource_a74yy")
+
+[sub_resource type="Resource" id="Resource_c104a"]
+script = ExtResource("5_j85s3")
+task_id = "IGNGOVRES"
+name = "Ignore Resources"
+icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
 end_location = Vector2(0, 0)
 resources_required = {}
@@ -667,116 +605,393 @@ resources_gained = {}
 expected_completion_time = 0
 effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
 
-[sub_resource type="Resource" id="Resource_lqca4"]
+[sub_resource type="Resource" id="Resource_5s446"]
 script = ExtResource("3_8xbhe")
-response_name = "Response"
-response_text = ""
-relationship_change = 0.0
-task = SubResource("Resource_ptldf")
+response_name = "Deny"
+response_text = "We don't need your help."
+relationship_change = -10.0
+task = SubResource("Resource_c104a")
 
-[sub_resource type="Resource" id="Resource_ip6en"]
-script = ExtResource("5_j85s3")
-task_id = ""
-name = ""
-start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
-resources_required = {}
-resources_gained = {}
-expected_completion_time = 0
-effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
-
-[sub_resource type="Resource" id="Resource_cpamr"]
-script = ExtResource("3_8xbhe")
-response_name = "Response"
-response_text = ""
-relationship_change = 0.0
-task = SubResource("Resource_ip6en")
-
-[sub_resource type="Resource" id="Resource_rkpq3"]
+[sub_resource type="Resource" id="Resource_7aat6"]
 script = ExtResource("1_22kjx")
-message = ""
-responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_lqca4"), SubResource("Resource_cpamr")])
+message = "We were sorely dissapointed in how you litte help you provided in helping the president, but you have shown great management of resources in providing aid to the citizens of Freetown.  We are willing to provide some supplies and vehicles again."
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_lt1vc"), SubResource("Resource_5s446")])
 default_response = 0
-sender = SubResource("Resource_fojvw")
-prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_qhpii")])
-antirequisites = Array[ExtResource("2_lfadw")]([])
-turns_to_answer = 0
+sender = SubResource("Resource_iff3j")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_6jwof"), SubResource("Resource_nhasm"), SubResource("Resource_fx01e")])
+antirequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_lb5hw")])
+turns_to_answer = 1
 is_repeatable = false
 cancel_behaviour = 0
 
-[sub_resource type="Resource" id="Resource_7qqfh"]
-script = ExtResource("3_8xbhe")
-response_name = "Response"
-response_text = ""
-relationship_change = 0.0
+[sub_resource type="Resource" id="Resource_tiae6"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.2
+min_turn = 2
+max_turn = 8
 
-[sub_resource type="Resource" id="Resource_qr7ay"]
+[sub_resource type="Resource" id="Resource_e0c1r"]
+script = ExtResource("5_j85s3")
+task_id = "RESCUESUP"
+name = "Salvaging Supplies"
+icon = ExtResource("19_4d5cc")
+start_location = Vector2(2100, 1866)
+end_location = Vector2(0, 0)
+resources_required = {
+"people": 6,
+"vehicles": 4
+}
+resources_gained = {
+"people": 15,
+"supplies": 3000,
+"vehicles": 10
+}
+expected_completion_time = 2
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_6ew20"]
+script = ExtResource("3_8xbhe")
+response_name = "Send a Retrieval Team"
+response_text = "We'll send a team straight away."
+relationship_change = 20.0
+task = SubResource("Resource_e0c1r")
+
+[sub_resource type="Resource" id="Resource_e4l1t"]
+script = ExtResource("5_j85s3")
+task_id = "IGNORESUPP"
+name = "No Supplies"
+icon = ExtResource("7_atwyf")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_cvmm3"]
+script = ExtResource("3_8xbhe")
+response_name = "Don't help."
+response_text = "Sorry, I'm afraid we can't help with this."
+relationship_change = -20.0
+task = SubResource("Resource_e4l1t")
+
+[sub_resource type="Resource" id="Resource_f24t8"]
+script = ExtResource("6_imb53")
+name = "International Rescue Committee"
+image = ExtResource("20_dyqjs")
+relationship = 0.0
+
+[sub_resource type="Resource" id="Resource_ys23c"]
 script = ExtResource("1_22kjx")
-message = ""
-responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_7qqfh")])
+message = "The earthquake has severely damaged a key warehouse, leaving critical aid supplies trapped inside. Without immediate retrieval, they may become unusable. We need assistance to salvage what remains."
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_6ew20"), SubResource("Resource_cvmm3")])
+default_response = 1
+sender = SubResource("Resource_f24t8")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_tiae6")])
+antirequisites = Array[ExtResource("2_lfadw")]([])
+turns_to_answer = 2
+is_repeatable = false
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_g0oq6"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.1
+min_turn = 6
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_8cic8"]
+script = ExtResource("5_j85s3")
+task_id = "SRESTSTAFF"
+name = "Staff Resting"
+icon = ExtResource("21_q6jui")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {
+"people": 8
+}
+resources_gained = {
+"people": 8
+}
+expected_completion_time = 3
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_lxh06"]
+script = ExtResource("3_8xbhe")
+response_name = "Let a small group rest"
+response_text = "We can only let a small group rest at the moment."
+relationship_change = 0.0
+task = SubResource("Resource_8cic8")
+
+[sub_resource type="Resource" id="Resource_uywu1"]
+script = ExtResource("5_j85s3")
+task_id = "LRESTSTAFF"
+name = "Staff Resting"
+icon = ExtResource("22_t7vtt")
+start_location = Vector2(1100, 600)
+end_location = Vector2(0, 0)
+resources_required = {
+"people": 15
+}
+resources_gained = {
+"people": 15
+}
+expected_completion_time = 3
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_7ack1"]
+script = ExtResource("3_8xbhe")
+response_name = "Let a large group rest"
+response_text = "We can let a large group rest."
+relationship_change = 0.0
+task = SubResource("Resource_uywu1")
+
+[sub_resource type="Resource" id="Resource_cj41j"]
+script = ExtResource("5_j85s3")
+task_id = "NORESTSTAFF"
+name = "No Rest"
+icon = ExtResource("7_atwyf")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_xomou"]
+script = ExtResource("3_8xbhe")
+response_name = "Don't let anyone rest"
+response_text = "We can't let anyone rest."
+relationship_change = 0.0
+task = SubResource("Resource_cj41j")
+
+[sub_resource type="Resource" id="Resource_utm5u"]
+script = ExtResource("1_22kjx")
+message = "Some of the team have been working for days without sleep, we should give them some time to rest."
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_lxh06"), SubResource("Resource_7ack1"), SubResource("Resource_xomou")])
 default_response = 0
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_g0oq6")])
+antirequisites = Array[ExtResource("2_lfadw")]([])
+turns_to_answer = 4
+is_repeatable = false
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_fg260"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.7
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_roeiq"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.05
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_fxulm"]
+script = ExtResource("5_j85s3")
+task_id = "REDEPLOY"
+name = "Redpoly Medical Supplies"
+icon = ExtResource("23_q3ta6")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 200000,
+"people": 8,
+"supplies": 1500,
+"vehicles": 4
+}
+resources_gained = {}
+expected_completion_time = 3
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_1eny3"]
+script = ExtResource("3_8xbhe")
+response_name = "Redeploy Supplies"
+response_text = "Redeploy new medical supplies to the correct area."
+relationship_change = 0.0
+task = SubResource("Resource_fxulm")
+
+[sub_resource type="Resource" id="Resource_lk0fg"]
+script = ExtResource("5_j85s3")
+task_id = "NOREDEPLOY"
+name = "No redeploy"
+icon = ExtResource("7_atwyf")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_tck64"]
+script = ExtResource("3_8xbhe")
+response_name = "Let the mistake stand."
+response_text = "Mistakes happen, but we don't have the resources to make up for it."
+relationship_change = 0.0
+task = SubResource("Resource_lk0fg")
+
+[sub_resource type="Resource" id="Resource_7sxi5"]
+script = ExtResource("1_22kjx")
+message = "Due to continued exhaustion, a logistics error has caused aid shipments to be misallocated. An entire convoy of medical supplies was sent to a low priority zone, delaying urgent deliveries."
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_1eny3"), SubResource("Resource_tck64")])
+default_response = 0
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_fg260"), SubResource("Resource_roeiq")])
+antirequisites = Array[ExtResource("2_lfadw")]([])
+turns_to_answer = 2
+is_repeatable = false
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_bt5oy"]
+script = ExtResource("5_j85s3")
+task_id = "ARASS"
+name = "Aerial Assessment"
+icon = ExtResource("10_mjnkn")
+start_location = Vector2(980, 970)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 200000,
+"people": 10,
+"vehicles": 2
+}
+resources_gained = {
+"people": 10,
+"vehicles": 2
+}
+expected_completion_time = 3
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_tc6oy"]
+script = ExtResource("3_8xbhe")
+response_name = "Conduct an aerial assessment"
+response_text = "We should conduct an aerial assessment to get a view of the true damage."
+relationship_change = 0.0
+task = SubResource("Resource_bt5oy")
+
+[sub_resource type="Resource" id="Resource_83ior"]
+script = ExtResource("5_j85s3")
+task_id = "GRASS"
+name = "Ground Assessment"
+icon = ExtResource("11_e4xfe")
+start_location = Vector2(980, 970)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 100000,
+"people": 8,
+"supplies": 0,
+"vehicles": 4
+}
+resources_gained = {
+"funds": 100000,
+"people": 8,
+"vehicles": 4
+}
+expected_completion_time = 4
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_l7rjs"]
+script = ExtResource("3_8xbhe")
+response_name = "Deploy a ground team"
+response_text = "We can get a good idea of what happened with a g round team"
+relationship_change = 0.0
+task = SubResource("Resource_83ior")
+
+[sub_resource type="Resource" id="Resource_5hitq"]
+script = ExtResource("5_j85s3")
+task_id = "GRARASS"
+name = "Ground and Air Assessment"
+icon = ExtResource("18_h53ag")
+start_location = Vector2(980, 970)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 350000,
+"people": 16,
+"supplies": 0,
+"vehicles": 7
+}
+resources_gained = {
+"people": 16,
+"vehicles": 7
+}
+expected_completion_time = 2
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_ce52s"]
+script = ExtResource("3_8xbhe")
+response_name = "Deploy Both"
+response_text = "To get the full idea we should send both an aerial and ground team."
+relationship_change = 0.0
+task = SubResource("Resource_5hitq")
+
+[sub_resource type="Resource" id="Resource_vgrkf"]
+script = ExtResource("5_j85s3")
+task_id = "WAITINFO"
+name = "Wait for Information"
+icon = ExtResource("7_atwyf")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_nktbh"]
+script = ExtResource("3_8xbhe")
+response_name = "Wait for information"
+response_text = "We should wait for information."
+relationship_change = 0.0
+task = SubResource("Resource_vgrkf")
+
+[sub_resource type="Resource" id="Resource_qayw4"]
+script = ExtResource("1_22kjx")
+message = "A major earthquake has struck Freetown. Initial reports are conflicting - government reports light-moderate damage, while UN OCHA field agents suggest potentially a more severe crisis"
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_tc6oy"), SubResource("Resource_l7rjs"), SubResource("Resource_ce52s"), SubResource("Resource_nktbh")])
+default_response = 3
 sender = SubResource("Resource_fojvw")
 prerequisites = Array[ExtResource("2_lfadw")]([])
 antirequisites = Array[ExtResource("2_lfadw")]([])
-turns_to_answer = 0
+turns_to_answer = 1
 is_repeatable = false
-cancel_behaviour = 0
+cancel_behaviour = 4
 
-[sub_resource type="Resource" id="Resource_7brdm"]
+[sub_resource type="Resource" id="Resource_3pk7o"]
+script = ExtResource("2_lfadw")
+task_id = Array[String](["ODNT"])
+events = Array[int]([])
+chance = 0.0
+min_turn = 0
+max_turn = 9
+
+[sub_resource type="Resource" id="Resource_o2rq2"]
 script = ExtResource("2_lfadw")
 task_id = Array[String]([])
 events = Array[int]([])
 chance = 0.0
 min_turn = 0
-max_turn = 0
+max_turn = 9
 
-[sub_resource type="Resource" id="Resource_5nua3"]
-script = ExtResource("5_j85s3")
-task_id = "LOL"
-name = ""
-start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
-resources_required = {}
-resources_gained = {}
-expected_completion_time = 0
-effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
-
-[sub_resource type="Resource" id="Resource_r8h0b"]
+[sub_resource type="Resource" id="Resource_ium7t"]
 script = ExtResource("3_8xbhe")
 response_name = "Response"
 response_text = ""
 relationship_change = 0.0
-task = SubResource("Resource_5nua3")
 
-[sub_resource type="Resource" id="Resource_ghjan"]
-script = ExtResource("6_imb53")
-name = "Anonymous"
-relationship = 0.0
-
-[sub_resource type="Resource" id="Resource_d0vqv"]
+[sub_resource type="Resource" id="Resource_1rfj2"]
 script = ExtResource("1_22kjx")
-message = ""
-responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_r8h0b")])
+message = "The oil spill has spread further, contaminating vital fishing zones. This has led to unrest among local communities who rely on the fishing industry, increasing tensions with response teams."
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_ium7t")])
 default_response = 0
-sender = SubResource("Resource_ghjan")
-prerequisites = Array[ExtResource("2_lfadw")]([])
-antirequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_7brdm")])
-turns_to_answer = 0
-is_repeatable = false
-cancel_behaviour = 0
-
-[sub_resource type="Resource" id="Resource_c5ulx"]
-script = ExtResource("6_imb53")
-name = "Anonymous"
-relationship = 0.0
-
-[sub_resource type="Resource" id="Resource_vbofp"]
-script = ExtResource("1_22kjx")
-message = ""
-responses = Array[ExtResource("3_8xbhe")]([])
-default_response = 0
-sender = SubResource("Resource_c5ulx")
-prerequisites = Array[ExtResource("2_lfadw")]([])
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_3pk7o"), SubResource("Resource_o2rq2")])
 antirequisites = Array[ExtResource("2_lfadw")]([])
 turns_to_answer = 0
 is_repeatable = false
@@ -784,4 +999,4 @@ cancel_behaviour = 0
 
 [resource]
 script = ExtResource("2_yn5ci")
-messages = Array[ExtResource("1_22kjx")]([SubResource("Resource_qc7dk"), SubResource("Resource_q6jkm"), SubResource("Resource_mc7s0"), SubResource("Resource_louxg"), SubResource("Resource_7v4cu"), SubResource("Resource_vbcvc"), SubResource("Resource_cxqd1"), SubResource("Resource_rkpq3"), SubResource("Resource_qr7ay"), SubResource("Resource_d0vqv"), SubResource("Resource_vbofp")])
+messages = Array[ExtResource("1_22kjx")]([SubResource("Resource_qc7dk"), SubResource("Resource_louxg"), SubResource("Resource_7v4cu"), SubResource("Resource_vbcvc"), SubResource("Resource_8bmwy"), SubResource("Resource_6c75b"), SubResource("Resource_7aat6"), SubResource("Resource_ys23c"), SubResource("Resource_utm5u"), SubResource("Resource_7sxi5"), SubResource("Resource_qayw4"), SubResource("Resource_1rfj2")])

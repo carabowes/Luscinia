@@ -29,6 +29,5 @@ func picking_new_image():
 
 func on_image_picked(path : String):
 	var image : Texture = load(path)
-	print(image.resource_name)
 	%IconButton.icon = image
 	image_selected.emit(image)
