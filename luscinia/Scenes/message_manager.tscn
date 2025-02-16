@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://8538tw87typp"]
+[gd_scene load_steps=5 format=3 uid="uid://bgom65nidm5wp"]
 
 [ext_resource type="Script" path="res://Scripts/task_message/message_manager.gd" id="1_meb6n"]
 [ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="2_tufbr"]
