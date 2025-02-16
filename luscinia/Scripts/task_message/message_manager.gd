@@ -2,7 +2,8 @@ extends Node
 
 signal message_sent(message: MessageInstance)
 
-@export var messages_to_send: Array[Message]
+@export var scenario : Scenario
+var messages_to_send
 var messages_to_receive: Array[Message]
 var unreplied_messages : int = 0
 #var task_completed: Array[TaskData]
@@ -12,6 +13,7 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready():
 	rng.randomize() ##Randomize the RNG for chance-based validation
+	messages_to_send = scenario.messages
 	GlobalTimer.turn_progressed.connect(find_messages_to_send)
 	EventBus.task_finished.connect(_on_task_finished)
 	EventBus.message_responded.connect(func(message, response): unreplied_messages -= 1; if unreplied_messages == 0: EventBus.all_messages_read.emit())
