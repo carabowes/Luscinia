@@ -105,8 +105,8 @@ func test_add_collapsable_menu_with_no_fields():
 	assert_eq(container.get_child_count(), 1)
 	assert_eq(container.text, "Heading")
 	assert_connected(container, graph_node_instance, "toggled")
-	
-	
+
+
 func test_add_spacer():
 	var spacer = graph_node_instance.add_spacer(30.0)
 	assert_is(graph_node_instance.get_child(-1), Control, "Most recent child should be control")
@@ -128,8 +128,8 @@ func test_add_checkbox():
 	assert_true(checkbox.button_pressed, "Checkbox should be pressed")
 	checkbox = graph_node_instance.add_checkbox("Heading", false)
 	assert_false(checkbox.button_pressed, "Checkbox should not be pressed")
-	
-	
+
+
 func test_add_slider():
 	var slider = graph_node_instance.add_slider("Heading", 10, -30, 50, 0.5)
 	assert_is(graph_node_instance.get_child(-1), HSlider, "Most recent child should be slider")

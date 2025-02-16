@@ -11,7 +11,7 @@ enum SlotType {
 	TASK_TO_PREQ
 }
 
-static var collapsible_container_prefab = preload("res://Scenes/UI/collapsable_container.tscn")
+static var collapsible_container_prefab = preload("res://Scenes/Editor/collapsable_container.tscn")
 static var field_prefab = preload("res://Scenes/Editor/field.tscn")
 static var image_selector_prefab = preload("res://Scenes/Editor/image_selector.tscn")
 static var choice_picker_prefab = preload("res://Scenes/Editor/choice_picker.tscn")

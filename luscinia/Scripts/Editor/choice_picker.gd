@@ -24,5 +24,5 @@ func _on_index_pressed(index):
 func set_values(current_value, values : Dictionary):
 	popup_values = values
 	for key in popup_values.keys():
-		%Choices.add_item(key)
-	%PickOptionButton.text = current_value
+		%Choices.add_item(str(key))
+	%PickOptionButton.text = str(current_value)

@@ -38,7 +38,7 @@ offset_left = 8.0
 offset_right = -44.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Label"
+text = "Heading"
 vertical_alignment = 1
 
 [node name="Expand" type="Label" parent="LabelBox"]
