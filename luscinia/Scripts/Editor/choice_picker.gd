@@ -12,8 +12,13 @@ var text : String:
 
 
 func _ready() -> void:
-	%Choices.index_pressed.connect(func(index): value_chosen.emit(popup_values.values()[index]); %PickOptionButton.text = str(popup_values.keys()[index]))
+	%Choices.index_pressed.connect(_on_index_pressed)
 	%PickOptionButton.pressed.connect(func(): %Choices.popup_on_parent(get_rect()))
+
+
+func _on_index_pressed(index):
+	value_chosen.emit(popup_values.values()[index])
+	%PickOptionButton.text = str(popup_values.keys()[index])
 
 
 func set_values(current_value, values : Dictionary):

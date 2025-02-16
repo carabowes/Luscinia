@@ -3,12 +3,6 @@ extends GraphNode
 
 signal deleted
 
-var collapsible_container_prefab = preload("res://Scenes/UI/collapsable_container.tscn")
-var field_prefab = preload("res://Scenes/Editor/field.tscn")
-var image_selector_prefab = preload("res://Scenes/Editor/image_selector.tscn")
-var choice_picker_prefab = preload("res://Scenes/Editor/choice_picker.tscn")
-var vector_input_prefab = preload("res://Scenes/Editor/vector_input.tscn")
-
 enum SlotType {
 	PREQ_TO_MESSAGE,
 	RESPONSE_TO_TASK,
@@ -16,6 +10,12 @@ enum SlotType {
 	SENDER_TO_MESSAGE,
 	TASK_TO_PREQ
 }
+
+static var collapsible_container_prefab = preload("res://Scenes/UI/collapsable_container.tscn")
+static var field_prefab = preload("res://Scenes/Editor/field.tscn")
+static var image_selector_prefab = preload("res://Scenes/Editor/image_selector.tscn")
+static var choice_picker_prefab = preload("res://Scenes/Editor/choice_picker.tscn")
+static var vector_input_prefab = preload("res://Scenes/Editor/vector_input.tscn")
 
 var slot_colors = [
 	Color.REBECCA_PURPLE,
@@ -28,7 +28,11 @@ var slot_colors = [
 func _init():
 	resizable = true
 	custom_minimum_size.x = 300
+	add_delete_button()
 	set_node_theme(self)
+
+
+func add_delete_button():
 	var delete_button = Button.new()
 	delete_button.text = "X"
 	delete_button.size_flags_horizontal = Control.SIZE_SHRINK_END
@@ -41,6 +45,38 @@ func delete_node():
 	deleted.emit()
 
 
+func set_node_theme(node : GraphNode):
+	var theme : StyleBoxFlat = node.get_theme_stylebox("titlebar").duplicate()
+	if node is TaskGraphNode:
+		theme.bg_color = Color.FIREBRICK
+	elif node is MessageGraphNode:
+		theme.bg_color = Color.CORNFLOWER_BLUE
+	elif node is RequisiteGraphNode:
+		theme.bg_color = Color.REBECCA_PURPLE
+	elif node is SenderGraphNode:
+		theme.bg_color = Color.YELLOW_GREEN
+	elif node is ResponseGraphNode:
+		theme.bg_color = Color.ORANGE
+	node.add_theme_stylebox_override("titlebar", theme)
+
+
+func assign_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
+	return false
+
+
+func remove_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
+	return false
+
+
+func create_node_to_connect_from_empty(in_port: int):
+	return null
+
+
+func create_node_to_connect_to_empty(out_port: int):
+	return null
+
+
+#region Add Inputs
 func add_input(heading : String, current_value : String) -> LineEdit:
 	var label = Label.new()
 	label.text = heading
@@ -70,19 +106,6 @@ func add_image_selector(heading: String, texture : Texture) -> ImageSelector:
 	image_selector.text = heading
 	add_child(image_selector)
 	return image_selector
-
-
-func generate_fields_from_resources(resources : Dictionary) -> Array[Field]:
-	var fields : Array[Field] = []
-	for resource in ResourceManager.resources.keys():
-		var field : Field = field_prefab.instantiate()
-		field.field_name = resource
-		if resources.has(resource):
-			field.field_value = str(resources[resource])
-		else:
-			field.field_value = str(0)
-		fields.append(field)
-	return fields
 
 
 func add_collapsible_container(heading : String, fields : Array[Field])  -> CollapsibleContainer:
@@ -147,42 +170,25 @@ func add_vector_input(heading : String, default : Vector2) -> VectorInput:
 	vector_input.value = default
 	add_child(vector_input)
 	return vector_input
+#endregion 
 
 
-func set_port(is_input : bool, i : int, slot_type : SlotType):
+func set_port(is_input : bool, index : int, slot_type : SlotType):
 	var color = slot_colors[slot_type]
 	if is_input:
-		set_slot(i, true, slot_type, color, is_slot_enabled_right(i), get_slot_type_right(i), get_slot_color_right(i))
+		set_slot(index, true, slot_type, color, is_slot_enabled_right(index), get_slot_type_right(index), get_slot_color_right(index))
 	else:
-		set_slot(i, is_slot_enabled_left(i), get_slot_type_left(i), get_slot_color_left(i), true, slot_type, color)
+		set_slot(index, is_slot_enabled_left(index), get_slot_type_left(index), get_slot_color_left(index), true, slot_type, color)
 
 
-func set_node_theme(node : GraphNode):
-	var theme : StyleBoxFlat = node.get_theme_stylebox("titlebar").duplicate()
-	if node is TaskGraphNode:
-		theme.bg_color = Color.FIREBRICK
-	elif node is MessageGraphNode:
-		theme.bg_color = Color.CORNFLOWER_BLUE
-	elif node is RequisiteGraphNode:
-		theme.bg_color = Color.REBECCA_PURPLE
-	elif node is SenderGraphNode:
-		theme.bg_color = Color.YELLOW_GREEN
-	elif node is ResponseGraphNode:
-		theme.bg_color = Color.ORANGE
-	node.add_theme_stylebox_override("titlebar", theme)
-
-
-func assign_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
-	return false
-
-
-func remove_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
-	return false
-
-
-func create_node_to_connect_from_empty(in_port: int):
-	return null
-
-
-func create_node_to_connect_to_empty(out_port: int):
-	return null
+static func generate_fields_from_resources(resources : Dictionary) -> Array[Field]:
+	var fields : Array[Field] = []
+	for resource in ResourceManager.resources.keys():
+		var field : Field = field_prefab.instantiate()
+		field.field_name = resource
+		if resources.has(resource):
+			field.field_value = str(resources[resource])
+		else:
+			field.field_value = str(0)
+		fields.append(field)
+	return fields
