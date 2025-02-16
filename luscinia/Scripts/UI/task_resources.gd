@@ -1,5 +1,5 @@
-extends GridContainer
 class_name TaskResources
+extends GridContainer
 
 @export_group("Resources")
 @export var resources : Dictionary:
@@ -22,8 +22,13 @@ func _add_elements():
 		child.free()
 		
 	for resource_key in resources.keys():
-		if(resources[resource_key] is not int or resource_key is not String):
+		var value_is_int = resources[resource_key] is int
+		var key_is_string = resource_key is String
+		var value_is_zero = resources[resource_key] == 0 if value_is_int else false
+		
+		if not value_is_int or not key_is_string or value_is_zero:
 			continue
+		
 		var resource_entry_instance : ResourceEntry = load(resource_entry_path).instantiate()
 		resource_entry_instance.amount = resources[resource_key]
 		resource_entry_instance.resource_type = resource_key
