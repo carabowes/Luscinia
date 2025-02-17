@@ -55,10 +55,10 @@ func test_init():
 func test_ports():
 	assert_eq(requisite_node_instance.get_input_port_count(), 1)
 	assert_true(requisite_node_instance.is_slot_enabled_left(1))
-	assert_eq(requisite_node_instance.get_slot_type_left(0), RequisiteGraphNode.InPortNums.TASK)
+	assert_eq(requisite_node_instance.get_slot_type_left(1), TaskEditorGraphNode.SlotType.TASK_TO_PREQ)
 	assert_eq(requisite_node_instance.get_output_port_count(), 1)
 	assert_true(requisite_node_instance.is_slot_enabled_right(8))
-	assert_eq(requisite_node_instance.get_slot_type_right(0), RequisiteGraphNode.OutPortNums.MESSAGE)
+	assert_eq(requisite_node_instance.get_slot_type_right(8), TaskEditorGraphNode.SlotType.PREQ_TO_MESSAGE)
 
 
 func test_on_requisite_chance_changed():

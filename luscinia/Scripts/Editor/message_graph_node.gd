@@ -52,7 +52,7 @@ func _init(message : Message):
 	set_port(true, antirequisites_label.get_index(), SlotType.PREQ_TO_MESSAGE)
 	
 	add_spacer()
-	var turns_to_answer_input = add_input("Turns to answer", str(message.turns_to_answer))
+	var turns_to_answer_input = add_input("Turns to Answer", str(message.turns_to_answer))
 	turns_to_answer_input.text_changed.connect(func(text): _on_turns_to_answer_changed(text, turns_to_answer_input))
 	
 	add_spacer()

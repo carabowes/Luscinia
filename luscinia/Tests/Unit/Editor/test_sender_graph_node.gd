@@ -44,7 +44,7 @@ func test_ports():
 	assert_eq(sender_node_instance.get_input_port_count(), 0)
 	assert_eq(sender_node_instance.get_output_port_count(), 1)
 	assert_true(sender_node_instance.is_slot_enabled_right(2))
-	assert_eq(sender_node_instance.get_slot_type_right(0), SenderGraphNode.OutPortNums.MESSAGE)
+	assert_eq(sender_node_instance.get_slot_type_right(2), TaskEditorGraphNode.SlotType.SENDER_TO_MESSAGE)
 
 
 func test_on_sender_name_changed():
