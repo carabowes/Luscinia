@@ -16,7 +16,7 @@ func before_each():
 func test_label_setter_getter():
 	assert_eq(choice_picker_instance.text, "Heading", "Label default text should be 'Heading'")
 	choice_picker_instance.text = "Test"
-	assert_eq(choice_picker_instance.get_node("%Label").text, "Setter should set label")
+	assert_eq(choice_picker_instance.get_node("%Label").text, "Test", "Setter should set label")
 	assert_eq(choice_picker_instance.text, "Test", "Setter is not changing label text correctly.")
 
 

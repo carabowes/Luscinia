@@ -43,29 +43,29 @@ func test_get_resource_texture():
 
 
 func test_queue_relationship_change():
-	ResourceManager.queue_relationship_change(1, 10)
-	assert_eq(ResourceManager.relationships_to_update[1], 10, "Task 1 should have relationship change of 10")
+	ResourceManager.queue_relationship_change("ID", 10)
+	assert_eq(ResourceManager.relationships_to_update["ID"], 10, "Task with task id 'ID' should have relationship change of 10")
 
 
 func test_apply_relationship_change_full_progress():
-	ResourceManager.queue_relationship_change(1, 10)
-	ResourceManager.apply_relationship_change(1, sender, 1.0)
+	ResourceManager.queue_relationship_change("ID", 10)
+	ResourceManager.apply_relationship_change("ID", sender, 1.0)
 	assert_eq(sender.relationship, 60, "Relationship should increase by 10 when task is fully completed")
-	assert_false(ResourceManager.relationships_to_update.has(1), "Task 1 should be removed from relationships_to_update")
+	assert_false(ResourceManager.relationships_to_update.has("ID"), "Task with task id 'ID' should be removed from relationships_to_update")
 
 
 func test_apply_relationship_change_half_progress():
-	ResourceManager.queue_relationship_change(1, 10)
-	ResourceManager.apply_relationship_change(1, sender, 0.5)
+	ResourceManager.queue_relationship_change("ID", 10)
+	ResourceManager.apply_relationship_change("ID", sender, 0.5)
 	assert_eq(sender.relationship, 50, "Relationship should remain unchanged when task progress is 50%")
 
 
 func test_apply_relationship_change_zero_progress():
-	ResourceManager.queue_relationship_change(1, 10)
-	ResourceManager.apply_relationship_change(1, sender, 0.0)
+	ResourceManager.queue_relationship_change("ID", 10)
+	ResourceManager.apply_relationship_change("ID", sender, 0.0)
 	assert_eq(sender.relationship, 40, "Relationship should decrease by 10 when task is not completed")
 
 
 func test_apply_relationship_change_no_task():
-	ResourceManager.apply_relationship_change(99, sender, 1.0)  # Task ID 99 was never queued
+	ResourceManager.apply_relationship_change("ID", sender, 1.0)  # Task ID 99 was never queued
 	assert_eq(sender.relationship, 50, "Relationship should remain unchanged when task ID is not found")

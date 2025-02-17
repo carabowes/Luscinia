@@ -10,7 +10,7 @@ func before_each():
 func test_getters_setters():
 	assert_eq(field_instance.field_name, "Heading", "Default field name should be 'Heading'")
 	field_instance.field_name = "Test"
-	assert_eq(field_instance.get_node("%FieldName").text, "Heading", "Setter should set field name label")
+	assert_eq(field_instance.get_node("%FieldName").text, "Test", "Setter should set field name label")
 	assert_eq(field_instance.field_name, "Test")
 	
 	assert_eq(field_instance.field_value, "", "Default field value should be empty")

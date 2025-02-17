@@ -103,7 +103,7 @@ func test_task_widget_selected():
 
 
 func test_task_widget_render():
-	var data : TaskData = TaskData.new(0, "Task Name", load("res://Sprites/icon.svg"), Vector2(0,0), Vector2(0,0), {"funds" : 100, "people": 50}, {}, 8, [])
+	var data : TaskData = TaskData.new("ID", "Task Name", load("res://Sprites/icon.svg"), Vector2(0,0), Vector2(0,0), {"funds" : 100, "people": 50}, {}, 8, [])
 	var info : TaskInstance = TaskInstance.new(data, 0, 4, 2, Vector2(0,0), false, {}, null)
 	
 	var task_widget_instance : TaskWidget = task_widget_scene.instantiate()

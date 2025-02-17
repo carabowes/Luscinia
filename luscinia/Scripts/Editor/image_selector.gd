@@ -21,7 +21,7 @@ func _ready() -> void:
 func _picking_new_image():
 	var image_picker : FileDialog = FileDialog.new()
 	add_child(image_picker)
-	image_picker.current_path += "/Sprites/"
+	image_picker.current_path += "Sprites/"
 	image_picker.file_mode = FileDialog.FILE_MODE_OPEN_FILE
 	image_picker.filters = ["*.png,*.jpg,*.svg;ImageFiles"]
 	image_picker.file_selected.connect(func(path): _on_image_picked(path); image_picker.queue_free())
