@@ -57,6 +57,12 @@ func test_sufficient_resources():
 	assert_eq(page_instance.get_node("%ConfirmButton").visible, true)
 
 
+func test_insufficient_resources_is_called():
+	test_message.responses[0].task.resources_required["funds"] = ResourceManager.resources["funds"] + 1
+	page_instance._render_response_info(test_message.responses[0])
+	assert_eq(page_instance.get_node("%InvalidResourcesLabel").visible, true)
+
+
 func test_select_option_button():
 	page_instance._render_option_buttons(test_message)
 	page_instance._select_option_button(1, test_message)
