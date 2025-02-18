@@ -28,10 +28,10 @@ color = Color(0.94902, 0.913725, 0.94902, 1)
 
 [node name="PauseButton" type="Button" parent="."]
 layout_mode = 2
-offset_left = 131.0
-offset_top = 4.0
+offset_left = 144.0
+offset_top = 12.0
 offset_right = 179.0
-offset_bottom = 52.0
+offset_bottom = 47.0
 icon = ExtResource("2_e00yx")
 flat = true
 
