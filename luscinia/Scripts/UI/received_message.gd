@@ -18,7 +18,7 @@ func _draw():
 
 
 func _gui_input(event: InputEvent) -> void:
-	if event.is_pressed():
+	if event.is_action_pressed("interact"):
 		message_clicked.emit(message_info)
 
 

@@ -55,6 +55,21 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="NewMessageButton" type="Button" parent="pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -13.0
+offset_top = 4.0
+offset_right = 13.0
+offset_bottom = 47.0
+grow_horizontal = 2
+theme = ExtResource("13_dleu7")
+theme_override_font_sizes/font_size = 20
+text = "New Message"
+script = ExtResource("8_hx0fp")
+
 [node name="MessagePageController" parent="pages" instance=ExtResource("10_btbvl")]
 layout_mode = 1
 
@@ -72,65 +87,3 @@ visible = false
 layout_mode = 1
 offset_top = 0.0
 offset_bottom = 0.0
-
-[node name="message_page" parent="pages" instance=ExtResource("6_877e8")]
-visible = false
-layout_mode = 1
-
-[node name="message_history" parent="pages" instance=ExtResource("12_upng4")]
-visible = false
-layout_mode = 1
-
-[node name="text_message_list" type="Control" parent="pages" node_paths=PackedStringArray("message_board")]
-visible = false
-layout_mode = 1
-anchor_right = 1.0
-anchor_bottom = 0.997
-offset_bottom = -0.179016
-script = ExtResource("11_ir8ox")
-message_board = NodePath("../message_page")
-
-[node name="ColorRect" type="ColorRect" parent="pages/text_message_list"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.074
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 0.23
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="pages/text_message_list/ColorRect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.043
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -0.0799999
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="pages/text_message_list/ColorRect"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = -0.08
-anchor_right = 1.0
-anchor_bottom = 0.02
-offset_top = -0.199997
-offset_bottom = 0.254997
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_gfh5b")
-
-[node name="Label" type="Label" parent="pages/text_message_list/ColorRect/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = 0.545002
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 41
-text = "Messages"
-horizontal_alignment = 1

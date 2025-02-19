@@ -11,12 +11,18 @@ func _ready():
 
 func show_message(message_instance : MessageInstance):
 	_clear_old_message()
+	_connect_response_button(message_instance)
+	if message_instance == null: return
 	_set_contact_info(message_instance.message.sender)
 	_render_message(message_instance)
-	%RespondButton.visible = message_instance.message_status != MessageInstance.MessageStatus.REPLIED
+
+
+func _connect_response_button(message_instance : MessageInstance):
 	for connection in %RespondButton.pressed.get_connections():
 		%RespondButton.pressed.disconnect(connection["callable"])
+	if message_instance == null: return
 	%RespondButton.pressed.connect(func(): respond_button_pressed.emit(message_instance.message))
+	%RespondButton.visible = message_instance.message_status != MessageInstance.MessageStatus.REPLIED
 
 
 func _clear_old_message():

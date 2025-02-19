@@ -13,16 +13,6 @@ var resource_textures = {
 	"supplies": preload("res://Sprites/Package.png"),
 }
 
-func _ready():
-	EventBus.message_responded.connect(
-		func(response : Response, message : Message):
-			queue_relationship_change(response.task.task_id, response.relationship_change)
-	)
-	EventBus.task_finished.connect(
-		func(task : TaskInstance, cancelled : bool):
-			apply_relationship_change(task.task_data.task_id, task.message.sender, task.current_progress)
-	)
-
 
 func add_resources(resource_name: String, amount: int):
 	if resource_name in resources:

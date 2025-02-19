@@ -11,6 +11,7 @@ var task_widget_prefab = "res://Scenes/task_widget.tscn"
 func _ready() -> void:
 	EventBus.task_started.connect(func(task : TaskInstance): create_widget(task))
 	GlobalTimer.turn_progressed.connect(func(time : int): render_widgets())
+	EventBus.task_finished.connect(delete_widget)
 	$MapView.zoom_changed.connect(render_widgets)
 
 
@@ -23,18 +24,14 @@ func create_widget(task_instance : TaskInstance):
 	task_widgets.append(task_widget_instance)
 
 	task_widget_instance.widget_selected.connect(update_selected_widget)
-	EventBus.task_finished.connect(
-		func(task: TaskInstance, cancelled: bool): 
-			if task == task_instance: 
-				delete_widget(task_widget_instance)
-	)
-
 	render_widgets()
 
 
-func delete_widget(task_widget : TaskWidget):
-	task_widget.queue_free()
-	task_widgets.erase(task_widget)
+func delete_widget(task_instance : TaskInstance, cancelled : bool):
+	for widget in task_widgets:
+		if widget.task_info == task_instance:
+			task_widgets.erase(widget)
+			widget.queue_free()
 
 
 func set_level_of_details(affect_high_detail_widgets = false):

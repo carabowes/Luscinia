@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://6ml87l6yg0je"]
 
-[ext_resource type="Script" path="res://message_bubble.gd" id="1_uj5uu"]
+[ext_resource type="Script" path="res://Scripts/UI/message_bubble.gd" id="1_hvbit"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_raubo"]
 bg_color = Color(1, 1, 1, 1)
@@ -14,8 +14,8 @@ layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
-script = ExtResource("1_uj5uu")
-non_player_color = Color(0.249803, 0.247665, 0.317268, 1)
+script = ExtResource("1_hvbit")
+non_player_color = Color(0.2075, 0.2075, 0.25, 1)
 player_color = Color(0.254902, 0.560784, 0.870588, 1)
 
 [node name="MessageLayoutController" type="HBoxContainer" parent="."]
