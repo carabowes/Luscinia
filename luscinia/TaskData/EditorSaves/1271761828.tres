@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EditorSave" load_steps=218 format=3]
+[gd_resource type="Resource" script_class="EditorSave" load_steps=274 format=3]
 
 [ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="1_m1yx3"]
 [ext_resource type="Script" path="res://Scripts/Resources/response.gd" id="2_3xigt"]
@@ -21,41 +21,11 @@
 [ext_resource type="Texture2D" path="res://TaskData/Freetown/IRCLogo.png" id="20_wa5qk"]
 [ext_resource type="Texture2D" path="res://Sprites/TaskSprites/ThreePeople.png" id="21_872go"]
 [ext_resource type="Texture2D" path="res://Sprites/TaskSprites/Supplies.png" id="21_8185l"]
+[ext_resource type="Texture2D" path="res://Sprites/clock.png" id="21_vwj72"]
 [ext_resource type="Texture2D" path="res://Sprites/TaskSprites/SixPeople.png" id="22_6nfx7"]
 [ext_resource type="Texture2D" path="res://Sprites/TaskSprites/Ambulance.png" id="22_veomm"]
 [ext_resource type="Texture2D" path="res://Sprites/TaskSprites/TwoMedicalSupplies.png" id="23_0t3wk"]
-
-[sub_resource type="Resource" id="Resource_mhxfq"]
-script = ExtResource("1_m1yx3")
-task_id = Array[String]([])
-events = Array[int]([])
-chance = 1.0
-min_turn = 1
-max_turn = 1
-
-[sub_resource type="Resource" id="Resource_u4fyv"]
-script = ExtResource("1_m1yx3")
-task_id = Array[String]([])
-events = Array[int]([])
-chance = 1.0
-min_turn = 7
-max_turn = 7
-
-[sub_resource type="Resource" id="Resource_r4obm"]
-script = ExtResource("1_m1yx3")
-task_id = Array[String]([])
-events = Array[int]([])
-chance = 1.0
-min_turn = 13
-max_turn = 13
-
-[sub_resource type="Resource" id="Resource_jutn2"]
-script = ExtResource("1_m1yx3")
-task_id = Array[String]([])
-events = Array[int]([])
-chance = 1.0
-min_turn = 19
-max_turn = 19
+[ext_resource type="Texture2D" path="res://Sprites/TaskSprites/MedicalSupplies.png" id="24_5pyeg"]
 
 [sub_resource type="Resource" id="Resource_emodc"]
 script = ExtResource("5_7wxc4")
@@ -81,7 +51,7 @@ effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
 script = ExtResource("2_3xigt")
 response_name = "Send a large team"
 response_text = "We can send a large team right now."
-relationship_change = -10.0
+relationship_change = 20.0
 task = SubResource("Resource_emodc")
 
 [sub_resource type="Resource" id="Resource_e0def"]
@@ -147,14 +117,14 @@ start_location = Vector2(0, 0)
 end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
-expected_completion_time = 0
+expected_completion_time = 6
 effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
 
 [sub_resource type="Resource" id="Resource_agp7i"]
 script = ExtResource("2_3xigt")
 response_name = "Don't send a team"
 response_text = "We're not going to send a team to help."
-relationship_change = 5.0
+relationship_change = -15.0
 task = SubResource("Resource_4g0n7")
 
 [sub_resource type="Resource" id="Resource_iff3j"]
@@ -165,11 +135,11 @@ relationship = 0.0
 
 [sub_resource type="Resource" id="Resource_qc7dk"]
 script = ExtResource("6_frvfg")
-message = "We need manpower and supplies to help the search efforts taking plae in the city centre and west end of Freetown. Please send what you can"
+message = "We need manpower and supplies to help the search efforts taking place in the city centre and west end of Freetown. Please send what you can."
 responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_petn6"), SubResource("Resource_s8ujp"), SubResource("Resource_e8oxx"), SubResource("Resource_agp7i")])
 default_response = 3
 sender = SubResource("Resource_iff3j")
-prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_mhxfq"), SubResource("Resource_u4fyv"), SubResource("Resource_r4obm"), SubResource("Resource_jutn2")])
+prerequisites = Array[ExtResource("1_m1yx3")]([])
 antirequisites = Array[ExtResource("1_m1yx3")]([])
 turns_to_answer = 6
 is_repeatable = true
@@ -451,7 +421,7 @@ icon = ExtResource("18_xclql")
 start_location = Vector2(1200, 630)
 end_location = Vector2(0, 0)
 resources_required = {
-"funds": 50000,
+"funds": 500000,
 "people": 10,
 "vehicles": 4
 }
@@ -459,7 +429,7 @@ resources_gained = {
 "people": 10,
 "vehicles": 4
 }
-expected_completion_time = 2
+expected_completion_time = 4
 effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
 
 [sub_resource type="Resource" id="Resource_0db7b"]
@@ -502,11 +472,11 @@ cancel_behaviour = 4
 
 [sub_resource type="Resource" id="Resource_n3em8"]
 script = ExtResource("1_m1yx3")
-task_id = Array[String]([])
+task_id = Array[String](["PRESNOHELP"])
 events = Array[int]([])
 chance = 0.7
 min_turn = 7
-max_turn = 9
+max_turn = 10
 
 [sub_resource type="Resource" id="Resource_ibc8y"]
 script = ExtResource("5_7wxc4")
@@ -543,7 +513,7 @@ cancel_behaviour = 0
 
 [sub_resource type="Resource" id="Resource_nhasm"]
 script = ExtResource("1_m1yx3")
-task_id = Array[String](["SPMT"])
+task_id = Array[String](["SPMT", "NOPRESVEHIC"])
 events = Array[int]([])
 chance = 0.2
 min_turn = 14
@@ -551,7 +521,7 @@ max_turn = -1
 
 [sub_resource type="Resource" id="Resource_fx01e"]
 script = ExtResource("1_m1yx3")
-task_id = Array[String](["SPST"])
+task_id = Array[String](["SPST", "NOPRESVEHIC"])
 events = Array[int]([])
 chance = 0.05
 min_turn = 14
@@ -559,7 +529,7 @@ max_turn = -1
 
 [sub_resource type="Resource" id="Resource_6jwof"]
 script = ExtResource("1_m1yx3")
-task_id = Array[String](["SPLT"])
+task_id = Array[String](["SPLT", "NOPRESVEHIC"])
 events = Array[int]([])
 chance = 0.3
 min_turn = 14
@@ -567,7 +537,7 @@ max_turn = -1
 
 [sub_resource type="Resource" id="Resource_lb5hw"]
 script = ExtResource("1_m1yx3")
-task_id = Array[String]([])
+task_id = Array[String](["SPNT"])
 events = Array[int]([])
 chance = 1.0
 min_turn = 0
@@ -619,7 +589,7 @@ task = SubResource("Resource_c104a")
 script = ExtResource("6_frvfg")
 message = "We were sorely dissapointed in how you litte help you provided in helping the president, but you have shown great management of resources in providing aid to the citizens of Freetown.  We are willing to provide some supplies and vehicles again."
 responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_lt1vc"), SubResource("Resource_5s446")])
-default_response = 0
+default_response = 1
 sender = SubResource("Resource_iff3j")
 prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_6jwof"), SubResource("Resource_nhasm"), SubResource("Resource_fx01e")])
 antirequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_lb5hw")])
@@ -711,7 +681,7 @@ script = ExtResource("5_7wxc4")
 task_id = "SRESTSTAFF"
 name = "Staff Resting"
 icon = ExtResource("21_872go")
-start_location = Vector2(0, 0)
+start_location = Vector2(1100, 600)
 end_location = Vector2(0, 0)
 resources_required = {
 "people": 8
@@ -775,7 +745,7 @@ task = SubResource("Resource_cj41j")
 script = ExtResource("6_frvfg")
 message = "Some of the team have been working for days without sleep, we should give them some time to rest."
 responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_lxh06"), SubResource("Resource_7ack1"), SubResource("Resource_xomou")])
-default_response = 0
+default_response = 2
 sender = SubResource("Resource_fojvw")
 prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_g0oq6")])
 antirequisites = Array[ExtResource("1_m1yx3")]([])
@@ -785,7 +755,7 @@ cancel_behaviour = 4
 
 [sub_resource type="Resource" id="Resource_fg260"]
 script = ExtResource("1_m1yx3")
-task_id = Array[String]([])
+task_id = Array[String](["NORESTSTAFF"])
 events = Array[int]([])
 chance = 0.7
 min_turn = 0
@@ -793,7 +763,7 @@ max_turn = -1
 
 [sub_resource type="Resource" id="Resource_roeiq"]
 script = ExtResource("1_m1yx3")
-task_id = Array[String]([])
+task_id = Array[String](["SRESTSTAFF"])
 events = Array[int]([])
 chance = 0.05
 min_turn = 0
@@ -846,7 +816,7 @@ task = SubResource("Resource_lk0fg")
 script = ExtResource("6_frvfg")
 message = "Due to continued exhaustion, a logistics error has caused aid shipments to be misallocated. An entire convoy of medical supplies was sent to a low priority zone, delaying urgent deliveries."
 responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_1eny3"), SubResource("Resource_tck64")])
-default_response = 0
+default_response = 1
 sender = SubResource("Resource_fojvw")
 prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_fg260"), SubResource("Resource_roeiq")])
 antirequisites = Array[ExtResource("1_m1yx3")]([])
@@ -976,9 +946,9 @@ max_turn = 12
 
 [sub_resource type="Resource" id="Resource_o2rq2"]
 script = ExtResource("1_m1yx3")
-task_id = Array[String]([])
+task_id = Array[String](["ODNT2"])
 events = Array[int]([])
-chance = 0.5
+chance = 0.4
 min_turn = 0
 max_turn = 12
 
@@ -1100,7 +1070,7 @@ task = SubResource("Resource_vky3i")
 script = ExtResource("6_frvfg")
 message = "We have a group of volunteers eager to assist in the relief efforts, but they lack proper training. Allocating staff to train them now would take them away from the frontline but could improve efficiency in the coming days. We would also most likely require important supplies to help train them."
 responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_ebsj4"), SubResource("Resource_e1qq8"), SubResource("Resource_db363")])
-default_response = 0
+default_response = 2
 sender = SubResource("Resource_fojvw")
 prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_sf36a")])
 antirequisites = Array[ExtResource("1_m1yx3")]([])
@@ -1203,17 +1173,17 @@ script = ExtResource("5_7wxc4")
 task_id = "FAITH"
 name = "Faith Popups"
 icon = ExtResource("11_0cnpd")
-start_location = Vector2(0, 0)
+start_location = Vector2(1700, 900)
 end_location = Vector2(0, 0)
 resources_required = {
 "funds": 500000,
-"people": 5,
+"people": 8,
 "supplies": 300,
-"vehicles": 3
+"vehicles": 4
 }
 resources_gained = {
-"people": 5,
-"vehicles": 3
+"people": 8,
+"vehicles": 4
 }
 expected_completion_time = 4
 effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
@@ -1240,13 +1210,14 @@ effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
 [sub_resource type="Resource" id="Resource_aho7a"]
 script = ExtResource("2_3xigt")
 response_name = "Don't send support."
-response_text = ""
+response_text = "We can't help with that."
 relationship_change = -30.0
 task = SubResource("Resource_fel40")
 
 [sub_resource type="Resource" id="Resource_1ncmm"]
 script = ExtResource("8_ultmy")
 name = "Faith NGO"
+image = ExtResource("21_vwj72")
 relationship = 0.0
 
 [sub_resource type="Resource" id="Resource_fjl6e"]
@@ -1305,7 +1276,7 @@ effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
 [sub_resource type="Resource" id="Resource_nvlch"]
 script = ExtResource("2_3xigt")
 response_name = "Ignore."
-response_text = ""
+response_text = "Don't set up a meeting. We don't need their input."
 relationship_change = 0.0
 task = SubResource("Resource_hnghl")
 
@@ -1334,7 +1305,7 @@ script = ExtResource("5_7wxc4")
 task_id = "FAITHFULL"
 name = "Spiritual Support"
 icon = ExtResource("21_872go")
-start_location = Vector2(0, 0)
+start_location = Vector2(1700, 900)
 end_location = Vector2(0, 0)
 resources_required = {
 "funds": 2000000,
@@ -1363,7 +1334,7 @@ script = ExtResource("5_7wxc4")
 task_id = "FAITHSPIR"
 name = "Spiritual Support"
 icon = ExtResource("21_872go")
-start_location = Vector2(0, 0)
+start_location = Vector2(1700, 900)
 end_location = Vector2(0, 0)
 resources_required = {
 "funds": 500000,
@@ -1424,15 +1395,13 @@ effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
 [sub_resource type="Resource" id="Resource_8dc4e"]
 script = ExtResource("2_3xigt")
 response_name = "Response"
-response_text = ""
-relationship_change = 0.0
+response_text = "We're not going to implement any of these options."
+relationship_change = -30.0
 task = SubResource("Resource_0i6x0")
 
 [sub_resource type="Resource" id="Resource_oc5gs"]
 script = ExtResource("6_frvfg")
-message = "Thank you for reaching out. We have concerns with how you're handling the current aid efforts and believe you're neglecting the emotional and cultural needs of the communities. We have sent a plan that we would like  you to implement.
-We would like regular fully staffed teams to help us provide spiritual support.
-We would also like a donation of some supplies, vehicles, staff and funds to provide aid how we think is best fit."
+message = "Thank you for reaching out. We have concerns with how you're handling the current aid efforts and believe you're neglecting the emotional and cultural needs of the communities. We have sent a plan that we would like  you to implement. We would like regular fully staffed teams to help us provide spiritual support. We would also like a donation of some supplies, vehicles, staff and funds to provide aid how we think is best fit."
 responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_72hlr"), SubResource("Resource_8myor"), SubResource("Resource_3wcpw"), SubResource("Resource_8dc4e")])
 default_response = 3
 sender = SubResource("Resource_1ncmm")
@@ -1455,7 +1424,7 @@ script = ExtResource("5_7wxc4")
 task_id = "LARGESITE"
 name = "Setting up Aid Site"
 icon = ExtResource("19_eg37k")
-start_location = Vector2(0, 0)
+start_location = Vector2(900, 1000)
 end_location = Vector2(0, 0)
 resources_required = {
 "funds": 3000000,
@@ -1482,7 +1451,7 @@ script = ExtResource("5_7wxc4")
 task_id = "MEDSITE"
 name = "Setting up Aid Site"
 icon = ExtResource("19_eg37k")
-start_location = Vector2(0, 0)
+start_location = Vector2(900, 1000)
 end_location = Vector2(0, 0)
 resources_required = {
 "funds": 2500000,
@@ -1510,7 +1479,7 @@ script = ExtResource("5_7wxc4")
 task_id = "SMALLSITE"
 name = "Setting up Aid Site"
 icon = ExtResource("21_8185l")
-start_location = Vector2(0, 0)
+start_location = Vector2(900, 1000)
 end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1500000,
@@ -1550,7 +1519,7 @@ script = ExtResource("1_m1yx3")
 task_id = Array[String](["LARGESITE"])
 events = Array[int]([])
 chance = 1.0
-min_turn = 13
+min_turn = 15
 max_turn = -1
 
 [sub_resource type="Resource" id="Resource_nvdt3"]
@@ -1558,7 +1527,7 @@ script = ExtResource("1_m1yx3")
 task_id = Array[String](["SMALLSITE"])
 events = Array[int]([])
 chance = 1.0
-min_turn = 7
+min_turn = 10
 max_turn = -1
 
 [sub_resource type="Resource" id="Resource_dspn1"]
@@ -1566,7 +1535,7 @@ script = ExtResource("1_m1yx3")
 task_id = Array[String](["MEDSITE"])
 events = Array[int]([])
 chance = 1.0
-min_turn = 10
+min_turn = 12
 max_turn = -1
 
 [sub_resource type="Resource" id="Resource_3vgoh"]
@@ -1574,7 +1543,7 @@ script = ExtResource("5_7wxc4")
 task_id = "FULLSUPPLY"
 name = "Aid Site Resupply"
 icon = ExtResource("19_eg37k")
-start_location = Vector2(0, 0)
+start_location = Vector2(900, 1000)
 end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
@@ -1601,7 +1570,7 @@ script = ExtResource("5_7wxc4")
 task_id = "HALFSUPPLY"
 name = "Aid Site Resupply"
 icon = ExtResource("21_8185l")
-start_location = Vector2(0, 0)
+start_location = Vector2(900, 1000)
 end_location = Vector2(0, 0)
 resources_required = {
 "funds": 550000,
@@ -1667,7 +1636,7 @@ script = ExtResource("5_7wxc4")
 task_id = "LARGESAT"
 name = "Satellite Aid"
 icon = ExtResource("4_jtcqe")
-start_location = Vector2(0, 0)
+start_location = Vector2(1900, 900)
 end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
@@ -1694,7 +1663,7 @@ script = ExtResource("5_7wxc4")
 task_id = "MEDSAT"
 name = "Satellite Aid"
 icon = ExtResource("4_jtcqe")
-start_location = Vector2(0, 0)
+start_location = Vector2(1900, 900)
 end_location = Vector2(0, 0)
 resources_required = {
 "funds": 750000,
@@ -1721,7 +1690,7 @@ script = ExtResource("5_7wxc4")
 task_id = "SMALLSAT"
 name = "Satellite Aid"
 icon = ExtResource("22_veomm")
-start_location = Vector2(0, 0)
+start_location = Vector2(1900, 900)
 end_location = Vector2(0, 0)
 resources_required = {
 "funds": 50000,
@@ -1898,7 +1867,7 @@ effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
 [sub_resource type="Resource" id="Resource_yy7wg"]
 script = ExtResource("2_3xigt")
 response_name = "Plan 5"
-response_text = ""
+response_text = "Here's the donation plan."
 relationship_change = 0.0
 task = SubResource("Resource_4erk4")
 
@@ -1922,7 +1891,7 @@ effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
 [sub_resource type="Resource" id="Resource_878ac"]
 script = ExtResource("2_3xigt")
 response_name = "Response"
-response_text = ""
+response_text = "Here's the donation plan."
 relationship_change = 0.0
 task = SubResource("Resource_xbrt6")
 
@@ -1950,7 +1919,7 @@ max_turn = -1
 script = ExtResource("1_m1yx3")
 task_id = Array[String](["DELAY"])
 events = Array[int]([])
-chance = 1.0
+chance = 0.99
 min_turn = 0
 max_turn = 0
 
@@ -2039,11 +2008,11 @@ task = SubResource("Resource_oorr5")
 script = ExtResource("6_frvfg")
 message = "We can send you some resources, just make a request. Take your time, we will always be available."
 responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_a5pvu"), SubResource("Resource_1k2n7"), SubResource("Resource_7wme4")])
-default_response = 0
+default_response = -1
 sender = SubResource("Resource_fojvw")
 prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_uadpt")])
 antirequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_k6nsn")])
-turns_to_answer = 3
+turns_to_answer = 1
 is_repeatable = true
 cancel_behaviour = 0
 
@@ -2053,12 +2022,13 @@ task_id = Array[String](["DELAY"])
 events = Array[int]([])
 chance = 1.0
 min_turn = 0
-max_turn = 0
+max_turn = -1
 
 [sub_resource type="Resource" id="Resource_pc4on"]
 script = ExtResource("5_7wxc4")
 task_id = "NEWVEHICLES2"
 name = "Delivering new Vehicles"
+icon = ExtResource("11_0cnpd")
 start_location = Vector2(0, 0)
 end_location = Vector2(0, 0)
 resources_required = {
@@ -2084,6 +2054,7 @@ task = SubResource("Resource_pc4on")
 script = ExtResource("5_7wxc4")
 task_id = "NEWSTAFF2"
 name = "Transporting New Staff"
+icon = ExtResource("21_872go")
 start_location = Vector2(0, 0)
 end_location = Vector2(0, 0)
 resources_required = {
@@ -2109,6 +2080,7 @@ task = SubResource("Resource_ww6si")
 script = ExtResource("5_7wxc4")
 task_id = "NEWSUPPLIES2"
 name = "Transporting Supplies"
+icon = ExtResource("19_eg37k")
 start_location = Vector2(0, 0)
 end_location = Vector2(0, 0)
 resources_required = {
@@ -2135,20 +2107,634 @@ task = SubResource("Resource_ai60k")
 script = ExtResource("6_frvfg")
 message = "We can send you some resources, just make a request. Take your time, we will always be available. Do consider there is now a delay due to the ban on water shipments, there is also an added cost for the new shipping method."
 responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_2aap7"), SubResource("Resource_qf4q4"), SubResource("Resource_gwpx4")])
-default_response = 0
+default_response = -1
 sender = SubResource("Resource_fojvw")
 prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_jjhxp")])
+antirequisites = Array[ExtResource("1_m1yx3")]([])
+turns_to_answer = 1
+is_repeatable = true
+cancel_behaviour = 0
+
+[sub_resource type="Resource" id="Resource_p1y3o"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["HALFSUPPLY"])
+events = Array[int]([])
+chance = 0.1
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_uixxk"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["NOSUPPLY"])
+events = Array[int]([])
+chance = 0.7
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_7b4hu"]
+script = ExtResource("5_7wxc4")
+task_id = "REPSUP"
+name = "Repair and Resupply"
+icon = ExtResource("4_jtcqe")
+start_location = Vector2(900, 1000)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 4000000,
+"people": 15,
+"supplies": 1000,
+"vehicles": 10
+}
+resources_gained = {
+"people": 15,
+"vehicles": 10
+}
+expected_completion_time = 6
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_xdh23"]
+script = ExtResource("2_3xigt")
+response_name = "Full Repair and Resupply"
+response_text = "We will send what we can for the repairs, and some aid for the citizens there."
+relationship_change = 0.0
+task = SubResource("Resource_7b4hu")
+
+[sub_resource type="Resource" id="Resource_tbu7o"]
+script = ExtResource("5_7wxc4")
+task_id = "REPAIRS"
+name = "Repairs"
+icon = ExtResource("11_0cnpd")
+start_location = Vector2(900, 1000)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 3000000,
+"people": 8,
+"supplies": 100,
+"vehicles": 5
+}
+resources_gained = {
+"people": 8,
+"vehicles": 5
+}
+expected_completion_time = 6
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_cpfsx"]
+script = ExtResource("2_3xigt")
+response_name = "Repairs Only"
+response_text = "We appreciate the concerns of the citizens, but we can only send stuff for repairs at the moment"
+relationship_change = 0.0
+task = SubResource("Resource_tbu7o")
+
+[sub_resource type="Resource" id="Resource_8271q"]
+script = ExtResource("5_7wxc4")
+task_id = "RESUPONLY"
+name = "Resupply"
+icon = ExtResource("19_eg37k")
+start_location = Vector2(900, 1000)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 1000000,
+"people": 8,
+"supplies": 900,
+"vehicles": 4
+}
+resources_gained = {
+"people": 8,
+"vehicles": 4
+}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_jjjcm"]
+script = ExtResource("2_3xigt")
+response_name = "Supplies Only"
+response_text = "We don't have enough resources for repairs and suppleis, but we believe that getting aid is more important than our equipment."
+relationship_change = 0.0
+task = SubResource("Resource_8271q")
+
+[sub_resource type="Resource" id="Resource_eacu5"]
+script = ExtResource("5_7wxc4")
+task_id = "NOSUPREP"
+name = "Nothing "
+icon = ExtResource("7_t85jc")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_rp0p3"]
+script = ExtResource("2_3xigt")
+response_name = "Do nothing."
+response_text = "We can't do anything about this at the moment."
+relationship_change = 0.0
+task = SubResource("Resource_eacu5")
+
+[sub_resource type="Resource" id="Resource_abyp5"]
+script = ExtResource("6_frvfg")
+message = "Due to the lack of aid at the aid sites there has been unrest and some damage has been caused to our equipment. We need repairs and more supplies."
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_xdh23"), SubResource("Resource_cpfsx"), SubResource("Resource_jjjcm"), SubResource("Resource_rp0p3")])
+default_response = 3
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_p1y3o"), SubResource("Resource_uixxk")])
+antirequisites = Array[ExtResource("1_m1yx3")]([])
+turns_to_answer = 2
+is_repeatable = false
+cancel_behaviour = 0
+
+[sub_resource type="Resource" id="Resource_qnnxv"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.1
+min_turn = 14
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_7htfx"]
+script = ExtResource("5_7wxc4")
+task_id = "MONKEY"
+name = "Monkey Search"
+icon = ExtResource("18_xclql")
+start_location = Vector2(1700, 1200)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 500000,
+"people": 4,
+"supplies": 0,
+"vehicles": 2
+}
+resources_gained = {
+"people": 4,
+"vehicles": 2
+}
+expected_completion_time = 4
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_v4e8f"]
+script = ExtResource("2_3xigt")
+response_name = "Help find the Monkeys"
+response_text = "Sure, we can help with this."
+relationship_change = 20.0
+task = SubResource("Resource_7htfx")
+
+[sub_resource type="Resource" id="Resource_1qoli"]
+script = ExtResource("5_7wxc4")
+task_id = "NOMONKEY"
+name = "Nothing"
+icon = ExtResource("7_t85jc")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_pnq3b"]
+script = ExtResource("2_3xigt")
+response_name = "Don't help."
+response_text = "We don't have time for this."
+relationship_change = -20.0
+task = SubResource("Resource_1qoli")
+
+[sub_resource type="Resource" id="Resource_altmm"]
+script = ExtResource("6_frvfg")
+message = "We've gotten word that during the earthquake, the monkey sanctuary suffered great damage. Despite their best efforts they have lost a few of their monkeys and have requested help in retrieving them."
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_v4e8f"), SubResource("Resource_pnq3b")])
+default_response = 1
+sender = SubResource("Resource_2n57b")
+prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_qnnxv")])
+antirequisites = Array[ExtResource("1_m1yx3")]([])
+turns_to_answer = 3
+is_repeatable = false
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_jybm4"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["MONKEY"])
+events = Array[int]([])
+chance = 1.0
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_bnkif"]
+script = ExtResource("5_7wxc4")
+task_id = "MONKEYFUND"
+name = "Fund Repairs"
+icon = ExtResource("7_t85jc")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 1500000,
+"supplies": 200
+}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_gphov"]
+script = ExtResource("2_3xigt")
+response_name = "Help fund repairs"
+response_text = "We can  help fund the repais"
+relationship_change = 10.0
+task = SubResource("Resource_bnkif")
+
+[sub_resource type="Resource" id="Resource_p8vdg"]
+script = ExtResource("5_7wxc4")
+task_id = "NOMONKEYFUND"
+name = "No Repairs"
+icon = ExtResource("7_t85jc")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_q07jb"]
+script = ExtResource("2_3xigt")
+response_name = "Don't help."
+response_text = "Not our monkey, not our circus."
+relationship_change = -10.0
+task = SubResource("Resource_p8vdg")
+
+[sub_resource type="Resource" id="Resource_34y08"]
+script = ExtResource("6_frvfg")
+message = "The sanctuary wants to thank you for helping them retrieve the lost monkeys. They also want me to ask if there is spare funds to help with their repairs."
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_gphov"), SubResource("Resource_q07jb")])
+default_response = 1
+sender = SubResource("Resource_2n57b")
+prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_jybm4")])
+antirequisites = Array[ExtResource("1_m1yx3")]([])
+turns_to_answer = 3
+is_repeatable = false
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_yltu6"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["NOMONKEY"])
+events = Array[int]([])
+chance = 0.7
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_qacvn"]
+script = ExtResource("6_frvfg")
+message = "The sanctuary are wondering, if you won't help them find their lost monkeys if you'll help them fund repairs instead."
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_gphov"), SubResource("Resource_q07jb")])
+default_response = 0
+sender = SubResource("Resource_2n57b")
+prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_yltu6")])
 antirequisites = Array[ExtResource("1_m1yx3")]([])
 turns_to_answer = 0
 is_repeatable = false
 cancel_behaviour = 0
 
+[sub_resource type="Resource" id="Resource_bku8x"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.2
+min_turn = 3
+max_turn = 7
+
+[sub_resource type="Resource" id="Resource_b7d6n"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 1.0
+min_turn = 7
+max_turn = 7
+
+[sub_resource type="Resource" id="Resource_3eikn"]
+script = ExtResource("5_7wxc4")
+task_id = "CHOLERASUPP"
+name = "Cholera Supplies"
+icon = ExtResource("23_0t3wk")
+start_location = Vector2(1000, 1000)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 1000000,
+"people": 15,
+"supplies": 100,
+"vehicles": 15
+}
+resources_gained = {
+"people": 15,
+"vehicles": 15
+}
+expected_completion_time = 4
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_fxgga"]
+script = ExtResource("2_3xigt")
+response_name = "Deliver Cholera Supplies"
+response_text = "Thank you for bringing this to our attention.We will work with you on this."
+relationship_change = 15.0
+task = SubResource("Resource_3eikn")
+
+[sub_resource type="Resource" id="Resource_pvaff"]
+script = ExtResource("5_7wxc4")
+task_id = "NOCHOLSUPP"
+name = "Nothing"
+icon = ExtResource("7_t85jc")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_kctgy"]
+script = ExtResource("2_3xigt")
+response_name = "Don't help."
+response_text = "We can't help with this."
+relationship_change = 0.0
+task = SubResource("Resource_pvaff")
+
+[sub_resource type="Resource" id="Resource_v3wqr"]
+script = ExtResource("8_ultmy")
+name = "Water Aid"
+image = ExtResource("7_t85jc")
+relationship = 0.0
+
+[sub_resource type="Resource" id="Resource_ucp3e"]
+script = ExtResource("6_frvfg")
+message = "Theres a lot of aid locations from many different NGOs being set up, and not many of them have proper protection against cholera. We need your help to deliver the correct supplies before we have an outbreak. We will help provide some of the supplies, but we need your staff and vehicles."
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_fxgga"), SubResource("Resource_kctgy")])
+default_response = 1
+sender = SubResource("Resource_v3wqr")
+prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_bku8x"), SubResource("Resource_b7d6n")])
+antirequisites = Array[ExtResource("1_m1yx3")]([])
+turns_to_answer = 2
+is_repeatable = false
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_1h83i"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["CHOLERASUPP"])
+events = Array[int]([])
+chance = 0.9
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_ffrhe"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["NOCHOLSUPP"])
+events = Array[int]([])
+chance = 1.0
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_fe6q5"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.6
+min_turn = 12
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_ipk7h"]
+script = ExtResource("5_7wxc4")
+task_id = "OUTBREAKRESP"
+name = "Cholera Outbreak"
+icon = ExtResource("23_0t3wk")
+start_location = Vector2(1000, 1000)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 1500000,
+"people": 15,
+"supplies": 500,
+"vehicles": 5
+}
+resources_gained = {
+"people": 15,
+"vehicles": 5
+}
+expected_completion_time = 4
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_acdku"]
+script = ExtResource("2_3xigt")
+response_name = "Send a trained team"
+response_text = "Sending a team now."
+relationship_change = 25.0
+task = SubResource("Resource_ipk7h")
+
+[sub_resource type="Resource" id="Resource_vh5n7"]
+script = ExtResource("5_7wxc4")
+task_id = "OUTBREAKVOL"
+name = "Cholera Outbreak"
+icon = ExtResource("24_5pyeg")
+start_location = Vector2(1000, 1000)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 700000,
+"people": 10,
+"supplies": 450,
+"vehicles": 4
+}
+resources_gained = {
+"people": 10,
+"vehicles": 4
+}
+expected_completion_time = 4
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_h3a50"]
+script = ExtResource("2_3xigt")
+response_name = "Send volunteers"
+response_text = "Sending a team now."
+relationship_change = 15.0
+task = SubResource("Resource_vh5n7")
+
+[sub_resource type="Resource" id="Resource_m6ywt"]
+script = ExtResource("5_7wxc4")
+task_id = "OUTBREAK"
+name = "No Response"
+icon = ExtResource("7_t85jc")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_42n8m"]
+script = ExtResource("2_3xigt")
+response_name = "Ignore the outbreak"
+response_text = "The outbreak will take care of itself."
+relationship_change = -10.0
+task = SubResource("Resource_m6ywt")
+
+[sub_resource type="Resource" id="Resource_3fqva"]
+script = ExtResource("6_frvfg")
+message = "There's been a cholera outbreak in some of the sites. We need an urget response now."
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_acdku"), SubResource("Resource_h3a50"), SubResource("Resource_42n8m")])
+default_response = 1
+sender = SubResource("Resource_v3wqr")
+prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_ffrhe"), SubResource("Resource_fe6q5")])
+antirequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_1h83i")])
+turns_to_answer = 1
+is_repeatable = false
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_444ir"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["OUTBREAKRESP"])
+events = Array[int]([])
+chance = 0.03
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_7it0g"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["OUTBREAKVOL"])
+events = Array[int]([])
+chance = 0.8
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_05bhj"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["OUTBREAK"])
+events = Array[int]([])
+chance = 1.0
+min_turn = 14
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_ac4n7"]
+script = ExtResource("5_7wxc4")
+task_id = "Q"
+name = "Quarantine"
+icon = ExtResource("21_872go")
+start_location = Vector2(1300, 700)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 100000,
+"people": 10,
+"supplies": 100
+}
+resources_gained = {
+"people": 10
+}
+expected_completion_time = 5
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_xijvy"]
+script = ExtResource("2_3xigt")
+response_name = "Quarantine and Treat"
+response_text = "Send them to quarantine. We hope they recover."
+relationship_change = 0.0
+task = SubResource("Resource_ac4n7")
+
+[sub_resource type="Resource" id="Resource_4yxlj"]
+script = ExtResource("5_7wxc4")
+task_id = "TREATSTAFF"
+name = "Treatment"
+icon = ExtResource("7_t85jc")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {
+"funds": 1000000,
+"supplies": 100
+}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_8sj7g"]
+script = ExtResource("2_3xigt")
+response_name = "Treatment Only"
+response_text = "We just have to treat only I'm afraid."
+relationship_change = 0.0
+task = SubResource("Resource_4yxlj")
+
+[sub_resource type="Resource" id="Resource_10l73"]
+script = ExtResource("6_frvfg")
+message = "We've found that some of our staff have caught cholera from the recent outbreak. We need to quarantine and treat them now."
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_xijvy"), SubResource("Resource_8sj7g")])
+default_response = 0
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_444ir"), SubResource("Resource_7it0g"), SubResource("Resource_05bhj")])
+antirequisites = Array[ExtResource("1_m1yx3")]([])
+turns_to_answer = 1
+is_repeatable = false
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_2yy5w"]
+script = ExtResource("5_7wxc4")
+task_id = "NOQ"
+name = "No Quarantine"
+start_location = Vector2(1300, 700)
+end_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_reksf"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["NOQ"])
+events = Array[int]([])
+chance = 0.7
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_x8r2c"]
+script = ExtResource("1_m1yx3")
+task_id = Array[String](["TREATSTAFF"])
+events = Array[int]([])
+chance = 0.05
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_5xr6s"]
+script = ExtResource("5_7wxc4")
+task_id = "CHOLERALOSS"
+name = "Staff  Loss"
+icon = ExtResource("7_t85jc")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
+resources_required = {
+"people": 5
+}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("3_d1cgf")]([])
+
+[sub_resource type="Resource" id="Resource_sntlh"]
+script = ExtResource("2_3xigt")
+response_name = "Acknowledge"
+response_text = "Condolences. "
+relationship_change = 0.0
+task = SubResource("Resource_5xr6s")
+
+[sub_resource type="Resource" id="Resource_omh2w"]
+script = ExtResource("6_frvfg")
+message = "I'm sad to say due to the cholera outbreak and lack of treatment, some of our staff have died from Cholera."
+responses = Array[ExtResource("2_3xigt")]([SubResource("Resource_sntlh")])
+default_response = 0
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("1_m1yx3")]([SubResource("Resource_reksf"), SubResource("Resource_x8r2c")])
+antirequisites = Array[ExtResource("1_m1yx3")]([])
+turns_to_answer = 1
+is_repeatable = false
+cancel_behaviour = 0
+
+[sub_resource type="Resource" id="Resource_41t60"]
+script = ExtResource("2_3xigt")
+response_name = "Don't Quarantine"
+response_text = "We don't have the numbers to be putting staff in quarantine."
+relationship_change = 0.0
+task = SubResource("Resource_2yy5w")
+
 [resource]
 script = ExtResource("17_ss605")
 scenario = ExtResource("16_b10r1")
-node_info = Array[Array]([[SubResource("Resource_qc7dk"), Vector2(-610.745, -2305.2), &"276829463"], [SubResource("Resource_iff3j"), Vector2(-1010.74, -2405.2), &"1376811089"], [SubResource("Resource_petn6"), Vector2(189.255, -3305.2), &"4213523782"], [SubResource("Resource_s8ujp"), Vector2(189.255, -2605.2), &"776926705"], [SubResource("Resource_e8oxx"), Vector2(189.255, -1905.2), &"610201967"], [SubResource("Resource_uqsnc"), Vector2(989.255, -1905.2), &"1636797479"], [SubResource("Resource_agp7i"), Vector2(189.255, -1205.2), &"833244673"], [SubResource("Resource_mhxfq"), Vector2(-1410.74, -2305.2), &"1685232037"], [SubResource("Resource_u4fyv"), Vector2(-1410.74, -1960.2), &"2183902773"], [SubResource("Resource_r4obm"), Vector2(-1410.74, -1615.2), &"3220913367"], [SubResource("Resource_jutn2"), Vector2(-1410.74, -1270.2), &"831195260"], [SubResource("Resource_louxg"), Vector2(2384.45, 1256.89), &"441962832"], [SubResource("Resource_fojvw"), Vector2(1984.44, 1156.89), &"610795860"], [SubResource("Resource_s336w"), Vector2(3184.44, 756.889), &"984170209"], [SubResource("Resource_lruis"), Vector2(3184.44, 1456.89), &"4014079586"], [SubResource("Resource_kovun"), Vector2(3648.76, 1460.99), &"3407544255"], [SubResource("Resource_4rywa"), Vector2(1584.44, 1601.89), &"3995740385"], [SubResource("Resource_7v4cu"), Vector2(5151.89, 1730.76), &"4234005151"], [SubResource("Resource_2n57b"), Vector2(4751.89, 1630.76), &"3846061712"], [SubResource("Resource_vbcvc"), Vector2(5205.98, -114.791), &"1183196605"], [SubResource("Resource_2n57b"), Vector2(4805.98, -214.791), &"2875620737"], [SubResource("Resource_es3k8"), Vector2(6005.98, 85.2087), &"3351445462"], [SubResource("Resource_jssep"), Vector2(6005.98, 785.209), &"1940431015"], [SubResource("Resource_j0ux1"), Vector2(6555.34, 796.113), &"2589877452"], [SubResource("Resource_8bmwy"), Vector2(-1741.32, -5179.27), &"165689708"], [SubResource("Resource_0db7b"), Vector2(-1215.21, -5428.3), &"1439167672"], [SubResource("Resource_qfpoo"), Vector2(-1205.25, -4806.18), &"929646332"], [SubResource("Resource_1ot4j"), Vector2(-2207.37, -4731.31), &"118267643"], [SubResource("Resource_q3lt2"), Vector2(-691.682, -4886.43), &"725443630"], [SubResource("Resource_n3em8"), Vector2(24.3739, -4840.61), &"501323962"], [SubResource("Resource_benor"), Vector2(1302.41, -4981.25), &"3703488562"], [SubResource("Resource_6c75b"), Vector2(755.471, -5065.78), &"1093437743"], [SubResource("Resource_fojvw"), Vector2(390.96, -5174.58), &"2626421841"], [SubResource("Resource_ibc8y"), Vector2(1739, -5072.52), &"1881341838"], [SubResource("Resource_nhasm"), Vector2(2449.48, -3558.36), &"2851945358"], [SubResource("Resource_fx01e"), Vector2(2449.48, -3249.16), &"4215600188"], [SubResource("Resource_6jwof"), Vector2(2448.49, -3873.89), &"2908633618"], [SubResource("Resource_7aat6"), Vector2(3333.57, -4168.95), &"2942558079"], [SubResource("Resource_iff3j"), Vector2(2881.59, -4162.75), &"456470529"], [SubResource("Resource_lb5hw"), Vector2(2407.81, -2847.23), &"2830290283"], [SubResource("Resource_lt1vc"), Vector2(3913.76, -4246.14), &"3924182064"], [SubResource("Resource_5s446"), Vector2(3922.12, -3743.39), &"3075756439"], [SubResource("Resource_c104a"), Vector2(4294.35, -3661.68), &"2620457662"], [SubResource("Resource_a74yy"), Vector2(4336.29, -4384.35), &"2236820458"], [SubResource("Resource_iff3j"), Vector2(-2207.51, -5144.1), &"183090347"], [SubResource("Resource_ys23c"), Vector2(3772.15, -7567.96), &"249904126"], [SubResource("Resource_f24t8"), Vector2(3157.67, -7595.74), &"2579754795"], [SubResource("Resource_tiae6"), Vector2(3282.88, -7233.78), &"2798913516"], [SubResource("Resource_cvmm3"), Vector2(4324.64, -7139.64), &"2028878643"], [SubResource("Resource_utm5u"), Vector2(3649.27, -6040.49), &"3319587473"], [SubResource("Resource_g0oq6"), Vector2(3168.72, -5649.9), &"1145540010"], [SubResource("Resource_lxh06"), Vector2(4225.87, -5879.98), &"1237459913"], [SubResource("Resource_7ack1"), Vector2(4223.61, -6341.6), &"3637823772"], [SubResource("Resource_xomou"), Vector2(4221.76, -5399.33), &"3402456478"], [SubResource("Resource_fojvw"), Vector2(3265.83, -6014.69), &"2185577923"], [SubResource("Resource_e0c1r"), Vector2(4777.44, -7743.6), &"833376630"], [SubResource("Resource_6ew20"), Vector2(4335.32, -7643.18), &"2472918555"], [SubResource("Resource_8cic8"), Vector2(4675.98, -5790.4), &"797767958"], [SubResource("Resource_cj41j"), Vector2(4669.21, -5203.49), &"1472620762"], [SubResource("Resource_fg260"), Vector2(5082.08, -5123.42), &"1828031753"], [SubResource("Resource_roeiq"), Vector2(5101.48, -5498.81), &"3275059028"], [SubResource("Resource_7sxi5"), Vector2(5916.03, -5468.55), &"279546143"], [SubResource("Resource_fojvw"), Vector2(5503.57, -5609.35), &"1121137465"], [SubResource("Resource_1eny3"), Vector2(6451.82, -5521.52), &"3420114186"], [SubResource("Resource_tck64"), Vector2(6461.48, -5046.72), &"1457243810"], [SubResource("Resource_lk0fg"), Vector2(6931.08, -5049.71), &"1477138460"], [SubResource("Resource_e0def"), Vector2(984.938, -2613.24), &"2661964821"], [SubResource("Resource_4g0n7"), Vector2(978.163, -969.051), &"1035637281"], [SubResource("Resource_emodc"), Vector2(996.129, -3319.48), &"483963684"], [SubResource("Resource_xgsjx"), Vector2(-683.484, -5541.68), &"597982088"], [SubResource("Resource_e4l1t"), Vector2(4773.32, -7123.47), &"1272263834"], [SubResource("Resource_uywu1"), Vector2(4670.97, -6393.74), &"3096974259"], [SubResource("Resource_fxulm"), Vector2(6921.85, -5665.66), &"3213998148"], [SubResource("Resource_cu7gj"), Vector2(4399.66, 279.148), &"2251092609"], [SubResource("Resource_fojvw"), Vector2(-898.277, 1750.61), &"2489527352"], [SubResource("Resource_tc6oy"), Vector2(340.172, 1179.64), &"1790437748"], [SubResource("Resource_l7rjs"), Vector2(336.085, 1664.73), &"103974859"], [SubResource("Resource_ce52s"), Vector2(336.946, 2145.31), &"2950271477"], [SubResource("Resource_nktbh"), Vector2(339.447, 2619.88), &"3557311280"], [SubResource("Resource_83ior"), Vector2(803.757, 1601.25), &"1920728301"], [SubResource("Resource_5hitq"), Vector2(796.409, 2172.81), &"3568779643"], [SubResource("Resource_bt5oy"), Vector2(797.865, 1028.2), &"1972225416"], [SubResource("Resource_vgrkf"), Vector2(796.848, 2754.12), &"1655042981"], [SubResource("Resource_bno1o"), Vector2(1575.76, 2000.43), &"2796619533"], [SubResource("Resource_m026q"), Vector2(6010.45, 2546.06), &"4021671243"], [SubResource("Resource_j34xh"), Vector2(5995.41, 1531.34), &"641516386"], [SubResource("Resource_6l5w1"), Vector2(6519.52, 1561.08), &"453070203"], [SubResource("Resource_ik32o"), Vector2(6544.66, -729.413), &"3881583780"], [SubResource("Resource_ql0bm"), Vector2(6539.69, 13.8841), &"2942894052"], [SubResource("Resource_bbyfs"), Vector2(1611.68, 1262.7), &"2565584504"], [SubResource("Resource_hycla"), Vector2(4351.89, 1730.76), &"872394878"], [SubResource("Resource_2xla6"), Vector2(4405.98, -114.791), &"1516412788"], [SubResource("Resource_p722o"), Vector2(6561.53, 2556.97), &"3125842807"], [SubResource("Resource_0h3k0"), Vector2(3653.47, 764.517), &"1312067910"], [SubResource("Resource_qayw4"), Vector2(-453.583, 1680.31), &"717600465"], [SubResource("Resource_7kxht"), Vector2(6005.98, -614.791), &"144587492"], [SubResource("Resource_3pk7o"), Vector2(7669.05, 2077.35), &"3781736631"], [SubResource("Resource_o2rq2"), Vector2(7673.16, 2419.04), &"4094566281"], [SubResource("Resource_1rfj2"), Vector2(8465.72, 1961.55), &"1605846489"], [SubResource("Resource_fojvw"), Vector2(8087.96, 1953.51), &"1516491838"], [SubResource("Resource_fojvw"), Vector2(5719.97, -7559.52), &"542159292"], [SubResource("Resource_sf36a"), Vector2(5746.02, -7202.54), &"2788519471"], [SubResource("Resource_lkvf4"), Vector2(6200.12, -7660.69), &"2355095288"], [SubResource("Resource_63vqb"), Vector2(7102.28, -8087.78), &"2910030006"], [SubResource("Resource_e1qq8"), Vector2(6699.65, -7521.55), &"4260078159"], [SubResource("Resource_dnkgn"), Vector2(7105.63, -7501.56), &"3780445875"], [SubResource("Resource_ebsj4"), Vector2(6702.89, -7996.38), &"361727951"], [SubResource("Resource_db363"), Vector2(6707.77, -7011.81), &"2197242656"], [SubResource("Resource_vky3i"), Vector2(7110.52, -6925.89), &"1546054134"], [SubResource("Resource_ium7t"), Vector2(9068.94, 2049.43), &"2296762189"], [SubResource("Resource_smbcs"), Vector2(9465.16, 2046.69), &"658751758"], [SubResource("Resource_g0fvf"), Vector2(7944.3, -79.5795), &"1213652683"], [SubResource("Resource_4vcag"), Vector2(7930.18, -734.729), &"2392368805"], [SubResource("Resource_mgw0c"), Vector2(8848.24, -531.241), &"3546031332"], [SubResource("Resource_w5pkr"), Vector2(7955.44, 271.619), &"3168083436"], [SubResource("Resource_6fet1"), Vector2(7942.34, -403.34), &"3306982689"], [SubResource("Resource_2n57b"), Vector2(8477.5, -686.642), &"3274449640"], [SubResource("Resource_t70dv"), Vector2(9498.29, -114.606), &"3030242219"], [SubResource("Resource_ijega"), Vector2(9495.48, -617.548), &"272686759"], [SubResource("Resource_s6rbn"), Vector2(9952.17, -721.321), &"3962322586"], [SubResource("Resource_vf5kh"), Vector2(9947.54, -125.048), &"3753788053"], [SubResource("Resource_fjl6e"), Vector2(3761.51, -9156.69), &"793399269"], [SubResource("Resource_1ncmm"), Vector2(3275.84, -9067.71), &"2504530974"], [SubResource("Resource_526ll"), Vector2(4256.58, -9199.64), &"1113533722"], [SubResource("Resource_ux8bc"), Vector2(4666.95, -9315.03), &"4168113782"], [SubResource("Resource_fel40"), Vector2(4671.3, -8727.86), &"1276703170"], [SubResource("Resource_vxeg5"), Vector2(3285.29, -8724.58), &"2704573100"], [SubResource("Resource_aho7a"), Vector2(4262.61, -8711.93), &"3563649047"], [SubResource("Resource_x1jdg"), Vector2(5480.02, -8839.61), &"1290699810"], [SubResource("Resource_pdchu"), Vector2(5983.18, -9244.13), &"4249860922"], [SubResource("Resource_fojvw"), Vector2(5522.84, -9231.38), &"3305012086"], [SubResource("Resource_gdh5i"), Vector2(6628.59, -9467.33), &"75335356"], [SubResource("Resource_nvlch"), Vector2(6653.68, -8928.69), &"1011750172"], [SubResource("Resource_3ls7y"), Vector2(7078.89, -9586.88), &"2516402169"], [SubResource("Resource_hnghl"), Vector2(7074.49, -8992.76), &"1195244572"], [SubResource("Resource_34l37"), Vector2(7558.14, -9453.79), &"569758641"], [SubResource("Resource_1ncmm"), Vector2(7543.83, -9823.52), &"2848650536"], [SubResource("Resource_oc5gs"), Vector2(8088.07, -9744.45), &"3916925540"], [SubResource("Resource_8myor"), Vector2(8673.7, -10011.3), &"3842934826"], [SubResource("Resource_ts0uu"), Vector2(9101.34, -10096.5), &"2173491161"], [SubResource("Resource_3wcpw"), Vector2(8660.97, -9522.17), &"757804355"], [SubResource("Resource_72hlr"), Vector2(8657.49, -10483.9), &"1918116692"], [SubResource("Resource_qxkh3"), Vector2(9106.12, -10678.7), &"918936228"], [SubResource("Resource_emwfh"), Vector2(9092.68, -9506.73), &"3231916522"], [SubResource("Resource_8dc4e"), Vector2(8661.37, -9020.38), &"1243826946"], [SubResource("Resource_0i6x0"), Vector2(9091.89, -8916.38), &"4227863977"], [SubResource("Resource_3a7we"), Vector2(7301.47, -2911.2), &"1496752642"], [SubResource("Resource_h5w2u"), Vector2(7912.48, -3010.98), &"2990270154"], [SubResource("Resource_1cr6p"), Vector2(7913.75, -2518.73), &"246893673"], [SubResource("Resource_ipnmb"), Vector2(7912.48, -3487.79), &"1108005834"], [SubResource("Resource_fojvw"), Vector2(6719.51, -2885.88), &"1740819143"], [SubResource("Resource_43bli"), Vector2(6719.87, -2489.1), &"490141930"], [SubResource("Resource_b1wkj"), Vector2(8489.21, -3783.18), &"2211030390"], [SubResource("Resource_06l1b"), Vector2(8481.91, -3131.99), &"2614506866"], [SubResource("Resource_3bmc4"), Vector2(8479.13, -2530.67), &"1380883772"], [SubResource("Resource_88bt5"), Vector2(9162.9, -3400.89), &"595484255"], [SubResource("Resource_nvdt3"), Vector2(9157.47, -2733.76), &"857336682"], [SubResource("Resource_dspn1"), Vector2(9155.66, -3080.85), &"99725758"], [SubResource("Resource_a7fn1"), Vector2(9945.01, -3254.86), &"2041540683"], [SubResource("Resource_fojvw"), Vector2(9595.3, -3350.89), &"3931858400"], [SubResource("Resource_w8mro"), Vector2(10638.9, -3576.59), &"327301006"], [SubResource("Resource_ixpx6"), Vector2(10632.5, -3107.91), &"1413373825"], [SubResource("Resource_c5ada"), Vector2(10641.5, -2640.5), &"2616590898"], [SubResource("Resource_3vgoh"), Vector2(11106.5, -3720.24), &"2472376206"], [SubResource("Resource_8blxx"), Vector2(11103.1, -3142.3), &"367895023"], [SubResource("Resource_teu76"), Vector2(11093.4, -2567.56), &"3683084248"], [SubResource("Resource_8jd31"), Vector2(8073.63, -5106.16), &"1613809671"], [SubResource("Resource_fea6p"), Vector2(8612.7, -5311.54), &"485581869"], [SubResource("Resource_3ovro"), Vector2(9560.4, -6140.93), &"370960206"], [SubResource("Resource_b8r5p"), Vector2(9137.31, -5498.03), &"2667933621"], [SubResource("Resource_ys8un"), Vector2(9560.57, -5548.74), &"86771811"], [SubResource("Resource_7ckkp"), Vector2(9126.72, -5992.9), &"536361729"], [SubResource("Resource_ilt5y"), Vector2(9124.88, -4992.73), &"2763451265"], [SubResource("Resource_f85g4"), Vector2(9566.24, -4967.26), &"3210565701"], [SubResource("Resource_1jclc"), Vector2(9136.49, -4418.27), &"711673407"], [SubResource("Resource_gfjtg"), Vector2(9559.92, -4386.98), &"1037966926"], [SubResource("Resource_fojvw"), Vector2(8068.85, -5449.1), &"3846449043"], [SubResource("Resource_wrvhb"), Vector2(8476.8, -7624.75), &"1948638550"], [SubResource("Resource_5mskc"), Vector2(9113.85, -7478.84), &"1690669357"], [SubResource("Resource_agy1p"), Vector2(10360.4, -8109.59), &"3264402256"], [SubResource("Resource_0jian"), Vector2(10734.1, -8095.23), &"3128090311"], [SubResource("Resource_hwlrd"), Vector2(9112.2, -6993.26), &"3497441851"], [SubResource("Resource_1mm4d"), Vector2(10015.5, -7313.59), &"1212043377"], [SubResource("Resource_nys4t"), Vector2(9996.91, -8092.67), &"2911018296"], [SubResource("Resource_yy7wg"), Vector2(9523.01, -7489.86), &"2487898620"], [SubResource("Resource_rovtc"), Vector2(9098.2, -7966.95), &"1295994243"], [SubResource("Resource_2o7jx"), Vector2(9503.73, -7965.47), &"79702528"], [SubResource("Resource_4erk4"), Vector2(10362.1, -7310.74), &"4011793841"], [SubResource("Resource_878ac"), Vector2(9511.68, -7000.57), &"3530722530"], [SubResource("Resource_xbrt6"), Vector2(10728.6, -7311.89), &"2415187772"], [SubResource("Resource_fojvw"), Vector2(8065.15, -7494.98), &"3816439244"], [SubResource("Resource_a24if"), Vector2(8044.01, -7130.08), &"1286717942"], [SubResource("Resource_fojvw"), Vector2(10547.5, -1054.52), &"4268799923"], [SubResource("Resource_uadpt"), Vector2(10549, -675.458), &"3790642381"], [SubResource("Resource_diysk"), Vector2(11000.3, -1115.66), &"1472708984"], [SubResource("Resource_k6nsn"), Vector2(10551.7, -350.299), &"1407145442"], [SubResource("Resource_oorr5"), Vector2(12365.7, -686.135), &"3531873020"], [SubResource("Resource_1k2n7"), Vector2(11982.4, -1207.01), &"2246527849"], [SubResource("Resource_nmcl5"), Vector2(11634.1, -692.361), &"1598108596"], [SubResource("Resource_qhqk1"), Vector2(11075.4, 363.739), &"3449243953"], [SubResource("Resource_fojvw"), Vector2(10719.9, 364.227), &"236665976"], [SubResource("Resource_jjhxp"), Vector2(10698.8, 734.697), &"3756064347"], [SubResource("Resource_2aap7"), Vector2(11563.4, 346.07), &"1031652487"], [SubResource("Resource_gwpx4"), Vector2(12290.1, 346.07), &"3928767334"], [SubResource("Resource_qf4q4"), Vector2(11927.5, 351.674), &"703845213"], [SubResource("Resource_a5pvu"), Vector2(11625.6, -1213.28), &"4280386610"], [SubResource("Resource_7wme4"), Vector2(12378.7, -1214.81), &"446165239"], [SubResource("Resource_pc4on"), Vector2(11557.2, 853.631), &"756009345"], [SubResource("Resource_ww6si"), Vector2(11922.4, 844.245), &"743254857"], [SubResource("Resource_gocrh"), Vector2(11981.4, -693.909), &"3220687759"], [SubResource("Resource_ai60k"), Vector2(12289, 827.294), &"480608779"]])
+node_info = Array[Array]([[SubResource("Resource_qc7dk"), Vector2(-610.745, -2305.2), &"276829463"], [SubResource("Resource_iff3j"), Vector2(-1010.74, -2405.2), &"1376811089"], [SubResource("Resource_petn6"), Vector2(189.255, -3305.2), &"4213523782"], [SubResource("Resource_s8ujp"), Vector2(189.255, -2605.2), &"776926705"], [SubResource("Resource_e8oxx"), Vector2(189.255, -1905.2), &"610201967"], [SubResource("Resource_uqsnc"), Vector2(989.255, -1905.2), &"1636797479"], [SubResource("Resource_louxg"), Vector2(2384.45, 1256.89), &"441962832"], [SubResource("Resource_fojvw"), Vector2(1984.44, 1156.89), &"610795860"], [SubResource("Resource_s336w"), Vector2(3184.44, 756.889), &"984170209"], [SubResource("Resource_lruis"), Vector2(3184.44, 1456.89), &"4014079586"], [SubResource("Resource_kovun"), Vector2(3648.76, 1460.99), &"3407544255"], [SubResource("Resource_4rywa"), Vector2(1584.44, 1601.89), &"3995740385"], [SubResource("Resource_7v4cu"), Vector2(5151.89, 1730.76), &"4234005151"], [SubResource("Resource_2n57b"), Vector2(4751.89, 1630.76), &"3846061712"], [SubResource("Resource_vbcvc"), Vector2(5205.98, -114.791), &"1183196605"], [SubResource("Resource_2n57b"), Vector2(4805.98, -214.791), &"2875620737"], [SubResource("Resource_es3k8"), Vector2(6005.98, 85.2087), &"3351445462"], [SubResource("Resource_jssep"), Vector2(6005.98, 785.209), &"1940431015"], [SubResource("Resource_j0ux1"), Vector2(6555.34, 796.113), &"2589877452"], [SubResource("Resource_8bmwy"), Vector2(-1741.32, -5179.27), &"165689708"], [SubResource("Resource_0db7b"), Vector2(-1215.21, -5428.3), &"1439167672"], [SubResource("Resource_qfpoo"), Vector2(-1205.25, -4806.18), &"929646332"], [SubResource("Resource_1ot4j"), Vector2(-2207.37, -4731.31), &"118267643"], [SubResource("Resource_q3lt2"), Vector2(-691.682, -4886.43), &"725443630"], [SubResource("Resource_n3em8"), Vector2(24.3739, -4840.61), &"501323962"], [SubResource("Resource_benor"), Vector2(1302.41, -4981.25), &"3703488562"], [SubResource("Resource_6c75b"), Vector2(755.471, -5065.78), &"1093437743"], [SubResource("Resource_fojvw"), Vector2(390.96, -5174.58), &"2626421841"], [SubResource("Resource_ibc8y"), Vector2(1739, -5072.52), &"1881341838"], [SubResource("Resource_nhasm"), Vector2(2449.48, -3558.36), &"2851945358"], [SubResource("Resource_fx01e"), Vector2(2449.48, -3249.16), &"4215600188"], [SubResource("Resource_6jwof"), Vector2(2448.49, -3873.89), &"2908633618"], [SubResource("Resource_7aat6"), Vector2(3333.57, -4168.95), &"2942558079"], [SubResource("Resource_iff3j"), Vector2(2881.59, -4162.75), &"456470529"], [SubResource("Resource_lb5hw"), Vector2(2407.81, -2847.23), &"2830290283"], [SubResource("Resource_lt1vc"), Vector2(3913.76, -4246.14), &"3924182064"], [SubResource("Resource_5s446"), Vector2(3922.12, -3743.39), &"3075756439"], [SubResource("Resource_c104a"), Vector2(4294.35, -3661.68), &"2620457662"], [SubResource("Resource_a74yy"), Vector2(4336.29, -4384.35), &"2236820458"], [SubResource("Resource_iff3j"), Vector2(-2207.51, -5144.1), &"183090347"], [SubResource("Resource_ys23c"), Vector2(3772.15, -7567.96), &"249904126"], [SubResource("Resource_f24t8"), Vector2(3157.67, -7595.74), &"2579754795"], [SubResource("Resource_tiae6"), Vector2(3282.88, -7233.78), &"2798913516"], [SubResource("Resource_cvmm3"), Vector2(4324.64, -7139.64), &"2028878643"], [SubResource("Resource_utm5u"), Vector2(3649.27, -6040.49), &"3319587473"], [SubResource("Resource_g0oq6"), Vector2(3168.72, -5649.9), &"1145540010"], [SubResource("Resource_lxh06"), Vector2(4225.87, -5879.98), &"1237459913"], [SubResource("Resource_7ack1"), Vector2(4223.61, -6341.6), &"3637823772"], [SubResource("Resource_xomou"), Vector2(4221.76, -5399.33), &"3402456478"], [SubResource("Resource_fojvw"), Vector2(3265.83, -6014.69), &"2185577923"], [SubResource("Resource_e0c1r"), Vector2(4777.44, -7743.6), &"833376630"], [SubResource("Resource_6ew20"), Vector2(4335.32, -7643.18), &"2472918555"], [SubResource("Resource_8cic8"), Vector2(4675.98, -5790.4), &"797767958"], [SubResource("Resource_cj41j"), Vector2(4669.21, -5203.49), &"1472620762"], [SubResource("Resource_fg260"), Vector2(5082.08, -5123.42), &"1828031753"], [SubResource("Resource_roeiq"), Vector2(5101.48, -5498.81), &"3275059028"], [SubResource("Resource_7sxi5"), Vector2(5916.03, -5468.55), &"279546143"], [SubResource("Resource_fojvw"), Vector2(5503.57, -5609.35), &"1121137465"], [SubResource("Resource_1eny3"), Vector2(6451.82, -5521.52), &"3420114186"], [SubResource("Resource_tck64"), Vector2(6461.48, -5046.72), &"1457243810"], [SubResource("Resource_lk0fg"), Vector2(6931.08, -5049.71), &"1477138460"], [SubResource("Resource_e0def"), Vector2(984.938, -2613.24), &"2661964821"], [SubResource("Resource_emodc"), Vector2(996.129, -3319.48), &"483963684"], [SubResource("Resource_xgsjx"), Vector2(-683.484, -5541.68), &"597982088"], [SubResource("Resource_e4l1t"), Vector2(4773.32, -7123.47), &"1272263834"], [SubResource("Resource_uywu1"), Vector2(4670.97, -6393.74), &"3096974259"], [SubResource("Resource_fxulm"), Vector2(6921.85, -5665.66), &"3213998148"], [SubResource("Resource_cu7gj"), Vector2(4399.66, 279.148), &"2251092609"], [SubResource("Resource_fojvw"), Vector2(-898.277, 1750.61), &"2489527352"], [SubResource("Resource_tc6oy"), Vector2(340.172, 1179.64), &"1790437748"], [SubResource("Resource_l7rjs"), Vector2(336.085, 1664.73), &"103974859"], [SubResource("Resource_ce52s"), Vector2(336.946, 2145.31), &"2950271477"], [SubResource("Resource_nktbh"), Vector2(339.447, 2619.88), &"3557311280"], [SubResource("Resource_83ior"), Vector2(803.757, 1601.25), &"1920728301"], [SubResource("Resource_5hitq"), Vector2(796.409, 2172.81), &"3568779643"], [SubResource("Resource_bt5oy"), Vector2(797.865, 1028.2), &"1972225416"], [SubResource("Resource_vgrkf"), Vector2(796.848, 2754.12), &"1655042981"], [SubResource("Resource_bno1o"), Vector2(1575.76, 2000.43), &"2796619533"], [SubResource("Resource_m026q"), Vector2(6010.45, 2546.06), &"4021671243"], [SubResource("Resource_j34xh"), Vector2(5995.41, 1531.34), &"641516386"], [SubResource("Resource_6l5w1"), Vector2(6519.52, 1561.08), &"453070203"], [SubResource("Resource_ik32o"), Vector2(6544.66, -729.413), &"3881583780"], [SubResource("Resource_ql0bm"), Vector2(6539.69, 13.8841), &"2942894052"], [SubResource("Resource_bbyfs"), Vector2(1611.68, 1262.7), &"2565584504"], [SubResource("Resource_hycla"), Vector2(4351.89, 1730.76), &"872394878"], [SubResource("Resource_2xla6"), Vector2(4405.98, -114.791), &"1516412788"], [SubResource("Resource_p722o"), Vector2(6561.53, 2556.97), &"3125842807"], [SubResource("Resource_0h3k0"), Vector2(3653.47, 764.517), &"1312067910"], [SubResource("Resource_qayw4"), Vector2(-453.583, 1680.31), &"717600465"], [SubResource("Resource_7kxht"), Vector2(6005.98, -614.791), &"144587492"], [SubResource("Resource_3pk7o"), Vector2(7669.05, 2077.35), &"3781736631"], [SubResource("Resource_o2rq2"), Vector2(7673.16, 2419.04), &"4094566281"], [SubResource("Resource_1rfj2"), Vector2(8465.72, 1961.55), &"1605846489"], [SubResource("Resource_fojvw"), Vector2(8087.96, 1953.51), &"1516491838"], [SubResource("Resource_fojvw"), Vector2(5719.97, -7559.52), &"542159292"], [SubResource("Resource_sf36a"), Vector2(5746.02, -7202.54), &"2788519471"], [SubResource("Resource_lkvf4"), Vector2(6200.12, -7660.69), &"2355095288"], [SubResource("Resource_e1qq8"), Vector2(6699.65, -7521.55), &"4260078159"], [SubResource("Resource_dnkgn"), Vector2(7105.63, -7501.56), &"3780445875"], [SubResource("Resource_ebsj4"), Vector2(6702.89, -7996.38), &"361727951"], [SubResource("Resource_db363"), Vector2(6707.77, -7011.81), &"2197242656"], [SubResource("Resource_vky3i"), Vector2(7110.52, -6925.89), &"1546054134"], [SubResource("Resource_ium7t"), Vector2(9068.94, 2049.43), &"2296762189"], [SubResource("Resource_smbcs"), Vector2(9465.16, 2046.69), &"658751758"], [SubResource("Resource_g0fvf"), Vector2(7944.3, -79.5795), &"1213652683"], [SubResource("Resource_4vcag"), Vector2(7930.18, -734.729), &"2392368805"], [SubResource("Resource_mgw0c"), Vector2(8848.24, -531.241), &"3546031332"], [SubResource("Resource_w5pkr"), Vector2(7955.44, 271.619), &"3168083436"], [SubResource("Resource_6fet1"), Vector2(7942.34, -403.34), &"3306982689"], [SubResource("Resource_2n57b"), Vector2(8477.5, -686.642), &"3274449640"], [SubResource("Resource_t70dv"), Vector2(9498.29, -114.606), &"3030242219"], [SubResource("Resource_ijega"), Vector2(9495.48, -617.548), &"272686759"], [SubResource("Resource_s6rbn"), Vector2(9952.17, -721.321), &"3962322586"], [SubResource("Resource_vf5kh"), Vector2(9947.54, -125.048), &"3753788053"], [SubResource("Resource_fjl6e"), Vector2(3761.51, -9156.69), &"793399269"], [SubResource("Resource_1ncmm"), Vector2(3275.84, -9067.71), &"2504530974"], [SubResource("Resource_526ll"), Vector2(4256.58, -9199.64), &"1113533722"], [SubResource("Resource_fel40"), Vector2(4671.3, -8727.86), &"1276703170"], [SubResource("Resource_vxeg5"), Vector2(3285.29, -8724.58), &"2704573100"], [SubResource("Resource_aho7a"), Vector2(4262.61, -8711.93), &"3563649047"], [SubResource("Resource_x1jdg"), Vector2(5480.02, -8839.61), &"1290699810"], [SubResource("Resource_pdchu"), Vector2(5983.18, -9244.13), &"4249860922"], [SubResource("Resource_fojvw"), Vector2(5522.84, -9231.38), &"3305012086"], [SubResource("Resource_gdh5i"), Vector2(6628.59, -9467.33), &"75335356"], [SubResource("Resource_nvlch"), Vector2(6653.68, -8928.69), &"1011750172"], [SubResource("Resource_3ls7y"), Vector2(7078.89, -9586.88), &"2516402169"], [SubResource("Resource_hnghl"), Vector2(7074.49, -8992.76), &"1195244572"], [SubResource("Resource_34l37"), Vector2(7558.14, -9453.79), &"569758641"], [SubResource("Resource_1ncmm"), Vector2(7543.83, -9823.52), &"2848650536"], [SubResource("Resource_oc5gs"), Vector2(8088.07, -9744.45), &"3916925540"], [SubResource("Resource_8myor"), Vector2(8673.7, -10011.3), &"3842934826"], [SubResource("Resource_ts0uu"), Vector2(9101.34, -10096.5), &"2173491161"], [SubResource("Resource_3wcpw"), Vector2(8660.97, -9522.17), &"757804355"], [SubResource("Resource_72hlr"), Vector2(8657.49, -10483.9), &"1918116692"], [SubResource("Resource_qxkh3"), Vector2(9106.12, -10678.7), &"918936228"], [SubResource("Resource_emwfh"), Vector2(9092.68, -9506.73), &"3231916522"], [SubResource("Resource_8dc4e"), Vector2(8661.37, -9020.38), &"1243826946"], [SubResource("Resource_0i6x0"), Vector2(9091.89, -8916.38), &"4227863977"], [SubResource("Resource_3a7we"), Vector2(7301.47, -2911.2), &"1496752642"], [SubResource("Resource_h5w2u"), Vector2(7912.48, -3010.98), &"2990270154"], [SubResource("Resource_1cr6p"), Vector2(7913.75, -2518.73), &"246893673"], [SubResource("Resource_ipnmb"), Vector2(7912.48, -3487.79), &"1108005834"], [SubResource("Resource_fojvw"), Vector2(6719.51, -2885.88), &"1740819143"], [SubResource("Resource_43bli"), Vector2(6719.87, -2489.1), &"490141930"], [SubResource("Resource_b1wkj"), Vector2(8489.21, -3783.18), &"2211030390"], [SubResource("Resource_06l1b"), Vector2(8481.91, -3131.99), &"2614506866"], [SubResource("Resource_3bmc4"), Vector2(8479.13, -2530.67), &"1380883772"], [SubResource("Resource_88bt5"), Vector2(9162.9, -3400.89), &"595484255"], [SubResource("Resource_nvdt3"), Vector2(9157.47, -2733.76), &"857336682"], [SubResource("Resource_dspn1"), Vector2(9155.66, -3080.85), &"99725758"], [SubResource("Resource_a7fn1"), Vector2(9945.01, -3254.86), &"2041540683"], [SubResource("Resource_fojvw"), Vector2(9595.3, -3350.89), &"3931858400"], [SubResource("Resource_w8mro"), Vector2(10638.9, -3576.59), &"327301006"], [SubResource("Resource_ixpx6"), Vector2(10632.5, -3107.91), &"1413373825"], [SubResource("Resource_c5ada"), Vector2(10641.5, -2640.5), &"2616590898"], [SubResource("Resource_3vgoh"), Vector2(11106.5, -3720.24), &"2472376206"], [SubResource("Resource_8blxx"), Vector2(11103.1, -3142.3), &"367895023"], [SubResource("Resource_8jd31"), Vector2(8073.63, -5106.16), &"1613809671"], [SubResource("Resource_fea6p"), Vector2(8612.7, -5311.54), &"485581869"], [SubResource("Resource_3ovro"), Vector2(9560.4, -6140.93), &"370960206"], [SubResource("Resource_b8r5p"), Vector2(9137.31, -5498.03), &"2667933621"], [SubResource("Resource_ys8un"), Vector2(9560.57, -5548.74), &"86771811"], [SubResource("Resource_7ckkp"), Vector2(9126.72, -5992.9), &"536361729"], [SubResource("Resource_ilt5y"), Vector2(9124.88, -4992.73), &"2763451265"], [SubResource("Resource_f85g4"), Vector2(9566.24, -4967.26), &"3210565701"], [SubResource("Resource_1jclc"), Vector2(9136.49, -4418.27), &"711673407"], [SubResource("Resource_gfjtg"), Vector2(9559.92, -4386.98), &"1037966926"], [SubResource("Resource_fojvw"), Vector2(8068.85, -5449.1), &"3846449043"], [SubResource("Resource_wrvhb"), Vector2(8476.8, -7624.75), &"1948638550"], [SubResource("Resource_5mskc"), Vector2(9113.85, -7478.84), &"1690669357"], [SubResource("Resource_agy1p"), Vector2(10360.4, -8109.59), &"3264402256"], [SubResource("Resource_0jian"), Vector2(10734.1, -8095.23), &"3128090311"], [SubResource("Resource_hwlrd"), Vector2(9112.2, -6993.26), &"3497441851"], [SubResource("Resource_1mm4d"), Vector2(10015.5, -7313.59), &"1212043377"], [SubResource("Resource_nys4t"), Vector2(9996.91, -8092.67), &"2911018296"], [SubResource("Resource_yy7wg"), Vector2(9523.01, -7489.86), &"2487898620"], [SubResource("Resource_rovtc"), Vector2(9098.2, -7966.95), &"1295994243"], [SubResource("Resource_2o7jx"), Vector2(9503.73, -7965.47), &"79702528"], [SubResource("Resource_4erk4"), Vector2(10362.1, -7310.74), &"4011793841"], [SubResource("Resource_878ac"), Vector2(9511.68, -7000.57), &"3530722530"], [SubResource("Resource_xbrt6"), Vector2(10728.6, -7311.89), &"2415187772"], [SubResource("Resource_a24if"), Vector2(8044.01, -7130.08), &"1286717942"], [SubResource("Resource_fojvw"), Vector2(10547.5, -1054.52), &"4268799923"], [SubResource("Resource_uadpt"), Vector2(10549, -675.458), &"3790642381"], [SubResource("Resource_diysk"), Vector2(11000.3, -1115.66), &"1472708984"], [SubResource("Resource_k6nsn"), Vector2(10551.7, -350.299), &"1407145442"], [SubResource("Resource_oorr5"), Vector2(12365.7, -686.135), &"3531873020"], [SubResource("Resource_1k2n7"), Vector2(11982.4, -1207.01), &"2246527849"], [SubResource("Resource_nmcl5"), Vector2(11634.1, -692.361), &"1598108596"], [SubResource("Resource_qhqk1"), Vector2(11075.4, 363.739), &"3449243953"], [SubResource("Resource_fojvw"), Vector2(10719.9, 364.227), &"236665976"], [SubResource("Resource_jjhxp"), Vector2(10698.8, 734.697), &"3756064347"], [SubResource("Resource_2aap7"), Vector2(11563.4, 346.07), &"1031652487"], [SubResource("Resource_gwpx4"), Vector2(12290.1, 346.07), &"3928767334"], [SubResource("Resource_qf4q4"), Vector2(11927.5, 351.674), &"703845213"], [SubResource("Resource_a5pvu"), Vector2(11625.6, -1213.28), &"4280386610"], [SubResource("Resource_7wme4"), Vector2(12378.7, -1214.81), &"446165239"], [SubResource("Resource_pc4on"), Vector2(11557.2, 853.631), &"756009345"], [SubResource("Resource_ww6si"), Vector2(11922.4, 844.245), &"743254857"], [SubResource("Resource_gocrh"), Vector2(11981.4, -693.909), &"3220687759"], [SubResource("Resource_ai60k"), Vector2(12289, 827.294), &"480608779"], [SubResource("Resource_agp7i"), Vector2(186.941, -1204.04), &"833244673"], [SubResource("Resource_ux8bc"), Vector2(4672.74, -9318.5), &"4168113782"], [SubResource("Resource_63vqb"), Vector2(7091.5, -8132.47), &"2910030006"], [SubResource("Resource_fojvw"), Vector2(8046.95, -7507.59), &"3816439244"], [SubResource("Resource_teu76"), Vector2(11114.4, -2543.74), &"3683084248"], [SubResource("Resource_fojvw"), Vector2(11742.5, -3077.97), &"3431781866"], [SubResource("Resource_p1y3o"), Vector2(11756.5, -2740.57), &"4079084126"], [SubResource("Resource_abyp5"), Vector2(12295.9, -3025.89), &"3810953309"], [SubResource("Resource_uixxk"), Vector2(11757.8, -2415.17), &"1958439578"], [SubResource("Resource_cpfsx"), Vector2(12935.4, -3056.15), &"2938239997"], [SubResource("Resource_jjjcm"), Vector2(12937.7, -2577.97), &"2340915309"], [SubResource("Resource_xdh23"), Vector2(12938.8, -3534.33), &"3047510446"], [SubResource("Resource_rp0p3"), Vector2(12930.3, -2074.8), &"1023616842"], [SubResource("Resource_7b4hu"), Vector2(13393.4, -3753.84), &"647078365"], [SubResource("Resource_4g0n7"), Vector2(998.459, -1228.52), &"1035637281"], [SubResource("Resource_tbu7o"), Vector2(13385.3, -3135.57), &"1800524178"], [SubResource("Resource_8271q"), Vector2(13380.8, -2553.29), &"3564845965"], [SubResource("Resource_eacu5"), Vector2(13385.2, -1937.57), &"578993377"], [SubResource("Resource_altmm"), Vector2(10666.9, -5945.93), &"2101868708"], [SubResource("Resource_qnnxv"), Vector2(10281.5, -5503.74), &"835544529"], [SubResource("Resource_v4e8f"), Vector2(11161.2, -6043.31), &"563911468"], [SubResource("Resource_7htfx"), Vector2(11557.5, -6141.7), &"2092488737"], [SubResource("Resource_pnq3b"), Vector2(11165.4, -5553.89), &"943493708"], [SubResource("Resource_1qoli"), Vector2(11551.7, -5545.54), &"1282019"], [SubResource("Resource_2n57b"), Vector2(10267, -5863.38), &"4005972856"], [SubResource("Resource_jybm4"), Vector2(12022.6, -6012), &"3564464788"], [SubResource("Resource_34y08"), Vector2(12520.8, -6284.05), &"555628598"], [SubResource("Resource_2n57b"), Vector2(12052.1, -6355.55), &"3304658066"], [SubResource("Resource_gphov"), Vector2(13129.4, -6357.27), &"3834504100"], [SubResource("Resource_q07jb"), Vector2(13120.2, -5880.52), &"3958931304"], [SubResource("Resource_bnkif"), Vector2(13586.5, -6578.76), &"3054384744"], [SubResource("Resource_p8vdg"), Vector2(13602.8, -5931.54), &"1202986481"], [SubResource("Resource_yltu6"), Vector2(12064.2, -5374.41), &"3293229213"], [SubResource("Resource_qacvn"), Vector2(12504.3, -5511.35), &"1375315716"], [SubResource("Resource_ucp3e"), Vector2(11275.4, -9990.09), &"2548519415"], [SubResource("Resource_v3wqr"), Vector2(10657.4, -9831.44), &"3989106263"], [SubResource("Resource_b7d6n"), Vector2(10664.8, -9161.27), &"2178116087"], [SubResource("Resource_kctgy"), Vector2(11806.9, -9485.9), &"1469204019"], [SubResource("Resource_fxgga"), Vector2(11804.2, -10071.5), &"4130586307"], [SubResource("Resource_3eikn"), Vector2(12271.3, -10241.9), &"1231149677"], [SubResource("Resource_pvaff"), Vector2(12276.5, -9532.77), &"1407263600"], [SubResource("Resource_3fqva"), Vector2(13156.6, -10171.2), &"3519261794"], [SubResource("Resource_1h83i"), Vector2(12732.7, -9873.47), &"2567086544"], [SubResource("Resource_ffrhe"), Vector2(12759.3, -9184.2), &"3838257127"], [SubResource("Resource_fe6q5"), Vector2(12745.7, -9532.03), &"949515860"], [SubResource("Resource_bku8x"), Vector2(10661.2, -9482.37), &"931097575"], [SubResource("Resource_v3wqr"), Vector2(12715.2, -10231.7), &"1714319670"], [SubResource("Resource_acdku"), Vector2(13742.6, -10534.3), &"2163365859"], [SubResource("Resource_42n8m"), Vector2(13731, -9569.78), &"4068942020"], [SubResource("Resource_h3a50"), Vector2(13730.6, -10042.2), &"181764638"], [SubResource("Resource_vh5n7"), Vector2(14121.5, -10055.6), &"630771260"], [SubResource("Resource_ipk7h"), Vector2(14126.9, -10652.3), &"2815404051"], [SubResource("Resource_fojvw"), Vector2(14507.3, -10784.8), &"1410615663"], [SubResource("Resource_10l73"), Vector2(15016, -10761.1), &"290185336"], [SubResource("Resource_444ir"), Vector2(14544.1, -10435.4), &"55198306"], [SubResource("Resource_7it0g"), Vector2(14559.8, -10095.9), &"1405302371"], [SubResource("Resource_05bhj"), Vector2(14563.2, -9670.33), &"3731812373"], [SubResource("Resource_2yy5w"), Vector2(15956.3, -10096.7), &"3469992776"], [SubResource("Resource_reksf"), Vector2(16394.4, -9603.85), &"2084439708"], [SubResource("Resource_omh2w"), Vector2(16957.7, -9929.95), &"1050750062"], [SubResource("Resource_sntlh"), Vector2(17493.1, -9856.97), &"372275169"], [SubResource("Resource_5xr6s"), Vector2(17865.2, -9927.74), &"242900637"], [SubResource("Resource_xijvy"), Vector2(15564.8, -11080.1), &"229070814"], [SubResource("Resource_41t60"), Vector2(15527.8, -10098.6), &"1785600512"], [SubResource("Resource_8sj7g"), Vector2(15541.4, -10581.4), &"3680451498"], [SubResource("Resource_ac4n7"), Vector2(15956, -11352.9), &"3005072082"], [SubResource("Resource_4yxlj"), Vector2(15963.9, -10717.1), &"961052067"], [SubResource("Resource_x8r2c"), Vector2(16378.6, -9927.01), &"4110542464"], [SubResource("Resource_fojvw"), Vector2(16371.6, -10269.7), &"1333313602"], [SubResource("Resource_m6ywt"), Vector2(14116.2, -9474.86), &"496369948"]])
 zoom = 0.05
-scroll_offset = Vector2(-346.551, -602.164)
+scroll_offset = Vector2(-358.28, -605)
 connections = Array[Dictionary]([{
 "from_node": &"1376811089",
 "from_port": 0,
@@ -2189,26 +2775,6 @@ connections = Array[Dictionary]([{
 "from_port": 0,
 "to_node": &"833244673",
 "to_port": 0
-}, {
-"from_node": &"1685232037",
-"from_port": 0,
-"to_node": &"276829463",
-"to_port": 1
-}, {
-"from_node": &"2183902773",
-"from_port": 0,
-"to_node": &"276829463",
-"to_port": 1
-}, {
-"from_node": &"3220913367",
-"from_port": 0,
-"to_node": &"276829463",
-"to_port": 1
-}, {
-"from_node": &"831195260",
-"from_port": 0,
-"to_node": &"276829463",
-"to_port": 1
 }, {
 "from_node": &"610795860",
 "from_port": 0,
@@ -2305,16 +2871,6 @@ connections = Array[Dictionary]([{
 "to_node": &"1183196605",
 "to_port": 2
 }, {
-"from_node": &"1312067910",
-"from_port": 0,
-"to_node": &"872394878",
-"to_port": 0
-}, {
-"from_node": &"1312067910",
-"from_port": 0,
-"to_node": &"2251092609",
-"to_port": 0
-}, {
 "from_node": &"165689708",
 "from_port": 0,
 "to_node": &"1439167672",
@@ -2345,11 +2901,6 @@ connections = Array[Dictionary]([{
 "to_node": &"725443630",
 "to_port": 0
 }, {
-"from_node": &"725443630",
-"from_port": 0,
-"to_node": &"501323962",
-"to_port": 0
-}, {
 "from_node": &"501323962",
 "from_port": 0,
 "to_node": &"1093437743",
@@ -2368,36 +2919,6 @@ connections = Array[Dictionary]([{
 "from_node": &"3703488562",
 "from_port": 0,
 "to_node": &"1881341838",
-"to_port": 0
-}, {
-"from_node": &"1881341838",
-"from_port": 0,
-"to_node": &"2908633618",
-"to_port": 0
-}, {
-"from_node": &"483963684",
-"from_port": 0,
-"to_node": &"2908633618",
-"to_port": 0
-}, {
-"from_node": &"1881341838",
-"from_port": 0,
-"to_node": &"2851945358",
-"to_port": 0
-}, {
-"from_node": &"1881341838",
-"from_port": 0,
-"to_node": &"4215600188",
-"to_port": 0
-}, {
-"from_node": &"2661964821",
-"from_port": 0,
-"to_node": &"2851945358",
-"to_port": 0
-}, {
-"from_node": &"1636797479",
-"from_port": 0,
-"to_node": &"4215600188",
 "to_port": 0
 }, {
 "from_node": &"2908633618",
@@ -2423,11 +2944,6 @@ connections = Array[Dictionary]([{
 "from_node": &"833244673",
 "from_port": 0,
 "to_node": &"1035637281",
-"to_port": 0
-}, {
-"from_node": &"1035637281",
-"from_port": 0,
-"to_node": &"2830290283",
 "to_port": 0
 }, {
 "from_node": &"2830290283",
@@ -2525,20 +3041,10 @@ connections = Array[Dictionary]([{
 "to_node": &"1472620762",
 "to_port": 0
 }, {
-"from_node": &"1472620762",
-"from_port": 0,
-"to_node": &"1828031753",
-"to_port": 0
-}, {
 "from_node": &"1828031753",
 "from_port": 0,
 "to_node": &"279546143",
 "to_port": 1
-}, {
-"from_node": &"797767958",
-"from_port": 0,
-"to_node": &"3275059028",
-"to_port": 0
 }, {
 "from_node": &"3275059028",
 "from_port": 0,
@@ -2625,21 +3131,6 @@ connections = Array[Dictionary]([{
 "to_node": &"441962832",
 "to_port": 1
 }, {
-"from_node": &"1972225416",
-"from_port": 0,
-"to_node": &"2565584504",
-"to_port": 0
-}, {
-"from_node": &"1920728301",
-"from_port": 0,
-"to_node": &"3995740385",
-"to_port": 0
-}, {
-"from_node": &"3568779643",
-"from_port": 0,
-"to_node": &"2796619533",
-"to_port": 0
-}, {
 "from_node": &"4234005151",
 "from_port": 0,
 "to_node": &"641516386",
@@ -2648,16 +3139,6 @@ connections = Array[Dictionary]([{
 "from_node": &"4234005151",
 "from_port": 0,
 "to_node": &"4021671243",
-"to_port": 0
-}, {
-"from_node": &"2589877452",
-"from_port": 0,
-"to_node": &"3781736631",
-"to_port": 0
-}, {
-"from_node": &"3125842807",
-"from_port": 0,
-"to_node": &"4094566281",
 "to_port": 0
 }, {
 "from_node": &"3781736631",
@@ -2740,25 +3221,10 @@ connections = Array[Dictionary]([{
 "to_node": &"3546031332",
 "to_port": 1
 }, {
-"from_node": &"3881583780",
-"from_port": 0,
-"to_node": &"3306982689",
-"to_port": 0
-}, {
-"from_node": &"2942894052",
-"from_port": 0,
-"to_node": &"1213652683",
-"to_port": 0
-}, {
 "from_node": &"3168083436",
 "from_port": 0,
 "to_node": &"3546031332",
 "to_port": 2
-}, {
-"from_node": &"453070203",
-"from_port": 0,
-"to_node": &"3168083436",
-"to_port": 0
 }, {
 "from_node": &"3274449640",
 "from_port": 0,
@@ -2815,11 +3281,6 @@ connections = Array[Dictionary]([{
 "to_node": &"1276703170",
 "to_port": 0
 }, {
-"from_node": &"1276703170",
-"from_port": 0,
-"to_node": &"1290699810",
-"to_port": 0
-}, {
 "from_node": &"1290699810",
 "from_port": 0,
 "to_node": &"4249860922",
@@ -2848,11 +3309,6 @@ connections = Array[Dictionary]([{
 "from_node": &"1011750172",
 "from_port": 0,
 "to_node": &"1195244572",
-"to_port": 0
-}, {
-"from_node": &"2516402169",
-"from_port": 0,
-"to_node": &"569758641",
 "to_port": 0
 }, {
 "from_node": &"569758641",
@@ -2943,21 +3399,6 @@ connections = Array[Dictionary]([{
 "from_node": &"246893673",
 "from_port": 0,
 "to_node": &"1380883772",
-"to_port": 0
-}, {
-"from_node": &"2614506866",
-"from_port": 0,
-"to_node": &"99725758",
-"to_port": 0
-}, {
-"from_node": &"2211030390",
-"from_port": 0,
-"to_node": &"595484255",
-"to_port": 0
-}, {
-"from_node": &"1380883772",
-"from_port": 0,
-"to_node": &"857336682",
 "to_port": 0
 }, {
 "from_node": &"595484255",
@@ -3145,11 +3586,6 @@ connections = Array[Dictionary]([{
 "to_node": &"1472708984",
 "to_port": 1
 }, {
-"from_node": &"3753788053",
-"from_port": 0,
-"to_node": &"1407145442",
-"to_port": 0
-}, {
 "from_node": &"1407145442",
 "from_port": 0,
 "to_node": &"1472708984",
@@ -3190,11 +3626,6 @@ connections = Array[Dictionary]([{
 "to_node": &"3449243953",
 "to_port": 1
 }, {
-"from_node": &"3753788053",
-"from_port": 0,
-"to_node": &"3756064347",
-"to_port": 0
-}, {
 "from_node": &"3449243953",
 "from_port": 0,
 "to_node": &"1031652487",
@@ -3224,4 +3655,294 @@ connections = Array[Dictionary]([{
 "from_port": 0,
 "to_node": &"480608779",
 "to_port": 0
+}, {
+"from_node": &"3431781866",
+"from_port": 0,
+"to_node": &"3810953309",
+"to_port": 0
+}, {
+"from_node": &"4079084126",
+"from_port": 0,
+"to_node": &"3810953309",
+"to_port": 1
+}, {
+"from_node": &"1958439578",
+"from_port": 0,
+"to_node": &"3810953309",
+"to_port": 1
+}, {
+"from_node": &"3810953309",
+"from_port": 0,
+"to_node": &"3047510446",
+"to_port": 0
+}, {
+"from_node": &"3810953309",
+"from_port": 0,
+"to_node": &"2938239997",
+"to_port": 0
+}, {
+"from_node": &"3810953309",
+"from_port": 0,
+"to_node": &"2340915309",
+"to_port": 0
+}, {
+"from_node": &"3810953309",
+"from_port": 0,
+"to_node": &"1023616842",
+"to_port": 0
+}, {
+"from_node": &"3047510446",
+"from_port": 0,
+"to_node": &"647078365",
+"to_port": 0
+}, {
+"from_node": &"2938239997",
+"from_port": 0,
+"to_node": &"1800524178",
+"to_port": 0
+}, {
+"from_node": &"2340915309",
+"from_port": 0,
+"to_node": &"3564845965",
+"to_port": 0
+}, {
+"from_node": &"1023616842",
+"from_port": 0,
+"to_node": &"578993377",
+"to_port": 0
+}, {
+"from_node": &"4005972856",
+"from_port": 0,
+"to_node": &"2101868708",
+"to_port": 0
+}, {
+"from_node": &"835544529",
+"from_port": 0,
+"to_node": &"2101868708",
+"to_port": 1
+}, {
+"from_node": &"2101868708",
+"from_port": 0,
+"to_node": &"563911468",
+"to_port": 0
+}, {
+"from_node": &"563911468",
+"from_port": 0,
+"to_node": &"2092488737",
+"to_port": 0
+}, {
+"from_node": &"2101868708",
+"from_port": 0,
+"to_node": &"943493708",
+"to_port": 0
+}, {
+"from_node": &"943493708",
+"from_port": 0,
+"to_node": &"1282019",
+"to_port": 0
+}, {
+"from_node": &"3564464788",
+"from_port": 0,
+"to_node": &"555628598",
+"to_port": 1
+}, {
+"from_node": &"3304658066",
+"from_port": 0,
+"to_node": &"555628598",
+"to_port": 0
+}, {
+"from_node": &"555628598",
+"from_port": 0,
+"to_node": &"3834504100",
+"to_port": 0
+}, {
+"from_node": &"555628598",
+"from_port": 0,
+"to_node": &"3958931304",
+"to_port": 0
+}, {
+"from_node": &"3834504100",
+"from_port": 0,
+"to_node": &"3054384744",
+"to_port": 0
+}, {
+"from_node": &"3958931304",
+"from_port": 0,
+"to_node": &"1202986481",
+"to_port": 0
+}, {
+"from_node": &"3293229213",
+"from_port": 0,
+"to_node": &"1375315716",
+"to_port": 1
+}, {
+"from_node": &"3304658066",
+"from_port": 0,
+"to_node": &"1375315716",
+"to_port": 0
+}, {
+"from_node": &"1375315716",
+"from_port": 0,
+"to_node": &"3834504100",
+"to_port": 0
+}, {
+"from_node": &"1375315716",
+"from_port": 0,
+"to_node": &"3958931304",
+"to_port": 0
+}, {
+"from_node": &"3989106263",
+"from_port": 0,
+"to_node": &"2548519415",
+"to_port": 0
+}, {
+"from_node": &"931097575",
+"from_port": 0,
+"to_node": &"2548519415",
+"to_port": 1
+}, {
+"from_node": &"2178116087",
+"from_port": 0,
+"to_node": &"2548519415",
+"to_port": 1
+}, {
+"from_node": &"2548519415",
+"from_port": 0,
+"to_node": &"4130586307",
+"to_port": 0
+}, {
+"from_node": &"2548519415",
+"from_port": 0,
+"to_node": &"1469204019",
+"to_port": 0
+}, {
+"from_node": &"4130586307",
+"from_port": 0,
+"to_node": &"1231149677",
+"to_port": 0
+}, {
+"from_node": &"1469204019",
+"from_port": 0,
+"to_node": &"1407263600",
+"to_port": 0
+}, {
+"from_node": &"1714319670",
+"from_port": 0,
+"to_node": &"3519261794",
+"to_port": 0
+}, {
+"from_node": &"2567086544",
+"from_port": 0,
+"to_node": &"3519261794",
+"to_port": 2
+}, {
+"from_node": &"3838257127",
+"from_port": 0,
+"to_node": &"3519261794",
+"to_port": 1
+}, {
+"from_node": &"949515860",
+"from_port": 0,
+"to_node": &"3519261794",
+"to_port": 1
+}, {
+"from_node": &"3519261794",
+"from_port": 0,
+"to_node": &"2163365859",
+"to_port": 0
+}, {
+"from_node": &"2163365859",
+"from_port": 0,
+"to_node": &"2815404051",
+"to_port": 0
+}, {
+"from_node": &"4068942020",
+"from_port": 0,
+"to_node": &"496369948",
+"to_port": 0
+}, {
+"from_node": &"3519261794",
+"from_port": 0,
+"to_node": &"181764638",
+"to_port": 0
+}, {
+"from_node": &"3519261794",
+"from_port": 0,
+"to_node": &"4068942020",
+"to_port": 0
+}, {
+"from_node": &"181764638",
+"from_port": 0,
+"to_node": &"630771260",
+"to_port": 0
+}, {
+"from_node": &"1410615663",
+"from_port": 0,
+"to_node": &"290185336",
+"to_port": 0
+}, {
+"from_node": &"55198306",
+"from_port": 0,
+"to_node": &"290185336",
+"to_port": 1
+}, {
+"from_node": &"1405302371",
+"from_port": 0,
+"to_node": &"290185336",
+"to_port": 1
+}, {
+"from_node": &"3731812373",
+"from_port": 0,
+"to_node": &"290185336",
+"to_port": 1
+}, {
+"from_node": &"290185336",
+"from_port": 0,
+"to_node": &"229070814",
+"to_port": 0
+}, {
+"from_node": &"229070814",
+"from_port": 0,
+"to_node": &"3005072082",
+"to_port": 0
+}, {
+"from_node": &"1785600512",
+"from_port": 0,
+"to_node": &"3469992776",
+"to_port": 0
+}, {
+"from_node": &"2084439708",
+"from_port": 0,
+"to_node": &"1050750062",
+"to_port": 1
+}, {
+"from_node": &"1333313602",
+"from_port": 0,
+"to_node": &"1050750062",
+"to_port": 0
+}, {
+"from_node": &"1050750062",
+"from_port": 0,
+"to_node": &"372275169",
+"to_port": 0
+}, {
+"from_node": &"372275169",
+"from_port": 0,
+"to_node": &"242900637",
+"to_port": 0
+}, {
+"from_node": &"290185336",
+"from_port": 0,
+"to_node": &"3680451498",
+"to_port": 0
+}, {
+"from_node": &"3680451498",
+"from_port": 0,
+"to_node": &"961052067",
+"to_port": 0
+}, {
+"from_node": &"4110542464",
+"from_port": 0,
+"to_node": &"1050750062",
+"to_port": 1
 }])
