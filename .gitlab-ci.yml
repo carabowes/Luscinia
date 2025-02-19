@@ -31,7 +31,7 @@ test:
     when: always
   allow_failure: false
   rules:
-      - if: '$CI_COMMIT_BRANCH'
+    - if: '$CI_COMMIT_BRANCH'
 
 
 windows:
@@ -46,7 +46,7 @@ windows:
     paths:
       - build/windows/
   rules:
-  - if: '$CI_COMMIT_BRANCH == "main"
+    - if: '$CI_COMMIT_BRANCH == "main"
     
       
 # android_debug:
@@ -68,6 +68,7 @@ android:
     - if: $SECRET_RELEASE_KEYSTORE_BASE64
     - if: $SECRET_RELEASE_KEYSTORE_USER
     - if: $SECRET_RELEASE_KEYSTORE_PASSWORD
+    - if: '$CI_COMMIT_BRANCH == "main"'
   script:
     # Decode and create the keystore file
     - echo $SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > /root/mygame-release.keystore
@@ -86,5 +87,4 @@ android:
     name: $EXPORT_NAME-$CI_JOB_NAME
     paths:
       - build/android
-  rules:
-  - if: '$CI_COMMIT_BRANCH == "main"
+  
