@@ -7,7 +7,6 @@ var resource_entry: ResourceEntry
 func before_each():
 	resource_entry = ResourceEntry.instantiate()
 	add_child(resource_entry)
-
 	resource_entry.resource_type = "people"
 	resource_entry.amount = 100
 	resource_entry.increase = 0 
