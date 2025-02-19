@@ -14,35 +14,35 @@ func before_each():
 
 func test_add_resources():
 	ResourceManager.add_resources("funds", 500)
-	assert_eq(ResourceManager.resources["funds"],1500.0,"funds should equal 1500")
+	assert_eq(ResourceManager.resources["funds"],1500,"funds should equal 1500")
 
 
 func test_remove_resources():
 	ResourceManager.remove_resources("funds", 500)
-	assert_eq(ResourceManager.resources["funds"],500.0,"funds should equal 500")
+	assert_eq(ResourceManager.resources["funds"],500,"funds should equal 500")
 
 
 func test_remove_resources_not_negative():
 	ResourceManager.remove_resources("funds", 1100)
-	assert_eq(ResourceManager.resources["funds"],0.0,"funds should equal 0, cannot be negative")
+	assert_eq(ResourceManager.resources["funds"],0,"funds should equal 0, cannot be negative")
 
 
 func test_add_available_resources():
 	ResourceManager.add_available_resources("people", 500)
-	assert_eq(ResourceManager.available_resources["people"],600.0,"people should equal 600")
+	assert_eq(ResourceManager.available_resources["people"],600,"people should equal 600")
 
 
 func test_remove_available_resources():
 	ResourceManager.remove_available_resources("people", 50)
-	assert_eq(ResourceManager.available_resources["people"],50.0,"people should equal 50")
+	assert_eq(ResourceManager.available_resources["people"],50,"people should equal 50")
 
 
 func test_apply_start_task_resources():
 	ResourceManager.apply_start_task_resources({"people": 50, "funds": 500, "vehicles": 40, "supplies": 5000})
-	assert_eq(ResourceManager.resources["people"], 50.0, "'people' should be equal to 50")
-	assert_eq(ResourceManager.resources["funds"], 500.0, "'funds' should be equal to 500")
-	assert_eq(ResourceManager.resources["vehicles"], 40.0, "'people' should be equal to 40")
-	assert_eq(ResourceManager.resources["supplies"], 5000.0, "'supplies' should be equal to 5000")
+	assert_eq(ResourceManager.resources["people"], 50, "'people' should be equal to 50")
+	assert_eq(ResourceManager.resources["funds"], 500, "'funds' should be equal to 500")
+	assert_eq(ResourceManager.resources["vehicles"], 40, "'people' should be equal to 40")
+	assert_eq(ResourceManager.resources["supplies"], 5000, "'supplies' should be equal to 5000")
 
 
 func test_apply_end_task_resources():
