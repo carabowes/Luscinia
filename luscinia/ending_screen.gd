@@ -1,6 +1,7 @@
 extends Control
 
 @export var message_board : MessageBoard
+@export var timer: UITimer
 @export var show: bool = false
 
 @export_group("Ending Screen Text Labels")
@@ -32,9 +33,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if(show):
 		format_resource_remaining()
+		days_amt.text = "%s Days" % str(GlobalTimer.in_game_days)
 		self.visible = true
 	else:
 		self.visible = false
+
 
 func format_resource_taken(name:String, resource: String, amt: int):
 	match resource:
