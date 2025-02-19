@@ -20,6 +20,7 @@ func _ready() -> void:
 	task_widget_renderer.connect("resource_gained", format_gained_resource_text)
 	task_widget_renderer.connect("task_ended", show_task_end_notif)
 
+
 func format_gained_resource_text(resource: String, amt: int):
 	if(!got_report):
 		task_end_notif_text += "Task %s has ended! \n Resources gained:\n" % name

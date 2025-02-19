@@ -54,6 +54,7 @@ func format_resource_taken(name:String, resource: String, amt: int):
 			vehicle_amt+=amt
 			taken_vehicles.text = "Vehicles: %s" % str(vehicle_amt)
 
+
 func format_resource_remaining():
 	remain_personnel.text = "Personnel: %s" % ResourceManager.available_resources["people"]
 	remain_supplies.text = "Supplies: %s" % ResourceManager.available_resources["supplies"]
@@ -66,6 +67,7 @@ func _restart_game():
 	ResourceManager.reset_resources()
 	get_tree().reload_current_scene()
 	GlobalTimer.start_game()
+
 
 func _exit_game():
 	GlobalTimer.reset_clock()
