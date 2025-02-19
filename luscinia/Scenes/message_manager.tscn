@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://8538tw87typp"]
+[gd_scene load_steps=3 format=3 uid="uid://bgom65nidm5wp"]
 
 [ext_resource type="Script" path="res://Scripts/task_message/message_manager.gd" id="1_meb6n"]
-[ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="2_tufbr"]
-[ext_resource type="Resource" uid="uid://6i0nc5dgh3ql" path="res://TaskData/earthquake/message_earthquake.tres" id="3_8oyri"]
-[ext_resource type="Resource" uid="uid://cxwgponxxk2pf" path="res://TaskData/establish_contact/message_contact.tres" id="4_vgf6y"]
+[ext_resource type="Resource" uid="uid://7q6oboci068f" path="res://TaskData/TestScenario.tres" id="2_ojgbg"]
 
 [node name="MessageManager" type="Control"]
 layout_mode = 3
@@ -13,4 +11,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_meb6n")
-messages_to_send = Array[ExtResource("2_tufbr")]([ExtResource("3_8oyri"), ExtResource("4_vgf6y")])
+scenario = ExtResource("2_ojgbg")

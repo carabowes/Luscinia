@@ -85,8 +85,6 @@ func _render_response_info(response : Response):
 		%GainResources.resources =task.resources_gained
 		%CostLabel.visible = task.resources_required != {}
 		%CostResources.resources = task.resources_required
-
-		#Resource Validation
 	else:
 		%EstimatedTime.text = ""
 		%CostResources.resources = {}
