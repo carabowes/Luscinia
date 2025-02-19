@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://blxx8acmox0sb"]
+[gd_scene load_steps=13 format=3 uid="uid://bfdkmuv22plnj"]
 
 [ext_resource type="Script" path="res://Scripts/UI/message_page.gd" id="1_cekrt"]
 [ext_resource type="Texture2D" uid="uid://dauu8qd5vcq0i" path="res://Sprites/UIElements.png" id="2_2ipfr"]

@@ -7,7 +7,7 @@ var messages_to_send
 var messages_to_receive: Array[Message]
 var unreplied_messages : int = 0
 #var task_completed: Array[TaskData]
-
+var message_start_turn = {}
 var occurred_events: Array[Event.EventType]
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
@@ -15,6 +15,7 @@ func _ready():
 	rng.randomize() ##Randomize the RNG for chance-based validation
 	messages_to_send = scenario.messages
 	GlobalTimer.turn_progressed.connect(find_messages_to_send)
+	GlobalTimer.turn_progressed.connect(check_expired_messages)
 	EventBus.task_finished.connect(_on_task_finished)
 	EventBus.message_responded.connect(func(message, response): unreplied_messages -= 1; if unreplied_messages == 0: EventBus.all_messages_read.emit())
 
@@ -22,6 +23,7 @@ func _ready():
 func find_messages_to_send(time_progressed: int):
 	var selected_messages: Array[Message]
 	for message in messages_to_send:
+		message_start_turn[message] = GlobalTimer.turns
 		var antirequisite_failed : bool = false
 		for antirequisite in message.antirequisites:
 			if validate_prerequisite(antirequisite, GlobalTimer.turns):
@@ -44,6 +46,20 @@ func find_messages_to_send(time_progressed: int):
 	unreplied_messages += len(selected_messages)
 
 
+func handle_expired_message(message : Message):
+	print("Handling expired message:", message.message)
+	if message.default_response != -1 and message.default_response < len(message.responses):
+		var default_response: Response = message.responses[message.default_response]
+		print("Picking default response:", default_response.response_text)
+		EventBus.message_responded.emit(default_response, message)  
+	else:
+		print("No default response available. Message ignored.")
+	# Remove expired messages
+	messages_to_send.erase(message)
+	messages_to_receive.erase(message)
+	EventBus.navbar_message_button_pressed.emit()
+
+
 func send_message(message : Message):
 	var message_instance = MessageInstance.new(message)
 	EventBus.message_responded.connect(
@@ -52,6 +68,15 @@ func send_message(message : Message):
 				message_instance.reply(response)
 	)
 	message_sent.emit(message_instance)
+
+
+func check_expired_messages(time_progressed: int):
+	print("Checking expired messages for turn:", GlobalTimer.turns)
+	for message in messages_to_receive:
+		if message.turns_to_answer > 0 and (GlobalTimer.turns - message_start_turn.get(message, 0)) >= message.turns_to_answer:
+			handle_expired_message(message)
+		elif message.turns_to_answer == -1:
+			print("Message", message.message, "has no limit. It should never expire.")
 
 
 func _on_task_finished(task_instance : TaskInstance, cancelled : bool):
