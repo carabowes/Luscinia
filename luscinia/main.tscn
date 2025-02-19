@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://pmewkgtpqio2"]
+[gd_scene load_steps=19 format=3 uid="uid://pmewkgtpqio2"]
 
 [ext_resource type="PackedScene" uid="uid://cnpov8fcn2j0g" path="res://Scenes/map.tscn" id="1_7fdga"]
 [ext_resource type="PackedScene" uid="uid://desl373b33t23" path="res://Scenes/timer.tscn" id="2_5mpic"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://Scripts/task_message/message_list.gd" id="11_ir8ox"]
 [ext_resource type="PackedScene" uid="uid://dveuyhljvjf4q" path="res://Scenes/message_history.tscn" id="12_upng4"]
 [ext_resource type="Script" path="res://notif_controller.gd" id="15_py1x5"]
+[ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="17_j07dy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gfh5b"]
 bg_color = Color(1, 0.584314, 0, 1)
@@ -216,3 +217,100 @@ vertical_alignment = 1
 [node name="options_page" parent="pages" instance=ExtResource("10_sexli")]
 visible = false
 layout_mode = 1
+
+[node name="ending_screen" type="Control" parent="pages"]
+layout_mode = 1
+anchor_top = -0.189
+anchor_right = 1.0
+anchor_bottom = 1.129
+offset_top = -0.276993
+offset_bottom = -0.30304
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="pages/ending_screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextBackground" type="ColorRect" parent="pages/ending_screen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.24
+color = Color(0.254902, 0.560784, 0.870588, 1)
+
+[node name="EndingText" type="Label" parent="pages/ending_screen/TextBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 37
+text = "Scenario Complete!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatsBackground" type="ColorRect" parent="pages/ending_screen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.32
+anchor_right = 1.0
+anchor_bottom = 0.64
+offset_top = -3.05176e-05
+offset_bottom = -6.10352e-05
+color = Color(0.254902, 0.560784, 0.870588, 1)
+
+[node name="StatsText" type="Label" parent="pages/ending_screen/StatsBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 22
+text = "Resources Taken:
+
+Resources Remaining:
+
+Relationships:
+"
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="pages/ending_screen"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 80)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.044
+anchor_top = 0.72
+anchor_right = 0.467
+anchor_bottom = 0.91
+offset_left = 0.159999
+offset_right = -0.11998
+theme = ExtResource("17_j07dy")
+theme_override_font_sizes/font_size = 32
+text = "Restart"
+
+[node name="ExitButton" type="Button" parent="pages/ending_screen"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 80)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.533
+anchor_top = 0.72
+anchor_right = 0.956
+anchor_bottom = 0.91
+offset_left = 0.11998
+offset_right = -0.160004
+offset_bottom = 6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("17_j07dy")
+theme_override_font_sizes/font_size = 32
+text = "Exit"
