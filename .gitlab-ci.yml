@@ -61,10 +61,7 @@ windows:
 android:
   stage: export
   rules:
-    - if: $SECRET_RELEASE_KEYSTORE_BASE64
-    - if: $SECRET_RELEASE_KEYSTORE_USER
-    - if: $SECRET_RELEASE_KEYSTORE_PASSWORD
-    - if: '$CI_COMMIT_BRANCH == "main"'
+    - if: '$CI_COMMIT_BRANCH == "main" && $SECRET_RELEASE_KEYSTORE_BASE64 && $SECRET_RELEASE_KEYSTORE_USER && $SECRET_RELEASE_KEYSTORE_PASSWORD'
   script:
     # Decode and create the keystore file
     - echo $SECRET_RELEASE_KEYSTORE_BASE64 | base64 --decode > /root/mygame-release.keystore
