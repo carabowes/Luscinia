@@ -12,10 +12,6 @@ stages:
   - export
   - deploy
 
-workflow:
-  rules:
-    - if: '$CI_COMMIT_BRANCH'
-
 
 test:
   stage: test
@@ -46,7 +42,7 @@ windows:
     paths:
       - build/windows/
   rules:
-    - if: '$CI_COMMIT_BRANCH == "main"
+    - if: '$CI_COMMIT_BRANCH == "main"'
     
       
 # android_debug:
