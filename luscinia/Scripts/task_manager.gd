@@ -45,4 +45,7 @@ func _finish_task(task : TaskInstance, cancelled = false):
 	if not cancelled:
 		completed_tasks.append(task)
 	active_tasks.erase(task)
-	ResourceManager.apply_relationship_change(task.task_data.task_id, task.sender, task.current_progress)
+	if task.task_data.expected_completion_time == 0:
+		ResourceManager.apply_relationship_change(task.task_data.task_id, task.sender, task.current_progress)
+	else:
+		ResourceManager.apply_relationship_change(task.task_data.task_id, task.sender, 1) #Hardcode 1 for current progress to avoid divide by 0 error
