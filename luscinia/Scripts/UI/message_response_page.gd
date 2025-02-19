@@ -3,11 +3,13 @@ extends Control
 
 signal back_button_pressed
 signal response_option_selected(response : Response, message : Message)
+@onready var message_manager = get_node("/root/main/message_manager")
 
 var option_button_prefab : Button
 var option_buttons : Array[Button]
 var option_button_group : ButtonGroup
 var current_selection : int = 0
+
 
 func _ready() -> void:
 	option_button_prefab = %OptionButton.duplicate()
@@ -22,11 +24,12 @@ func _option_selected(message : Message):
 
 
 func set_message(message : Message):
-	_render_option_buttons(message)
-	_select_option_button(0, message)
 	for connection in %ConfirmButton.pressed.get_connections():
 		%ConfirmButton.pressed.disconnect(connection["callable"])
-	%ConfirmButton.pressed.connect(func(): _option_selected(message))
+	if message != null:
+		%ConfirmButton.pressed.connect(func(): _option_selected(message))
+	_render_option_buttons(message)
+	_select_option_button(0, message)
 
 
 func _render_option_buttons(message : Message):

@@ -12,7 +12,8 @@ script = ExtResource("1_rm0d1")
 task_id = Array[String]([])
 events = Array[int]([])
 chance = 1.0
-turns = 0
+min_turn = 0
+max_turn = -1
 
 [sub_resource type="Resource" id="Resource_sd1qi"]
 script = ExtResource("2_ltmve")

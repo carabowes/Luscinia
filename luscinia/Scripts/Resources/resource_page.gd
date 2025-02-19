@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	update_all_labels()
-
+	
 
 func _on_return_button_pressed() -> void:
 	var main_parent = $"."

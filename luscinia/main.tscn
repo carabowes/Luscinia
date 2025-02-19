@@ -1,18 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://pmewkgtpqio2"]
+[gd_scene load_steps=14 format=3 uid="uid://pmewkgtpqio2"]
 
 [ext_resource type="PackedScene" uid="uid://cnpov8fcn2j0g" path="res://Scenes/map.tscn" id="1_7fdga"]
 [ext_resource type="PackedScene" uid="uid://desl373b33t23" path="res://Scenes/timer.tscn" id="2_5mpic"]
+[ext_resource type="Script" path="res://Scripts/task_message/message_manager.gd" id="3_el7pn"]
 [ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="3_h4e53"]
 [ext_resource type="PackedScene" uid="uid://dvvers1ky31ox" path="res://Scenes/resource_page.tscn" id="4_vi8yg"]
 [ext_resource type="PackedScene" uid="uid://c70krmks36rto" path="res://Scenes/task_details.tscn" id="5_0qr7n"]
 [ext_resource type="PackedScene" uid="uid://1ygif2bywt5u" path="res://Scenes/navbar.tscn" id="5_5vcs1"]
-[ext_resource type="Resource" uid="uid://6i0nc5dgh3ql" path="res://TaskData/earthquake/message_earthquake.tres" id="5_yj18d"]
 [ext_resource type="PackedScene" uid="uid://dfl5n2ga1ulqv" path="res://Nodes/task_message_buttons/messenger_screen.tscn" id="6_877e8"]
-[ext_resource type="Resource" uid="uid://lsw710x715mw" path="res://TaskData/random_tasks/earthquake ver/rand_message_earthquake.tres" id="6_b716w"]
-[ext_resource type="Resource" uid="uid://cxwgponxxk2pf" path="res://TaskData/establish_contact/message_contact.tres" id="6_ntma7"]
-[ext_resource type="PackedScene" path="res://Scenes/task-assignment.tscn" id="7_g8mic"]
-[ext_resource type="Resource" uid="uid://b1c14ke0e8om5" path="res://TaskData/random_tasks/contact_ver/rand_message_contact.tres" id="7_slelw"]
-[ext_resource type="PackedScene" uid="uid://b141qasjqe26u" path="res://Scenes/UI/message_page_controller.tscn" id="10_btbvl"]
+[ext_resource type="PackedScene" uid="uid://cwarqma4ql3sh" path="res://Scenes/task-assignment.tscn" id="7_g8mic"]
+[ext_resource type="PackedScene" uid="uid://b2k7lfenoosfp" path="res://Scenes/UI/message_page_controller.tscn" id="10_btbvl"]
 [ext_resource type="Script" path="res://Scripts/task_message/message_list.gd" id="11_ir8ox"]
 [ext_resource type="PackedScene" uid="uid://dveuyhljvjf4q" path="res://Scenes/message_history.tscn" id="12_upng4"]
 
@@ -31,14 +28,12 @@ grow_vertical = 2
 
 [node name="map" parent="." instance=ExtResource("1_7fdga")]
 
-[node name="message_manager" parent="." node_paths=PackedStringArray("message_board", "map_tasks") instance=ExtResource("7_g8mic")]
+[node name="message_manager" parent="." instance=ExtResource("7_g8mic")]
 layout_mode = 1
 offset_top = 117.0
 offset_bottom = -635.0
-message_data = Array[ExtResource("3_h4e53")]([ExtResource("5_yj18d"), ExtResource("6_ntma7")])
-random_task_data = Array[ExtResource("3_h4e53")]([ExtResource("6_b716w"), ExtResource("7_slelw")])
-message_board = NodePath("../pages/message_page")
-map_tasks = NodePath("../map")
+script = ExtResource("3_el7pn")
+messages_to_send = Array[ExtResource("3_h4e53")]([])
 
 [node name="navbar" parent="." instance=ExtResource("5_5vcs1")]
 layout_mode = 1
