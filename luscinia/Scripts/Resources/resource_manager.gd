@@ -49,7 +49,6 @@ func get_resource_texture(resource_name: String) -> Texture:
 	print("Texture for resource not found:", resource_name)
 	return null
 
-
 func queue_relationship_change(task_id: int, relationship_change: int):
 	relationships_to_update[task_id] = relationship_change
 
