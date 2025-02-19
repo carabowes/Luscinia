@@ -3,7 +3,6 @@ extends Control
 
 signal back_button_pressed
 signal response_option_selected(response : Response, message : Message)
-@onready var message_manager = get_node("/root/main/message_manager")
 
 var option_button_prefab : Button
 var option_buttons : Array[Button]
