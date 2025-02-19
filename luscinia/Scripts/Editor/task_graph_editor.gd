@@ -363,7 +363,11 @@ func save_editor_state(editor_save: EditorSave, scenario : Scenario) -> EditorSa
 			editor_save.node_info.append([node.task, node.position_offset, node.name])
 		if node is RequisiteGraphNode:
 			editor_save.node_info.append([node.prerequisite, node.position_offset, node.name])
-	editor_save.connections = get_connection_list()
+	editor_save.connections = []
+	for connection in get_connection_list():
+		if get_node(NodePath(connection["to_node"])) is RequisiteGraphNode:
+			continue
+		editor_save.connections.append(connection)
 	return editor_save
 
 
