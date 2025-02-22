@@ -26,7 +26,7 @@ task = ExtResource("4_gk0pg")
 [sub_resource type="Resource" id="Resource_fyfam"]
 script = ExtResource("6_w0hgi")
 task_id = ""
-name = ""
+name = "Nothing"
 start_location = Vector2(-1000, -1000)
 end_location = Vector2(-1000, -1000)
 resources_required = {}
