@@ -81,7 +81,7 @@ func _render_response_info(response : Response):
 			%EstimatedTimeLabel.visible = false
 		else:
 			%EstimatedTimeLabel.visible = true
-			%EstimatedTime.text = str(task.expected_completion_time) + "hrs"
+			%EstimatedTime.text = GlobalTimer.turns_to_time_string(task.expected_completion_time, "hr", "min", "s", true, true)
 		%GainLabel.visible =  task.resources_gained != {}
 		%GainResources.resources =task.resources_gained
 		%CostLabel.visible = task.resources_required != {}

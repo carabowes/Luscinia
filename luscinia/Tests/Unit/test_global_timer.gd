@@ -13,6 +13,7 @@ func test_turns_to_time_string():
 	assert_eq(GlobalTimer.turns_to_time_string(1), "40 mins")
 	assert_eq(GlobalTimer.turns_to_time_string(2), "1 hour 20 mins")
 	assert_eq(GlobalTimer.turns_to_time_string(3), "2 hours")
+	GlobalTimer.time_step = 60
 
 
 func test_time_to_time_string():

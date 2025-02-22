@@ -10,7 +10,7 @@ var task_widget_prefab = "res://Scenes/task_widget.tscn"
 
 func _ready() -> void:
 	EventBus.task_started.connect(func(task : TaskInstance): create_widget(task))
-	GlobalTimer.turn_progressed.connect(func(time : int): render_widgets())
+	GlobalTimer.turn_progressed.connect(render_widgets)
 	EventBus.task_finished.connect(delete_widget)
 	$MapView.zoom_changed.connect(render_widgets)
 

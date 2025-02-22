@@ -52,7 +52,7 @@ func set_task_info():
 	_progressBarLowMed.value = task_info.current_progress
 	_progressBarHigh.max_value = task_info.get_total_time()
 	_progressBarHigh.value = task_info.current_progress
-	_hoursLeftLabelHigh.text = str(task_info.get_remaining_time()) + " hrs"
+	_hoursLeftLabelHigh.text =  GlobalTimer.turns_to_time_string(task_info.get_remaining_time(), "hr", "min", "s", true, true) 
 	
 	if "funds" in task_info.task_data.resources_required.keys():
 		_fundsResourceImage.texture = ResourceManager.get_resource_texture("funds")

@@ -21,7 +21,7 @@ func _ready():
 	EventBus.message_responded.connect(func(message, response): unreplied_messages -= 1; if unreplied_messages == 0: EventBus.all_messages_read.emit())
 
 
-func find_messages_to_send(time_progressed: int):
+func find_messages_to_send():
 	var selected_messages: Array[Message]
 	for message in messages_to_send:
 		message_start_turn[message] = GlobalTimer.turns
@@ -71,7 +71,7 @@ func send_message(message : Message):
 	message_sent.emit(message_instance)
 
 
-func check_expired_messages(time_progressed: int):
+func check_expired_messages():
 	print("Checking expired messages for turn:", GlobalTimer.turns)
 	for message in messages_to_receive:
 		if message.turns_to_answer > 0 and (GlobalTimer.turns - message_start_turn.get(message, 0)) >= message.turns_to_answer:

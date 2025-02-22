@@ -1,6 +1,6 @@
 extends Node
 
-signal turn_progressed(time_skipped : int)
+signal turn_progressed
 # Timer variables
 #personal = 1min, discussion = 5min
 @export var cd_minutes: int = 5
@@ -67,7 +67,7 @@ func skip_time(skip_minutes: int):
 			in_game_hours -= 24
 			day_counter += 1
 	turns+= 1
-	turn_progressed.emit(skip_minutes)
+	turn_progressed.emit()
 	print("New in-game time: Day %d, %02d:%02d" % [day_counter, in_game_hours, in_game_minutes])  # Debugging line
 
 
@@ -76,7 +76,7 @@ func skip_time(skip_minutes: int):
 func turns_to_time_string(
 	turns : int, 
 	hour_string : String = "hour", 
-	minutes_string : String = "mins", 
+	minutes_string : String = "min", 
 	multiple_string: String = "s",
 	use_decimal_minutes : bool = false, 
 	show_minutes : bool  = true
@@ -106,10 +106,10 @@ func time_to_time_string(
 	var hours : int = int(floor(minutes / 60))
 	var spare_minutes : int = minutes - (hours * 60)
 	var time_string : String = ""
-	
+
 	if hours != 0 or minutes == 0 or use_decimal_minutes or not show_minutes:
 		time_string += str(hours)
-		
+
 		if use_decimal_minutes and show_minutes:
 			var decimal_minutes : String = str(floor((float(spare_minutes) / 60.0) * 100))
 			if len(decimal_minutes) == 1:
@@ -118,16 +118,16 @@ func time_to_time_string(
 				decimal_minutes = decimal_minutes[0]
 			if decimal_minutes != "0":
 				time_string += "." + str(decimal_minutes)
-			
+
 		time_string += " " + hour_string
 		if hours != 1 or (use_decimal_minutes and spare_minutes != 0):
 			time_string += multiple_string
 		if show_minutes and not use_decimal_minutes and spare_minutes != 0:
 			time_string += " "
-		
+
 	if show_minutes and not use_decimal_minutes and spare_minutes != 0:
 		time_string += str(spare_minutes) + " " + minutes_string
 		if spare_minutes != 1:
 			time_string += multiple_string
-	
+
 	return time_string
