@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://1ygif2bywt5u" path="res://Scenes/navbar.tscn" id="5_5vcs1"]
 [ext_resource type="Theme" uid="uid://r2tvepfwkafu" path="res://Themes/primary_button.tres" id="6_mil05"]
 [ext_resource type="Script" path="res://Scripts/UI/message_notification_button.gd" id="7_e8c6r"]
-[ext_resource type="PackedScene" uid="uid://b2k7lfenoosfp" path="res://Scenes/UI/message_page_controller.tscn" id="10_btbvl"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/message_page_controller.tscn" id="10_btbvl"]
 
 [node name="main" type="Control"]
 layout_mode = 3
