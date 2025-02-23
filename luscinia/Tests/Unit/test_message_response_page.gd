@@ -59,8 +59,22 @@ func test_sufficient_resources():
 
 func test_insufficient_resources_is_called():
 	test_message.responses[0].task.resources_required["funds"] = ResourceManager.resources["funds"] + 1
-	page_instance._render_response_info(test_message.responses[0])
+	page_instance._render_response_info(test_message.responses[0], test_message)
 	assert_eq(page_instance.get_node("%InvalidResourcesLabel").visible, true)
+
+
+func test_nothing_task_render():
+	test_message.responses[0].task.name = "Nothing"
+	page_instance._render_response_info(test_message.responses[0], test_message)
+	assert_false(page_instance.get_node("%EstimatedTimeLabel").visible)
+	assert_eq(page_instance.get_node("%EstimatedTime").text, "Choosing not to do anything could have consequences and damage relationships.")
+
+
+func test_nothing_full_caps_task_render():
+	test_message.responses[0].task.name = "NOTHING"
+	page_instance._render_response_info(test_message.responses[0], test_message)
+	assert_false(page_instance.get_node("%EstimatedTimeLabel").visible)
+	assert_eq(page_instance.get_node("%EstimatedTime").text, "Choosing not to do anything could have consequences and damage relationships.")
 
 
 func test_select_option_button():
