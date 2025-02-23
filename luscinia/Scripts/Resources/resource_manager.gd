@@ -29,6 +29,8 @@ func format_resource_value(value: int, decimal_points: int) -> String:
 func add_resources(resource_name: String, amount: int):
 	if resource_name in resources:
 		resources[resource_name] += amount
+		if resource_name in available_resources:
+			resources[resource_name] = clamp(resources[resource_name], 0, available_resources[resource_name])
 	else:
 		print("Resource not found:", resource_name)
 
@@ -52,8 +54,44 @@ func add_available_resources(resource_name: String, amount: int):
 func remove_available_resources(resource_name: String, amount: int):
 	if resource_name in resources:
 		available_resources[resource_name] -= amount
+		if available_resources[resource_name] < 0:
+			available_resources[resource_name] = 0
 	else:
 		print("Resource not found:", resource_name)
+
+
+func add_or_remove_available_resources(resource_name : String, amount : int):
+	if amount < 0:
+		amount = abs(amount)
+		remove_available_resources(resource_name, amount)
+	else:
+		add_available_resources(resource_name, amount)
+
+
+func apply_start_task_resources(resources_required : Dictionary):
+	for resource_name in resources_required:
+		var resource_cost = resources_required[resource_name]
+		remove_resources(resource_name, resource_cost)
+
+
+func apply_end_task_resources(resources_gained : Dictionary, resources_required : Dictionary):
+	for resource_name in resources.keys():
+		#Fill the dictionary with 0 value if key is missing to prevent accessing non existing value
+		if not resources_gained.has(resource_name):
+			resources_gained[resource_name] = 0
+		if not resources_required.has(resource_name):
+			resources_required[resource_name] = 0
+
+		var resource_cost = resources_required[resource_name]
+		var resource_gain = resources_gained[resource_name] 
+		#If the resoruce is a limited resource (available resource)
+		if resource_name in available_resources.keys():
+			#Permantly add or remove the difference between cost and gain
+			var resource_difference = resource_gain - resource_cost
+			add_or_remove_available_resources(resource_name, resource_difference)
+			add_resources(resource_name, resource_gain)
+		else:
+			add_resources(resource_name, resource_gain)
 
 
 func get_resource_texture(resource_name: String) -> Texture:
@@ -61,7 +99,6 @@ func get_resource_texture(resource_name: String) -> Texture:
 		return resource_textures[resource_name]
 	print("Texture for resource not found:", resource_name)
 	return null
-
 
 func queue_relationship_change(task_id: int, relationship_change: int):
 	relationships_to_update[task_id] = relationship_change
