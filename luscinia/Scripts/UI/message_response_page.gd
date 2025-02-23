@@ -79,8 +79,6 @@ func _render_response_info(response : Response, message : Message):
 		var is_default = message.default_response < len(message.responses) and \
 				response == message.responses[message.default_response]
 		%TaskTitle.modulate = Color(1.0, 0.6, 0.6, 1.0) if is_default else Color(1.0, 1.0, 1.0, 1.0)
-		
-		# Optionally add a prefix to make it even more obvious
 		if is_default:
 			%TaskTitle.text = "[Default] " + %TaskTitle.text
 	if task != null:
