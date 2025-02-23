@@ -1,6 +1,9 @@
 class_name TaskWidgetRenderer
 extends Control
 
+signal task_ended
+signal resource_gained(resource: String, amt: int)
+
 @export var details_page: TaskDetails
 @export var task_instance: Array[TaskInstance]
 @export var widget_size: float
@@ -57,12 +60,16 @@ func _finish_task(task: TaskInstance, fully_complete: bool):
 				ResourceManager.add_available_resources(
 					resource, task.task_data.resources_gained[resource]
 				)
+				resource_gained.emit(resource, task.task_data.resources_gained[resource])
 			else:
 				ResourceManager.add_resources(resource, task.task_data.resources_gained[resource])
+				resource_gained.emit(resource, task.task_data.resources_gained[resource])
 		elif resource != "funds" and resource != "supplies":
 			ResourceManager.add_available_resources(
 				resource, task.task_data.resources_gained[resource]
 			)
+			resource_gained.emit(resource, task.task_data.resources_gained[resource])
+	task_ended.emit()
 
 
 func _gui_input(event: InputEvent) -> void:
