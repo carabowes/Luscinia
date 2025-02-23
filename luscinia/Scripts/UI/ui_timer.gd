@@ -25,7 +25,7 @@ func update_timer_ui():
 
 func update_resource_ui():
 	%PersonnelAmt.text = "%s / %s" % [ResourceManager.resources["people"], ResourceManager.available_resources["people"]]
-	%SuppliesAmt.text = "%s / %s" % [ResourceManager.resources["supplies"], ResourceManager.available_resources["supplies"]]
+	%SuppliesAmt.text = "%s" % [ResourceManager.resources["supplies"]]
 	%FundsAmt.text = str(ResourceManager.resources["funds"])
 	%TransportAmt.text = "%s / %s" % [ResourceManager.resources["vehicles"], ResourceManager.available_resources["vehicles"]]
 
