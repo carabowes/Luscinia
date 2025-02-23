@@ -34,7 +34,14 @@ func _render_message_info():
 			%TimeRemainingLabel.text = "ANSWER NOW!"
 			%TimeRemainingLabel.self_modulate = answer_now_color
 		else:
-			%TimeRemainingLabel.text = str(message_info.turns_remaining * GlobalTimer.time_step/60) + " HOURS"
+			%TimeRemainingLabel.text = GlobalTimer.turns_to_time_string(
+				message_info.turns_remaining,
+				"HOUR",
+				"MIN",
+				"S",
+				true,
+				true
+			)
 
 
 func _render_message_status():

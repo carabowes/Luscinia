@@ -20,7 +20,7 @@ func _ready() -> void:
 	randomize()
 	rand_notif_button.pressed.connect(_on_alert_pressed)
 	message_board.response_picked.connect(func(): message_board.visible = false)
-	GlobalTimer.turn_progressed.connect(func(time : int): message_sent_this_turn = false)
+	GlobalTimer.turn_progressed.connect(func(): message_sent_this_turn = false)
 
 
 func _on_alert_pressed() -> void:
