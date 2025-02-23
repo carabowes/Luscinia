@@ -75,6 +75,14 @@ func _set_sufficient_resources(resources : Dictionary):
 func _render_response_info(response : Response, message : Message):
 	var task : TaskData = null if response == null else response.task
 	%TaskTitle.text = "Invalid Response" if response == null else response.response_name
+	if message != null and message.default_response != -1:
+		var is_default = message.default_response < len(message.responses) and \
+				response == message.responses[message.default_response]
+		%TaskTitle.modulate = Color(1.0, 0.6, 0.6, 1.0) if is_default else Color(1.0, 1.0, 1.0, 1.0)
+		
+		# Optionally add a prefix to make it even more obvious
+		if is_default:
+			%TaskTitle.text = "[Default] " + %TaskTitle.text
 	if task != null:
 		if task.name.to_lower() == "nothing":
 			%EstimatedTime.text = "Choosing not to do anything could have consequences and damage relationships."

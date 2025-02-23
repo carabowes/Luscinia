@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("3_mqasb")
-task_id = 0
+task_id = ""
 name = "Small Earthquake Response"
 icon = ExtResource("2_q8ffe")
 start_location = Vector2(800, 600)
