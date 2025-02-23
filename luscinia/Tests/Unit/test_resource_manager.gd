@@ -7,7 +7,7 @@ var sender : Sender
 
 func before_each():
 	ResourceManager.resources = {"people": 100, "funds": 1000, "vehicles": 80, "supplies": 10000}
-	ResourceManager.available_resources = {"people": 100, "vehicles": 80}
+	ResourceManager.available_resources = {"people": 100, "vehicles": 80, "supplies": 10000}
 	ResourceManager.relationships_to_update.clear()	
 	sender = Sender.new("Test Sender",null,50)
 
@@ -121,4 +121,29 @@ func test_apply_relationship_change_zero_progress():
 
 func test_apply_relationship_change_no_task():
 	ResourceManager.apply_relationship_change(99, sender, 1.0)  # Task ID 99 was never queued
-	assert_eq(sender.relationship, 50.0, "Relationship should remain unchanged when task ID is not found")
+	assert_eq(sender.relationship, 50, "Relationship should remain unchanged when task ID is not found")
+
+
+func test_round_to_dp():
+	assert_eq(ResourceManager.round_to_dp(123.4567, 2), 123.46, "Rounding to 2 decimal places failed")
+	assert_eq(ResourceManager.round_to_dp(123.4, 1), 123.4, "Rounding to 1 decimal place failed")
+	assert_eq(ResourceManager.round_to_dp(123.444, 2), 123.44, "Rounding down failed")
+	assert_eq(ResourceManager.round_to_dp(123.445, 2), 123.45, "Rounding up failed")
+	assert_eq(ResourceManager.round_to_dp(0.9999, 3), 1.0, "Rounding up across integer boundary failed")
+
+
+func test_format_resource_value():
+	assert_eq(ResourceManager.format_resource_value(999, 1), "999", "Did not return raw number for values below 1K")
+	assert_eq(ResourceManager.format_resource_value(1000, 1), "1K", "Formatting to K failed")
+	assert_eq(ResourceManager.format_resource_value(1050, 1), "1.1K", "Rounding and formatting to K failed")
+	assert_eq(ResourceManager.format_resource_value(1000000, 1), "1M", "Formatting to M failed")
+	assert_eq(ResourceManager.format_resource_value(2500000, 1), "2.5M", "Rounding and formatting to M failed")
+
+
+func test_format_resource_value_with_resource():
+	var supplies = ResourceManager.resources["supplies"]
+	var formatted_resource = ResourceManager.format_resource_value(supplies,2)
+	assert_eq(formatted_resource, "10K", "supplies should be 10k")
+	
+	
+	
