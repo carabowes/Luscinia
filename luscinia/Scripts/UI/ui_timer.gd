@@ -45,7 +45,7 @@ func _process(delta):
 
 
 # Perform the time skip
-func skip_time(skip_minutes: int):
+func skip_time():
 	update_timer_ui()
 	#Update UI labels
 	day_label.text = "Day %d" % GlobalTimer.day_counter

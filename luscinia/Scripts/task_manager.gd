@@ -26,9 +26,9 @@ func _start_task(response : Response, message : Message):
 	EventBus.task_started.emit(new_task_instance)
 
 
-func _update_tasks(time_progressed : int):
+func _update_tasks():
 	for task in active_tasks:
-		task.update_task(time_progressed)
+		task.update_task()
 		if task.is_completed:
 			EventBus.task_finished.emit(task, false)
 
