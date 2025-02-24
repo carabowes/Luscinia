@@ -1,9 +1,9 @@
-extends Resource
 class_name TaskInstance
+extends Resource
 
 #This resource will only be created at runtime
 
-enum CurrentStatus {IDLING, WORKING, TRAVELLING}
+enum CurrentStatus { IDLING, WORKING, TRAVELLING }
 
 @export var task_data : TaskData
 @export var current_status : CurrentStatus

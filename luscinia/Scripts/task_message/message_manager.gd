@@ -11,6 +11,7 @@ var message_start_turn = {}
 var occurred_events: Array[Event.EventType]
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
+
 func _ready():
 	rng.randomize() ##Randomize the RNG for chance-based validation
 	if scenario != null:

@@ -1,0 +1,179 @@
+[gd_scene load_steps=18 format=3 uid="uid://pmewkgtpqio2"]
+
+[ext_resource type="PackedScene" uid="uid://cnpov8fcn2j0g" path="res://Scenes/map.tscn" id="1_7fdga"]
+[ext_resource type="PackedScene" uid="uid://desl373b33t23" path="res://Scenes/timer.tscn" id="2_5mpic"]
+[ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="3_h4e53"]
+[ext_resource type="PackedScene" uid="uid://dvvers1ky31ox" path="res://Scenes/resource_page.tscn" id="4_vi8yg"]
+[ext_resource type="PackedScene" uid="uid://c70krmks36rto" path="res://Scenes/task_details.tscn" id="5_0qr7n"]
+[ext_resource type="PackedScene" uid="uid://1ygif2bywt5u" path="res://Scenes/navbar.tscn" id="5_5vcs1"]
+[ext_resource type="Resource" uid="uid://6i0nc5dgh3ql" path="res://TaskData/earthquake/message_earthquake.tres" id="5_yj18d"]
+[ext_resource type="PackedScene" uid="uid://dfl5n2ga1ulqv" path="res://Nodes/task_message_buttons/messenger_screen.tscn" id="6_877e8"]
+[ext_resource type="Resource" uid="uid://lsw710x715mw" path="res://TaskData/random_tasks/earthquake ver/rand_message_earthquake.tres" id="6_b716w"]
+[ext_resource type="Resource" uid="uid://cxwgponxxk2pf" path="res://TaskData/establish_contact/message_contact.tres" id="6_ntma7"]
+[ext_resource type="PackedScene" uid="uid://bnodjjjy3hdxo" path="res://Scenes/task-notification-popup.tscn" id="7_g8mic"]
+[ext_resource type="Resource" uid="uid://b1c14ke0e8om5" path="res://TaskData/random_tasks/contact_ver/rand_message_contact.tres" id="7_slelw"]
+[ext_resource type="PackedScene" uid="uid://do5t8447c3iys" path="res://Scenes/UI/options_page.tscn" id="10_sexli"]
+[ext_resource type="Script" path="res://Scripts/task_message/message_list.gd" id="11_ir8ox"]
+[ext_resource type="PackedScene" uid="uid://dveuyhljvjf4q" path="res://Scenes/message_history.tscn" id="12_upng4"]
+[ext_resource type="Script" path="res://notif_controller.gd" id="15_py1x5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gfh5b"]
+bg_color = Color(1, 0.584314, 0, 1)
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[node name="main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="map" parent="." node_paths=PackedStringArray("details_page") instance=ExtResource("1_7fdga")]
+details_page = NodePath("../pages/task_details")
+
+[node name="message_manager" parent="." node_paths=PackedStringArray("message_board", "map_tasks") instance=ExtResource("7_g8mic")]
+layout_mode = 1
+offset_top = 117.0
+offset_bottom = -635.0
+message_data = Array[ExtResource("3_h4e53")]([ExtResource("5_yj18d"), ExtResource("6_ntma7")])
+random_task_data = Array[ExtResource("3_h4e53")]([ExtResource("6_b716w"), ExtResource("7_slelw")])
+message_board = NodePath("../pages/message_page")
+map_tasks = NodePath("../map")
+
+[node name="navbar" parent="." node_paths=PackedStringArray("resource_page", "message_history") instance=ExtResource("5_5vcs1")]
+layout_mode = 1
+offset_top = -80.0
+resource_page = NodePath("../pages/resource_page")
+message_history = NodePath("../pages/message_history")
+
+[node name="timer" parent="." instance=ExtResource("2_5mpic")]
+layout_mode = 1
+offset_right = -120.0
+offset_bottom = -52.0
+
+[node name="pages" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 115.0
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="resource_page" parent="pages" instance=ExtResource("4_vi8yg")]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.018
+anchor_bottom = 0.997
+offset_top = 10.926
+offset_bottom = -798.179
+
+[node name="task_details" parent="pages" instance=ExtResource("5_0qr7n")]
+visible = false
+layout_mode = 1
+offset_top = 0.0
+offset_bottom = 0.0
+
+[node name="message_page" parent="pages" instance=ExtResource("6_877e8")]
+visible = false
+layout_mode = 1
+
+[node name="message_history" parent="pages" instance=ExtResource("12_upng4")]
+visible = false
+layout_mode = 1
+
+[node name="text_message_list" type="Control" parent="pages"]
+visible = false
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.997
+offset_bottom = -0.179016
+script = ExtResource("11_ir8ox")
+
+[node name="ColorRect" type="ColorRect" parent="pages/text_message_list"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.074
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.23
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="pages/text_message_list/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.043
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.0799999
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="pages/text_message_list/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.08
+anchor_right = 1.0
+anchor_bottom = 0.02
+offset_top = -0.199997
+offset_bottom = 0.254997
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gfh5b")
+
+[node name="Label" type="Label" parent="pages/text_message_list/ColorRect/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 0.545002
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 41
+text = "Messages"
+horizontal_alignment = 1
+
+[node name="notifications" type="Control" parent="pages"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("15_py1x5")
+
+[node name="time_skip_notification" type="ColorRect" parent="pages/notifications"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.338
+anchor_right = 1.0
+anchor_bottom = 0.549
+offset_left = -360.0
+offset_top = 7.83398
+offset_right = -360.0
+offset_bottom = 7.75699
+color = Color(0.254902, 0.560784, 0.870588, 0.596078)
+
+[node name="skip_text" type="Label" parent="pages/notifications/time_skip_notification"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Time Skipped!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="options_page" parent="pages" instance=ExtResource("10_sexli")]
+visible = false
+layout_mode = 1

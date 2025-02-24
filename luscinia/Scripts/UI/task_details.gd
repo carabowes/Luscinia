@@ -1,5 +1,5 @@
-extends Control
 class_name TaskDetails
+extends Control
 
 
 func _ready() -> void:
@@ -41,12 +41,12 @@ func _end_early_button_pressed(task_instance : TaskInstance):
 			resource_increase_end_early[resource] = task_instance.task_data.resources_required[resource]
 		else:
 			end_early_resources[resource] = current_resource
-	
+
 	%EndEarlyResources.resources = end_early_resources
 	%EndEarlyResources.set_increments(resource_increase_end_early)
-	
-	var end_on_time_resources : Dictionary
-	var resource_increase_on_time : Dictionary
+
+	var end_on_time_resources: Dictionary
+	var resource_increase_on_time: Dictionary
 	for resource in ResourceManager.resources.keys():
 		var current_resource = ResourceManager.resources[resource] if resource == "funds" else ResourceManager.available_resources[resource]
 		if resource in task_instance.task_data.resources_gained:
@@ -54,7 +54,7 @@ func _end_early_button_pressed(task_instance : TaskInstance):
 			resource_increase_on_time[resource] = task_instance.task_data.resources_gained[resource]
 		else:
 			end_on_time_resources[resource] = current_resource
-	
+
 	%FullTimeResources.resources = end_on_time_resources
 	%FullTimeResources.set_increments(resource_increase_on_time)
 	$TaskCancelConfirmationPage.visible = true

@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgom65nidm5wp"]
+[gd_scene load_steps=3 format=3 uid="uid://bgom65nidm5wp"]
 
 [ext_resource type="Script" path="res://Scripts/task_message/message_manager.gd" id="1_meb6n"]
-[ext_resource type="Resource" uid="uid://7q6oboci068f" path="res://TaskData/TestScenario.tres" id="2_ojgbg"]
+[ext_resource type="Resource" path="res://TaskData/TestScenario.tres" id="2_ojgbg"]
 
 [node name="MessageManager" type="Control"]
 layout_mode = 3

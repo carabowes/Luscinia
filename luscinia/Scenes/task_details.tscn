@@ -35,20 +35,6 @@ corner_radius_bottom_left = 5
 font_size = 14
 outline_size = 1
 
-[sub_resource type="LabelSettings" id="LabelSettings_v4t23"]
-font_color = Color(0.290196, 0.266667, 0.34902, 1)
-outline_color = Color(0.290196, 0.266667, 0.34902, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_j5ce7"]
-font_size = 12
-font_color = Color(0.290196, 0.266667, 0.34902, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_sm5ac"]
-font_color = Color(0.290196, 0.266667, 0.34902, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_d3nhl"]
-font_size = 12
-
 [sub_resource type="LabelSettings" id="LabelSettings_57w7t"]
 font_color = Color(0.290196, 0.266667, 0.34902, 1)
 
@@ -162,98 +148,6 @@ modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
-[node name="TaskStatusTitle" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements"]
-visible = false
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-text = "Task Status"
-label_settings = SubResource("LabelSettings_v4t23")
-autowrap_mode = 2
-
-[node name="TaskStatusText" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements"]
-visible = false
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-text = "Alvin, Theodore and Simone are currently giving out aid in Koza. They have given aid to 93 people so far. They will be heading back to HQ in approximately 1 hour."
-label_settings = SubResource("LabelSettings_j5ce7")
-autowrap_mode = 2
-
-[node name="PaddingBar3" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements"]
-visible = false
-modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-
-[node name="StaffOnTaskTitle" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements"]
-visible = false
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-text = "Staff on Task"
-label_settings = SubResource("LabelSettings_v4t23")
-autowrap_mode = 2
-
-[node name="PaddingBar4" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements"]
-modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-
-[node name="TaskLogTitle" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 0
-text = "Task Log"
-label_settings = SubResource("LabelSettings_sm5ac")
-
-[node name="PaddingBar6" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements"]
-visible = false
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="TaskLog" type="VBoxContainer" parent="Background/ScrollContainer/MarginContainer/Elements"]
-visible = false
-layout_mode = 2
-
-[node name="Events" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements/TaskLog"]
-modulate = Color(0.47451, 0.454902, 0.494118, 1)
-layout_mode = 2
-size_flags_vertical = 0
-text = "- Travel to dock"
-label_settings = SubResource("LabelSettings_d3nhl")
-
-[node name="Events2" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements/TaskLog"]
-modulate = Color(0.47451, 0.454902, 0.494118, 1)
-layout_mode = 2
-size_flags_vertical = 0
-text = "- Retrieve Aid"
-label_settings = SubResource("LabelSettings_d3nhl")
-
-[node name="Events3" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements/TaskLog"]
-modulate = Color(0.47451, 0.454902, 0.494118, 1)
-layout_mode = 2
-size_flags_vertical = 0
-text = "- Travel to Koza"
-label_settings = SubResource("LabelSettings_d3nhl")
-
-[node name="Events4" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements/TaskLog"]
-self_modulate = Color(1, 0.584314, 0, 1)
-layout_mode = 2
-size_flags_vertical = 0
-text = "- Hand out aid in Koza"
-label_settings = SubResource("LabelSettings_d3nhl")
-
-[node name="Events5" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements/TaskLog"]
-self_modulate = Color(0.384314, 0.360784, 0.435294, 1)
-layout_mode = 2
-size_flags_vertical = 0
-text = "- Travel back to HQ"
-label_settings = SubResource("LabelSettings_d3nhl")
-
-[node name="PaddingBar5" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements"]
-visible = false
-modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-
 [node name="ResourcesUsedTitle" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements"]
 layout_mode = 2
 size_flags_vertical = 0
@@ -264,11 +158,8 @@ label_settings = SubResource("LabelSettings_57w7t")
 unique_name_in_owner = true
 modulate = Color(0.290196, 0.266667, 0.34902, 1)
 layout_mode = 2
-resources = {
-"funds": 5
-}
 
-[node name="PaddingBar7" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements"]
+[node name="PaddingBar3" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
@@ -284,9 +175,6 @@ label_settings = SubResource("LabelSettings_57w7t")
 unique_name_in_owner = true
 modulate = Color(0.290196, 0.266667, 0.34902, 1)
 layout_mode = 2
-resources = {
-0: 6
-}
 
 [node name="EndEarlyButton" type="Button" parent="Background/ScrollContainer/MarginContainer/Elements"]
 unique_name_in_owner = true
