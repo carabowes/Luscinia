@@ -9,6 +9,7 @@ func _ready():
 
 
 func render_message(text : String):
+	text = text.strip_escapes()
 	var messages : PackedStringArray = text.split(".", false)
 	var count = 0
 	for message in messages:
