@@ -10,7 +10,7 @@ enum MessagePageState {
 var current_message_page_state : MessagePageState = MessagePageState.CLOSED
 
 func _ready() -> void:
-	EventBus.navbar_message_button_pressed.connect(_navbar_button_pressed)
+	EventBus.navbar_message_button_pressed.connect(_navbar_message_button_pressed)
 
 	%MessagesReceivedPage.message_selected.connect(
 		func(message : MessageInstance): 
@@ -34,11 +34,18 @@ func _ready() -> void:
 	%MessageResponsePage.back_button_pressed.connect(func(): _change_page_state(MessagePageState.MESSAGE_VIEWER))
 
 
-func _navbar_button_pressed():
+func _navbar_message_button_pressed():
+	#if current_message_page_state == MessagePageState.CLOSED:
+		#_change_page_state(MessagePageState.MESSAGE_RECEIVED)
+	#else:
+		#_change_page_state(MessagePageState.CLOSED)
+	#
 	if current_message_page_state == MessagePageState.CLOSED:
 		_change_page_state(MessagePageState.MESSAGE_RECEIVED)
-	else:
+	elif current_message_page_state == MessagePageState.MESSAGE_RECEIVED:
 		_change_page_state(MessagePageState.CLOSED)
+	else:
+		_change_page_state(MessagePageState.MESSAGE_RECEIVED)
 
 
 func _change_page_state(new_state : MessagePageState):

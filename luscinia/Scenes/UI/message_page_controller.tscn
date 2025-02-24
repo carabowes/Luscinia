@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/UI/message_page_controller.gd" id="1_xj5fn"]
 [ext_resource type="PackedScene" uid="uid://blxx8acmox0sb" path="res://Scenes/UI/message_page.tscn" id="2_xj5yt"]
 [ext_resource type="PackedScene" uid="uid://c5fofuriguagu" path="res://Scenes/UI/message_received_page.tscn" id="3_nl5ea"]
-[ext_resource type="PackedScene" uid="uid://0t2ckrr2ve43" path="res://Scenes/UI/message_response_page.tscn" id="4_dexn5"]
+[ext_resource type="PackedScene" uid="uid://deq0s44l2snig" path="res://Scenes/UI/message_response_page.tscn" id="4_dexn5"]
 
 [node name="MessagePageController" type="Control"]
 layout_mode = 3

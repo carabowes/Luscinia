@@ -1,5 +1,6 @@
 extends Control
 
+signal return_button_pressed
 @export var resources = {}
 @export var available_resources = {}
 
@@ -8,16 +9,16 @@ func _ready() -> void:
 	resources = ResourceManager.resources
 	available_resources = ResourceManager.available_resources
 	update_all_labels()
-
+	%return_button.pressed.connect(func(): return_button_pressed.emit())
 
 func _process(delta: float) -> void:
 	update_all_labels()
-
+	
 
 func _on_return_button_pressed() -> void:
 	var main_parent = $"."
 	main_parent.visible = false
-
+	#UIStateManager._change_page_state(UIStateManager.UIPageState.CLOSED)
 
 func update_label(label_name: String, resource_name: String, texture_name: String):
 	var label = get_node(label_name)

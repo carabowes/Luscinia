@@ -28,6 +28,7 @@ var task_info : TaskInstance:
 func _ready():
 	add_to_group("task_widgets")
 
+
 func set_level_of_detail(lod):
 	current_level_of_detail = lod
 	match lod:
@@ -98,12 +99,16 @@ func _switch_to_high_lod():
 
 func _show_task_details_page():
 	EventBus.task_widget_view_details_pressed.emit(task_info)
-
+	#UIStateManager._change_page_state(UIStateManager.UIPageState.TASK_DETAILS)
+	
+	
 func get_current_progress():
 	return task_info.current_progress
 
+
 func set_current_progress(prog: int):
 	task_info.current_progress = prog
+
 
 func _gui_input(event: InputEvent) -> void:
 	if(event.is_action_pressed("interact")):
