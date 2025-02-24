@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgom65nidm5wp"]
+[gd_scene load_steps=3 format=3 uid="uid://chcntd2fcaac"]
 
 [ext_resource type="Script" path="res://Scripts/task_message/message_manager.gd" id="1_meb6n"]
-[ext_resource type="Resource" path="res://TaskData/TestScenario.tres" id="2_ojgbg"]
+[ext_resource type="Resource" path="res://TaskData/TestScenario.tres" id="2_4c8uo"]
 
 [node name="MessageManager" type="Control"]
 layout_mode = 3
@@ -11,4 +11,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_meb6n")
-scenario = ExtResource("2_ojgbg")
+scenario = ExtResource("2_4c8uo")

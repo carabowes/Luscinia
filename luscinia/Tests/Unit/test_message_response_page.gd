@@ -11,6 +11,7 @@ func before_each():
 	test_task = TaskData.new("id", "Task", null, Vector2.ZERO, Vector2.ZERO, {"funds": 100}, {"funds": 100}, 4)
 	test_response = Response.new("Response", "Text", 0, test_task)
 	test_message = Message.new("Message", [test_response, test_response])
+	test_message.default_response = -1
 
 
 func test_set_message():
@@ -43,6 +44,12 @@ func test_non_null_message():
 	assert_eq(page_instance.get_node("%GainResources").resources, test_task.resources_gained)
 	assert_eq(page_instance.get_node("%CostLabel").visible, true)
 	assert_eq(page_instance.get_node("%CostResources").resources, test_task.resources_required)
+
+
+func test_default_response():
+	test_message.default_response = 0  
+	page_instance.set_message(test_message)
+	assert_eq(page_instance.get_node("%TaskTitle").text, "[Default] " + test_response.response_name)
 
 
 func test_insufficient_resources():

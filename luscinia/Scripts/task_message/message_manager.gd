@@ -19,7 +19,8 @@ func _ready():
 	GlobalTimer.turn_progressed.connect(find_messages_to_send)
 	GlobalTimer.turn_progressed.connect(check_expired_messages)
 	EventBus.task_finished.connect(_on_task_finished)
-	EventBus.message_responded.connect(func(message, response): unreplied_messages -= 1; if unreplied_messages == 0: EventBus.all_messages_read.emit())
+	EventBus.message_responded.connect(func(response, message): unreplied_messages -= 1; if unreplied_messages == 0: EventBus.all_messages_read.emit())
+	EventBus.message_responded.connect(func(response, message): messages_to_receive.erase(message))
 
 
 func find_messages_to_send():
