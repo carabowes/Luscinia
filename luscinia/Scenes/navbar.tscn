@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://crdt0x0jw41ox" path="res://Sprites/UI/ProceedButton.png" id="1_24llj"]
 [ext_resource type="Texture2D" uid="uid://dbevrsfktm6jt" path="res://Sprites/UI/MessageButton.png" id="1_hhk0i"]
 [ext_resource type="Texture2D" uid="uid://dd65myswp443" path="res://Sprites/commisioned_icons/information_icon.png" id="3_b18yf"]
-[ext_resource type="Texture2D" uid="uid://dwl5qh53md1wx" path="res://Sprites/UI/ExclamationBubble.png" id="3_ohkv6"]
+[ext_resource type="Texture2D" uid="uid://dwl5qh53md1wx" path="res://Sprites/UI/RedCircle.png" id="3_ohkv6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h85xp"]
 bg_color = Color(0.9481, 0.912, 0.95, 1)

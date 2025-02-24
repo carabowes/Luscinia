@@ -1,123 +1,56 @@
 class_name TaskWidgetRenderer
 extends Control
 
-signal task_ended
 signal resource_gained(resource: String, amt: int)
 
-@export var details_page: TaskDetails
-@export var task_instance: Array[TaskInstance]
-@export var widget_size: float
-@export var zoom_level_medium_detail: float
+@export var widget_size : float
+@export var zoom_level_medium_detail : float
 
-var task_widgets: Array[TaskWidget]
+var task_widgets : Array[TaskWidget]
 var task_widget_prefab = "res://Scenes/task_widget.tscn"
 
 
 func _ready() -> void:
-	GlobalTimer.turn_progressed.connect(update_widget_task)
-	_generate_widgets()
+	EventBus.task_started.connect(func(task : TaskInstance): create_widget(task))
+	GlobalTimer.turn_progressed.connect(render_widgets)
+	EventBus.task_finished.connect(delete_widget)
 	$MapController.zoom_changed.connect(render_widgets)
-	details_page.task_cancelled.connect(cancel_task)
 
 
-func add_task_instance(new_instance: TaskInstance):
-	task_instance.append(new_instance)
-	_generate_widgets()
+func create_widget(task_instance : TaskInstance):
+	var task_widget_instance : TaskWidget = load(task_widget_prefab).instantiate()
+	task_widget_instance.task_info = task_instance
+	task_widget_instance.position = task_instance.task_data.start_location
+
+	$MapController/MapTexture.add_child(task_widget_instance)
+	task_widgets.append(task_widget_instance)
+
+	task_widget_instance.widget_selected.connect(update_selected_widget)
+	render_widgets()
 
 
-func _generate_widgets():
-	var num_widgets = range(len(task_widgets))
-	for i in num_widgets:
-		var current_widget = task_widgets[len(task_widgets) - 1]
-		current_widget.queue_free()
-		task_widgets.remove_at(len(task_widgets) - 1)
-
-	for task in task_instance:
-		if task.is_completed:
-			continue
-		var task_widget_instance: TaskWidget = load(task_widget_prefab).instantiate()
-		task_widget_instance.task_info = task
-		var step_dist = float(task.current_progress) / float(task.get_total_time())
-		task.current_location = lerp(
-			task.task_data.start_location, task.task_data.end_location, step_dist
-		)
-		task_widget_instance.position = task.current_location
-		$MapController/MapTexture.add_child(task_widget_instance)
-		task_widgets.append(task_widget_instance)
-		task_widget_instance.connect("widget_selected", update_widget_detail)
-		task_widget_instance.task_details_page = details_page
-		render_widgets()
+func delete_widget(task_instance : TaskInstance, cancelled : bool):
+	for widget in task_widgets:
+		if widget.task_info == task_instance:
+			task_widgets.erase(widget)
+			widget.queue_free()
 
 
-func _finish_task(task: TaskInstance, fully_complete: bool):
-	task.is_completed = true
-	ResourceManager.apply_relationship_change(
-		task.task_data.task_id, task.sender, task.current_progress
-	)
-	for resource in task.task_data.resources_gained.keys():
-		if fully_complete:
-			if resource != "funds":
-				ResourceManager.add_available_resources(
-					resource, task.task_data.resources_gained[resource]
-				)
-				resource_gained.emit(resource, task.task_data.resources_gained[resource])
-			else:
-				ResourceManager.add_resources(resource, task.task_data.resources_gained[resource])
-				resource_gained.emit(resource, task.task_data.resources_gained[resource])
-		elif resource != "funds" and resource != "supplies":
-			ResourceManager.add_available_resources(
-				resource, task.task_data.resources_gained[resource]
-			)
-			resource_gained.emit(resource, task.task_data.resources_gained[resource])
-	task_ended.emit()
-
-
-func _gui_input(event: InputEvent) -> void:
-	#if the task widget has been clicked off, then make sure theres no high level detail widget
-	if event.is_action_pressed("interact"):
-		set_level_of_details(true)
-
-
-func cancel_task(task: TaskInstance):
-	_finish_task(task, false)
-	_generate_widgets()
-
-
-func update_widget_task(time: int):
-	for task in task_instance:
-		task.current_progress += time / 60
-		if task.current_progress >= task.get_total_time() and !task.is_completed:
-			_finish_task(task, true)
-	_generate_widgets()
-
-
-func set_level_of_details(affect_widgets = false):
+func set_level_of_details(affect_high_detail_widgets = false):
 	var current_scale = $MapController.current_scale
 	for widget in task_widgets:
-		if widget.current_level_of_detail == widget.LevelOfDetail.HIGH and affect_widgets:
-			if current_scale >= zoom_level_medium_detail:
-				widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM)
-			else:
-				widget.set_level_of_detail(widget.LevelOfDetail.LOW)
+		if widget.current_level_of_detail == widget.LevelOfDetail.HIGH and affect_high_detail_widgets:
+			widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM if current_scale >= zoom_level_medium_detail else widget.LevelOfDetail.LOW)
 		elif widget.current_level_of_detail != widget.LevelOfDetail.HIGH:
-			if current_scale >= zoom_level_medium_detail:
-				widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM)
-			else:
-				widget.set_level_of_detail(widget.LevelOfDetail.LOW)
+			widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM if current_scale >= zoom_level_medium_detail else widget.LevelOfDetail.LOW)
 
 
-func update_widget_detail(selected_widget: TaskWidget):
+func update_selected_widget(selected_widget : TaskWidget):
 	var current_scale = $MapController.current_scale
 	for widget in task_widgets:
 		if widget != selected_widget:
-			if current_scale >= zoom_level_medium_detail:
-				widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM)
-			else:
-				widget.set_level_of_detail(widget.LevelOfDetail.LOW)
-	# selected widget is being moved so it is rendered infront of its siblings
-	$MapController/MapTexture.move_child(
-		selected_widget, $MapController/MapTexture.get_child_count() - 1
-	)
+			widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM if current_scale >= zoom_level_medium_detail else widget.LevelOfDetail.LOW)
+	$MapController/MapTexture.move_child(selected_widget, $MapController/MapTexture.get_child_count()-1)
 
 
 func render_widgets():
@@ -125,3 +58,10 @@ func render_widgets():
 		var current_scale = $MapController.current_scale
 		widget.scale = Vector2.ONE * widget_size / current_scale
 		set_level_of_details()
+		widget.queue_redraw()
+
+
+func _gui_input(event: InputEvent) -> void:
+	#if the task widget has been clicked off, then make sure theres no high level detail widget
+	if event.is_action_pressed("interact"):
+		set_level_of_details(true)

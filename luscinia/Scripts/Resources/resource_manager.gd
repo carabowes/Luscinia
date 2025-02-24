@@ -68,6 +68,13 @@ func add_or_remove_available_resources(resource_name : String, amount : int):
 		add_available_resources(resource_name, amount)
 
 
+func has_sufficient_resource(resource_name : String, amount : int) -> bool:
+	if resource_name == "funds":
+		return amount <= resources[resource_name]
+	else:
+		return amount <= available_resources[resource_name]
+
+
 func apply_start_task_resources(resources_required : Dictionary):
 	for resource_name in resources_required:
 		var resource_cost = resources_required[resource_name]
@@ -100,17 +107,22 @@ func get_resource_texture(resource_name: String) -> Texture:
 	print("Texture for resource not found:", resource_name)
 	return null
 
-func queue_relationship_change(task_id: int, relationship_change: int):
+
+func queue_relationship_change(task_id: String, relationship_change: int):
 	relationships_to_update[task_id] = relationship_change
 
 
-func apply_relationship_change(task_id: int, sender: Sender, task_progress: float):
+func apply_relationship_change(task_id: String, sender: Sender, task_progress: float):
 	if not relationships_to_update.has(task_id) or sender == null:
 		return
-	sender.relationship += (
-		(relationships_to_update[task_id] * task_progress * 2) - relationships_to_update[task_id]
-	)
+	#Limit task_progress to between 0 and 1
+	task_progress = clamp(task_progress, 0.0, 1.0)
+	# If a user ends a task early they should not get the full relationship benefits
+	# 0% = relationship lost, 50% = 0 no relationship change, 100% = relationship gain
+	var relationship_change = (relationships_to_update[task_id] * task_progress * 2) - relationships_to_update[task_id] 
+	sender.relationship += relationship_change
 	relationships_to_update.erase(task_id)
+
 
 func reset_resources():
 	resources = {"people": 100, "funds": 1000, "vehicles": 80, "supplies": 100000}

@@ -9,7 +9,7 @@ func _ready() -> void:
 	available_resources = ResourceManager.available_resources
 	visibility_changed.connect(update_all_labels)
 	update_all_labels()
-
+	
 
 func _on_return_button_pressed() -> void:
 	visible = false

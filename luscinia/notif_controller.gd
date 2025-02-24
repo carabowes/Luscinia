@@ -1,5 +1,7 @@
 extends Control
 
+signal resource_gained(resource: String, amt: int)
+
 @export var message_board : MessageBoard
 @export var task_widget_renderer : TaskWidgetRenderer
 @export var start_task_notif_label: Label
@@ -18,7 +20,7 @@ func _ready() -> void:
 	message_board.connect("resource_spent", format_spent_resource_text)
 	message_board.connect("response_picked",show_task_start_notif)
 	task_widget_renderer.connect("resource_gained", format_gained_resource_text)
-	task_widget_renderer.connect("task_ended", show_task_end_notif)
+	EventBus.task_finished.connect(show_task_end_notif)
 
 
 func format_gained_resource_text(resource: String, amt: int):
@@ -28,7 +30,7 @@ func format_gained_resource_text(resource: String, amt: int):
 	task_end_notif_text += "%s +%d\n" % [resource, amt]
 
 
-func show_task_end_notif():
+func show_task_end_notif(task: TaskInstance, cancelled: bool):
 	$time_skip_notification.visible = false
 	showing = true
 	end_task_notif_label.text = task_end_notif_text
@@ -64,13 +66,13 @@ func show_task_start_notif():
 	tween2.tween_property(%task_start_notification,"position", Vector2(-360,205),0.2)
 
 
-func show_turn_notif(time_skipped: int):
+func show_turn_notif():
 	if(!showing):
 		showing = true
-		await turn_notif_coroutine(time_skipped)
+		await turn_notif_coroutine()
 
 
-func turn_notif_coroutine(time_skipped: int):
+func turn_notif_coroutine():
 	var tween1 = get_tree().create_tween()
 	#og -360, 205
 	#center 0, 205

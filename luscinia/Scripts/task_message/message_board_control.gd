@@ -10,6 +10,7 @@ var map : TaskWidgetRenderer # this bit is a bit janky
 var text_message_prefab = preload("res://Nodes/task_message_buttons/text_message.tscn")
 var response_button_prefab = preload("res://Nodes/task_message_buttons/text_response_button.tscn")
 
+
 func clear_messages():
 	for child in message_box.get_children():
 		child.queue_free()

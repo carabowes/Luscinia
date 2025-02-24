@@ -1,72 +1,115 @@
-extends Control
+extends Node
 
-@export_group("Messages")
-@export var message_data : Array[Message]
-@export var random_task_data : Array[Message]
+signal message_sent(message: MessageInstance)
 
-@export_group("UI Elements")
-@export var message_board : MessageBoard
-@onready var message_list = $"../pages/text_message_list"
-@export var message_notif_button : Button
-@export var rand_notif_button : Button
-@export var map_tasks : TaskWidgetRenderer
-
-var message_sent_this_turn = false
-
-@export var current_message = 0
-@export var current_rand = 0
-@export var send_rand : bool = false
+@export var scenario : Scenario
+var messages_to_send : Array[Message] = []
+var messages_to_receive: Array[Message]
+var unreplied_messages : int = 0
+#var task_completed: Array[TaskData]
+var message_start_turn = {}
+var occurred_events: Array[Event.EventType]
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 
-func _ready() -> void:
-	randomize()
-	message_notif_button.pressed.connect(_on_alert_pressed)
-	rand_notif_button.pressed.connect(_on_alert_pressed)
-	message_notif_button.visible = true
-	message_board.map = map_tasks
-	message_board.response_picked.connect(func(): message_board.visible = false)
-	message_board.response_picked.connect(func(): random_chance())
-	GlobalTimer.turn_progressed.connect(func(time : int): message_sent_this_turn = false)
+func _ready():
+	rng.randomize() ##Randomize the RNG for chance-based validation
+	if scenario != null:
+		messages_to_send = scenario.messages
+	GlobalTimer.turn_progressed.connect(find_messages_to_send)
+	GlobalTimer.turn_progressed.connect(check_expired_messages)
+	EventBus.task_finished.connect(_on_task_finished)
+	EventBus.message_responded.connect(func(response, message): unreplied_messages -= 1; if unreplied_messages == 0: EventBus.all_messages_read.emit())
+	EventBus.message_responded.connect(func(response, message): messages_to_receive.erase(message))
 
-func _on_alert_pressed() -> void:
-	if(!send_rand):
-		_main_messages()
+
+func find_messages_to_send():
+	var selected_messages: Array[Message]
+	for message in messages_to_send:
+		message_start_turn[message] = GlobalTimer.turns
+		var antirequisite_failed : bool = false
+		for antirequisite in message.antirequisites:
+			if validate_prerequisite(antirequisite, GlobalTimer.turns):
+				antirequisite_failed = true
+				break
+		if antirequisite_failed:
+			continue
+		for prerequisite in message.prerequisites:
+			if validate_prerequisite(prerequisite, GlobalTimer.turns):
+				messages_to_receive.append(message)
+				selected_messages.append(message)
+				send_message(message)
+				break
+		if len(message.prerequisites) == 0:
+			messages_to_receive.append(message)
+			selected_messages.append(message)
+			send_message(message)
+	for message in selected_messages:
+		messages_to_send.erase(message)
+	unreplied_messages += len(selected_messages)
+
+
+func handle_expired_message(message : Message):
+	print("Handling expired message:", message.message)
+	if message.default_response != -1 and message.default_response < len(message.responses):
+		var default_response: Response = message.responses[message.default_response]
+		print("Picking default response:", default_response.response_text)
+		EventBus.message_responded.emit(default_response, message)  
 	else:
-		_rand_messages()
+		print("No default response available. Message ignored.")
+	# Remove expired messages
+	messages_to_send.erase(message)
+	messages_to_receive.erase(message)
+	EventBus.navbar_message_button_pressed.emit()
 
-func _main_messages():
-	message_list.visible = true
-	message_board.visible = true
-	print(message_data[current_message])
-	message_list.add_message()
-	message_board.add_message(message_data[current_message])
-	current_message += 1
-	message_sent_this_turn = true
 
-func _rand_messages():
-	message_list.visible = true
-	message_board.visible = true
-	print(random_task_data)
-	message_list.add_message()
-	message_board.add_message(random_task_data[current_rand])
-	current_rand += 1
+func send_message(message : Message):
+	var message_instance = MessageInstance.new(message)
+	EventBus.message_responded.connect(
+		func(response : Response, message : Message): 
+			if message == message_instance.message: 
+				message_instance.reply(response)
+	)
+	message_sent.emit(message_instance)
 
-func random_chance():
-	if(send_rand):
-		send_rand = false
-	else:
-		print("response detected")
-		var probability : int = 2 #1/x chance
-		if(randi() % probability) == (probability - 1):
-			print("random task rolled true")
-			send_rand = true
 
-func _process(delta: float) -> void:
-	if message_data.size() == current_message or message_sent_this_turn:
-		message_notif_button.visible = false
-	else:
-		message_notif_button.visible = true
-	if random_task_data.size() == current_rand or !send_rand:
-		rand_notif_button.visible = false
-	else:
-		rand_notif_button.visible = true
+func check_expired_messages():
+	print("Checking expired messages for turn:", GlobalTimer.turns)
+	for message in messages_to_receive:
+		if message.turns_to_answer > 0 and (GlobalTimer.turns - message_start_turn.get(message, 0)) >= message.turns_to_answer:
+			handle_expired_message(message)
+		elif message.turns_to_answer == -1:
+			print("Message", message.message, "has no limit. It should never expire.")
+
+
+func _on_task_finished(task_instance : TaskInstance, cancelled : bool):
+	if task_instance.message.is_repeatable:
+		messages_to_send.append(task_instance.message)
+	if cancelled:
+		_on_task_cancelled(task_instance)
+
+
+func _on_task_cancelled(task_instance : TaskInstance):
+	var cancel_behaviour = task_instance.message.cancel_behaviour
+	var message : Message = task_instance.message
+	if cancel_behaviour == Message.CancelBehaviour.FORCE_RESEND  and not message.is_repeatable:
+		#This is the only way to queue a message send at the moment. Resending the message to the pool with no prereqs 
+		var message_copy : Message = message.duplicate() 
+		message.prerequisites = []
+		message.antirequisites = []
+		messages_to_send.append(message_copy)
+	elif cancel_behaviour == Message.CancelBehaviour.PREREQ_RESEND and not message.is_repeatable:
+		messages_to_send.append(message)
+	elif cancel_behaviour == Message.CancelBehaviour.ACT_AS_COMPLETED:
+		task_instance.is_completed
+		EventBus.task_finished.emit(task_instance, true)
+	elif cancel_behaviour == Message.CancelBehaviour.PICK_DEFAULT:
+		if message.default_response == -1 or message.default_response >= len(message.responses):
+			return
+		var default_response : Response = message.responses[message.default_response]
+		var new_instance : TaskInstance = TaskInstance.new(default_response.task, 0, 0, 0, Vector2.ZERO, true)
+		EventBus.task_finished.emit(new_instance, true)
+
+
+func validate_prerequisite(prerequisite: Prerequisite, current_turn: int) -> bool:
+	return prerequisite.validate(TaskManager.completed_tasks, occurred_events, current_turn, rng)

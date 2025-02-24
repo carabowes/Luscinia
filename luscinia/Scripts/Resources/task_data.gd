@@ -2,7 +2,7 @@ class_name TaskData
 extends Resource
 
 ## ID of task, is not enforced to be unique by the program. User must ensure task ID is unique.
-@export var task_id: int
+@export var task_id : String
 ## Name of task
 @export var name: String
 ## Icon of task
@@ -22,7 +22,7 @@ extends Resource
 
 
 func _init(
-	task_id = 0,
+	task_id = "",
 	name = "",
 	icon = null,
 	start_location = Vector2.ZERO,

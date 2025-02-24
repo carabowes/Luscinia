@@ -11,7 +11,7 @@ func _ready():
 	update_timer_ui()
 
 
-func _process(_delta):
+func _process(delta):
 	update_timer_ui()
 
 
