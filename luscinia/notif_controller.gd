@@ -17,8 +17,8 @@ var got_report: bool = false
 
 func _ready() -> void:
 	GlobalTimer.connect("turn_progressed",show_turn_notif)
-	message_board.connect("resource_spent", format_spent_resource_text)
-	message_board.connect("response_picked",show_task_start_notif)
+	#message_board.connect("resource_spent", format_spent_resource_text)
+	#message_board.connect("response_picked",show_task_start_notif)
 	task_widget_renderer.connect("resource_gained", format_gained_resource_text)
 	EventBus.task_finished.connect(show_task_end_notif)
 
