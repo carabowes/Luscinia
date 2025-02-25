@@ -37,7 +37,7 @@ func _end_early_button_pressed(task_instance : TaskInstance):
 	var end_early_resources : Dictionary
 	var resource_increase_end_early : Dictionary
 	for resource in ResourceManager.resources.keys():
-		var current_resource = ResourceManager.resources[resource] if resource == "funds" else ResourceManager.available_resources[resource]
+		var current_resource = ResourceManager.resources[resource] 
 		if resource in task_instance.task_data.resources_required and (resource == "people" or resource == "vehicles"):
 			end_early_resources[resource] = task_instance.task_data.resources_required[resource] + current_resource
 			resource_increase_end_early[resource] = task_instance.task_data.resources_required[resource]
@@ -50,7 +50,7 @@ func _end_early_button_pressed(task_instance : TaskInstance):
 	var end_on_time_resources: Dictionary
 	var resource_increase_on_time: Dictionary
 	for resource in ResourceManager.resources.keys():
-		var current_resource = ResourceManager.resources[resource] if resource == "funds" else ResourceManager.available_resources[resource]
+		var current_resource = ResourceManager.resources[resource] 
 		if resource in task_instance.task_data.resources_gained:
 			end_on_time_resources[resource] = task_instance.task_data.resources_gained[resource] + current_resource
 			resource_increase_on_time[resource] = task_instance.task_data.resources_gained[resource]

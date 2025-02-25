@@ -1,8 +1,10 @@
 extends Node2D
 
-@export var resources = {"people": 100, "funds": 100000000, "vehicles": 80, "supplies": 100000}
-@export var available_resources = {"people": 100, "vehicles": 80, "supplies": 100000}
+@export var resources = {"people": 60, "funds": 20000000, "vehicles": 50, "supplies": 10000}
+@export var available_resources = {"people": 60, "vehicles": 50}
 @export var relationships_to_update: Dictionary
+
+signal resource_removed(resource: String, amt: int)
 
 var resource_textures = {
 	"people": preload("res://Sprites/UI/User.png"),
@@ -36,6 +38,7 @@ func add_resources(resource_name: String, amount: int):
 func remove_resources(resource_name: String, amount: int):
 	if resource_name in resources:
 		resources[resource_name] -= amount
+		resource_removed.emit(resource_name, amount)
 		if resources[resource_name] < 0:
 			resources[resource_name] = 0
 	else:
@@ -52,6 +55,7 @@ func add_available_resources(resource_name: String, amount: int):
 func remove_available_resources(resource_name: String, amount: int):
 	if resource_name in resources:
 		available_resources[resource_name] -= amount
+		resource_removed.emit(resource_name, amount)
 		if available_resources[resource_name] < 0:
 			available_resources[resource_name] = 0
 	else:
@@ -67,10 +71,7 @@ func add_or_remove_available_resources(resource_name : String, amount : int):
 
 
 func has_sufficient_resource(resource_name : String, amount : int) -> bool:
-	if resource_name == "funds":
 		return amount <= resources[resource_name]
-	else:
-		return amount <= available_resources[resource_name]
 
 
 func apply_start_task_resources(resources_required : Dictionary):
@@ -123,6 +124,6 @@ func apply_relationship_change(task_id: String, sender: Sender, task_progress: f
 
 
 func reset_resources():
-	resources = {"people": 100, "funds": 100000000, "vehicles": 80, "supplies": 100000}
-	available_resources = {"people": 100, "vehicles": 80, "supplies": 100000}
+	resources = {"people": 60, "funds": 20000000, "vehicles": 50, "supplies": 10000}
+	available_resources = {"people": 60, "vehicles": 80}
 	relationships_to_update.clear()
