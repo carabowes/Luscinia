@@ -161,7 +161,7 @@ vertical_alignment = 1
 visible = false
 layout_mode = 1
 
-[node name="ending_screen" type="Control" parent="pages" node_paths=PackedStringArray("days_amt", "taken_personnel", "taken_supplies", "taken_funds", "taken_vehicles", "remain_personnel", "remain_supplies", "remain_funds", "remain_vehicles")]
+[node name="ending_screen" type="Control" parent="pages" node_paths=PackedStringArray("notifications", "days_amt", "taken_personnel", "taken_supplies", "taken_funds", "taken_vehicles", "remain_personnel", "remain_supplies", "remain_funds", "remain_vehicles")]
 visible = false
 layout_mode = 1
 anchor_top = -0.189
@@ -172,6 +172,8 @@ offset_bottom = -0.30304
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("17_kga80")
+turns_to_end = 18
+notifications = NodePath("../notifications")
 days_amt = NodePath("StatsBackground/VBoxContainer/DaysAmount")
 taken_personnel = NodePath("StatsBackground/VBoxContainer/ResourcesTakenRow1/PersonnelAmt")
 taken_supplies = NodePath("StatsBackground/VBoxContainer/ResourcesTakenRow1/SuppliesAmt")
