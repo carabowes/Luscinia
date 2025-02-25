@@ -29,8 +29,10 @@ func _navbar_resource_button_pressed():
 func _task_widget_view_details_pressed(task_instance : TaskInstance):
 	if current_ui_page_state == UIPageState.CLOSED:
 		_change_page_state(UIPageState.TASK_DETAILS)
-	else:
+	elif current_ui_page_state == UIPageState.TASK_DETAILS:
 		_change_page_state(UIPageState.CLOSED)
+	else:
+		_change_page_state(UIPageState.TASK_DETAILS)
 
 
 func _navbar_message_button_pressed():
