@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Scenario" load_steps=5 format=3 uid="uid://7q6oboci068f"]
+[gd_resource type="Resource" script_class="Scenario" load_steps=5 format=3 uid="uid://xk1767dlov6f"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="1_1h77y"]
 [ext_resource type="Resource" uid="uid://6i0nc5dgh3ql" path="res://TaskData/earthquake/message_earthquake.tres" id="2_5ng6t"]

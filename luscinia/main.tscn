@@ -2,9 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cnpov8fcn2j0g" path="res://Scenes/map.tscn" id="1_7fdga"]
 [ext_resource type="PackedScene" uid="uid://desl373b33t23" path="res://Scenes/timer.tscn" id="2_5mpic"]
+[ext_resource type="Script" path="res://Scripts/UI/ui_state_manager.gd" id="4_pknrv"]
 [ext_resource type="PackedScene" uid="uid://dvvers1ky31ox" path="res://Scenes/resource_page.tscn" id="4_vi8yg"]
 [ext_resource type="PackedScene" uid="uid://c70krmks36rto" path="res://Scenes/task_details.tscn" id="5_0qr7n"]
 [ext_resource type="PackedScene" uid="uid://1ygif2bywt5u" path="res://Scenes/navbar.tscn" id="5_5vcs1"]
+[ext_resource type="PackedScene" uid="uid://dfl5n2ga1ulqv" path="res://Nodes/task_message_buttons/messenger_screen.tscn" id="6_877e8"]
 [ext_resource type="Theme" uid="uid://r2tvepfwkafu" path="res://Themes/primary_button.tres" id="6_mil05"]
 [ext_resource type="Script" path="res://Scripts/UI/message_notification_button.gd" id="7_e8c6r"]
 [ext_resource type="PackedScene" path="res://Scenes/UI/message_page_controller.tscn" id="10_btbvl"]
@@ -46,6 +48,7 @@ offset_bottom = -78.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("4_pknrv")
 
 [node name="NewMessageButton" type="Button" parent="pages"]
 visible = false
@@ -63,9 +66,11 @@ text = "New Message"
 script = ExtResource("7_e8c6r")
 
 [node name="MessagePageController" parent="pages" instance=ExtResource("10_btbvl")]
+unique_name_in_owner = true
 layout_mode = 1
 
-[node name="resource_page" parent="pages" instance=ExtResource("4_vi8yg")]
+[node name="ResourcesPage" parent="pages" instance=ExtResource("4_vi8yg")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -74,7 +79,8 @@ anchor_bottom = 0.997
 offset_top = 10.926
 offset_bottom = -798.179
 
-[node name="task_details" parent="pages" instance=ExtResource("5_0qr7n")]
+[node name="TaskDetailsPage" parent="pages" instance=ExtResource("5_0qr7n")]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 offset_top = 0.0

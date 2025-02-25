@@ -6,9 +6,6 @@ var resource_page
 func before_each():
 	navbar = load("res://Scenes/navbar.tscn").instantiate()
 	add_child(navbar)
-	resource_page = Control.new()
-	resource_page.visible = false
-	navbar.resource_page = resource_page
 
 
 func after_each():
@@ -34,15 +31,12 @@ func test_view_resources_button_signal_emits_correctly():
 	var button = navbar.get_node("%ViewResourcesButton")
 	assert_not_null(button, "ViewResourcesButton should exist")
 	button.emit_signal("pressed")
-	assert_true(navbar.resource_page.visible)
 	
 	
 func test_view_resource_toggle():
-	assert_false(resource_page.visible, "Initial state should be hidden")
+	watch_signals(EventBus)
 	navbar._view_resource_button_pressed()
-	assert_true(resource_page.visible, "Resource page should be visible after first press")
-	navbar._view_resource_button_pressed()
-	assert_false(resource_page.visible, "Resource page should toggle back to hidden")
+	assert_signal_emitted(EventBus, "navbar_resource_button_pressed")
 	
 
 func test_message_button_emits_signal():

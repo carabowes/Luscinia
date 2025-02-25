@@ -159,3 +159,4 @@ layout_mode = 2
 text = "This is some placeholder text to try and fill up the preview message"
 label_settings = SubResource("LabelSettings_0xgjh")
 text_overrun_behavior = 3
+max_lines_visible = 1

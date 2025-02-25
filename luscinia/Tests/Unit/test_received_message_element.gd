@@ -105,3 +105,7 @@ func test_only_click_triggers_press():
 	assert_signal_not_emitted(instance, "message_clicked")
 	sender.release_all()
 	sender.clear()
+
+
+func test_max_lines():
+	assert_eq(instance.get_node("%MessagePreviewLabel").max_lines_visible, 1)
