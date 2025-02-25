@@ -13,6 +13,8 @@ func before_each():
 	test_message = Message.new("Message", [test_response, test_response])
 	test_message.default_response = -1
 
+func after_each():
+	print(get_tree().root.get_children())
 
 func test_set_message():
 	page_instance.set_message(MessageInstance.default_message)
@@ -111,9 +113,11 @@ func test_back_signal():
 
 
 func test_option_button_prefab_values():
-	assert_not_null(page_instance.option_button_prefab.button_group)
+	var option_button = page_instance.option_button_prefab.instantiate()
+	assert_not_null(option_button.button_group)
 	assert_false(page_instance.option_button_group.allow_unpress)
 	assert_ne(page_instance.get_node("%OptionButton"), page_instance.option_button_prefab, "Prefab should be a duplicate of the option button, not the same.")
+	option_button.free()
 
 
 func test_option_button_values():

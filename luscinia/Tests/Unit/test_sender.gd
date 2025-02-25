@@ -10,7 +10,7 @@ func before_each():
 func test_initialisation():
 	assert_eq(sender.name, "Test Sender", "Sender name should be correctly set")
 	assert_eq(sender.image, null, "Sender image should be null by default")
-	assert_eq(sender.relationship, 0, "Relationship should start at neutral (0)")
+	assert_eq(sender.relationship, 0.0, "Relationship should start at neutral (0)")
 
 
 func test_get_relationship_status():

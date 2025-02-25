@@ -23,7 +23,7 @@ func test_buttons_are_connected():
 func test_show_modes_button():
 	menu_scene.show_modes_button()
 	await get_tree().create_timer(0.3).timeout
-	assert_eq(menu_scene.get_node("%PlayButton").position.x, -280)
+	assert_eq(menu_scene.get_node("%PlayButton").position.x, -280.0)
 	assert_eq(menu_scene.get_node("%PersonalmodeButton").position, Vector2(41, 56))
 	assert_eq(menu_scene.get_node("%DiscussionmodeButton").position, Vector2(41, 152))
 	assert_eq(menu_scene.get_node("%BackButton").position, Vector2(41, 248))
@@ -56,8 +56,8 @@ func test_back_button():
 	menu_scene.backbutton()
 	await get_tree().create_timer(0.3).timeout
 	assert_eq(menu_scene.get_node("%PlayButton").position, Vector2(41, 56))
-	assert_eq(menu_scene.get_node("%Scenario1Button").position.x, 384)
-	assert_eq(menu_scene.get_node("%Scenario2Button").position.x, 384)
-	assert_eq(menu_scene.get_node("%PersonalmodeButton").position.x, 384)
-	assert_eq(menu_scene.get_node("%DiscussionmodeButton").position.x, 384)
-	assert_eq(menu_scene.get_node("%BackButton").position.x, 384)
+	assert_eq(menu_scene.get_node("%Scenario1Button").position.x, 384.0)
+	assert_eq(menu_scene.get_node("%Scenario2Button").position.x, 384.0)
+	assert_eq(menu_scene.get_node("%PersonalmodeButton").position.x, 384.0)
+	assert_eq(menu_scene.get_node("%DiscussionmodeButton").position.x, 384.0)
+	assert_eq(menu_scene.get_node("%BackButton").position.x, 384.0)

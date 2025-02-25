@@ -4,18 +4,19 @@ extends Control
 signal back_button_pressed
 signal response_option_selected(response : Response, message : Message)
 
-var option_button_prefab : Button
+var option_button_prefab : PackedScene
 var option_buttons : Array[Button]
 var option_button_group : ButtonGroup
 var current_selection : int = 0
 
 
 func _ready() -> void:
-	option_button_prefab = %OptionButton.duplicate()
 	option_button_group = ButtonGroup.new()
 	option_button_group.allow_unpress = false
-	option_button_prefab.button_group = option_button_group
-	option_button_prefab.toggle_mode = true
+	%OptionButton.button_group = option_button_group
+	%OptionButton.toggle_mode = true
+	option_button_prefab = PackedScene.new()
+	option_button_prefab.pack(%OptionButton)
 	%BackButton.pressed.connect(func(): back_button_pressed.emit())
 
 
@@ -41,7 +42,7 @@ func _render_option_buttons(message : Message):
 	if message == null:
 		return
 	for response : Response in message.responses:
-		var new_option_button : Button = option_button_prefab.duplicate()
+		var new_option_button : Button = option_button_prefab.instantiate()
 		new_option_button.text = response.response_name
 		new_option_button.pressed.connect(func(): _select_option_button(index, message))
 		option_buttons.append(new_option_button)

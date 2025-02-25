@@ -13,7 +13,7 @@ func test_positive_relationship_applied_zero_time_task():
 	var sender : Sender = Sender.new()
 	var message : Message = Message.new("", [response], 0, sender)
 	TaskManager._start_task(response, message)
-	assert_eq(sender.relationship, 10, "Relationship should be 10 after task completion")
+	assert_eq(sender.relationship, 10.0, "Relationship should be 10 after task completion")
 
 
 func test_negative_relationship_applied_zero_time_task():
@@ -23,4 +23,4 @@ func test_negative_relationship_applied_zero_time_task():
 	var sender : Sender = Sender.new()
 	var message : Message = Message.new("", [response], 0, sender)
 	TaskManager._start_task(response, message)
-	assert_eq(sender.relationship, -20, "Relationship should be -20 after task completion")
+	assert_eq(sender.relationship, -20.0, "Relationship should be -20 after task completion")
