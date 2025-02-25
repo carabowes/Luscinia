@@ -13,12 +13,7 @@ func _start_task(response : Response, message_instance : MessageInstance):
 	var message : Message = message_instance.message
 	var new_task_instance = TaskInstance.new(response.task, 0, 0, 0, response.task.start_location, false, response.task.resources_required, message)
 	ResourceManager.queue_relationship_change(new_task_instance.task_data.task_id, response.relationship_change)
-	#Remove resources
-	for resource in response.task.resources_required.keys():
-		if resource == "funds":
-			ResourceManager.remove_resources(resource, response.task.resources_required[resource])
-		else:
-			ResourceManager.remove_available_resources(resource, response.task.resources_required[resource])
+	ResourceManager.apply_start_task_resources(response.task.resources_required)
 	#If the task has a completion time of 0 just mark it complete already
 	if new_task_instance.task_data.expected_completion_time == 0:
 		_finish_task(new_task_instance)
@@ -35,18 +30,14 @@ func _update_tasks():
 
 
 func _finish_task(task : TaskInstance, cancelled = false):
-	for resource in task.task_data.resources_gained.keys():
-		if not cancelled:
-			if resource != "funds":
-				ResourceManager.add_available_resources(resource, task.task_data.resources_gained[resource])
-			else:
-				ResourceManager.add_resources(resource, task.task_data.resources_gained[resource])
-		elif resource != "funds" and resource != "supplies":
-			ResourceManager.add_available_resources(resource, task.task_data.resources_gained[resource])
-	if not cancelled:
-		completed_tasks.append(task)
+	var resources_gained =  task.task_data.resources_gained
+	if cancelled:
+		resources_gained = task.task_data.resources_required #This is meant to be required
+		resources_gained["funds"]  = 0
+		resources_gained["supplies"] = 0
+	ResourceManager.apply_end_task_resources(resources_gained, task.task_data.resources_required)
 	active_tasks.erase(task)
 	if task.task_data.expected_completion_time == 0:
 		ResourceManager.apply_relationship_change(task.task_data.task_id, task.sender, 1) #Hardcode 1 for current progress to avoid divide by 0 error
 	else:
-		ResourceManager.apply_relationship_change(task.task_data.task_id, task.sender, task.current_progress)
+		ResourceManager.apply_relationship_change(task.task_data.task_id, task.sender, task.current_progress/task.task_data.expected_completion_time)
