@@ -26,7 +26,7 @@ var vehicle_amt: int = 0
 func _ready() -> void:
 	%RestartButton.connect("pressed", _restart_game)
 	%ExitButton.connect("pressed", _exit_game)
-	message_board.connect("resource_spent", format_resource_taken)
+	#message_board.connect("resource_spent", format_resource_taken)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

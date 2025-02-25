@@ -56,6 +56,8 @@ icon = ExtResource("1_hhk0i")
 flat = true
 
 [node name="NewMessageNotif" type="TextureRect" parent="NavbarLayout/ViewMessageHistoryButton"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 0
 offset_left = 30.0
 offset_top = 15.0
