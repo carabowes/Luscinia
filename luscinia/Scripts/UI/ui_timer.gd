@@ -1,0 +1,36 @@
+class_name UITimer
+extends Control
+
+func _ready():
+	# Initialize the UI elements
+	%ClockVisual.max_value = GlobalTimer.countdown_duration
+	%ClockVisual.value = GlobalTimer.countdown_duration
+	%TimerLabel.text = format_time_with_seconds(GlobalTimer.current_time_left)
+	%DayLabel.text = "Day %d" % GlobalTimer.in_game_days
+	%ClockLabel.text = "%02d:%02d" % [GlobalTimer.in_game_hours, GlobalTimer.in_game_minutes]
+	update_timer_ui()
+
+
+func _process(delta):
+	update_timer_ui()
+
+
+func update_timer_ui():
+	%ClockVisual.value = GlobalTimer.current_time_left
+	%TimerLabel.text = format_time_with_seconds(GlobalTimer.current_time_left)
+	%DayLabel.text = "Day %d" % GlobalTimer.in_game_days
+	%ClockLabel.text = "%02d:%02d" % [GlobalTimer.in_game_hours, GlobalTimer.in_game_minutes]
+	update_resource_ui()
+
+
+func update_resource_ui():
+	%PersonnelAmt.text = "%s / %s" % [ResourceManager.format_resource_value(ResourceManager.available_resources["people"],2), ResourceManager.format_resource_value(ResourceManager.resources["people"],2)]
+	%SuppliesAmt.text = "%s" % [ResourceManager.format_resource_value(ResourceManager.available_resources["supplies"],2)]
+	%FundsAmt.text = str(ResourceManager.format_resource_value(ResourceManager.resources["funds"],2))
+	%TransportAmt.text = "%s / %s" % [ResourceManager.format_resource_value(ResourceManager.available_resources["vehicles"],2), ResourceManager.format_resource_value(ResourceManager.resources["vehicles"],2)]
+
+
+func format_time_with_seconds(seconds: int) -> String:
+	var minutes = int(seconds) / 60
+	var secs = int(seconds) % 60
+	return "%02d:%02d" % [minutes, secs]

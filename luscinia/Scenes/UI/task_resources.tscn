@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxndjmqmmnwuu"]
+
+[ext_resource type="Script" path="res://Scripts/UI/task_resources.gd" id="1_wkvxj"]
+[ext_resource type="PackedScene" uid="uid://df5nbiygwfdeb" path="res://Scenes/UI/resource_entry.tscn" id="2_r1vf5"]
+
+[node name="ResourcesUsed" type="GridContainer"]
+self_modulate = Color(0.666913, 0.161946, 0.366191, 1)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+columns = 3
+script = ExtResource("1_wkvxj")
+
+[node name="Resource 0" parent="." instance=ExtResource("2_r1vf5")]
+layout_mode = 2
+size_flags_horizontal = 6
+amount = 6
+increase = 4
+
+[node name="Resource 1" parent="." instance=ExtResource("2_r1vf5")]
+layout_mode = 2
+size_flags_horizontal = 6
+amount = 2
+increase = -1
+
+[node name="Resource 2" parent="." instance=ExtResource("2_r1vf5")]
+layout_mode = 2
+size_flags_horizontal = 6
+amount = 4
+
+[node name="Resource 3" parent="." instance=ExtResource("2_r1vf5")]
+layout_mode = 2
+size_flags_horizontal = 6
+amount = 4
+
+[node name="Resource 4" parent="." instance=ExtResource("2_r1vf5")]
+layout_mode = 2
+size_flags_horizontal = 6
+amount = 4
+
+[node name="Resource 5" parent="." instance=ExtResource("2_r1vf5")]
+layout_mode = 2
+size_flags_horizontal = 6
+amount = 4

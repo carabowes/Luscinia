@@ -1,0 +1,180 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx42llom254a7"]
+
+[ext_resource type="Script" path="res://Scripts/UI/main_menu.gd" id="1_uk22s"]
+[ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="2_3dih0"]
+
+[node name="Main_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uk22s")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Control" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleBackground" type="ColorRect" parent="Background/Title"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.24
+offset_top = 16.0
+offset_bottom = 16.0
+color = Color(0.254902, 0.560784, 0.870588, 1)
+
+[node name="TitleText" type="Label" parent="Background/Title"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.24
+offset_top = 16.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 66
+text = "Luscinia"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="Control" parent="Background"]
+layout_mode = 1
+anchor_top = 0.41
+anchor_right = 1.0
+anchor_bottom = 0.92
+offset_top = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="Background/Buttons"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.137
+anchor_right = 1.0
+anchor_bottom = 0.294
+offset_left = 41.0
+offset_top = 0.103996
+offset_right = -47.0
+offset_bottom = 0.0479965
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_3dih0")
+theme_override_font_sizes/font_size = 31
+text = "Play"
+
+[node name="PersonalmodeButton" type="Button" parent="Background/Buttons"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.137
+anchor_right = 1.0
+anchor_bottom = 0.294
+offset_left = 384.0
+offset_top = 0.104027
+offset_right = 296.0
+offset_bottom = 0.048027
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_3dih0")
+theme_override_font_sizes/font_size = 31
+text = "Single Mode"
+
+[node name="DiscussionmodeButton" type="Button" parent="Background/Buttons"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.373
+anchor_right = 1.0
+anchor_bottom = 0.529
+offset_left = 384.0
+offset_top = -0.18399
+offset_right = 296.0
+offset_bottom = 0.167999
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_3dih0")
+theme_override_font_sizes/font_size = 31
+text = "Disscussion Mode"
+
+[node name="Scenario1Button" type="Button" parent="Background/Buttons"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.137
+anchor_right = 1.0
+anchor_bottom = 0.294
+offset_left = 384.0
+offset_top = 0.104027
+offset_right = 296.0
+offset_bottom = 0.048027
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_3dih0")
+theme_override_font_sizes/font_size = 31
+text = "Scenario 1"
+
+[node name="Scenario2Button" type="Button" parent="Background/Buttons"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.373
+anchor_right = 1.0
+anchor_bottom = 0.529
+offset_left = 392.0
+offset_top = -0.18399
+offset_right = 304.0
+offset_bottom = 0.167999
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_3dih0")
+theme_override_font_sizes/font_size = 31
+text = "Scenario 2"
+
+[node name="BackButton" type="Button" parent="Background/Buttons"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.608
+anchor_right = 1.0
+anchor_bottom = 0.765
+offset_left = 384.0
+offset_top = -0.0640106
+offset_right = 296.0
+offset_bottom = -0.120026
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_3dih0")
+theme_override_font_sizes/font_size = 31
+text = "Back"
+
+[node name="SettingsButton" type="Button" parent="Background/Buttons"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.843
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = 0.0559387
+offset_right = -48.0
+offset_bottom = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_3dih0")
+theme_override_font_sizes/font_size = 31
+text = "Settings"

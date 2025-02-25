@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="TaskData" load_steps=4 format=3 uid="uid://cgle5uiokvu4r"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/event_effect.gd" id="1_1wtpg"]
+[ext_resource type="Texture2D" uid="uid://chgb1pq7fpd4c" path="res://Sprites/UI/Truck.png" id="2_480n2"]
+[ext_resource type="Script" path="res://Scripts/Resources/task_data.gd" id="3_pktr2"]
+
+[resource]
+script = ExtResource("3_pktr2")
+task_id = -50
+name = "bridge collapse"
+icon = ExtResource("2_480n2")
+start_location = Vector2(800, 600)
+end_location = Vector2(1000, 1000)
+resources_required = {
+"funds": 100,
+"people": 40,
+"supplies": 1000,
+"vehicles": 60
+}
+resources_gained = {
+"people": 40,
+"vehicles": 60
+}
+expected_completion_time = 8
+effects_of_random_events = Array[ExtResource("1_1wtpg")]([])

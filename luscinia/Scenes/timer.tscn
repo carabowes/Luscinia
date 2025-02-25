@@ -1,0 +1,220 @@
+[gd_scene load_steps=9 format=3 uid="uid://desl373b33t23"]
+
+[ext_resource type="Script" path="res://Scripts/UI/ui_timer.gd" id="1_jafkr"]
+[ext_resource type="Texture2D" uid="uid://7v3dgwwsbwqu" path="res://Sprites/clock.png" id="2_2fyrh"]
+[ext_resource type="Texture2D" uid="uid://c27suyrk8wq" path="res://Sprites/ClockBackground.png" id="2_3ac0l"]
+[ext_resource type="Texture2D" uid="uid://d2r32fmyi8j47" path="res://Sprites/UI/OptionsButton.png" id="2_e00yx"]
+[ext_resource type="Texture2D" uid="uid://bib3v5a1f2b2o" path="res://Sprites/UI/User.png" id="5_1iyi8"]
+[ext_resource type="Texture2D" uid="uid://dmrhlqq3p4y0g" path="res://Sprites/Package.png" id="6_5mb17"]
+[ext_resource type="Texture2D" uid="uid://dm70f566o3s32" path="res://Sprites/UI/Dollar sign.png" id="7_noqc3"]
+[ext_resource type="Texture2D" uid="uid://chgb1pq7fpd4c" path="res://Sprites/UI/Truck.png" id="8_7ajq0"]
+
+[node name="Timer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -116.0
+offset_bottom = -748.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 3
+size_flags_vertical = 0
+mouse_filter = 2
+script = ExtResource("1_jafkr")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 59.0
+color = Color(0.94902, 0.913725, 0.94902, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 12.0
+offset_right = 72.0
+offset_bottom = 28.0
+color = Color(0.254902, 0.560784, 0.870588, 1)
+
+[node name="PauseButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 144.0
+offset_top = 12.0
+offset_right = 179.0
+offset_bottom = 47.0
+icon = ExtResource("2_e00yx")
+flat = true
+
+[node name="TimerVBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.291
+offset_left = 7.0
+offset_top = 5.0
+offset_right = -0.00400543
+offset_bottom = 53.0
+grow_horizontal = 2
+
+[node name="TimerHBox" type="HBoxContainer" parent="TimerVBox"]
+layout_mode = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="TimerVBox/TimerHBox"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+stretch_mode = 0
+
+[node name="ClockVisual" type="TextureProgressBar" parent="TimerVBox/TimerHBox/AspectRatioContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24.41, 0)
+layout_mode = 2
+value = 90.0
+fill_mode = 5
+nine_patch_stretch = true
+texture_under = ExtResource("2_3ac0l")
+texture_progress = ExtResource("2_2fyrh")
+
+[node name="TimerLabel" type="Label" parent="TimerVBox/TimerHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "00:00"
+
+[node name="GameTimeHBox" type="HBoxContainer" parent="TimerVBox"]
+layout_mode = 2
+
+[node name="DayLabel" type="Label" parent="TimerVBox/GameTimeHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Day 0"
+
+[node name="ClockLabel" type="Label" parent="TimerVBox/GameTimeHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "00:00"
+
+[node name="ResourceDisplay" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.279
+anchor_right = 0.607
+anchor_bottom = 1.154
+offset_left = -0.076004
+offset_right = -0.108017
+offset_bottom = -0.00800323
+
+[node name="SpriteHolder" type="Control" parent="ResourceDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Personnel" type="Sprite2D" parent="ResourceDisplay/SpriteHolder"]
+position = Vector2(24, 16)
+scale = Vector2(0.541667, 0.541667)
+texture = ExtResource("5_1iyi8")
+
+[node name="Supplies" type="Sprite2D" parent="ResourceDisplay/SpriteHolder"]
+position = Vector2(59, 16)
+scale = Vector2(0.53125, 0.53125)
+texture = ExtResource("6_5mb17")
+
+[node name="Funds" type="Sprite2D" parent="ResourceDisplay/SpriteHolder"]
+position = Vector2(24, 40)
+scale = Vector2(0.549588, 0.549587)
+texture = ExtResource("7_noqc3")
+
+[node name="Transport" type="Sprite2D" parent="ResourceDisplay/SpriteHolder"]
+position = Vector2(60, 40.5)
+scale = Vector2(0.492178, 0.492178)
+texture = ExtResource("8_7ajq0")
+
+[node name="ResourceAmt" type="Control" parent="ResourceDisplay"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+
+[node name="PersonnelAmt" type="Label" parent="ResourceDisplay/ResourceAmt"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.333
+anchor_right = 0.512
+anchor_bottom = 0.567
+offset_left = 0.5
+offset_top = 0.0200005
+offset_right = 0.539989
+offset_bottom = -0.0200005
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 7
+text = "output"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SuppliesAmt" type="Label" parent="ResourceDisplay/ResourceAmt"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.531
+anchor_top = 0.333
+anchor_right = 0.944
+anchor_bottom = 0.567
+offset_left = 0.0199966
+offset_top = 0.0200005
+offset_right = -0.0200043
+offset_bottom = -0.0200005
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 7
+text = "output"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FundsAmt" type="Label" parent="ResourceDisplay/ResourceAmt"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.728
+anchor_right = 0.523
+anchor_bottom = 0.961
+offset_left = 0.300003
+offset_top = 0.00199509
+offset_right = -0.539997
+offset_bottom = 0.0219994
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 7
+text = "output"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TransportAmt" type="Label" parent="ResourceDisplay/ResourceAmt"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.531
+anchor_top = 0.736
+anchor_right = 0.95
+anchor_bottom = 0.97
+offset_left = 1.563
+offset_top = 0.0219917
+offset_right = 1.043
+offset_bottom = -0.0180054
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 7
+text = "output"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]

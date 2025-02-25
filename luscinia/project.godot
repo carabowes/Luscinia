@@ -11,9 +11,17 @@ config_version=5
 [application]
 
 config/name="Luscinia"
-run/main_scene="res://Scenes/map.tscn"
+run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://Sprites/icon.svg"
+
+[autoload]
+
+ResourceManager="*res://Scripts/Resources/resource_manager.gd"
+GlobalTimer="*res://Scripts/global_timer.gd"
+MessageManager="*res://Scenes/message_manager.tscn"
+EventBus="*res://Scripts/event_bus.gd"
+TaskManager="*res://Scripts/task_manager.gd"
 
 [display]
 
@@ -28,6 +36,14 @@ window/handheld/orientation=1
 [dotnet]
 
 project/assembly_name="Luscinia"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
+
+[gui]
+
+common/snap_controls_to_pixels=false
 
 [input]
 
@@ -45,3 +61,4 @@ pointing/emulate_touch_from_mouse=true
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

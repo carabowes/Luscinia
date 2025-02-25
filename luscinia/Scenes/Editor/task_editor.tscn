@@ -1,0 +1,85 @@
+[gd_scene load_steps=3 format=3 uid="uid://wfcc502s03m1"]
+
+[ext_resource type="Script" path="res://Scripts/Editor/task_graph_editor.gd" id="1_e4q15"]
+[ext_resource type="Resource" uid="uid://cq8ot6u2bgf8y" path="res://TaskData/Scenarios/TestScenario.tres" id="2_7xdr5"]
+
+[node name="TaskEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GraphEdit" type="GraphEdit" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+show_grid = false
+grid_pattern = 1
+snapping_enabled = false
+right_disconnects = true
+connection_lines_thickness = 5.0
+connection_lines_antialiased = false
+zoom_min = 0.05
+show_menu = false
+script = ExtResource("1_e4q15")
+scenario_to_edit = ExtResource("2_7xdr5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 39.0
+grow_horizontal = 2
+color = Color(0.180392, 0.180392, 0.180392, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+z_index = 100
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+mouse_filter = 0
+
+[node name="NewTask" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "New Task"
+
+[node name="NewMessage" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "New Message"
+
+[node name="NewPrereq" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "New Prerequisite"
+
+[node name="NewResponse" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "New Response"
+
+[node name="NewSender" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "New Sender"
+
+[node name="SaveButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Save
+"

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://chi1ovd807bam"]
+
+[ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="1_ckm1s"]
+[ext_resource type="Script" path="res://Nodes/task_message_buttons/message_in_list.gd" id="2_hloyx"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(360, 50)
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.06
+offset_bottom = 2.0
+theme = ExtResource("1_ckm1s")
+text = "placeholder placeholder placeholder placeholder placeholder placeholder placeholder placeholder "
+autowrap_mode = 2
+script = ExtResource("2_hloyx")

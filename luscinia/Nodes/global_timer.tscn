@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://db1bqjq3lfj7p"]
+
+[ext_resource type="Script" path="res://Scripts/global_timer.gd" id="1_o47c0"]
+
+[node name="GlobalTimer" type="Node"]
+script = ExtResource("1_o47c0")
+cd_minutes = 3
+cd_seconds = 30
+in_game_hours = 20
