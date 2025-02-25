@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwarqma4ql3sh"]
+[gd_scene load_steps=4 format=3 uid="uid://cwarqma4ql3sh"]
 
 [ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="2_fxeco"]
 [ext_resource type="Theme" uid="uid://b2xjq685vlhrw" path="res://Sprites/UI/themes/details_page_theme_var2.tres" id="3_6ukax"]

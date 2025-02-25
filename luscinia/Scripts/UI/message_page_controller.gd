@@ -8,9 +8,9 @@ enum MessagePageState {
 }
 
 var current_message_page_state : MessagePageState = MessagePageState.CLOSED
+var response_page_message : MessageInstance
 
 func _ready() -> void:
-	EventBus.navbar_message_button_pressed.connect(_navbar_button_pressed)
 
 	%MessagesReceivedPage.message_selected.connect(
 		func(message : MessageInstance): 
@@ -20,25 +20,20 @@ func _ready() -> void:
 	%MessagesReceivedPage.back_button_pressed.connect(func(): _change_page_state(MessagePageState.CLOSED))
 
 	%MessagePage.respond_button_pressed.connect(
-		func(message): 
+		func(message_instance : MessageInstance): 
 			_change_page_state(MessagePageState.MESSAGE_RESPONSE)
-			%MessageResponsePage.set_message(message)
+			%MessageResponsePage.set_message(message_instance)
+			response_page_message = message_instance
 	)
 	%MessagePage.back_button_pressed.connect(func(): _change_page_state(MessagePageState.MESSAGE_RECEIVED))
+	EventBus.message_responded.connect(_on_message_responded)
 
 	%MessageResponsePage.response_option_selected.connect(
-		func(response : Response, message : Message):
+		func(response : Response, message_instance : MessageInstance):
 			_change_page_state(MessagePageState.CLOSED)
-			EventBus.message_responded.emit(response, message)
+			EventBus.message_responded.emit(response, message_instance)
 	)
 	%MessageResponsePage.back_button_pressed.connect(func(): _change_page_state(MessagePageState.MESSAGE_VIEWER))
-
-
-func _navbar_button_pressed():
-	if current_message_page_state == MessagePageState.CLOSED:
-		_change_page_state(MessagePageState.MESSAGE_RECEIVED)
-	else:
-		_change_page_state(MessagePageState.CLOSED)
 
 
 func _change_page_state(new_state : MessagePageState):
@@ -54,3 +49,12 @@ func _change_page_visibility(page : MessagePageState, visibility : bool):
 		%MessagePage.visible = visibility
 	elif page == MessagePageState.MESSAGE_RESPONSE:
 		%MessageResponsePage.visible = visibility
+
+
+func _on_message_responded(response : Response, message_instance : MessageInstance):
+	if (
+		message_instance == response_page_message 
+		and current_message_page_state == MessagePageState.MESSAGE_RESPONSE
+	):
+		%MessagePage.show_message(message_instance)
+		_change_page_state(MessagePageState.MESSAGE_VIEWER)

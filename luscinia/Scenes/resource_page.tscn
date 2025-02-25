@@ -130,11 +130,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ReturnButton" type="Button" parent="Background"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 8.46
 offset_top = 8.0
 offset_right = 176.46
 offset_bottom = 41.0
 text = " <- Return to Map "
-
-[connection signal="pressed" from="Background/ReturnButton" to="." method="_on_return_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c70krmks36rto"]
+[gd_scene load_steps=16 format=3 uid="uid://c70krmks36rto"]
 
 [ext_resource type="Script" path="res://Scripts/UI/task_details.gd" id="1_dalyu"]
 [ext_resource type="Script" path="res://Scripts/UI/time_progress_bar.gd" id="1_stskc"]
@@ -15,17 +15,17 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2l6xi"]
 font_size = 24
-font_color = Color(1, 0.584314, 0, 1)
+font_color = Color(0.254902, 0.560784, 0.870588, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyk4g"]
-bg_color = Color(0.52549, 0.34902, 0.0980392, 1)
+bg_color = Color(0.207843, 0.376471, 0.690196, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2btxq"]
-bg_color = Color(1, 0.584314, 0, 1)
+bg_color = Color(0.254902, 0.560784, 0.870588, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -40,7 +40,7 @@ font_color = Color(0.290196, 0.266667, 0.34902, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_l5vve"]
 font_size = 24
-font_color = Color(1, 0.54421, 0.249274, 1)
+font_color = Color(0.254902, 0.560784, 0.870588, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pwbwb"]
 font_color = Color(0.259294, 0.259294, 0.259294, 1)
@@ -93,6 +93,7 @@ layout_mode = 2
 theme = SubResource("Theme_71kbt")
 
 [node name="ReturnButton" type="Button" parent="Background/ScrollContainer/MarginContainer/Elements"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)

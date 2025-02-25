@@ -1,0 +1,60 @@
+extends Control
+
+enum UIPageState {
+	CLOSED,
+	TASK_DETAILS,
+	RESOURCES,
+	MESSAGES
+}
+
+var current_ui_page_state : UIPageState = UIPageState.CLOSED
+
+func _ready() -> void:
+	EventBus.navbar_resource_button_pressed.connect(_navbar_resource_button_pressed)
+	EventBus.task_widget_view_details_pressed.connect(_task_widget_view_details_pressed)
+	%ResourcesPage.return_button_pressed.connect(func(): _change_page_state(UIPageState.CLOSED))
+	%TaskDetailsPage.return_button_pressed.connect(func(): _change_page_state(UIPageState.CLOSED))
+	EventBus.navbar_message_button_pressed.connect(_navbar_message_button_pressed)	
+
+
+func _navbar_resource_button_pressed():
+	if current_ui_page_state == UIPageState.CLOSED:
+		_change_page_state(UIPageState.RESOURCES)
+	elif current_ui_page_state == UIPageState.RESOURCES:
+		_change_page_state(UIPageState.CLOSED)
+	else:
+		_change_page_state(UIPageState.RESOURCES)
+
+
+func _task_widget_view_details_pressed(task_instance : TaskInstance):
+	if current_ui_page_state == UIPageState.CLOSED:
+		_change_page_state(UIPageState.TASK_DETAILS)
+	else:
+		_change_page_state(UIPageState.CLOSED)
+
+
+func _navbar_message_button_pressed():
+	if current_ui_page_state == UIPageState.CLOSED:
+		_change_page_state(UIPageState.MESSAGES)
+	elif current_ui_page_state == UIPageState.MESSAGES:
+		_change_page_state(UIPageState.CLOSED)
+	else:
+		_change_page_state(UIPageState.MESSAGES)
+
+
+func _change_page_state(new_state : UIPageState):
+	_change_page_visibility(current_ui_page_state, false)
+	_change_page_visibility(new_state, true)
+	current_ui_page_state = new_state
+
+
+func _change_page_visibility(page : UIPageState, visibility : bool):
+	if page == UIPageState.TASK_DETAILS:
+		%TaskDetailsPage.visible = visibility
+	elif page == UIPageState.RESOURCES:
+		%ResourcesPage.visible = visibility
+	elif page == UIPageState.MESSAGES:
+		if visibility:
+			%MessagePageController._change_page_state(%MessagePageController.MessagePageState.MESSAGE_RECEIVED)
+		else:
+			%MessagePageController._change_page_state(%MessagePageController.MessagePageState.CLOSED)

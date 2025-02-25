@@ -1,5 +1,6 @@
 extends Control
 
+signal return_button_pressed
 @export var resources = {}
 @export var available_resources = {}
 
@@ -9,10 +10,11 @@ func _ready() -> void:
 	available_resources = ResourceManager.available_resources
 	visibility_changed.connect(update_all_labels)
 	update_all_labels()
-	
+	%ReturnButton.pressed.connect(func(): return_button_pressed.emit())
 
-func _on_return_button_pressed() -> void:
-	visible = false
+
+func _process(delta: float) -> void:
+	update_all_labels()
 
 
 func update_label(label_name: String, resource_name: String, texture_name: String):

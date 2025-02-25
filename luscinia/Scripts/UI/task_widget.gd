@@ -5,8 +5,7 @@ signal widget_selected(widget: TaskWidget)
 enum LevelOfDetail { LOW, MEDIUM, HIGH }
 
 @export var current_level_of_detail: LevelOfDetail
-@export var task_info: TaskInstance
-@export var task_details_page: TaskDetails
+var task_info: TaskInstance
 
 
 func _ready():
@@ -88,5 +87,4 @@ func _switch_to_high_lod():
 
 
 func _show_task_details_page():
-	if task_details_page != null:
-		task_details_page.show_details(task_info)
+	EventBus.task_widget_view_details_pressed.emit(task_info)

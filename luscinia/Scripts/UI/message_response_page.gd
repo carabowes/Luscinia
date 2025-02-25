@@ -2,7 +2,7 @@ class_name MessageResponsePage
 extends Control
 
 signal back_button_pressed
-signal response_option_selected(response : Response, message : Message)
+signal response_option_selected(response : Response, message : MessageInstance)
 
 var option_button_prefab : PackedScene
 var option_buttons : Array[Button]
@@ -20,16 +20,17 @@ func _ready() -> void:
 	%BackButton.pressed.connect(func(): back_button_pressed.emit())
 
 
-func _option_selected(message : Message):
-	var response : Response = message.responses[current_selection]
-	response_option_selected.emit(response, message)
+func _option_selected(message_instance : MessageInstance):
+	var response : Response = message_instance.message.responses[current_selection]
+	response_option_selected.emit(response, message_instance)
 
 
-func set_message(message : Message):
+func set_message(message_instance : MessageInstance):
+	var message : Message = message_instance.message
 	for connection in %ConfirmButton.pressed.get_connections():
 		%ConfirmButton.pressed.disconnect(connection["callable"])
 	if message != null:
-		%ConfirmButton.pressed.connect(func(): _option_selected(message))
+		%ConfirmButton.pressed.connect(func(): _option_selected(message_instance))
 	_render_option_buttons(message)
 	_select_option_button(0, message)
 
