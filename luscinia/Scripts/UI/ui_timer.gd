@@ -24,10 +24,10 @@ func update_timer_ui():
 
 
 func update_resource_ui():
-	%PersonnelAmt.text = "%s / %s" % [ResourceManager.resources["people"], ResourceManager.available_resources["people"]]
+	%PersonnelAmt.text = "%s / %s" % [ResourceManager.available_resources["people"], ResourceManager.resources["people"]]
 	%SuppliesAmt.text = "%s" % [ResourceManager.resources["supplies"]]
 	%FundsAmt.text = str(ResourceManager.resources["funds"])
-	%TransportAmt.text = "%s / %s" % [ResourceManager.resources["vehicles"], ResourceManager.available_resources["vehicles"]]
+	%TransportAmt.text = "%s / %s" % [ResourceManager.available_resources["vehicles"], ResourceManager.resources["vehicles"]]
 
 
 func format_time_with_seconds(seconds: int) -> String:
