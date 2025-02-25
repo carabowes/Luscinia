@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Scenario" load_steps=271 format=3]
+[gd_resource type="Resource" script_class="Scenario" load_steps=274 format=3]
 
 [ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="1_22kjx"]
 [ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="2_lfadw"]
@@ -1410,6 +1410,30 @@ turns_to_answer = 1
 is_repeatable = false
 cancel_behaviour = 4
 
+[sub_resource type="Resource" id="Resource_jtchi"]
+script = ExtResource("2_lfadw")
+task_id = Array[String](["LARGESITE"])
+events = Array[int]([])
+chance = 1.0
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_lmkr6"]
+script = ExtResource("2_lfadw")
+task_id = Array[String](["MEDSITE"])
+events = Array[int]([])
+chance = 1.0
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_12ydi"]
+script = ExtResource("2_lfadw")
+task_id = Array[String](["SMALLSITE"])
+events = Array[int]([])
+chance = 1.0
+min_turn = 0
+max_turn = -1
+
 [sub_resource type="Resource" id="Resource_43bli"]
 script = ExtResource("2_lfadw")
 task_id = Array[String]([])
@@ -1505,12 +1529,12 @@ task = SubResource("Resource_3bmc4")
 script = ExtResource("1_22kjx")
 message = "We should set up some main aid sites in the city. This will allow communities to congregate closer and allow us to have a more focused aid effort. We will also require some staff to permananetely staff them."
 responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_ipnmb"), SubResource("Resource_h5w2u"), SubResource("Resource_1cr6p")])
-default_response = 2
+default_response = -1
 sender = SubResource("Resource_fojvw")
 prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_43bli")])
-antirequisites = Array[ExtResource("2_lfadw")]([])
-turns_to_answer = 1
-is_repeatable = false
+antirequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_jtchi"), SubResource("Resource_lmkr6"), SubResource("Resource_12ydi")])
+turns_to_answer = 3
+is_repeatable = true
 cancel_behaviour = 1
 
 [sub_resource type="Resource" id="Resource_88bt5"]
