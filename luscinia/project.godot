@@ -45,10 +45,6 @@ enabled=PackedStringArray()
 
 common/snap_controls_to_pixels=false
 
-[gui]
-
-common/snap_controls_to_pixels=false
-
 [input]
 
 interact={
