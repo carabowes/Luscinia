@@ -2,7 +2,6 @@ extends GutTest
 
 var navbar
 var resource_page
-var message_history
 
 func before_each():
 	navbar = load("res://Scenes/navbar.tscn").instantiate()
@@ -10,16 +9,11 @@ func before_each():
 	resource_page = Control.new()
 	resource_page.visible = false
 	navbar.resource_page = resource_page
-	
-	message_history = Control.new()
-	message_history.visible = false
-	navbar.message_history = message_history
-	
-	
+
+
 func after_each():
 	navbar.free()
 	resource_page.free()
-	message_history.free()
 	
 
 func test_button_signals():
@@ -51,13 +45,20 @@ func test_view_resource_toggle():
 	assert_false(resource_page.visible, "Resource page should toggle back to hidden")
 	
 
-func test_message_toggle():
-	assert_false(message_history.visible, "Initial state should be hidden")
+func test_message_button_emits_signal():
+	watch_signals(EventBus)
 	navbar._message_button_pressed()
-	assert_true(message_history.visible, "Message history should be visible after clicking button")
-	navbar._message_button_pressed()
-	assert_false(message_history.visible, "Message history should toggle back to hidden")
-	
+	assert_signal_emitted(EventBus, "navbar_message_button_pressed", "Navbar Button pressed signal not emitted")
+
+
+func test_message_notification_bubble():
+	var bubble : Control = navbar.get_node("%NewMessageNotif")
+	assert_false(bubble.visible, "Notif bubble should be hidden initally")
+	MessageManager.message_sent.emit(null)
+	assert_true(bubble.visible, "Bubble should appear on a message sent")
+	EventBus.all_messages_read.emit()
+	assert_false(bubble.visible, "Bubble should dissappear when all messages are read")
+
 
 func test_skip_time_button_increments_turn():
 	var initial_turn_count = GlobalTimer.turns
