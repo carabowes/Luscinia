@@ -9,7 +9,8 @@ func _ready() -> void:
 	EventBus.message_responded.connect(_start_task)
 
 
-func _start_task(response : Response, message : Message):
+func _start_task(response : Response, message_instance : MessageInstance):
+	var message : Message = message_instance.message
 	var new_task_instance = TaskInstance.new(response.task, 0, 0, 0, response.task.start_location, false, response.task.resources_required, message)
 	ResourceManager.queue_relationship_change(new_task_instance.task_data.task_id, response.relationship_change)
 	#Remove resources

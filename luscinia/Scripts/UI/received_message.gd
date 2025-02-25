@@ -11,6 +11,10 @@ var message_info : MessageInstance
 static var default_message : MessageInstance = MessageInstance.new()
 
 
+func _ready() -> void:
+	GlobalTimer.turn_progressed.connect(func(): queue_redraw())
+
+
 func _draw():
 	_render_badge_location()
 	_render_message_status()

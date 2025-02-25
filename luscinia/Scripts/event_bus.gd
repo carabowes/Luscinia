@@ -1,8 +1,8 @@
 extends Node
 
 #Message signals
-signal message_responded(response : Response, message : Message)
-signal all_messages_read()
+signal message_responded(response : Response, message : MessageInstance)
+signal all_messages_read(message : Message)
 
 #Task signals
 signal task_finished(task_instance : TaskInstance, cancelled : bool)
