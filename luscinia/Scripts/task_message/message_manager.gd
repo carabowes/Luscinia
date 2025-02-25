@@ -11,15 +11,24 @@ var message_start_turn = {}
 var occurred_events: Array[Event.EventType]
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
-
 func _ready():
 	rng.randomize() ##Randomize the RNG for chance-based validation
 	if scenario != null:
-		messages_to_send = scenario.messages
+		messages_to_send = scenario.messages.duplicate(true)
 	GlobalTimer.turn_progressed.connect(check_expired_messages)
 	GlobalTimer.turn_progressed.connect(find_messages_to_send)
 	EventBus.task_finished.connect(_on_task_finished)
 	EventBus.message_responded.connect(update_responded_message)
+
+
+func reset_messages():
+	rng.randomize()
+	messages_to_send.clear()
+	messages_to_send = scenario.messages.duplicate(true)
+	messages_to_receive.clear()
+	unreplied_messages = 0
+	message_start_turn.clear()
+	occurred_events.clear()
 
 
 func find_messages_to_send():
