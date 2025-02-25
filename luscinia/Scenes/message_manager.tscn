@@ -1,11 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bpxl3p862q5oe"]
 
 [ext_resource type="Script" path="res://Scripts/task_message/message_manager.gd" id="1_meb6n"]
-<<<<<<< HEAD
-[ext_resource type="Resource" uid="uid://cq8ot6u2bgf8y" path="res://TaskData/Scenarios/TestScenario.tres" id="2_ehs3s"]
-=======
-[ext_resource type="Resource" uid="uid://xk1767dlov6f" path="res://TaskData/TestScenario.tres" id="2_4c8uo"]
->>>>>>> feature
+[ext_resource type="Resource" uid="uid://cq8ot6u2bgf8y" path="res://TaskData/Scenarios/TestScenario.tres" id="2_bscet"]
 
 [node name="MessageManager" type="Control"]
 layout_mode = 3
@@ -15,4 +11,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_meb6n")
-scenario = ExtResource("2_ehs3s")
+scenario = ExtResource("2_bscet")
