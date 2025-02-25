@@ -11,9 +11,10 @@ func _ready() -> void:
 	update_all_labels()
 	%return_button.pressed.connect(func(): return_button_pressed.emit())
 
+
 func _process(delta: float) -> void:
 	update_all_labels()
-	
+
 
 func _on_return_button_pressed() -> void:
 	var main_parent = $"."

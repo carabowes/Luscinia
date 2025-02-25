@@ -8,8 +8,8 @@ func _ready() -> void:
 	EventBus.task_widget_view_details_pressed.connect(show_details)
 	%ReturnButton.pressed.connect(func(): return_button_pressed.emit())
 
+
 func show_details(task_instance : TaskInstance) -> void:
-	#UIStateManager._change_page_state(UIStateManager.UIPageState.TASK_DETAILS)
 	%TaskProgressBar.value = task_instance.current_progress
 	%TaskProgressBar.total_task_time = task_instance.get_total_time()
 	%TaskTitle.text = task_instance.task_data.name
@@ -28,7 +28,6 @@ func show_details(task_instance : TaskInstance) -> void:
 
 func hide_details() -> void:
 	visible = false
-	#UIStateManager._change_page_state(UIStateManager.UIPageState.CLOSED)
 
 
 func _end_early_button_pressed(task_instance : TaskInstance):
@@ -66,5 +65,4 @@ func _end_early_button_pressed(task_instance : TaskInstance):
 func _confirm_end_early_button_pressed(task_instance : TaskInstance):
 	$TaskCancelConfirmationPage.visible = false
 	visible = false
-	#UIStateManager._change_page_state(UIStateManager.UIPageState.CLOSED)
 	EventBus.task_finished.emit(task_instance, true)
