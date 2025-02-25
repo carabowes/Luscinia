@@ -57,7 +57,7 @@ func format_resource_taken(resource: String, amt: int):
 
 func format_resource_remaining():
 	remain_personnel.text = "Personnel: %s" % ResourceManager.available_resources["people"]
-	remain_supplies.text = "Supplies: %s" % ResourceManager.available_resources["supplies"]
+	remain_supplies.text = "Supplies: %s" % ResourceManager.resources["supplies"]
 	remain_funds.text = "Funds: %s" % ResourceManager.resources["funds"]
 	remain_vehicles.text = "Vehicles: %s" % ResourceManager.available_resources["vehicles"]
 
