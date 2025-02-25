@@ -1,8 +1,6 @@
 extends GutTest
 
-
 var response_instance
-
 
 func before_each():
 	response_instance = Response.new()

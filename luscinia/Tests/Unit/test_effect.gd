@@ -1,8 +1,6 @@
 extends GutTest
 
-
 var effect_instance
-
 
 func before_each():
 	effect_instance = Effect.new()

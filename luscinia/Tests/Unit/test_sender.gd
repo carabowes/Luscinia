@@ -37,7 +37,3 @@ func test_get_relationship_status():
 
 	sender.relationship = -100
 	assert_eq(sender.get_relationship_status(), "Hostile", "Relationship below -75 should be 'Hostile'")
-
-
-	
-	

@@ -13,8 +13,6 @@ func before_each():
 	test_message = Message.new("Message", [test_response, test_response])
 	test_message.default_response = -1
 
-func after_each():
-	print(get_tree().root.get_children())
 
 func test_set_message():
 	page_instance.set_message(MessageInstance.default_message)
