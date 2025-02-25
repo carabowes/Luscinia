@@ -6,14 +6,10 @@ var resource_entry: ResourceEntry
 
 func before_each():
 	resource_entry = ResourceEntry.instantiate()
-	add_child(resource_entry)
+	add_child_autofree(resource_entry)
 	resource_entry.resource_type = "people"
 	resource_entry.amount = 100
 	resource_entry.increase = 0 
-
-
-func after_each():
-	resource_entry.queue_free()
 
 
 func test_initialisation():
@@ -44,9 +40,7 @@ func test_draw_positive_increase():
 	assert_not_null(increase_icon, "IncreaseIcon node should exist")
 	assert_not_null(resource_amount, "ResourceAmount node should exist")
 
-
 	assert_true(increase_icon.visible, "IncreaseIcon should be visible")
-
 
 	assert_eq(increase_icon.self_modulate, Color.LIME_GREEN, "IncreaseIcon should be lime green")
 	assert_eq(resource_amount.self_modulate, Color.LIME_GREEN, "ResourceAmount should be lime green")

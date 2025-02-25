@@ -2,12 +2,12 @@ extends GutTest
 
 var task_instance
 var task_data
-var test_sender
+var test_message
 
 
 func before_each():
-	task_data = TaskData.new(1,"Test",null,Vector2(0,0),Vector2(10,10),{"funds":10},{"funds":10},5,[])
-	test_sender = Sender.new("Test Sender",null,0)
+	task_data = TaskData.new("TaskID","Test",null,Vector2(0,0),Vector2(10,10),{"funds":10},{"funds":10},5,[])
+	test_message =  MessageInstance.default_message
 	task_instance = TaskInstance.new(
 		task_data,
 		TaskInstance.CurrentStatus.IDLING,
@@ -16,12 +16,12 @@ func before_each():
 		Vector2(5, 5),
 		false,
 		{ "funds": 5 },
-		test_sender
+		test_message
 	)
 
 
 func test_task_data_initialisation():
-	assert_eq(task_data.task_id, 1, "Task ID should be correctly assigned")
+	assert_eq(task_data.task_id, "TaskID", "Task ID should be correctly assigned")
 	assert_eq(task_data.name, "Test", "Task name should be correctly assigned")
 	assert_eq(task_data.icon, null, "Task icon should be null by default")
 	assert_eq(task_data.start_location, Vector2(0,0), "Start location should be correctly assigned")
@@ -40,9 +40,7 @@ func test_initialisation():
 	assert_eq(task_instance.current_location, Vector2(5, 5), "Current location should be (5,5)")
 	assert_eq(task_instance.is_completed, false, "is_completed should be false")
 	assert_eq(task_instance.actual_resources, { "funds": 5 }, "Actual resources should match the dictionary")
-	assert_eq(task_instance.sender.name, "Test Sender", "Sender name should be correctly set")
-	assert_eq(task_instance.sender.image, null, "Sender image should be null by default")
-	assert_eq(task_instance.sender.relationship, 0, "Relationship should start at neutral (0)")
+	assert_eq(task_instance.message, MessageInstance.default_message, "Message should be assigned")
 
 
 func test_get_total_time():

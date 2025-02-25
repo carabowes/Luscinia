@@ -48,7 +48,7 @@ func _init(
 ) -> void:
 	self.message = message
 	self.responses = responses
-	self.default_response = 0
+	self.default_response = default_response
 	self.sender = sender
 	self.prerequisites = prerequisites
 	self.antirequisites = antirequisites
