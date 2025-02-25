@@ -82,6 +82,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 
 [node name="IconInfoMargin" type="MarginContainer" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 0
@@ -95,6 +96,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.4
 
 [node name="TaskIcon" type="TextureRect" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.6
@@ -103,6 +105,7 @@ expand_mode = 5
 stretch_mode = 4
 
 [node name="ProgressBarHigh" type="ProgressBar" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
@@ -113,6 +116,7 @@ value = 25.0
 show_percentage = false
 
 [node name="HoursLeftLabelHigh" type="Label" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_vertical = 2
@@ -122,6 +126,7 @@ label_settings = SubResource("LabelSettings_mkf73")
 horizontal_alignment = 1
 
 [node name="TaskInfoHigh" type="MarginContainer" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 10
@@ -133,7 +138,8 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_stretch_ratio = 0.6
 
-[node name="TaskInfoLabel" type="Label" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer"]
+[node name="TaskNameHigh" type="Label" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 45)
 layout_mode = 2
 text = "Providing Aid in Koza"
@@ -148,6 +154,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 
 [node name="ResourceOneIcon" type="TextureRect" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("2_nlt36")
@@ -155,6 +162,7 @@ expand_mode = 2
 stretch_mode = 4
 
 [node name="ResourceOneLabel" type="Label" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 8
@@ -162,6 +170,7 @@ text = "20"
 label_settings = SubResource("LabelSettings_xeijb")
 
 [node name="ResourceTwoIcon" type="TextureRect" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("2_nlt36")
@@ -169,6 +178,7 @@ expand_mode = 2
 stretch_mode = 4
 
 [node name="ResourceTwoLabel" type="Label" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 8
@@ -191,7 +201,8 @@ theme_override_font_sizes/font_size = 9
 theme_override_styles/normal = SubResource("StyleBoxFlat_jcwqi")
 text = "view more"
 
-[node name="TaskInfoMed" type="Label" parent="WidgetBackground"]
+[node name="TaskNameMed" type="Label" parent="WidgetBackground"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = -1
@@ -210,6 +221,7 @@ autowrap_mode = 2
 text_overrun_behavior = 3
 
 [node name="ProgressBarLowMed" type="ProgressBar" parent="WidgetBackground"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = -3.0
 offset_top = -10.0

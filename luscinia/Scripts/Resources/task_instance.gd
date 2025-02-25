@@ -1,13 +1,13 @@
-extends Resource
 class_name TaskInstance
+extends Resource
 
 #This resource will only be created at runtime
 
-enum CurrentStatus {IDLING, WORKING, TRAVELLING}
+enum CurrentStatus { IDLING, WORKING, TRAVELLING }
 
 @export var task_data : TaskData
 @export var current_status : CurrentStatus
-#measured in hours of task time, so if task has been gonig for 4 hours, current progress is 4
+## Measured in turns so if task has been going for 4 turns, current progress is 4
 @export var current_progress : int 
 @export var extra_time : int
 @export var current_location : Vector2
@@ -19,7 +19,8 @@ enum CurrentStatus {IDLING, WORKING, TRAVELLING}
 			push_error("Invalid type assigned to 'message'. Expected 'Message', got '%s'." % value)
 		else:
 			message = value
-var sender : Sender: #sender property to allow shorthand of task_instance.sender rather than task_instance.message.sender
+## sender property to allow shorthand of task_instance.sender rather than task_instance.message.sender
+var sender : Sender: 
 	get:
 		if message:
 			return message.sender
@@ -44,7 +45,7 @@ func get_remaining_time():
 	return get_total_time() - current_progress
 
 
-func update_task(time_progressed : int):
-	current_progress += time_progressed/60
+func update_task():
+	current_progress += 1
 	if current_progress >= get_total_time():
 		is_completed = true

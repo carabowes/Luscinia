@@ -20,7 +20,7 @@ func set_increments(increments : Dictionary, show_arrows : bool = true):
 func _add_elements():
 	for child in get_children():
 		child.free()
-		
+
 	for resource_key in resources.keys():
 		var value_is_int = resources[resource_key] is int
 		var key_is_string = resource_key is String
@@ -35,4 +35,4 @@ func _add_elements():
 		resource_entry_instance.name = resource_key
 		add_child(resource_entry_instance)
 		resource_entry_instance.set_owner($".")
-		resource_entry_instance.columns = 3 
+		resource_entry_instance.columns = 3

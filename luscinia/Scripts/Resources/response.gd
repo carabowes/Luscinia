@@ -11,4 +11,3 @@ func _init(response_name = "Response", response_text = "", relationship_change =
 	self.response_text = response_text
 	self.relationship_change = relationship_change
 	self.task = task
-	

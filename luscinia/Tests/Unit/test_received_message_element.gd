@@ -94,3 +94,14 @@ func test_signal_emit_on_press():
 	assert_signal_emitted_with_parameters(instance, "message_clicked", [instance.message_info])
 	sender.release_all()
 	sender.clear()
+
+
+func test_only_click_triggers_press():
+	watch_signals(instance)
+	var sender : GutInputSender = InputSender.new(instance)
+	sender.mouse_set_position(instance.position + instance.size/2)
+	sender.key_down(KEY_A)
+	sender.action_down("scroll")
+	assert_signal_not_emitted(instance, "message_clicked")
+	sender.release_all()
+	sender.clear()

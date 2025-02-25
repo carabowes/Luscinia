@@ -20,7 +20,6 @@ func _on_message_received(message : MessageInstance):
 		#Accessing like this incase it's already null, don't want to free null
 		var no_msg_label = get_node_or_null("%NoMessagesLabel")
 		if no_msg_label != null: no_msg_label.free()
-
 	var new_message : ReceivedMessage = ReceivedMessage.new_instance(message)
 	new_message.message_clicked.connect(func(message_info : MessageInstance): _message_selected(new_message, message_info))
 	%MessagesReceived.add_child(new_message)

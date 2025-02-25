@@ -6,6 +6,7 @@ func before_each():
 	message_bubble_instance = load("res://Scenes/UI/message_bubble.tscn").instantiate()
 	add_child_autofree(message_bubble_instance)
 
+
 func test_set_text():
 	message_bubble_instance.set_text("Test text.")
 	assert_eq(message_bubble_instance.get_node("%Text").text, "Test text.")

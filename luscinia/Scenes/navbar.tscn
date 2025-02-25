@@ -1,12 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://1ygif2bywt5u"]
+[gd_scene load_steps=10 format=3 uid="uid://1ygif2bywt5u"]
 
+[ext_resource type="Script" path="res://Scripts/UI/navbar.gd" id="1_2fvq5"]
 [ext_resource type="Texture2D" uid="uid://crdt0x0jw41ox" path="res://Sprites/UI/ProceedButton.png" id="1_24llj"]
 [ext_resource type="Texture2D" uid="uid://dbevrsfktm6jt" path="res://Sprites/UI/MessageButton.png" id="1_hhk0i"]
-[ext_resource type="Script" path="res://Scripts/UI/skip_custom_time_button.gd" id="2_ifu5p"]
-[ext_resource type="Script" path="res://Scripts/task_message/view_messages.gd" id="2_jx138"]
 [ext_resource type="Texture2D" uid="uid://dd65myswp443" path="res://Sprites/commisioned_icons/information_icon.png" id="3_b18yf"]
 [ext_resource type="Texture2D" uid="uid://dwl5qh53md1wx" path="res://Sprites/UI/RedCircle.png" id="3_ohkv6"]
-[ext_resource type="Script" path="res://Scripts/UI/view_resources.gd" id="4_8diyc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h85xp"]
 bg_color = Color(0.9481, 0.912, 0.95, 1)
@@ -25,13 +23,6 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gromn"]
 bg_color = Color(0.6, 0.6, 0.6, 0.0431373)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gtw4"]
-bg_color = Color(0.858218, 0.858218, 0.858218, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
 [node name="Navbar" type="Panel"]
 custom_minimum_size = Vector2(0, 80)
 anchors_preset = 12
@@ -42,6 +33,7 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_h85xp")
+script = ExtResource("1_2fvq5")
 
 [node name="NavbarLayout" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -53,7 +45,8 @@ offset_right = -36.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="view_message_history_button" type="Button" parent="NavbarLayout"]
+[node name="ViewMessageHistoryButton" type="Button" parent="NavbarLayout"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_styles/hover = SubResource("StyleBoxFlat_u7tph")
@@ -61,10 +54,8 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_n5gp4")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gromn")
 icon = ExtResource("1_hhk0i")
 flat = true
-script = ExtResource("2_jx138")
 
-[node name="NotificationBubble" type="TextureRect" parent="NavbarLayout/view_message_history_button"]
-unique_name_in_owner = true
+[node name="NewMessageNotif" type="TextureRect" parent="NavbarLayout/ViewMessageHistoryButton"]
 layout_mode = 0
 offset_left = 30.0
 offset_top = 15.0
@@ -72,7 +63,8 @@ offset_right = 46.0
 offset_bottom = 31.0
 texture = ExtResource("3_ohkv6")
 
-[node name="skip_custom_time_button" type="Button" parent="NavbarLayout"]
+[node name="SkipTimeButton" type="Button" parent="NavbarLayout"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_styles/hover = SubResource("StyleBoxFlat_u7tph")
@@ -80,24 +72,9 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_n5gp4")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gromn")
 icon = ExtResource("1_24llj")
 flat = true
-script = ExtResource("2_ifu5p")
 
-[node name="CustomTimePopup" type="Popup" parent="NavbarLayout/skip_custom_time_button"]
-auto_translate_mode = 1
-size = Vector2i(81, 36)
-
-[node name="LineEdit" type="LineEdit" parent="NavbarLayout/skip_custom_time_button/CustomTimePopup"]
-offset_right = 67.0625
-offset_bottom = 31.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_6gtw4")
-placeholder_text = "Fast Forward Time"
-alignment = 3
-
-[node name="view_resources_button" type="Button" parent="NavbarLayout"]
+[node name="ViewResourcesButton" type="Button" parent="NavbarLayout"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 theme_override_styles/hover = SubResource("StyleBoxFlat_u7tph")
@@ -105,4 +82,3 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_n5gp4")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gromn")
 icon = ExtResource("3_b18yf")
 flat = true
-script = ExtResource("4_8diyc")

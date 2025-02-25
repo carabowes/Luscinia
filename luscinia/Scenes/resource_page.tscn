@@ -5,7 +5,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tws4w"]
 bg_color = Color(0.956863, 0.929412, 0.952941, 1)
 
-[node name="resource_page" type="Control"]
+[node name="ResourcePage" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -129,7 +129,7 @@ text = "output
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="return_button" type="Button" parent="Background"]
+[node name="ReturnButton" type="Button" parent="Background"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 8.46
@@ -137,5 +137,3 @@ offset_top = 8.0
 offset_right = 176.46
 offset_bottom = 41.0
 text = " <- Return to Map "
-
-[connection signal="pressed" from="Background/return_button" to="." method="_on_return_button_pressed"]

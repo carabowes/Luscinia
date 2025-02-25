@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://6ml87l6yg0je"]
+[gd_scene load_steps=3 format=3 uid="uid://db2wbd84lk26p"]
 
 [ext_resource type="Script" path="res://Scripts/UI/message_bubble.gd" id="1_hvbit"]
 

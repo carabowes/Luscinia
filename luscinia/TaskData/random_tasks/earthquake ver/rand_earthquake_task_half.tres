@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("3_mqasb")
 task_id = 0
-name = "Small Earthquake Response"
+name = "small bridge collapse"
 icon = ExtResource("2_q8ffe")
 start_location = Vector2(800, 600)
 end_location = Vector2(1000, 1000)

@@ -8,29 +8,28 @@ signal return_button_pressed
 func _ready() -> void:
 	resources = ResourceManager.resources
 	available_resources = ResourceManager.available_resources
+	visibility_changed.connect(update_all_labels)
 	update_all_labels()
-	%return_button.pressed.connect(func(): return_button_pressed.emit())
+	%ReturnButton.pressed.connect(func(): return_button_pressed.emit())
 
 
 func _process(delta: float) -> void:
 	update_all_labels()
 
 
-func _on_return_button_pressed() -> void:
-	var main_parent = $"."
-	main_parent.visible = false
-	#UIStateManager._change_page_state(UIStateManager.UIPageState.CLOSED)
-
 func update_label(label_name: String, resource_name: String, texture_name: String):
 	var label = get_node(label_name)
 	if label and resource_name in resources:
 		if resource_name != "funds":
-			label.text = str(available_resources.get(resource_name, 0)) + " / " + str(resources[resource_name])
+			label.text = (
+				str(ResourceManager.format_resource_value(available_resources.get(resource_name, 0),2))
+				+ " / "
+				+ ResourceManager.format_resource_value(resources[resource_name],2)
+			)
 		else:
-			label.text = str(resources[resource_name]) + " Million"
+			label.text = ResourceManager.format_resource_value(resources[resource_name],2)
 	else:
 		print("Label or resource not found:", label_name, resource_name)
-
 
 	var texture_rect_name = texture_name
 	var texture_rect = get_node(texture_rect_name)
@@ -46,7 +45,21 @@ func update_label(label_name: String, resource_name: String, texture_name: Strin
 
 func update_all_labels() -> void:
 	# Update labels and their corresponding textures dynamically
-	update_label("Background/GridContainer/Personel Output", "people", "Background/GridContainer/Personel Icon")
-	update_label("Background/GridContainer/Funding Output", "funds", "Background/GridContainer/Funding Icon")
-	update_label("Background/GridContainer/Vehicles Output", "vehicles", "Background/GridContainer/Vehicles Icon")
-	update_label("Background/GridContainer/Supplies Output", "supplies", "Background/GridContainer/Supplies Icon")
+	update_label(
+		"Background/GridContainer/Personel Output",
+		"people",
+		"Background/GridContainer/Personel Icon"
+	)
+	update_label(
+		"Background/GridContainer/Funding Output", "funds", "Background/GridContainer/Funding Icon"
+	)
+	update_label(
+		"Background/GridContainer/Vehicles Output",
+		"vehicles",
+		"Background/GridContainer/Vehicles Icon"
+	)
+	update_label(
+		"Background/GridContainer/Supplies Output",
+		"supplies",
+		"Background/GridContainer/Supplies Icon"
+	)

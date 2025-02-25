@@ -34,7 +34,7 @@ func set_player_message(is_player_message : bool):
 
 
 func set_player_message_offsets():
-	if not is_player_message:
+	if not is_player_message or not is_inside_tree():
 		return
 	#Aligns the player messages to the right
 	%MessageLayoutController.offset_right = 0
