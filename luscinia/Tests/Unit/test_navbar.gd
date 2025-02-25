@@ -9,7 +9,6 @@ func before_each():
 	add_child(navbar)
 	resource_page = Control.new()
 	resource_page.visible = false
-	navbar.resource_page = resource_page
 	
 	message_history = Control.new()
 	message_history.visible = false
@@ -40,15 +39,12 @@ func test_view_resources_button_signal_emits_correctly():
 	var button = navbar.get_node("%ViewResourcesButton")
 	assert_not_null(button, "ViewResourcesButton should exist")
 	button.emit_signal("pressed")
-	assert_true(navbar.resource_page.visible)
 	
 	
 func test_view_resource_toggle():
-	assert_false(resource_page.visible, "Initial state should be hidden")
+	watch_signals(EventBus)
 	navbar._view_resource_button_pressed()
-	assert_true(resource_page.visible, "Resource page should be visible after first press")
-	navbar._view_resource_button_pressed()
-	assert_false(resource_page.visible, "Resource page should toggle back to hidden")
+	assert_signal_emitted(EventBus, "navbar_resource_button_pressed")
 	
 
 func test_message_toggle():

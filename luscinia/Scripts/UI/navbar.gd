@@ -1,6 +1,5 @@
 extends Control
 
-@export var resource_page : Control
 @export var message_history : Control
 
 func _ready() -> void:
@@ -11,10 +10,7 @@ func _ready() -> void:
 
 
 func _view_resource_button_pressed():
-	if(resource_page == null):
-		print("Resource Page not assigned!")
-		return
-	resource_page.visible = !resource_page.visible
+	EventBus.navbar_resource_button_pressed.emit()
 
 
 func _skip_time_button_pressed():

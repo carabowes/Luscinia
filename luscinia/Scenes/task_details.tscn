@@ -93,6 +93,7 @@ layout_mode = 2
 theme = SubResource("Theme_71kbt")
 
 [node name="ReturnButton" type="Button" parent="Background/ScrollContainer/MarginContainer/Elements"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)

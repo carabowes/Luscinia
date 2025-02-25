@@ -1,10 +1,12 @@
 class_name TaskDetails
 extends Control
 
+signal return_button_pressed
 
 func _ready() -> void:
 	%CancelEndButton.pressed.connect(func(): $TaskCancelConfirmationPage.visible = false)
 	EventBus.task_widget_view_details_pressed.connect(show_details)
+	%ReturnButton.pressed.connect(func(): return_button_pressed.emit())
 
 
 func show_details(task_instance : TaskInstance) -> void:

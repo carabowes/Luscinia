@@ -11,7 +11,6 @@ var resource_textures = {
 	"supplies": preload("res://Sprites/Package.png"),
 }
 
-
 func round_to_dp(value: float, dp: int) -> float:
 	var factor = pow(10, dp)
 	return round(value * factor) / factor
@@ -23,8 +22,7 @@ func format_resource_value(value: int, decimal_points: int) -> String:
 	elif value >= 1000:
 		return str(round_to_dp(value / 1000.0, 1)) + "K"
 	else:
-		return str(value)  
-
+		return str(value)
 
 func add_resources(resource_name: String, amount: int):
 	if resource_name in resources:
