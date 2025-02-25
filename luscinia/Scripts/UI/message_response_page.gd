@@ -26,7 +26,9 @@ func _option_selected(message_instance : MessageInstance):
 
 
 func set_message(message_instance : MessageInstance):
-	var message : Message = message_instance.message
+	var message: Message = null
+	if message_instance != null:
+		message = message_instance.message
 	for connection in %ConfirmButton.pressed.get_connections():
 		%ConfirmButton.pressed.disconnect(connection["callable"])
 	if message != null:

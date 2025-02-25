@@ -102,7 +102,7 @@ func test_confirm_signal():
 	page_instance.set_message(test_instance)
 	watch_signals(page_instance)
 	page_instance.get_node("%ConfirmButton").pressed.emit()
-	assert_signal_emitted_with_parameters(page_instance, "response_option_selected", [test_response, test_message])
+	assert_signal_emitted_with_parameters(page_instance, "response_option_selected", [test_response, test_instance])
 
 
 func test_back_signal():

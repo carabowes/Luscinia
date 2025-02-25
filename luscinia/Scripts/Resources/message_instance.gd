@@ -26,7 +26,7 @@ func _init(message : Message = default_message) -> void:
 
 
 func reply(response : Response):
-	if not null:
+	if response != null:
 		player_response = response.response_text
 	message_status = MessageStatus.REPLIED
 
