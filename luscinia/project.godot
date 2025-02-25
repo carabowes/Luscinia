@@ -39,7 +39,11 @@ project/assembly_name="Luscinia"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray()
+
+[gui]
+
+common/snap_controls_to_pixels=false
 
 [gui]
 

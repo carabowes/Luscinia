@@ -4,7 +4,7 @@ extends Resource
 ## Array of prerequisite task ids
 @export var task_id : Array[String]
 ## Array of prerequisite events
-@export var events: Array[Event.EventType]
+@export var events : Array[Event.EventType]
 ## Chance of prerequisite triggering. 1 is 100% likely.
 @export_range(0,1)  var chance : float
 ## Minimum turn for the prerequisite to be valid

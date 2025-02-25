@@ -4,6 +4,7 @@ var page_instance : MessageResponsePage
 var test_task : TaskData 
 var test_response : Response
 var test_message : Message 
+var test_instance : MessageInstance
 
 func before_each():
 	page_instance = load("res://Scenes/UI/message_response_page.tscn").instantiate()
@@ -12,12 +13,13 @@ func before_each():
 	test_response = Response.new("Response", "Text", 0, test_task)
 	test_message = Message.new("Message", [test_response, test_response])
 	test_message.default_response = -1
+	test_instance = MessageInstance.new(test_message)
 
 
 func test_set_message():
-	page_instance.set_message(MessageInstance.default_message)
+	page_instance.set_message(MessageInstance.new())
 	assert_eq(len(page_instance.get_node("%ConfirmButton").pressed.get_connections()), 1)
-	page_instance.set_message(MessageInstance.default_message)
+	page_instance.set_message(MessageInstance.new())
 	assert_eq(len(page_instance.get_node("%ConfirmButton").pressed.get_connections()), 1)
 
 
@@ -36,7 +38,7 @@ func test_null_message():
 
 
 func test_non_null_message():
-	page_instance.set_message(test_message)
+	page_instance.set_message(test_instance)
 	assert_eq(page_instance.get_node("%TaskTitle").text, test_response.response_name)
 	assert_eq(page_instance.get_node("%EstimatedTimeLabel").visible, true)
 	assert_eq(page_instance.get_node("%EstimatedTime").text, "4 hrs")
@@ -48,7 +50,7 @@ func test_non_null_message():
 
 func test_default_response():
 	test_message.default_response = 0  
-	page_instance.set_message(test_message)
+	page_instance.set_message(test_instance)
 	assert_eq(page_instance.get_node("%TaskTitle").text, "[Default] " + test_response.response_name)
 
 
@@ -97,14 +99,14 @@ func test_select_option_button():
 
 
 func test_confirm_signal():
-	page_instance.set_message(test_message)
+	page_instance.set_message(test_instance)
 	watch_signals(page_instance)
 	page_instance.get_node("%ConfirmButton").pressed.emit()
-	assert_signal_emitted_with_parameters(page_instance, "response_option_selected", [test_response, test_message])
+	assert_signal_emitted_with_parameters(page_instance, "response_option_selected", [test_response, test_instance])
 
 
 func test_back_signal():
-	page_instance.set_message(test_message)
+	page_instance.set_message(test_instance)
 	watch_signals(page_instance)
 	page_instance.get_node("%BackButton").pressed.emit()
 	assert_signal_emitted(page_instance, "back_button_pressed")
