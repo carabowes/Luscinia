@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var resources = {"people": 100, "funds": 1000, "vehicles": 80, "supplies": 100000}
+@export var resources = {"people": 100, "funds": 100000000, "vehicles": 80, "supplies": 100000}
 @export var available_resources = {"people": 100, "vehicles": 80, "supplies": 100000}
 @export var relationships_to_update: Dictionary
 
@@ -12,10 +12,25 @@ var resource_textures = {
 }
 
 
+func round_to_dp(value: float, dp: int) -> float:
+	var factor = pow(10, dp)
+	return round(value * factor) / factor
+
+
+func format_resource_value(value: int, decimal_points: int) -> String:
+	if value >= 1000000:
+		return str(round_to_dp(value / 1000000.0, 1)) + "M" 
+	elif value >= 1000:
+		return str(round_to_dp(value / 1000.0, 1)) + "K"
+	else:
+		return str(value)  
+
 
 func add_resources(resource_name: String, amount: int):
 	if resource_name in resources:
 		resources[resource_name] += amount
+		if resource_name in available_resources:
+			resources[resource_name] = clamp(resources[resource_name], 0, available_resources[resource_name])
 	else:
 		print("Resource not found:", resource_name)
 
@@ -39,8 +54,51 @@ func add_available_resources(resource_name: String, amount: int):
 func remove_available_resources(resource_name: String, amount: int):
 	if resource_name in resources:
 		available_resources[resource_name] -= amount
+		if available_resources[resource_name] < 0:
+			available_resources[resource_name] = 0
 	else:
 		print("Resource not found:", resource_name)
+
+
+func add_or_remove_available_resources(resource_name : String, amount : int):
+	if amount < 0:
+		amount = abs(amount)
+		remove_available_resources(resource_name, amount)
+	else:
+		add_available_resources(resource_name, amount)
+
+
+func has_sufficient_resource(resource_name : String, amount : int) -> bool:
+	if resource_name == "funds":
+		return amount <= resources[resource_name]
+	else:
+		return amount <= available_resources[resource_name]
+
+
+func apply_start_task_resources(resources_required : Dictionary):
+	for resource_name in resources_required:
+		var resource_cost = resources_required[resource_name]
+		remove_resources(resource_name, resource_cost)
+
+
+func apply_end_task_resources(resources_gained : Dictionary, resources_required : Dictionary):
+	for resource_name in resources.keys():
+		#Fill the dictionary with 0 value if key is missing to prevent accessing non existing value
+		if not resources_gained.has(resource_name):
+			resources_gained[resource_name] = 0
+		if not resources_required.has(resource_name):
+			resources_required[resource_name] = 0
+
+		var resource_cost = resources_required[resource_name]
+		var resource_gain = resources_gained[resource_name] 
+		#If the resoruce is a limited resource (available resource)
+		if resource_name in available_resources.keys():
+			#Permantly add or remove the difference between cost and gain
+			var resource_difference = resource_gain - resource_cost
+			add_or_remove_available_resources(resource_name, resource_difference)
+			add_resources(resource_name, resource_gain)
+		else:
+			add_resources(resource_name, resource_gain)
 
 
 func get_resource_texture(resource_name: String) -> Texture:
@@ -57,10 +115,14 @@ func queue_relationship_change(task_id: String, relationship_change: int):
 func apply_relationship_change(task_id: String, sender: Sender, task_progress: float):
 	if not relationships_to_update.has(task_id) or sender == null:
 		return
-	sender.relationship += (
-		(relationships_to_update[task_id] * task_progress * 2) - relationships_to_update[task_id]
-	)
+	#Limit task_progress to between 0 and 1
+	task_progress = clamp(task_progress, 0.0, 1.0)
+	# If a user ends a task early they should not get the full relationship benefits
+	# 0% = relationship lost, 50% = 0 no relationship change, 100% = relationship gain
+	var relationship_change = (relationships_to_update[task_id] * task_progress * 2) - relationships_to_update[task_id] 
+	sender.relationship += relationship_change
 	relationships_to_update.erase(task_id)
+
 
 func reset_resources():
 	resources = {"people": 100, "funds": 1000, "vehicles": 80, "supplies": 100000}

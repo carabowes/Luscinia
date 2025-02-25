@@ -28,6 +28,6 @@ func _value_changed(_new_value: float) -> void:
 func update_text():
 	var current_percent = 1 - (value/max_value)
 	var time_percent = total_task_time * current_percent
-	var hours = ceil(time_percent)#
+	var turns = ceil(time_percent)
 	if(text_label != null):
-		text_label.text = str(hours) + "hrs left"
+		text_label.text = GlobalTimer.turns_to_time_string(turns, "hr", "min", "s", true, true) + " left"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvcpwx4gpg8rw"]
+[gd_scene load_steps=3 format=3 uid="uid://bx42llom254a7"]
 
 [ext_resource type="Script" path="res://Scripts/UI/main_menu.gd" id="1_uk22s"]
 [ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="2_3dih0"]
@@ -36,7 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 0.24
 offset_top = 16.0
 offset_bottom = 16.0
-color = Color(0.933333, 0.560784, 0.176471, 1)
+color = Color(0.254902, 0.560784, 0.870588, 1)
 
 [node name="TitleText" type="Label" parent="Background/Title"]
 layout_mode = 1

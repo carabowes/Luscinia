@@ -1,20 +1,25 @@
-[gd_scene load_steps=17 format=3 uid="uid://pmewkgtpqio2"]
+[gd_scene load_steps=20 format=3 uid="uid://pmewkgtpqio2"]
 
 [ext_resource type="PackedScene" uid="uid://cnpov8fcn2j0g" path="res://Scenes/map.tscn" id="1_7fdga"]
 [ext_resource type="PackedScene" uid="uid://desl373b33t23" path="res://Scenes/timer.tscn" id="2_5mpic"]
-[ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="3_h4e53"]
 [ext_resource type="PackedScene" uid="uid://dvvers1ky31ox" path="res://Scenes/resource_page.tscn" id="4_vi8yg"]
 [ext_resource type="PackedScene" uid="uid://c70krmks36rto" path="res://Scenes/task_details.tscn" id="5_0qr7n"]
 [ext_resource type="PackedScene" uid="uid://1ygif2bywt5u" path="res://Scenes/navbar.tscn" id="5_5vcs1"]
+[ext_resource type="Theme" uid="uid://r2tvepfwkafu" path="res://Themes/primary_button.tres" id="6_mil05"]
+[ext_resource type="Script" path="res://Scripts/UI/message_notification_button.gd" id="7_e8c6r"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/message_page_controller.tscn" id="10_btbvl"]
 [ext_resource type="Resource" uid="uid://6i0nc5dgh3ql" path="res://TaskData/earthquake/message_earthquake.tres" id="5_yj18d"]
 [ext_resource type="PackedScene" uid="uid://dfl5n2ga1ulqv" path="res://Nodes/task_message_buttons/messenger_screen.tscn" id="6_877e8"]
 [ext_resource type="Resource" uid="uid://lsw710x715mw" path="res://TaskData/random_tasks/earthquake ver/rand_message_earthquake.tres" id="6_b716w"]
-[ext_resource type="Resource" uid="uid://cxwgponxxk2pf" path="res://TaskData/establish_contact/message_contact.tres" id="6_ntma7"]
-[ext_resource type="PackedScene" uid="uid://bnodjjjy3hdxo" path="res://Scenes/task-notification-popup.tscn" id="7_g8mic"]
+[ext_resource type="Resource" uid="uid://babufylhko70r" path="res://TaskData/establish_contact/establish_contact_full.tres" id="6_ntma7"]
+[ext_resource type="PackedScene" uid="uid://cwarqma4ql3sh" path="res://Scenes/task-notification-popup.tscn" id="7_g8mic"]
 [ext_resource type="Resource" uid="uid://b1c14ke0e8om5" path="res://TaskData/random_tasks/contact_ver/rand_message_contact.tres" id="7_slelw"]
 [ext_resource type="PackedScene" uid="uid://do5t8447c3iys" path="res://Scenes/UI/options_page.tscn" id="10_sexli"]
-[ext_resource type="Script" path="res://Scripts/task_message/message_list.gd" id="11_ir8ox"]
+[ext_resource type="Script" path="res://Scripts/task_message/message_history.gd" id="11_ir8ox"]
 [ext_resource type="PackedScene" uid="uid://dveuyhljvjf4q" path="res://Scenes/message_history.tscn" id="12_upng4"]
+[ext_resource type="Script" path="res://notif_controller.gd" id="15_py1x5"]
+[ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="17_j07dy"]
+[ext_resource type="Script" path="res://ending_screen.gd" id="17_kga80"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gfh5b"]
 bg_color = Color(1, 0.584314, 0, 1)
@@ -29,17 +34,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="map" parent="." node_paths=PackedStringArray("details_page") instance=ExtResource("1_7fdga")]
-details_page = NodePath("../pages/task_details")
-
-[node name="message_manager" parent="." node_paths=PackedStringArray("message_board", "map_tasks") instance=ExtResource("7_g8mic")]
-layout_mode = 1
-offset_top = 117.0
-offset_bottom = -635.0
-message_data = Array[ExtResource("3_h4e53")]([ExtResource("5_yj18d"), ExtResource("6_ntma7")])
-random_task_data = Array[ExtResource("3_h4e53")]([ExtResource("6_b716w"), ExtResource("7_slelw")])
-message_board = NodePath("../pages/message_page")
-map_tasks = NodePath("../map")
+[node name="map" parent="." instance=ExtResource("1_7fdga")]
 
 [node name="navbar" parent="." node_paths=PackedStringArray("resource_page", "message_history") instance=ExtResource("5_5vcs1")]
 layout_mode = 1
@@ -49,8 +44,11 @@ message_history = NodePath("../pages/message_history")
 
 [node name="timer" parent="." instance=ExtResource("2_5mpic")]
 layout_mode = 1
+anchors_preset = 10
+anchor_bottom = 0.0
 offset_right = -120.0
-offset_bottom = -52.0
+offset_bottom = 0.0
+grow_vertical = 1
 
 [node name="pages" type="Control" parent="."]
 layout_mode = 1
@@ -62,6 +60,24 @@ offset_bottom = -78.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="NewMessageButton" type="Button" parent="pages"]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -13.0
+offset_top = 4.0
+offset_right = 13.0
+offset_bottom = 47.0
+grow_horizontal = 2
+theme = ExtResource("6_mil05")
+theme_override_font_sizes/font_size = 20
+text = "New Message"
+script = ExtResource("7_e8c6r")
+
+[node name="MessagePageController" parent="pages" instance=ExtResource("10_btbvl")]
+layout_mode = 1
 
 [node name="resource_page" parent="pages" instance=ExtResource("4_vi8yg")]
 visible = false
@@ -139,6 +155,270 @@ theme_override_font_sizes/font_size = 41
 text = "Messages"
 horizontal_alignment = 1
 
+[node name="notifications" type="Control" parent="pages" node_paths=PackedStringArray("message_board", "task_widget_renderer", "start_task_notif_label", "end_task_notif_label")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -360.0
+offset_bottom = -607.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("15_py1x5")
+message_board = NodePath("../message_page")
+task_widget_renderer = NodePath("../../map")
+start_task_notif_label = NodePath("task_start_notification/start_text")
+end_task_notif_label = NodePath("task_end_notification/end_text")
+
+[node name="task_start_notification" type="ColorRect" parent="pages/notifications"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -360.0
+offset_top = 205.0
+offset_bottom = 333.0
+color = Color(0.254902, 0.560784, 0.870588, 1)
+
+[node name="start_text" type="Label" parent="pages/notifications/task_start_notification"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="task_end_notification" type="ColorRect" parent="pages/notifications"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -360.0
+offset_top = 205.0
+offset_bottom = 333.0
+color = Color(0.254902, 0.560784, 0.870588, 1)
+
+[node name="end_text" type="Label" parent="pages/notifications/task_end_notification"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="time_skip_notification" type="ColorRect" parent="pages/notifications"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -360.0
+offset_top = 205.0
+offset_bottom = 333.0
+color = Color(0.254902, 0.560784, 0.870588, 1)
+
+[node name="skip_text" type="Label" parent="pages/notifications/time_skip_notification"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 48
+text = "Time Skipped!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="options_page" parent="pages" instance=ExtResource("10_sexli")]
 visible = false
 layout_mode = 1
+
+[node name="ending_screen" type="Control" parent="pages" node_paths=PackedStringArray("message_board", "days_amt", "taken_personnel", "taken_supplies", "taken_funds", "taken_vehicles", "remain_personnel", "remain_supplies", "remain_funds", "remain_vehicles")]
+visible = false
+layout_mode = 1
+anchor_top = -0.189
+anchor_right = 1.0
+anchor_bottom = 1.129
+offset_top = -0.276993
+offset_bottom = -0.30304
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("17_kga80")
+message_board = NodePath("../message_page")
+days_amt = NodePath("StatsBackground/VBoxContainer/DaysAmount")
+taken_personnel = NodePath("StatsBackground/VBoxContainer/ResourcesTakenRow1/PersonnelAmt")
+taken_supplies = NodePath("StatsBackground/VBoxContainer/ResourcesTakenRow1/SuppliesAmt")
+taken_funds = NodePath("StatsBackground/VBoxContainer/ResourcesTakenRow2/FundsAmt")
+taken_vehicles = NodePath("StatsBackground/VBoxContainer/ResourcesTakenRow2/VehiclesAmt")
+remain_personnel = NodePath("StatsBackground/VBoxContainer/ResourcesRemRow1/PersonnelAmt")
+remain_supplies = NodePath("StatsBackground/VBoxContainer/ResourcesRemRow1/SuppliesAmt")
+remain_funds = NodePath("StatsBackground/VBoxContainer/ResourcesRemRow2/FundsAmt")
+remain_vehicles = NodePath("StatsBackground/VBoxContainer/ResourcesRemRow2/VehiclesAmt")
+
+[node name="Background" type="ColorRect" parent="pages/ending_screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextBackground" type="ColorRect" parent="pages/ending_screen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.24
+color = Color(0.254902, 0.560784, 0.870588, 1)
+
+[node name="EndingText" type="Label" parent="pages/ending_screen/TextBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 37
+text = "Scenario Complete!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatsBackground" type="ColorRect" parent="pages/ending_screen"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.32
+anchor_right = 1.0
+anchor_bottom = 0.64
+offset_top = -3.05176e-05
+offset_bottom = -6.10352e-05
+color = Color(0.254902, 0.560784, 0.870588, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="pages/ending_screen/StatsBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 8.0
+offset_bottom = 3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DaysTaken" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Days Taken:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DaysAmount" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "00 Days"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResourcesTaken" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "
+Resources Taken:"
+horizontal_alignment = 1
+
+[node name="ResourcesTakenRow1" type="HBoxContainer" parent="pages/ending_screen/StatsBackground/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="PersonnelAmt" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer/ResourcesTakenRow1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Pesonnel: 0"
+
+[node name="SuppliesAmt" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer/ResourcesTakenRow1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Supplies: 0"
+
+[node name="ResourcesTakenRow2" type="HBoxContainer" parent="pages/ending_screen/StatsBackground/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="FundsAmt" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer/ResourcesTakenRow2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Funds: 0"
+
+[node name="VehiclesAmt" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer/ResourcesTakenRow2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Vehicles: 0"
+
+[node name="ResourcesRemaining" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "
+Resources Remaining:"
+horizontal_alignment = 1
+
+[node name="ResourcesRemRow1" type="HBoxContainer" parent="pages/ending_screen/StatsBackground/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="PersonnelAmt" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer/ResourcesRemRow1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Pesonnel: 0"
+
+[node name="SuppliesAmt" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer/ResourcesRemRow1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Supplies: 0"
+
+[node name="ResourcesRemRow2" type="HBoxContainer" parent="pages/ending_screen/StatsBackground/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="FundsAmt" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer/ResourcesRemRow2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Funds: 0"
+
+[node name="VehiclesAmt" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer/ResourcesRemRow2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Vehicles: 0"
+
+[node name="RestartButton" type="Button" parent="pages/ending_screen"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 80)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.044
+anchor_top = 0.72
+anchor_right = 0.467
+anchor_bottom = 0.91
+offset_left = 0.159999
+offset_right = -0.11998
+theme = ExtResource("17_j07dy")
+theme_override_font_sizes/font_size = 32
+text = "Restart"
+
+[node name="ExitButton" type="Button" parent="pages/ending_screen"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 80)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.533
+anchor_top = 0.72
+anchor_right = 0.956
+anchor_bottom = 0.91
+offset_left = 0.11998
+offset_right = -0.160004
+offset_bottom = 6.10352e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("17_j07dy")
+theme_override_font_sizes/font_size = 32
+text = "Exit"

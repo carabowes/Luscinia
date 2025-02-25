@@ -103,8 +103,8 @@ func test_task_widget_selected():
 
 
 func test_task_widget_render():
-	var data : TaskData = TaskData.new("ID", "Task Name", load("res://Sprites/icon.svg"), Vector2(0,0), Vector2(0,0), {"funds" : 100, "people": 50}, {}, 8, [])
-	var info : TaskInstance = TaskInstance.new(data, 0, 4, 2, Vector2(0,0), false, {}, null)
+	var data : TaskData = TaskData.new("TaskID", "Task Name", load("res://Sprites/icon.svg"), Vector2(0,0), Vector2(0,0), {"funds" : 100, "people": 50}, {}, 8, [])
+	var info : TaskInstance = TaskInstance.new(data, 0, 4, 2, Vector2(0,0), false, {}, MessageInstance.default_message)
 	
 	var task_widget_instance : TaskWidget = task_widget_scene.instantiate()
 	add_child_autofree(task_widget_instance)
@@ -114,10 +114,10 @@ func test_task_widget_render():
 	assert_eq(task_widget_instance.get_node("%TaskNameHigh").text, data.name)
 	assert_eq(task_widget_instance.get_node("%TaskNameMed").text, data.name)
 	assert_eq(task_widget_instance.get_node("%TaskIcon").texture, load("res://Sprites/icon.svg"))
-	assert_eq(task_widget_instance.get_node("%ProgressBarLowMed").max_value, info.get_total_time())
-	assert_eq(task_widget_instance.get_node("%ProgressBarLowMed").value, info.current_progress)
-	assert_eq(task_widget_instance.get_node("%ProgressBarHigh").max_value, info.get_total_time())
-	assert_eq(task_widget_instance.get_node("%ProgressBarHigh").value, info.current_progress)
+	assert_eq(task_widget_instance.get_node("%ProgressBarLowMed").max_value, float(info.get_total_time()))
+	assert_eq(task_widget_instance.get_node("%ProgressBarLowMed").value, float(info.current_progress))
+	assert_eq(task_widget_instance.get_node("%ProgressBarHigh").max_value, float(info.get_total_time()))
+	assert_eq(task_widget_instance.get_node("%ProgressBarHigh").value, float(info.current_progress))
 	assert_eq(task_widget_instance.get_node("%HoursLeftLabelHigh").text, str(info.get_remaining_time()) + " hrs")
 	assert_eq(task_widget_instance.get_node("%ResourceOneIcon").texture, ResourceManager.get_resource_texture("funds"))
 	assert_eq(task_widget_instance.get_node("%ResourceOneLabel").text, str(info.task_data.resources_required["funds"]))

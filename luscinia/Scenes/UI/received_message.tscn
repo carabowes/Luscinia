@@ -1,0 +1,161 @@
+[gd_scene load_steps=11 format=3 uid="uid://ci2jv4db0xyag"]
+
+[ext_resource type="Script" path="res://Scripts/UI/received_message.gd" id="1_b2e25"]
+[ext_resource type="Texture2D" uid="uid://dauu8qd5vcq0i" path="res://Sprites/UIElements.png" id="2_ncof0"]
+[ext_resource type="Texture2D" uid="uid://7v3dgwwsbwqu" path="res://Sprites/clock.png" id="3_rilhe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vavtp"]
+atlas = ExtResource("2_ncof0")
+region = Rect2(0, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml5lj"]
+atlas = ExtResource("2_ncof0")
+region = Rect2(0, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wudjp"]
+atlas = ExtResource("2_ncof0")
+region = Rect2(0, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwg2w"]
+atlas = ExtResource("2_ncof0")
+region = Rect2(0, 0, 400, 400)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mm8g0"]
+line_spacing = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_pa1he"]
+line_spacing = 0.0
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_0xgjh"]
+font_size = 10
+
+[node name="ReceivedMessage" type="ColorRect"]
+custom_minimum_size = Vector2(0, 65)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_b2e25")
+unread_badge_location = 1
+answer_now_color = Color(0.87, 0.25375, 0.1305, 1)
+time_remaining_color = Color(0.122252, 0.122252, 0.122252, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Layout" type="HBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="UnreadBadge" type="TextureRect" parent="MarginContainer/Layout"]
+unique_name_in_owner = true
+self_modulate = Color(0.254902, 0.560784, 0.870588, 1)
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+texture = SubResource("AtlasTexture_vavtp")
+expand_mode = 2
+
+[node name="Padding1" type="Control" parent="MarginContainer/Layout"]
+layout_mode = 2
+
+[node name="ContactImageContainer" type="TextureRect" parent="MarginContainer/Layout"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = SubResource("AtlasTexture_ml5lj")
+expand_mode = 2
+
+[node name="ContactImageMask" type="TextureRect" parent="MarginContainer/Layout/ContactImageContainer"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_wudjp")
+expand_mode = 2
+
+[node name="ContactImage" type="TextureRect" parent="MarginContainer/Layout/ContactImageContainer/ContactImageMask"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_rilhe")
+expand_mode = 2
+
+[node name="ContactUnreadBadge" type="TextureRect" parent="MarginContainer/Layout/ContactImageContainer"]
+unique_name_in_owner = true
+self_modulate = Color(0.254902, 0.560784, 0.870588, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -15.0
+offset_right = 5.0
+offset_bottom = 20.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_vwg2w")
+expand_mode = 1
+
+[node name="Padding2" type="Control" parent="MarginContainer/Layout"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+
+[node name="InfoVBox" type="VBoxContainer" parent="MarginContainer/Layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="InfoHBox" type="HBoxContainer" parent="MarginContainer/Layout/InfoVBox"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="ContactNameLabel" type="Label" parent="MarginContainer/Layout/InfoVBox/InfoHBox"]
+unique_name_in_owner = true
+self_modulate = Color(0.176419, 0.176419, 0.176419, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.5
+theme_override_constants/line_spacing = 0
+text = "Contact Name
+"
+label_settings = SubResource("LabelSettings_mm8g0")
+
+[node name="TimeRemainingLabel" type="Label" parent="MarginContainer/Layout/InfoVBox/InfoHBox"]
+unique_name_in_owner = true
+self_modulate = Color(0.176419, 0.176419, 0.176419, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.4
+text = "ANSWER NOW!"
+label_settings = SubResource("LabelSettings_pa1he")
+horizontal_alignment = 2
+
+[node name="Padding" type="Control" parent="MarginContainer/Layout/InfoVBox/InfoHBox"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="MessagePreviewLabel" type="Label" parent="MarginContainer/Layout/InfoVBox"]
+unique_name_in_owner = true
+self_modulate = Color(0.176419, 0.176419, 0.176419, 1)
+layout_mode = 2
+text = "This is some placeholder text to try and fill up the preview message"
+label_settings = SubResource("LabelSettings_0xgjh")
+text_overrun_behavior = 3

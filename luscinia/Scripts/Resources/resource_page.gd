@@ -9,7 +9,7 @@ func _ready() -> void:
 	available_resources = ResourceManager.available_resources
 	visibility_changed.connect(update_all_labels)
 	update_all_labels()
-
+	
 
 func _on_return_button_pressed() -> void:
 	visible = false
@@ -20,12 +20,12 @@ func update_label(label_name: String, resource_name: String, texture_name: Strin
 	if label and resource_name in resources:
 		if resource_name != "funds":
 			label.text = (
-				str(available_resources.get(resource_name, 0))
+				str(ResourceManager.format_resource_value(available_resources.get(resource_name, 0),2))
 				+ " / "
-				+ str(resources[resource_name])
+				+ ResourceManager.format_resource_value(resources[resource_name],2)
 			)
 		else:
-			label.text = str(resources[resource_name]) + " Million"
+			label.text = ResourceManager.format_resource_value(resources[resource_name],2)
 	else:
 		print("Label or resource not found:", label_name, resource_name)
 
