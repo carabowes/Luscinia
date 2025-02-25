@@ -1,11 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://dp3ypaulk2p3d"]
+[gd_scene load_steps=13 format=3 uid="uid://dp3ypaulk2p3d"]
 
 [ext_resource type="StyleBox" uid="uid://wlfk11s2ym4x" path="res://Sprites/UI/themes/primary_accent.tres" id="1_mtsjj"]
 [ext_resource type="Script" path="res://Scripts/UI/task_widget.gd" id="1_y4lne"]
+[ext_resource type="Theme" uid="uid://r2tvepfwkafu" path="res://Themes/primary_button.tres" id="2_4ib4t"]
 [ext_resource type="Texture2D" uid="uid://dg01boigrppxu" path="res://Sprites/UI/starTaskIcon.png" id="2_nlt36"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtgbd"]
+bg_color = Color(0.254902, 0.560784, 0.870588, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhecv"]
-bg_color = Color(0.52549, 0.34902, 0.0980392, 1)
+bg_color = Color(0.207843, 0.376471, 0.690196, 1)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -64,7 +72,8 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(24, 24)
 mouse_filter = 2
-theme_override_styles/panel = ExtResource("1_mtsjj")
+theme = ExtResource("2_4ib4t")
+theme_override_styles/panel = SubResource("StyleBoxFlat_mtgbd")
 
 [node name="InfoMarginContrainer" type="MarginContainer" parent="WidgetBackground"]
 layout_mode = 1
