@@ -53,7 +53,8 @@ func handle_expired_message(message_instance : MessageInstance):
 		EventBus.message_responded.emit(default_response, message_instance)  
 	else:
 		message_instance.reply(null) #No default response, but still set message to responded
-	messages_to_send.erase(message)
+		if message_instance.message.is_repeatable:
+			messages_to_send.append(message_instance.message)
 
 
 func update_responded_message(response : Response, message_instance : MessageInstance):
