@@ -9,7 +9,7 @@
 [ext_resource type="Theme" uid="uid://r2tvepfwkafu" path="res://Themes/primary_button.tres" id="6_mil05"]
 [ext_resource type="Script" path="res://Scripts/UI/message_notification_button.gd" id="7_e8c6r"]
 [ext_resource type="PackedScene" uid="uid://b141qasjqe26u" path="res://Scenes/UI/message_page_controller.tscn" id="10_btbvl"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/options_page.tscn" id="10_sexli"]
+[ext_resource type="PackedScene" uid="uid://do5t8447c3iys" path="res://Scenes/UI/options_page.tscn" id="10_sexli"]
 [ext_resource type="Script" path="res://notif_controller.gd" id="15_py1x5"]
 [ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="17_j07dy"]
 [ext_resource type="Script" path="res://ending_screen.gd" id="17_kga80"]

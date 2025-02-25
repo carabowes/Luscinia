@@ -104,8 +104,8 @@ func _on_task_cancelled(task_instance : TaskInstance):
 		if message.default_response == -1 or message.default_response >= len(message.responses):
 			return
 		var default_response : Response = message.responses[message.default_response]
-		var new_instance : TaskInstance = TaskInstance.new(default_response.task, 0, 0, 0, Vector2.ZERO, true)
-		EventBus.task_finished.emit(new_instance, true)
+		var new_instance : TaskInstance = TaskInstance.new(default_response.task, 0, 0, 0, Vector2.ZERO, true, default_response.task.resources_required, message)
+		EventBus.task_finished.emit(new_instance, false)
 
 
 func validate_prerequisite(prerequisite: Prerequisite, current_turn: int) -> bool:
