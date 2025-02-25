@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://wfcc502s03m1"]
 
 [ext_resource type="Script" path="res://Scripts/Editor/task_graph_editor.gd" id="1_e4q15"]
-[ext_resource type="Resource" path="res://TaskData/Scenarios/TestScenario.tres" id="2_7xdr5"]
+[ext_resource type="Resource" uid="uid://cq8ot6u2bgf8y" path="res://TaskData/Scenarios/TestScenario.tres" id="2_7xdr5"]
 
 [node name="TaskEditor" type="Control"]
 layout_mode = 3
