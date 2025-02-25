@@ -4,6 +4,8 @@ extends Node2D
 @export var available_resources = {"people": 100, "vehicles": 80, "supplies": 100000}
 @export var relationships_to_update: Dictionary
 
+signal resource_removed(resource: String, amt: int)
+
 var resource_textures = {
 	"people": preload("res://Sprites/UI/User.png"),
 	"funds": preload("res://Sprites/UI/Dollar sign.png"),
@@ -36,6 +38,7 @@ func add_resources(resource_name: String, amount: int):
 func remove_resources(resource_name: String, amount: int):
 	if resource_name in resources:
 		resources[resource_name] -= amount
+		resource_removed.emit(resource_name, amount)
 		if resources[resource_name] < 0:
 			resources[resource_name] = 0
 	else:
@@ -52,6 +55,7 @@ func add_available_resources(resource_name: String, amount: int):
 func remove_available_resources(resource_name: String, amount: int):
 	if resource_name in resources:
 		available_resources[resource_name] -= amount
+		resource_removed.emit(resource_name, amount)
 		if available_resources[resource_name] < 0:
 			available_resources[resource_name] = 0
 	else:

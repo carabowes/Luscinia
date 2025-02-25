@@ -1,8 +1,7 @@
 extends Control
 
-@export var message_board : MessageBoard
-@export var timer: UITimer
-@export var show: bool = false
+@export var turns_to_end: int
+@export var notifications: Control
 
 @export_group("Ending Screen Text Labels")
 @export var days_amt: Label
@@ -26,20 +25,21 @@ var vehicle_amt: int = 0
 func _ready() -> void:
 	%RestartButton.connect("pressed", _restart_game)
 	%ExitButton.connect("pressed", _exit_game)
-	#message_board.connect("resource_spent", format_resource_taken)
+	ResourceManager.connect("resource_removed", format_resource_taken)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if(show):
+	if(GlobalTimer.turns == turns_to_end):
+		notifications.visible = false
 		format_resource_remaining()
-		days_amt.text = "%s Days" % str(GlobalTimer.in_game_days)
+		days_amt.text = "%s Turns" % str(GlobalTimer.turns)
 		self.visible = true
 	else:
 		self.visible = false
 
 
-func format_resource_taken(name:String, resource: String, amt: int):
+func format_resource_taken(resource: String, amt: int):
 	match resource:
 		"people":
 			personnel_amt+=amt
