@@ -21,7 +21,7 @@ func _connect_response_button(message_instance : MessageInstance):
 	for connection in %RespondButton.pressed.get_connections():
 		%RespondButton.pressed.disconnect(connection["callable"])
 	if message_instance == null: return
-	%RespondButton.pressed.connect(func(): respond_button_pressed.emit(message_instance.message))
+	%RespondButton.pressed.connect(func(): respond_button_pressed.emit(message_instance))
 	%RespondButton.visible = message_instance.message_status != MessageInstance.MessageStatus.REPLIED
 
 
