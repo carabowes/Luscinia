@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Scenario" load_steps=273 format=3 uid="uid://cq8ot6u2bgf8y"]
+[gd_resource type="Resource" script_class="Scenario" load_steps=272 format=3 uid="uid://cq8ot6u2bgf8y"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="1_22kjx"]
 [ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="2_lfadw"]
@@ -395,7 +395,7 @@ task = SubResource("Resource_j0ux1")
 script = ExtResource("1_22kjx")
 message = "We’ve been alerted of an oil spill in Cline Bay. We need to act now, delaying to take action could let the oil spill further up into the harbor preventing boats from bringing important relief supplies."
 responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_7kxht"), SubResource("Resource_es3k8"), SubResource("Resource_jssep")])
-default_response = 0
+default_response = 2
 sender = SubResource("Resource_2n57b")
 prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_2xla6")])
 antirequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_cu7gj")])
@@ -1508,7 +1508,7 @@ task = SubResource("Resource_teu76")
 
 [sub_resource type="Resource" id="Resource_a7fn1"]
 script = ExtResource("1_22kjx")
-message = "We need to resupply the aid sites, and do a staff rotation. "
+message = "We need to resupply the aid sites, and do a staff rotation."
 responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_w8mro"), SubResource("Resource_ixpx6"), SubResource("Resource_c5ada")])
 default_response = 2
 sender = SubResource("Resource_fojvw")
@@ -1524,7 +1524,7 @@ task_id = Array[String]([])
 events = Array[int]([])
 chance = 1.0
 min_turn = 5
-max_turn = 5
+max_turn = -1
 
 [sub_resource type="Resource" id="Resource_3ovro"]
 script = ExtResource("5_j85s3")
@@ -1785,7 +1785,7 @@ effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
 
 [sub_resource type="Resource" id="Resource_878ac"]
 script = ExtResource("3_8xbhe")
-response_name = "Response"
+response_name = "Plan 6"
 response_text = "Here's the donation plan."
 relationship_change = 0.0
 task = SubResource("Resource_xbrt6")
@@ -1801,14 +1801,6 @@ antirequisites = Array[ExtResource("2_lfadw")]([])
 turns_to_answer = 1
 is_repeatable = false
 cancel_behaviour = 0
-
-[sub_resource type="Resource" id="Resource_k6nsn"]
-script = ExtResource("2_lfadw")
-task_id = Array[String](["DELAY"])
-events = Array[int]([])
-chance = 0.99
-min_turn = 0
-max_turn = 0
 
 [sub_resource type="Resource" id="Resource_uadpt"]
 script = ExtResource("2_lfadw")
@@ -1901,19 +1893,19 @@ task = SubResource("Resource_oorr5")
 
 [sub_resource type="Resource" id="Resource_diysk"]
 script = ExtResource("1_22kjx")
-message = "We can send you some resources, just make a request. Take your time, we will always be available."
+message = "We can send you some resources, just make a request. Take your time, we will be available every couple hours."
 responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_a5pvu"), SubResource("Resource_1k2n7"), SubResource("Resource_7wme4")])
 default_response = -1
 sender = SubResource("Resource_fojvw")
 prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_uadpt")])
-antirequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_k6nsn")])
-turns_to_answer = 1
+antirequisites = Array[ExtResource("2_lfadw")]([])
+turns_to_answer = -1
 is_repeatable = true
 cancel_behaviour = 0
 
 [sub_resource type="Resource" id="Resource_jjhxp"]
 script = ExtResource("2_lfadw")
-task_id = Array[String](["DELAY"])
+task_id = Array[String]([])
 events = Array[int]([])
 chance = 1.0
 min_turn = 0
@@ -2004,9 +1996,9 @@ message = "We can send you some resources, just make a request. Take your time, 
 responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_2aap7"), SubResource("Resource_qf4q4"), SubResource("Resource_gwpx4")])
 default_response = -1
 sender = SubResource("Resource_fojvw")
-prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_jjhxp")])
-antirequisites = Array[ExtResource("2_lfadw")]([])
-turns_to_answer = 1
+prerequisites = Array[ExtResource("2_lfadw")]([])
+antirequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_jjhxp")])
+turns_to_answer = 3
 is_repeatable = true
 cancel_behaviour = 0
 
@@ -2466,7 +2458,7 @@ task = SubResource("Resource_m6ywt")
 script = ExtResource("1_22kjx")
 message = "There's been a cholera outbreak in some of the sites. We need an urget response now."
 responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_acdku"), SubResource("Resource_h3a50"), SubResource("Resource_42n8m")])
-default_response = 1
+default_response = 2
 sender = SubResource("Resource_v3wqr")
 prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_ffrhe"), SubResource("Resource_fe6q5")])
 antirequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_1h83i")])
@@ -2549,7 +2541,7 @@ task = SubResource("Resource_4yxlj")
 script = ExtResource("1_22kjx")
 message = "We've found that some of our staff have caught cholera from the recent outbreak. We need to quarantine and treat them now."
 responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_xijvy"), SubResource("Resource_8sj7g")])
-default_response = 0
+default_response = 2
 sender = SubResource("Resource_fojvw")
 prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_444ir"), SubResource("Resource_7it0g"), SubResource("Resource_05bhj")])
 antirequisites = Array[ExtResource("2_lfadw")]([])
