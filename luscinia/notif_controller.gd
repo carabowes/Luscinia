@@ -1,7 +1,5 @@
 extends Control
 
-signal resource_gained(resource: String, amt: int)
-
 @export var message_board : MessageBoard
 @export var task_widget_renderer : TaskWidgetRenderer
 @export var start_task_notif_label: Label
@@ -18,19 +16,22 @@ var got_report: bool = false
 func _ready() -> void:
 	GlobalTimer.connect("turn_progressed",show_turn_notif)
 	#message_board.connect("resource_spent", format_spent_resource_text)
-	#message_board.connect("response_picked",show_task_start_notif)
-	task_widget_renderer.connect("resource_gained", format_gained_resource_text)
+	EventBus.task_started.connect(show_task_start_notif)
+	#task_widget_renderer.connect("resource_gained", format_gained_resource_text)
 	EventBus.task_finished.connect(show_task_end_notif)
 
 
-func format_gained_resource_text(resource: String, amt: int):
-	if(!got_report):
-		task_end_notif_text += "Task %s has ended! \n Resources gained:\n" % name
-		got_report = true
-	task_end_notif_text += "%s +%d\n" % [resource, amt]
-
-
 func show_task_end_notif(task: TaskInstance, cancelled: bool):
+	if cancelled:
+		return
+	if task != null :
+		if task.task_data.resources_gained == {}:
+			return
+		task_end_notif_text += "Task %s has begun! \n Resources taken:\n" % task.task_data.name
+		for resource in task.task_data.resources_gained:
+			task_end_notif_text += "%s +%d\n" % [resource, task.task_data.resources_gained[resource]]
+	else:
+		return
 	$time_skip_notification.visible = false
 	showing = true
 	end_task_notif_label.text = task_end_notif_text
@@ -46,17 +47,17 @@ func show_task_end_notif(task: TaskInstance, cancelled: bool):
 	showing = false
 
 
-func format_spent_resource_text(name:String, resource: String, amt: int):
-	if(!got_name):
-		task_start_notif_text += "Task %s has begun! \n Resources taken:\n" % name
-		got_name = true
-	task_start_notif_text += "%s -%d\n" % [resource, amt]
-
-
-func show_task_start_notif():
+func show_task_start_notif(task: TaskInstance):
+	if task != null :
+		if task.task_data.resources_required == {}:
+			return
+		task_start_notif_text += "Task %s has begun! \n Resources taken:\n" % task.task_data.name
+		for resource in task.task_data.resources_required:
+			task_start_notif_text += "%s -%d\n" % [resource, task.task_data.resources_required[resource]]
+	else:
+		return
 	start_task_notif_label.text = task_start_notif_text
 	task_start_notif_text = ""
-	got_name = false
 	var tween1 = get_tree().create_tween()
 	#og -360, 205
 	#center 0, 205
