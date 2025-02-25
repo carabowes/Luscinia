@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4qk6ql6bvtw1"]
+
+[ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="2_fxeco"]
+[ext_resource type="Theme" uid="uid://bw1bgre028bfm" path="res://Sprites/UI/themes/details_page_theme_var2.tres" id="3_6ukax"]
+
+[node name="messenger" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -744.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.062
+offset_bottom = 5.4
+theme = ExtResource("2_fxeco")
+theme_override_font_sizes/font_size = 40
+text = "New Message!"
+
+[node name="Button2" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.062
+offset_bottom = 51.528
+theme = ExtResource("3_6ukax")
+theme_override_font_sizes/font_size = 34
+text = "Emergency Message!"
