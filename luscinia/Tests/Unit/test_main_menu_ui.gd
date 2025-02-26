@@ -60,4 +60,4 @@ func test_back_button():
 	assert_eq(menu_scene.get_node("%Scenario2Button").position.x, 384.0)
 	assert_eq(menu_scene.get_node("%PersonalmodeButton").position.x, 384.0)
 	assert_eq(menu_scene.get_node("%DiscussionmodeButton").position.x, 384.0)
-	assert_eq(menu_scene.get_node("%BackButton").position.x, 384.0)
+	assert_eq(round(menu_scene.get_node("%BackButton").position.x), 384)

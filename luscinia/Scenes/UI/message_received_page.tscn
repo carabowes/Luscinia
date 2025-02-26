@@ -26,13 +26,13 @@ grow_vertical = 2
 [node name="BackButton" type="Button" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 19.0
+offset_left = 15.0
 offset_top = 15.0
-offset_right = 82.0
-offset_bottom = 38.0
+offset_right = 62.0
+offset_bottom = 48.0
 size_flags_horizontal = 0
 theme = ExtResource("2_6l7lf")
-text = "Go Back"
+text = "  Back  "
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1

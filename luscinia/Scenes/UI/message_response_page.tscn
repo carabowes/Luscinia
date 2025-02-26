@@ -68,7 +68,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("4_svsoh")
-text = "Go Back"
+text = "  Back  "
 
 [node name="InformationLayout" type="VBoxContainer" parent="Margin/PageLayout"]
 layout_mode = 2
