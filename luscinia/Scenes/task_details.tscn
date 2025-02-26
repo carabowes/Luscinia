@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/UI/task_details.gd" id="1_dalyu"]
 [ext_resource type="Script" path="res://Scripts/UI/time_progress_bar.gd" id="1_stskc"]
+[ext_resource type="Theme" uid="uid://r2tvepfwkafu" path="res://Themes/primary_button.tres" id="2_qc17l"]
 [ext_resource type="PackedScene" uid="uid://bxndjmqmmnwuu" path="res://Scenes/UI/task_resources.tscn" id="4_xomxh"]
 [ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="4_yi0aj"]
 
@@ -9,9 +10,6 @@
 bg_color = Color(0.956863, 0.929412, 0.952941, 1)
 
 [sub_resource type="Theme" id="Theme_71kbt"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fdyfv"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2l6xi"]
 font_size = 24
@@ -96,10 +94,8 @@ theme = SubResource("Theme_71kbt")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("StyleBoxFlat_fdyfv")
-text = "<= Return to Map"
+theme = ExtResource("2_qc17l")
+text = "  Back  "
 
 [node name="TaskTitle" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements"]
 unique_name_in_owner = true
@@ -286,6 +282,7 @@ mouse_filter = 2
 
 [node name="Buttons" type="HBoxContainer" parent="TaskCancelConfirmationPage/Margin/VContainer"]
 layout_mode = 2
+theme_override_constants/separation = 30
 alignment = 1
 
 [node name="CancelEndButton" type="Button" parent="TaskCancelConfirmationPage/Margin/VContainer/Buttons"]
@@ -295,7 +292,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("4_yi0aj")
-text = "     Cancel     "
+text = "     Back     "
 
 [node name="ConfirmEndButton" type="Button" parent="TaskCancelConfirmationPage/Margin/VContainer/Buttons"]
 unique_name_in_owner = true

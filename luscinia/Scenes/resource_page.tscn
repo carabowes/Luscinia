@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvvers1ky31ox"]
+[gd_scene load_steps=4 format=3 uid="uid://dvvers1ky31ox"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/resource_page.gd" id="1_3ccde"]
+[ext_resource type="Theme" uid="uid://r2tvepfwkafu" path="res://Themes/primary_button.tres" id="2_8blm7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tws4w"]
 bg_color = Color(0.956863, 0.929412, 0.952941, 1)
@@ -132,8 +133,9 @@ vertical_alignment = 1
 [node name="ReturnButton" type="Button" parent="Background"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 8.46
-offset_top = 8.0
-offset_right = 176.46
-offset_bottom = 41.0
-text = " <- Return to Map "
+offset_left = 15.0
+offset_top = 23.0
+offset_right = 62.0
+offset_bottom = 56.0
+theme = ExtResource("2_8blm7")
+text = "  Back  "
