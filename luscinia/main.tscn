@@ -65,13 +65,11 @@ script = ExtResource("7_e8c6r")
 
 [node name="MessagePageController" parent="pages" instance=ExtResource("10_btbvl")]
 unique_name_in_owner = true
-z_index = 1
 layout_mode = 1
 
 [node name="ResourcesPage" parent="pages" instance=ExtResource("4_vi8yg")]
 unique_name_in_owner = true
 visible = false
-z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_top = -0.018
@@ -82,12 +80,12 @@ offset_bottom = -798.179
 [node name="TaskDetailsPage" parent="pages" instance=ExtResource("5_0qr7n")]
 unique_name_in_owner = true
 visible = false
-z_index = 1
 layout_mode = 1
 offset_top = 0.0
 offset_bottom = 0.0
 
 [node name="notifications" type="Control" parent="pages" node_paths=PackedStringArray("task_widget_renderer", "start_task_notif_label", "end_task_notif_label")]
+z_index = 100
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
