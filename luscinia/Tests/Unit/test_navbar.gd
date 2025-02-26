@@ -1,7 +1,6 @@
 extends GutTest
 
 var navbar
-var resource_page
 
 func before_each():
 	navbar = load("res://Scenes/navbar.tscn").instantiate()
@@ -10,7 +9,6 @@ func before_each():
 
 func after_each():
 	navbar.free()
-	resource_page.free()
 	
 
 func test_button_signals():

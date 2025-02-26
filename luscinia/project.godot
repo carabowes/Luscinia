@@ -39,7 +39,7 @@ project/assembly_name="Luscinia"
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
 [gui]
 

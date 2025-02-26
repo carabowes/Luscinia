@@ -16,6 +16,7 @@ func _start_task(response : Response, message_instance : MessageInstance):
 	ResourceManager.apply_start_task_resources(response.task.resources_required)
 	#If the task has a completion time of 0 just mark it complete already
 	if new_task_instance.task_data.expected_completion_time == 0:
+		print(new_task_instance.task_data.name)
 		_finish_task(new_task_instance)
 	else:
 		active_tasks.append(new_task_instance)
@@ -38,6 +39,7 @@ func _finish_task(task : TaskInstance, cancelled = false):
 	ResourceManager.apply_end_task_resources(resources_gained, task.task_data.resources_required)
 	active_tasks.erase(task)
 	completed_tasks.append(task)
+	print(completed_tasks)
 	if task.task_data.expected_completion_time == 0:
 		ResourceManager.apply_relationship_change(task.task_data.task_id, task.sender, 1) #Hardcode 1 for current progress to avoid divide by 0 error
 	else:
