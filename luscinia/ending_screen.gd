@@ -65,6 +65,7 @@ func format_resource_remaining():
 func _restart_game():
 	GlobalTimer.reset_clock()
 	ResourceManager.reset_resources()
+	MessageManager.reset_messages()
 	get_tree().reload_current_scene()
 	GlobalTimer.start_game()
 
@@ -72,4 +73,5 @@ func _restart_game():
 func _exit_game():
 	GlobalTimer.reset_clock()
 	ResourceManager.reset_resources()
+	MessageManager.reset_messages()
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
