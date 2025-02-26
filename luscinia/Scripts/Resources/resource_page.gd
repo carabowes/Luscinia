@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 func update_label(label_name: String, resource_name: String, texture_name: String):
 	var label = get_node(label_name)
 	if label and resource_name in resources:
-		if resource_name != "funds":
+		if resource_name != "funds" and resource_name != "supplies":
 			label.text = (
 				str(ResourceManager.format_resource_value(available_resources.get(resource_name, 0),2))
 				+ " / "
