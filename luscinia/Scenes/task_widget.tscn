@@ -11,6 +11,9 @@ corner_radius_top_left = 24
 corner_radius_top_right = 24
 corner_radius_bottom_right = 24
 corner_radius_bottom_left = 24
+shadow_color = Color(0, 0, 0, 0.313726)
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhecv"]
 bg_color = Color(0.207843, 0.376471, 0.690196, 1)
@@ -47,7 +50,7 @@ corner_radius_bottom_left = 5
 line_spacing = -2.0
 font_color = Color(0, 0, 0, 1)
 
-[node name="TaskWidget" type="Control" groups=["task_widgets"]]
+[node name="TaskWidget" type="Control"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 3
 anchors_preset = 0

@@ -1,8 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnpov8fcn2j0g"]
+[gd_scene load_steps=6 format=3 uid="uid://cnpov8fcn2j0g"]
 
 [ext_resource type="Script" path="res://Scripts/UI/task_widget_renderer.gd" id="1_pjqy6"]
+[ext_resource type="Texture2D" uid="uid://dh4uyddoktdn6" path="res://Sprites/TaskSprites/Person.png" id="4_7nhtf"]
 [ext_resource type="Script" path="res://Scripts/UI/map_controller.gd" id="7_pujv3"]
 [ext_resource type="Texture2D" uid="uid://c5tv206f6s8ns" path="res://Sprites/freetownmap.png" id="8_sd44s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k1lfx"]
+bg_color = Color(0.254902, 0.560784, 0.870588, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.313726)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+anti_aliasing = false
+anti_aliasing_size = 0.01
 
 [node name="Map" type="Control"]
 layout_mode = 3
@@ -38,3 +51,26 @@ offset_bottom = 558.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_sd44s")
+
+[node name="ResourceBubble" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -39.0
+offset_right = -19.0
+offset_bottom = 20.0
+pivot_offset = Vector2(10, 10)
+theme_override_styles/panel = SubResource("StyleBoxFlat_k1lfx")
+
+[node name="ResourceIcon" type="TextureRect" parent="ResourceBubble"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_7nhtf")
+expand_mode = 1
