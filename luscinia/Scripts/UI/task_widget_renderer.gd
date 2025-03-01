@@ -29,7 +29,7 @@ func create_widget(task_instance : TaskInstance):
 	render_widgets()
 
 
-func delete_widget(task_instance : TaskInstance, cancelled : bool):
+func delete_widget(task_instance : TaskInstance):
 	for widget in task_widgets:
 		if widget.task_info == task_instance:
 			task_widgets.erase(widget)

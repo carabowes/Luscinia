@@ -21,9 +21,7 @@ func _ready() -> void:
 	EventBus.task_finished.connect(show_task_end_notif)
 
 
-func show_task_end_notif(task: TaskInstance, cancelled: bool):
-	if cancelled:
-		return
+func show_task_end_notif(task: TaskInstance):
 	if task != null :
 		if task.task_data.resources_gained == {}:
 			return
