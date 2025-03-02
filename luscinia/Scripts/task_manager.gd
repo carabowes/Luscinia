@@ -20,7 +20,6 @@ func _ready() -> void:
 
 
 func _on_message_responded(response : Response, message_instance : MessageInstance):
-	print("Heyo")
 	var message : Message = message_instance.message
 	var new_task_instance = TaskInstance.new(response.task, message)
 	_start_task(new_task_instance, response.relationship_change)
@@ -53,28 +52,22 @@ func _finish_task(task_instance : TaskInstance, cancelled = false):
 	active_tasks.erase(task_instance)
 
 	var task_data : TaskData = task_instance.task_data
-	var completion_rate : float = 1.0
-	if task_data.expected_completion_time != 0:
-		completion_rate = task_instance.current_progress/task_data.expected_completion_time
 	var resources_gained = task_data.resources_gained
 	if cancelled:
-		# If cancelled gain back the resources used, except funds and supplies
-		resources_gained = task_data.resources_required 
-		resources_gained["funds"]  = 0
-		resources_gained["supplies"] = 0
-	_apply_task_end_changes(resources_gained, completion_rate, task_instance)
+		# If cancelled gain back the current resources of the task
+		resources_gained = task_instance.actual_resources
+	_apply_task_end_changes(resources_gained, task_instance)
 
 	EventBus.task_finished.emit(task_instance)
 
 
 func _apply_task_end_changes(
-	resources : Dictionary, completion_rate : int, task_instance : TaskInstance
+	resources : Dictionary, task_instance : TaskInstance
 ):
 	var task_data : TaskData = task_instance.task_data
 	ResourceManager.apply_end_task_resources(resources, task_data.resources_required)
-	print("Applying with ", completion_rate)
 	ResourceManager.apply_relationship_change(
-		task_data.task_id, task_instance.sender, completion_rate
+		task_data.task_id, task_instance.sender, task_instance.get_completion_rate()
 	)
 
 
@@ -82,7 +75,7 @@ func _on_task_cancelled(task_instance : TaskInstance):
 	var cancel_behaviour = task_instance.message.cancel_behaviour
 	var message : Message = task_instance.message
 	if cancel_behaviour == Message.CancelBehaviour.ACT_AS_COMPLETED:
-		task_instance.is_completed
+		task_instance.is_completed = true
 	elif cancel_behaviour == Message.CancelBehaviour.PICK_DEFAULT:
 		if message.default_response == -1 or message.default_response >= len(message.responses):
 			return
