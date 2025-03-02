@@ -1,9 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://dp3ypaulk2p3d"]
+[gd_scene load_steps=19 format=3 uid="uid://dp3ypaulk2p3d"]
 
 [ext_resource type="StyleBox" uid="uid://wlfk11s2ym4x" path="res://Sprites/UI/themes/primary_accent.tres" id="1_mtsjj"]
 [ext_resource type="Script" path="res://Scripts/UI/task_widget.gd" id="1_y4lne"]
 [ext_resource type="Theme" uid="uid://r2tvepfwkafu" path="res://Themes/primary_button.tres" id="2_4ib4t"]
 [ext_resource type="Texture2D" uid="uid://dg01boigrppxu" path="res://Sprites/UI/starTaskIcon.png" id="2_nlt36"]
+[ext_resource type="FontFile" uid="uid://dqb15p2ijprjy" path="res://Sprites/Fonts/ReadexPro-Bold.ttf" id="5_j6jcq"]
+[ext_resource type="FontFile" uid="uid://bm50ve2s6rkjl" path="res://Sprites/Fonts/ReadexPro-Medium.ttf" id="5_w1d6l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtgbd"]
 bg_color = Color(0.254902, 0.560784, 0.870588, 1)
@@ -12,8 +14,15 @@ corner_radius_top_right = 24
 corner_radius_bottom_right = 24
 corner_radius_bottom_left = 24
 shadow_color = Color(0, 0, 0, 0.313726)
-shadow_size = 5
-shadow_offset = Vector2(0, 3)
+shadow_size = 3
+shadow_offset = Vector2(0, 2)
+anti_aliasing_size = 0.2
+
+[sub_resource type="LabelSettings" id="LabelSettings_sr43u"]
+line_spacing = -2.0
+font = ExtResource("5_w1d6l")
+font_color = Color(0.137556, 0.143212, 0.165642, 1)
+outline_size = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhecv"]
 bg_color = Color(0.207843, 0.376471, 0.690196, 1)
@@ -22,33 +31,67 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s0nn8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iqao6"]
+bg_color = Color(0.0705882, 0.0431373, 0.101961, 0.321569)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing_size = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qlnbm"]
+bg_color = Color(0.254902, 0.560784, 0.870588, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing_size = 0.2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chlsg"]
+bg_color = Color(0.207843, 0.376471, 0.690196, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing_size = 0.1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qcrjb"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
+anti_aliasing_size = 0.1
 
-[sub_resource type="LabelSettings" id="LabelSettings_mkf73"]
-line_spacing = 0.0
-font_size = 12
+[sub_resource type="LabelSettings" id="LabelSettings_t0s1d"]
+font = ExtResource("5_j6jcq")
+font_size = 10
 
-[sub_resource type="LabelSettings" id="LabelSettings_koxl4"]
-font_size = 12
+[sub_resource type="LabelSettings" id="LabelSettings_u1hlf"]
+font = ExtResource("5_j6jcq")
+font_size = 14
 
-[sub_resource type="LabelSettings" id="LabelSettings_xeijb"]
-font_size = 12
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqq52"]
+bg_color = Color(0.207843, 0.376471, 0.690196, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing_size = 0.2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcwqi"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8dfvt"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+anti_aliasing_size = 0.2
 
-[sub_resource type="LabelSettings" id="LabelSettings_sr43u"]
-line_spacing = -2.0
-font_color = Color(0, 0, 0, 1)
+[sub_resource type="Theme" id="Theme_oobgx"]
+Button/styles/focus = SubResource("StyleBoxFlat_cqq52")
+Button/styles/hover = SubResource("StyleBoxFlat_cqq52")
+Button/styles/normal = SubResource("StyleBoxFlat_8dfvt")
+Button/styles/pressed = SubResource("StyleBoxFlat_cqq52")
 
 [node name="TaskWidget" type="Control"]
 custom_minimum_size = Vector2(48, 48)
@@ -65,12 +108,28 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_y4lne")
 metadata/_edit_use_anchors_ = true
+metadata/_edit_vertical_guides_ = [-63.0, -90.0, -100.0, -35.0, 100.0, 90.0, -20.0]
+metadata/_edit_horizontal_guides_ = [-112.0, -102.0, -47.0, -12.0, -22.0, -62.0, -37.0]
 
-[node name="WidgetBackground" type="Panel" parent="."]
+[node name="Scaler" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+mouse_filter = 2
+
+[node name="LowDetailWidget" type="Panel" parent="Scaler"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(24, 24)
@@ -78,7 +137,7 @@ mouse_filter = 2
 theme = ExtResource("2_4ib4t")
 theme_override_styles/panel = SubResource("StyleBoxFlat_mtgbd")
 
-[node name="InfoMarginContrainer" type="MarginContainer" parent="WidgetBackground"]
+[node name="InfoMarginContrainer" type="MarginContainer" parent="Scaler/LowDetailWidget"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,24 +149,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="WidgetInfo" type="HBoxContainer" parent="WidgetBackground/InfoMarginContrainer"]
-layout_mode = 2
-
-[node name="IconInfoMargin" type="MarginContainer" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 0
-
-[node name="IconInfoContainer" type="VBoxContainer" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.4
-
-[node name="TaskIcon" type="TextureRect" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer"]
+[node name="TaskIconLow" type="TextureRect" parent="Scaler/LowDetailWidget/InfoMarginContrainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
@@ -116,123 +158,25 @@ texture = ExtResource("2_nlt36")
 expand_mode = 5
 stretch_mode = 4
 
-[node name="ProgressBarHigh" type="ProgressBar" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer"]
+[node name="TaskNameMed" type="Label" parent="Scaler/LowDetailWidget"]
 unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.06
-theme_override_styles/background = SubResource("StyleBoxFlat_dhecv")
-theme_override_styles/fill = SubResource("StyleBoxFlat_s0nn8")
-value = 25.0
-show_percentage = false
-
-[node name="HoursLeftLabelHigh" type="Label" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/IconInfoMargin/IconInfoContainer"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_vertical = 2
-size_flags_stretch_ratio = 0.2
-text = "2 hrs"
-label_settings = SubResource("LabelSettings_mkf73")
-horizontal_alignment = 1
-
-[node name="TaskInfoHigh" type="MarginContainer" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_stretch_ratio = 2.0
-theme_override_constants/margin_top = 5
-
-[node name="TaskInfoContainer" type="VBoxContainer" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_stretch_ratio = 0.6
-
-[node name="TaskNameHigh" type="Label" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 45)
-layout_mode = 2
-text = "Providing Aid in Koza"
-label_settings = SubResource("LabelSettings_koxl4")
-vertical_alignment = 1
-autowrap_mode = 2
-text_overrun_behavior = 3
-
-[node name="ResourcesContainer" type="HBoxContainer" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.1
-
-[node name="ResourceOneIcon" type="TextureRect" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("2_nlt36")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="ResourceOneLabel" type="Label" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 8
-text = "20"
-label_settings = SubResource("LabelSettings_xeijb")
-
-[node name="ResourceTwoIcon" type="TextureRect" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("2_nlt36")
-expand_mode = 2
-stretch_mode = 4
-
-[node name="ResourceTwoLabel" type="Label" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ResourcesContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 8
-text = "10"
-label_settings = SubResource("LabelSettings_xeijb")
-
-[node name="ViewMoreButtonMargin" type="MarginContainer" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.15
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 9
-theme_override_constants/margin_right = 6
-theme_override_constants/margin_bottom = 3
-
-[node name="ViewMoreButton" type="Button" parent="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ViewMoreButtonMargin"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 9
-theme_override_styles/normal = SubResource("StyleBoxFlat_jcwqi")
-text = "view more"
-
-[node name="TaskNameMed" type="Label" parent="WidgetBackground"]
-unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -48.0
+offset_left = -96.0
 offset_top = 4.0
-offset_right = 48.0
+offset_right = 96.0
 offset_bottom = 53.0
-text = "Providing Aid"
+text = "FREETOWN SEARCH PARTY"
 label_settings = SubResource("LabelSettings_sr43u")
 horizontal_alignment = 1
 autowrap_mode = 2
 text_overrun_behavior = 3
 
-[node name="ProgressBarLowMed" type="ProgressBar" parent="WidgetBackground"]
+[node name="ProgressBarLowMed" type="ProgressBar" parent="Scaler/LowDetailWidget"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = -3.0
@@ -244,4 +188,133 @@ theme_override_styles/fill = ExtResource("1_mtsjj")
 value = 25.0
 show_percentage = false
 
-[connection signal="pressed" from="WidgetBackground/InfoMarginContrainer/WidgetInfo/TaskInfoHigh/TaskInfoContainer/ViewMoreButtonMargin/ViewMoreButton" to="." method="_show_task_details_page"]
+[node name="HighDetailWidget" type="Control" parent="Scaler"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -1.0
+offset_bottom = -1.0
+mouse_filter = 2
+
+[node name="Shadow" type="Panel" parent="Scaler/HighDetailWidget"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.612
+anchor_top = 0.6
+anchor_right = 0.612
+anchor_bottom = 0.6
+offset_left = -95.0
+offset_top = -4.0
+offset_right = 95.0
+offset_bottom = 4.0
+pivot_offset = Vector2(90, 4)
+theme_override_styles/panel = SubResource("StyleBoxFlat_iqao6")
+
+[node name="Background" type="Panel" parent="Scaler/HighDetailWidget"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -112.0
+offset_right = 100.0
+offset_bottom = -12.0
+pivot_offset = Vector2(100, 110)
+theme_override_styles/panel = SubResource("StyleBoxFlat_qlnbm")
+
+[node name="Pointer" type="Panel" parent="Scaler/HighDetailWidget/Background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -12.0
+offset_top = -15.0
+offset_right = 12.0
+offset_bottom = 9.00002
+rotation = 0.785398
+pivot_offset = Vector2(12, 12)
+theme_override_styles/panel = SubResource("StyleBoxFlat_qlnbm")
+
+[node name="Layout" type="Control" parent="Scaler/HighDetailWidget/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TaskIconHigh" type="TextureRect" parent="Scaler/HighDetailWidget/Background/Layout"]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 65.0
+offset_bottom = 65.0
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 50.0
+texture = ExtResource("2_nlt36")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ProgressBarHigh" type="ProgressBar" parent="Scaler/HighDetailWidget/Background/Layout"]
+unique_name_in_owner = true
+offset_left = 10.0
+offset_top = 68.0
+offset_right = 65.0
+offset_bottom = 74.0
+theme_override_styles/background = SubResource("StyleBoxFlat_chlsg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qcrjb")
+value = 25.0
+show_percentage = false
+
+[node name="TimeLeftLabelHigh" type="Label" parent="Scaler/HighDetailWidget/Background/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 10.0
+offset_top = 76.0
+offset_right = 65.0
+offset_bottom = 90.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 10.0
+text = "2 hrs"
+label_settings = SubResource("LabelSettings_t0s1d")
+horizontal_alignment = 1
+
+[node name="TaskNameLabelHigh" type="Label" parent="Scaler/HighDetailWidget/Background/Layout"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 80.0
+offset_top = 11.0
+offset_right = 190.0
+offset_bottom = 56.0
+text = "FREETOWN SEARCH PARTY"
+label_settings = SubResource("LabelSettings_u1hlf")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="Button" type="Button" parent="Scaler/HighDetailWidget/Background/Layout"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 62.0
+offset_right = 189.0
+offset_bottom = 85.0
+theme = SubResource("Theme_oobgx")
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.215902, 0.215902, 0.215902, 1)
+theme_override_fonts/font = ExtResource("5_j6jcq")
+theme_override_font_sizes/font_size = 9
+text = "VIEW MORE"

@@ -15,9 +15,10 @@ func _draw() -> void:
 
 
 func _gui_input(event: InputEvent) -> void:
+	print("GUI EVENT")
 	if event.is_action_pressed("interact"):
 		set_level_of_detail(LevelOfDetail.HIGH)
-		widget_selected.emit($".")
+		widget_selected.emit(self)
 
 
 func set_level_of_detail(new_lod, use_animation = true):
@@ -33,12 +34,10 @@ func set_level_of_detail(new_lod, use_animation = true):
 	if switching_from_or_to_high_detail and use_animation:
 		var tween = get_tree().create_tween()
 		tween.tween_property(
-			self.get_child(0), "scale",
-			Vector2.ONE * 0, 0.1
+			%Scaler, "scale",Vector2.ONE * 0, 0.15
 		).set_trans(Tween.TRANS_QUAD)
 		tween.tween_property(
-			self.get_child(0), "scale",
-			Vector2.ONE, 0.15
+			%Scaler, "scale", Vector2.ONE, 0.2
 		).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 		# Wait for first tween step to finish before switching LOD
 		await tween.step_finished
@@ -55,58 +54,33 @@ func set_level_of_detail(new_lod, use_animation = true):
 
 
 func render_task_info():
-	%TaskNameHigh.text = task_info.task_data.name
-	%TaskNameMed.text = task_info.task_data.name
-	%TaskIcon.texture = task_info.task_data.icon
+	%TaskNameLabelHigh.text = task_info.task_data.name.to_upper()
+	%TaskNameMed.text = task_info.task_data.name.to_upper()
+	%TaskIconLow.texture = task_info.task_data.icon
+	%TaskIconHigh.texture = task_info.task_data.icon
 	%ProgressBarLowMed.max_value = task_info.get_total_time()
 	%ProgressBarLowMed.value = task_info.current_progress
 	%ProgressBarHigh.max_value = task_info.get_total_time()
 	%ProgressBarHigh.value = task_info.current_progress
-	%HoursLeftLabelHigh.text = str(task_info.get_remaining_time()) + " hrs"
-
-	if "funds" in task_info.task_data.resources_required.keys():
-		%ResourceOneIcon.texture = ResourceManager.get_resource_texture("funds")
-		%ResourceOneLabel.text = str(task_info.task_data.resources_required["funds"])
-
-	if "people" in task_info.task_data.resources_required.keys():
-		%ResourceTwoIcon.texture = ResourceManager.get_resource_texture("people")
-		%ResourceTwoLabel.text = str(task_info.task_data.resources_required["people"])
+	%TimeLeftLabelHigh.text = str(task_info.get_remaining_time()) + " hrs"
 
 
 func _switch_to_low_lod():
-	custom_minimum_size = Vector2(48, 48)
-	pivot_offset = Vector2(24, 24)
-	get_child(0).pivot_offset = Vector2(24, 24)
-	%ProgressBarLowMed.visible = true
 	%TaskNameMed.visible = false
-	%TaskInfoHigh.visible = false
-	%ProgressBarHigh.visible = false
-	%HoursLeftLabelHigh.visible = false
-	%IconInfoMargin.add_theme_constant_override("margin_top", 0)
+	%LowDetailWidget.visible = true
+	%HighDetailWidget.visible = false
 
 
 func _switch_to_med_lod():
-	custom_minimum_size = Vector2(48, 48)
-	pivot_offset = Vector2(24, 24)
-	get_child(0).pivot_offset = Vector2(24, 24)
-	%ProgressBarLowMed.visible = true
 	%TaskNameMed.visible = true
-	%TaskInfoHigh.visible = false
-	%ProgressBarHigh.visible = false
-	%HoursLeftLabelHigh.visible = false
-	%IconInfoMargin.add_theme_constant_override("margin_top", 0)
+	%LowDetailWidget.visible = true
+	%HighDetailWidget.visible = false
 
 
 func _switch_to_high_lod():
-	custom_minimum_size = Vector2(220, 120)
-	pivot_offset = Vector2(110, 80)
-	get_child(0).pivot_offset =  Vector2(110, 80)
-	%ProgressBarLowMed.visible = false
 	%TaskNameMed.visible = false
-	%TaskInfoHigh.visible = true
-	%ProgressBarHigh.visible = true
-	%HoursLeftLabelHigh.visible = true
-	%IconInfoMargin.add_theme_constant_override("margin_top", 8)
+	%LowDetailWidget.visible = false
+	%HighDetailWidget.visible = true
 
 
 func _show_task_details_page():
