@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://df5nbiygwfdeb"]
 
 [ext_resource type="Script" path="res://Scripts/UI/resource_ui_entry.gd" id="1_4qxd5"]
-[ext_resource type="Texture2D" uid="uid://dmrhlqq3p4y0g" path="res://Sprites/Package.png" id="2_bsoio"]
+[ext_resource type="Texture2D" uid="uid://dh4uyddoktdn6" path="res://Sprites/TaskSprites/Person.png" id="2_1251w"]
 [ext_resource type="Texture2D" uid="uid://d1prnk2q4ke5m" path="res://Sprites/arrow.png" id="3_yp1id"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rc13s"]
@@ -24,10 +24,11 @@ size_flags_vertical = 4
 
 [node name="ResourceIcon" type="TextureRect" parent="IconContainer"]
 unique_name_in_owner = true
+self_modulate = Color(0.136826, 0.136826, 0.136826, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-texture = ExtResource("2_bsoio")
+texture = ExtResource("2_1251w")
 expand_mode = 4
 
 [node name="ResourceAmount" type="Label" parent="."]

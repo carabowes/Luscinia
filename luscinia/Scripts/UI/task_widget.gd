@@ -30,6 +30,7 @@ func _gui_input(event: InputEvent) -> void:
 func set_level_of_detail(new_lod, use_animation = true):
 	if current_level_of_detail == new_lod:
 		return
+	current_level_of_detail = new_lod
 
 	var switching_from_or_to_high_detail = (
 		current_level_of_detail == LevelOfDetail.HIGH
@@ -56,7 +57,6 @@ func set_level_of_detail(new_lod, use_animation = true):
 			_switch_to_med_lod()
 		LevelOfDetail.HIGH:
 			_switch_to_high_lod()
-	current_level_of_detail = new_lod
 
 
 func render_task_info():

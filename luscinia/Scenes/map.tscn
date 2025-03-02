@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cnpov8fcn2j0g"]
 
 [ext_resource type="Script" path="res://Scripts/UI/task_widget_renderer.gd" id="1_pjqy6"]
-[ext_resource type="Texture2D" uid="uid://dh4uyddoktdn6" path="res://Sprites/TaskSprites/Person.png" id="4_7nhtf"]
+[ext_resource type="Texture2D" uid="uid://bib3v5a1f2b2o" path="res://Sprites/UI/User.png" id="4_ommev"]
 [ext_resource type="Script" path="res://Scripts/UI/map_controller.gd" id="7_pujv3"]
 [ext_resource type="Texture2D" uid="uid://c5tv206f6s8ns" path="res://Sprites/freetownmap.png" id="8_sd44s"]
 
@@ -63,14 +63,16 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_k1lfx")
 
 [node name="ResourceIcon" type="TextureRect" parent="ResourceBubble"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = 2.0
-offset_right = -2.0
-offset_bottom = -2.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_7nhtf")
+texture = ExtResource("4_ommev")
 expand_mode = 1

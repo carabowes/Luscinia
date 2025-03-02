@@ -118,25 +118,45 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Personnel" type="Sprite2D" parent="ResourceDisplay/SpriteHolder"]
-position = Vector2(24, 16)
-scale = Vector2(0.541667, 0.541667)
+[node name="Person" type="TextureRect" parent="ResourceDisplay/SpriteHolder"]
+self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
+layout_mode = 0
+offset_left = 18.5
+offset_top = 8.5
+offset_right = 30.5
+offset_bottom = 20.5
 texture = ExtResource("5_1iyi8")
+expand_mode = 1
 
-[node name="Supplies" type="Sprite2D" parent="ResourceDisplay/SpriteHolder"]
-position = Vector2(59, 16)
-scale = Vector2(0.53125, 0.53125)
+[node name="Supplies" type="TextureRect" parent="ResourceDisplay/SpriteHolder"]
+self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
+layout_mode = 0
+offset_left = 52.5
+offset_top = 8.5
+offset_right = 64.5
+offset_bottom = 20.5
 texture = ExtResource("6_5mb17")
+expand_mode = 1
 
-[node name="Funds" type="Sprite2D" parent="ResourceDisplay/SpriteHolder"]
-position = Vector2(24, 40)
-scale = Vector2(0.549588, 0.549587)
+[node name="Person3" type="TextureRect" parent="ResourceDisplay/SpriteHolder"]
+self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
+layout_mode = 0
+offset_left = 19.0
+offset_top = 33.5
+offset_right = 31.0
+offset_bottom = 45.5
 texture = ExtResource("7_noqc3")
+expand_mode = 1
 
-[node name="Transport" type="Sprite2D" parent="ResourceDisplay/SpriteHolder"]
-position = Vector2(60, 40.5)
-scale = Vector2(0.492178, 0.492178)
+[node name="Person4" type="TextureRect" parent="ResourceDisplay/SpriteHolder"]
+self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
+layout_mode = 0
+offset_left = 52.5
+offset_top = 33.5
+offset_right = 64.5
+offset_bottom = 45.5
 texture = ExtResource("8_7ajq0")
+expand_mode = 1
 
 [node name="ResourceAmt" type="Control" parent="ResourceDisplay"]
 layout_mode = 1
