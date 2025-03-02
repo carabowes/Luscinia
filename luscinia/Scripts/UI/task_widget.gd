@@ -6,16 +6,22 @@ enum LevelOfDetail { LOW, MEDIUM, HIGH }
 const DEFAULT_SIZE: int = 48
 
 @export var current_level_of_detail: LevelOfDetail
+@export var use_update_animation : bool = true
 var task_info: TaskInstance
 
+
+func _ready():
+	%ViewMoreButton.pressed.connect(_show_task_details_page)
+	if(use_update_animation):
+		GlobalTimer.turn_progressed.connect(_on_new_turn)
+
+
 func _draw() -> void:
-	print(position)
 	if task_info != null:
 		render_task_info()
 
 
 func _gui_input(event: InputEvent) -> void:
-	print("GUI EVENT")
 	if event.is_action_pressed("interact"):
 		set_level_of_detail(LevelOfDetail.HIGH)
 		widget_selected.emit(self)
@@ -66,6 +72,7 @@ func render_task_info():
 
 
 func _switch_to_low_lod():
+	print("Switching")
 	%TaskNameMed.visible = false
 	%LowDetailWidget.visible = true
 	%HighDetailWidget.visible = false
@@ -85,3 +92,19 @@ func _switch_to_high_lod():
 
 func _show_task_details_page():
 	EventBus.task_widget_view_details_pressed.emit(task_info)
+
+
+func _on_new_turn():
+	var tween = get_tree().create_tween()
+	tween.tween_property(
+		%Scaler, "scale",Vector2.ONE * 0.7, 0.15
+	).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	tween.parallel().tween_property(
+		self, "modulate", Color.ROYAL_BLUE, 0.15
+	)
+	tween.tween_property(
+		%Scaler, "scale", Vector2.ONE, 0.15
+	).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(
+		self, "modulate", Color.WHITE, 0.15
+	)

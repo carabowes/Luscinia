@@ -28,7 +28,7 @@ func create_widget(task_instance : TaskInstance):
 	task_widgets.append(task_widget_instance)
 
 	task_widget_instance.widget_selected.connect(update_selected_widget)
-	task_widget_instance.set_level_of_detail(TaskWidget.LevelOfDetail.LOW)
+	task_widget_instance._switch_to_low_lod()
 	render_widgets()
 
 
