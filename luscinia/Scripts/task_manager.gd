@@ -15,22 +15,26 @@ var completed_tasks: Array[TaskInstance]
 
 func _ready() -> void:
 	GlobalTimer.turn_progressed.connect(_update_tasks)
-	EventBus.message_responded.connect(_start_task)
+	EventBus.message_responded.connect(_on_message_responded)
 	EventBus.task_cancelled.connect(_on_task_cancelled)
 
 
-func _start_task(response : Response, message_instance : MessageInstance):
+func _on_message_responded(response : Response, message_instance : MessageInstance):
+	print("Heyo")
 	var message : Message = message_instance.message
-	var new_task_instance = TaskInstance.new(response.task, 0, 0, 0, response.task.start_location, false, response.task.resources_required, message)
-	ResourceManager.queue_relationship_change(new_task_instance.task_data.task_id, response.relationship_change)
-	ResourceManager.apply_start_task_resources(response.task.resources_required)
+	var new_task_instance = TaskInstance.new(response.task, message)
+	_start_task(new_task_instance, response.relationship_change)
+
+
+func _start_task(task_instance : TaskInstance, relationship_change : float):
+	ResourceManager.queue_relationship_change(task_instance.task_data.task_id, relationship_change)
+	ResourceManager.apply_start_task_resources(task_instance.task_data.resources_required)
 	#If the task has a completion time of 0 just mark it complete already
-	if new_task_instance.task_data.expected_completion_time == 0:
-		new_task_instance.is_completed = true
-		_finish_task(new_task_instance)
-	else:
-		active_tasks.append(new_task_instance)
-		EventBus.task_started.emit(new_task_instance)
+	active_tasks.append(task_instance)
+	EventBus.task_started.emit(task_instance)
+	if task_instance.task_data.expected_completion_time == 0:
+		task_instance.is_completed = true
+		_finish_task(task_instance)
 
 
 func _update_tasks():
@@ -48,8 +52,8 @@ func _finish_task(task_instance : TaskInstance, cancelled = false):
 		completed_tasks.append(task_instance)
 	active_tasks.erase(task_instance)
 
-	var task_data = task_instance.task_data
-	var completion_rate = 1
+	var task_data : TaskData = task_instance.task_data
+	var completion_rate : float = 1.0
 	if task_data.expected_completion_time != 0:
 		completion_rate = task_instance.current_progress/task_data.expected_completion_time
 	var resources_gained = task_data.resources_gained
@@ -58,15 +62,19 @@ func _finish_task(task_instance : TaskInstance, cancelled = false):
 		resources_gained = task_data.resources_required 
 		resources_gained["funds"]  = 0
 		resources_gained["supplies"] = 0
-	_apply_task_end_changes(resources_gained, completion_rate, task_data)
+	_apply_task_end_changes(resources_gained, completion_rate, task_instance)
 
-	EventBus.task_finished.emit(task_data)
+	EventBus.task_finished.emit(task_instance)
 
 
-func _apply_task_end_changes(resources : Dictionary, completion_rate : int, task_data : TaskData):
+func _apply_task_end_changes(
+	resources : Dictionary, completion_rate : int, task_instance : TaskInstance
+):
+	var task_data : TaskData = task_instance.task_data
 	ResourceManager.apply_end_task_resources(resources, task_data.resources_required)
+	print("Applying with ", completion_rate)
 	ResourceManager.apply_relationship_change(
-		task_data.task_id, task_data.sender, completion_rate
+		task_data.task_id, task_instance.sender, completion_rate
 	)
 
 

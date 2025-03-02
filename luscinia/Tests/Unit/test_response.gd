@@ -14,7 +14,7 @@ func test_default_initialisation():
 
 
 func test_custom_initialisation():
-	var task_data = TaskData.new("TaskID","Test",null,Vector2(0,0),Vector2(10,10),{"funds":10},{"funds":10},5,[])
+	var task_data = TaskData.default_task
 	var custom_response_instance = Response.new("response name", "test response",5,task_data)
 	assert_eq(custom_response_instance.response_name, "response name", "Response name should be 'response name'")
 	assert_eq(custom_response_instance.response_text,"test response","Response text should be test response")

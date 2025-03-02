@@ -18,7 +18,7 @@ enum CancelBehaviour {
 @export var sender: Sender:
 	get:
 		if sender == null:
-			return default_sender
+			return Sender.default_sender
 		else:
 			return sender
 ## Array of prerequisites, conditions for the message to become active
@@ -33,13 +33,23 @@ enum CancelBehaviour {
 @export var is_repeatable: bool
 ## If true, when a task is cancelled this message will be sent again regardless of the prerequisites
 @export var cancel_behaviour : CancelBehaviour
-static var default_sender : Sender = Sender.new("Anonymous", null, 0)
+
+
+static var default_message : Message = Message.new(
+	"Message failed to load. No message was passed in on initialisation!", [], -1,
+	 Sender.default_sender, [], [], -1, false, Message.CancelBehaviour.NOTHING
+):
+	get():
+		return default_message.duplicate(true)
+	set(value):
+		return
+
 
 func _init(
 	message = "",
 	responses: Array[Response] = [],
-	default_response = 0,
-	sender: Sender = null,
+	default_response = -1,
+	sender: Sender = Sender.default_sender,
 	prerequisites: Array[Prerequisite] = [],
 	antirequisites: Array[Prerequisite] = [],
 	turns_to_answer = 0,

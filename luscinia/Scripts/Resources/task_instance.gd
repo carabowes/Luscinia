@@ -3,10 +3,7 @@ extends Resource
 
 #This resource will only be created at runtime
 
-enum CurrentStatus { IDLING, WORKING, TRAVELLING }
-
 @export var task_data : TaskData
-@export var current_status : CurrentStatus
 ## Measured in turns so if task has been going for 4 turns, current progress is 4
 @export var current_progress : int 
 @export var extra_time : int
@@ -24,16 +21,16 @@ var sender : Sender:
 	get:
 		if message:
 			return message.sender
-		return Message.default_sender
+		return Sender.default_sender
 
-func _init(task_data = null, current_status = 0, current_progress = 0, extra_time = 0, current_location = Vector2.ZERO, is_completed = false, actual_resources = {}, message = null) -> void:
+
+func _init(task_data : TaskData = null, message : Message = null) -> void:
 	self.task_data = task_data
-	self.current_status = current_status
-	self.current_progress = current_progress
-	self.extra_time = extra_time
-	self.current_location = current_location
-	self.is_completed = is_completed
-	self.actual_resources = actual_resources
+	self.current_progress = 0
+	self.extra_time = 0
+	self.current_location = task_data.start_location
+	self.is_completed = false
+	self.actual_resources = task_data.resources_required
 	self.message = message
 
 

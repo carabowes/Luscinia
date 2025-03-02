@@ -12,7 +12,7 @@ extends Resource
 ## Maximim turn for the prerequisite to be valid (i.e. no maximum)
 @export var max_turn: int = -1
 
-func _init(task_id : Array[String] = [], chance: float = 0, events : Array[Event.EventType]= [], min_turn: int = 0, max_turn: int = 0) -> void:
+func _init(task_id : Array[String] = [], chance: float = 0, events : Array[Event.EventType]= [], min_turn: int = 0, max_turn: int = -1) -> void:
 	self.task_id = task_id
 	self.chance = clamp(chance,0,1)
 	self.events = events

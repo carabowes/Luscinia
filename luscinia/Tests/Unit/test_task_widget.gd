@@ -103,8 +103,10 @@ func test_task_widget_selected():
 
 
 func test_task_widget_render():
-	var data : TaskData = TaskData.new("TaskID", "Task Name", load("res://Sprites/icon.svg"), Vector2(0,0), Vector2(0,0), {"funds" : 100, "people": 50}, {}, 8, [])
-	var info : TaskInstance = TaskInstance.new(data, 0, 4, 2, Vector2(0,0), false, {}, MessageInstance.default_message)
+	var data : TaskData = TaskData.new("TaskID", "Task Name", load("res://Sprites/icon.svg"), Vector2(0,0), {"funds" : 100, "people": 50}, {}, 8, [])
+	var info : TaskInstance = TaskInstance.new(data, Message.default_message)
+	info.current_progress = 4
+	info.extra_time = 2
 	
 	var task_widget_instance : TaskWidget = task_widget_scene.instantiate()
 	add_child_autofree(task_widget_instance)
