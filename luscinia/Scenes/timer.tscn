@@ -92,7 +92,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
-text = "Day 0"
+text = "Day 1"
 
 [node name="ClockLabel" type="Label" parent="TimerVBox/GameTimeHBox"]
 unique_name_in_owner = true

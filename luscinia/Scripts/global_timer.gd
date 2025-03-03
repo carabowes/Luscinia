@@ -14,7 +14,7 @@ var game_start: bool = false
 # Clock variables
 var in_game_hours: int = 0  # Measured in hours out of 24
 var in_game_minutes: int = 0
-var in_game_days: int = 0
+var in_game_days: int = 1
 var second_accumulator: float = 0
 
 
@@ -134,5 +134,5 @@ func reset_clock():
 	turns = 0
 	in_game_hours = 0
 	in_game_minutes = 0
-	in_game_days = 0
+	in_game_days = 1
 	second_accumulator = 0
