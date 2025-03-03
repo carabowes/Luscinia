@@ -9,8 +9,8 @@ func before_each():
 func test_default_initialisation():
 	assert_eq(message_instance.message, "", "Default message should be an empty string")
 	assert_eq(message_instance.responses, [], "Default responses should be an empty list")
-	assert_eq(message_instance.default_response, 0, "Default defaul response should be 0")
-	assert_eq(message_instance.sender, Message.default_sender, "Default sender should be default sender")
+	assert_eq(message_instance.default_response, -1, "Default default response should be -1")
+	assert_not_null(message_instance.sender, "Default sender should not be null")
 	assert_eq(message_instance.prerequisites, [], "Default prerequisites should be an empty list")
 	assert_eq(message_instance.antirequisites, [], "Default antirequisites should be an empty list")
 	assert_eq(message_instance.turns_to_answer, 0, "Default turns to answer should be 0")

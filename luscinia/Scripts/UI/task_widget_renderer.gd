@@ -18,6 +18,8 @@ func _ready() -> void:
 
 
 func create_widget(task_instance : TaskInstance):
+	if(task_instance.current_location == Vector2.ZERO):
+		return
 	var task_widget_instance : TaskWidget = load(task_widget_prefab).instantiate()
 	task_widget_instance.task_info = task_instance
 	task_widget_instance.position = task_instance.task_data.start_location
@@ -29,7 +31,7 @@ func create_widget(task_instance : TaskInstance):
 	render_widgets()
 
 
-func delete_widget(task_instance : TaskInstance, cancelled : bool):
+func delete_widget(task_instance : TaskInstance):
 	for widget in task_widgets:
 		if widget.task_info == task_instance:
 			task_widgets.erase(widget)

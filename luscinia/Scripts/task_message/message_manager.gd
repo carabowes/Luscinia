@@ -18,6 +18,7 @@ func _ready():
 	GlobalTimer.turn_progressed.connect(check_expired_messages)
 	GlobalTimer.turn_progressed.connect(find_messages_to_send)
 	EventBus.task_finished.connect(_on_task_finished)
+	EventBus.task_cancelled.connect(_on_task_cancelled)
 	EventBus.message_responded.connect(update_responded_message)
 
 
@@ -89,11 +90,9 @@ func check_expired_messages():
 			handle_expired_message(message_instance)
 
 
-func _on_task_finished(task_instance : TaskInstance, cancelled : bool):
+func _on_task_finished(task_instance : TaskInstance):
 	if task_instance.message.is_repeatable:
 		messages_to_send.append(task_instance.message)
-	if cancelled:
-		_on_task_cancelled(task_instance)
 
 
 func _on_task_cancelled(task_instance : TaskInstance):
@@ -107,15 +106,6 @@ func _on_task_cancelled(task_instance : TaskInstance):
 		messages_to_send.append(message_copy)
 	elif cancel_behaviour == Message.CancelBehaviour.PREREQ_RESEND and not message.is_repeatable:
 		messages_to_send.append(message)
-	elif cancel_behaviour == Message.CancelBehaviour.ACT_AS_COMPLETED:
-		task_instance.is_completed
-		EventBus.task_finished.emit(task_instance, true)
-	elif cancel_behaviour == Message.CancelBehaviour.PICK_DEFAULT:
-		if message.default_response == -1 or message.default_response >= len(message.responses):
-			return
-		var default_response : Response = message.responses[message.default_response]
-		var new_instance : TaskInstance = TaskInstance.new(default_response.task, 0, 0, 0, Vector2.ZERO, true, default_response.task.resources_required, message)
-		EventBus.task_finished.emit(new_instance, false)
 
 
 func validate_prerequisite(prerequisite: Prerequisite, current_turn: int) -> bool:

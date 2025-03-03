@@ -9,7 +9,7 @@ var test_instance : MessageInstance
 func before_each():
 	page_instance = load("res://Scenes/UI/message_response_page.tscn").instantiate()
 	add_child_autofree(page_instance)
-	test_task = TaskData.new("id", "Task", null, Vector2.ZERO, Vector2.ZERO, {"funds": 100}, {"funds": 100}, 4)
+	test_task = TaskData.new("id", "Task", null, Vector2.ZERO, {"funds": 100}, {"funds": 100}, 4)
 	test_response = Response.new("Response", "Text", 0, test_task)
 	test_message = Message.new("Message", [test_response, test_response])
 	test_message.default_response = -1

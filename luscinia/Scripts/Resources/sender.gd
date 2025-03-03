@@ -10,6 +10,13 @@ extends Resource
 @export var relationship: float
 
 
+static var default_sender : Sender = Sender.new("Anonymous", null, 0):
+	get():
+		return default_sender.duplicate(true)
+	set(value):
+		return
+
+
 func _init(name = "", image = null, relationship = 0) -> void:
 	self.name = name
 	self.image = image
