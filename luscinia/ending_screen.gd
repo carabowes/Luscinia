@@ -34,6 +34,7 @@ func _process(delta: float) -> void:
 		notifications.visible = false
 		format_resource_remaining()
 		days_amt.text = "%s Turns" % str(GlobalTimer.turns)
+		GlobalTimer.pause_game()
 		self.visible = true
 	else:
 		self.visible = false
