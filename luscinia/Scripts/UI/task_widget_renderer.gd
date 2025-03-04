@@ -42,17 +42,21 @@ func set_level_of_details(affect_high_detail_widgets = false):
 	var current_scale = $MapController.current_scale
 	for widget in task_widgets:
 		if widget.current_level_of_detail == widget.LevelOfDetail.HIGH and affect_high_detail_widgets:
-			widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM if current_scale >= zoom_level_medium_detail else widget.LevelOfDetail.LOW)
+			widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM \
+			if current_scale >= zoom_level_medium_detail else widget.LevelOfDetail.LOW)
 		elif widget.current_level_of_detail != widget.LevelOfDetail.HIGH:
-			widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM if current_scale >= zoom_level_medium_detail else widget.LevelOfDetail.LOW)
+			widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM \
+			if current_scale >= zoom_level_medium_detail else widget.LevelOfDetail.LOW)
 
 
 func update_selected_widget(selected_widget : TaskWidget):
 	var current_scale = $MapController.current_scale
 	for widget in task_widgets:
 		if widget != selected_widget:
-			widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM if current_scale >= zoom_level_medium_detail else widget.LevelOfDetail.LOW)
-	$MapController/MapTexture.move_child(selected_widget, $MapController/MapTexture.get_child_count()-1)
+			widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM \
+			if current_scale >= zoom_level_medium_detail else widget.LevelOfDetail.LOW)
+	$MapController/MapTexture.move_child(selected_widget, \
+	$MapController/MapTexture.get_child_count()-1)
 
 
 func render_widgets():

@@ -33,11 +33,11 @@ func hide_details() -> void:
 func _end_early_button_pressed(task_instance : TaskInstance):
 	%EndEarlyProgressBar.value = task_instance.current_progress
 	%EndEarlyProgressBar.total_task_time = task_instance.get_total_time()
-	
+
 	var end_early_resources : Dictionary
 	var resource_increase_end_early : Dictionary
 	for resource in ResourceManager.resources.keys():
-		var current_resource = ResourceManager.resources[resource] 
+		var current_resource = ResourceManager.resources[resource]
 		if task_instance.actual_resources.has(resource):
 			end_early_resources[resource] = task_instance.actual_resources[resource] + current_resource
 			resource_increase_end_early[resource] = task_instance.actual_resources[resource]
@@ -51,7 +51,7 @@ func _end_early_button_pressed(task_instance : TaskInstance):
 	var end_on_time_resources: Dictionary
 	var resource_increase_on_time: Dictionary
 	for resource in ResourceManager.resources.keys():
-		var current_resource = ResourceManager.resources[resource] 
+		var current_resource = ResourceManager.resources[resource]
 		if task_data.resources_gained.has(resource):
 			end_on_time_resources[resource] = task_data.resources_gained[resource] + current_resource
 			resource_increase_on_time[resource] = task_data.resources_gained[resource]

@@ -11,7 +11,7 @@ func _ready():
 	update_timer_ui()
 
 
-func _process(delta):
+func _process(_delta):
 	update_timer_ui()
 
 
@@ -24,10 +24,15 @@ func update_timer_ui():
 
 
 func update_resource_ui():
-	%PersonnelAmt.text = "%s / %s" % [ResourceManager.format_resource_value(ResourceManager.resources["people"],2), ResourceManager.format_resource_value(ResourceManager.available_resources["people"],2)]
-	%SuppliesAmt.text = "%s" % [ResourceManager.format_resource_value(ResourceManager.resources["supplies"],2)]
+	%PersonnelAmt.text = "%s / %s" % [ResourceManager.format_resource_value(\
+	ResourceManager.resources["people"],2), ResourceManager.format_resource_value(\
+	ResourceManager.available_resources["people"],2)]
+	%SuppliesAmt.text = "%s" % [ResourceManager.format_resource_value(\
+	ResourceManager.resources["supplies"],2)]
 	%FundsAmt.text = str(ResourceManager.format_resource_value(ResourceManager.resources["funds"],2))
-	%TransportAmt.text = "%s / %s" % [ResourceManager.format_resource_value(ResourceManager.resources["vehicles"],2), ResourceManager.format_resource_value(ResourceManager.available_resources["vehicles"],2)]
+	%TransportAmt.text = "%s / %s" % [ResourceManager.format_resource_value(\
+	ResourceManager.resources["vehicles"],2), \
+	ResourceManager.format_resource_value(ResourceManager.available_resources["vehicles"],2)]
 
 
 func format_time_with_seconds(seconds: int) -> String:

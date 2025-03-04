@@ -27,7 +27,7 @@ func create_widget(task_instance : TaskInstance):
 	render_widgets()
 
 
-func delete_widget(task_instance : TaskInstance, cancelled : bool):
+func delete_widget(task_instance : TaskInstance, _cancelled : bool):
 	for widget in task_widgets:
 		if widget.task_info == task_instance:
 			task_widgets.erase(widget)
@@ -38,16 +38,22 @@ func set_level_of_details(affect_high_detail_widgets = false):
 	var current_scale = $MapView.current_scale
 	for widget in task_widgets:
 		if widget.current_level_of_detail == widget.LevelOfDetail.HIGH and affect_high_detail_widgets:
-			widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM if current_scale >= zoom_level_medium_detail else widget.LevelOfDetail.LOW)
+			var level = (widget.LevelOfDetail.MEDIUM if current_scale >= zoom_level_medium_detail \
+			else widget.LevelOfDetail.LOW)
+			widget.set_level_of_detail(level)
 		elif widget.current_level_of_detail != widget.LevelOfDetail.HIGH:
-			widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM if current_scale >= zoom_level_medium_detail else widget.LevelOfDetail.LOW)
+			var level = widget.LevelOfDetail.MEDIUM if current_scale >= zoom_level_medium_detail \
+			else widget.LevelOfDetail.LOW
+			widget.set_level_of_detail(level)
 
 
 func update_selected_widget(selected_widget : TaskWidget):
 	var current_scale = $MapView.current_scale
 	for widget in task_widgets:
 		if widget != selected_widget:
-			widget.set_level_of_detail(widget.LevelOfDetail.MEDIUM if current_scale >= zoom_level_medium_detail else widget.LevelOfDetail.LOW)
+			var level = widget.LevelOfDetail.MEDIUM if current_scale >= zoom_level_medium_detail \
+			else widget.LevelOfDetail.LOW
+			widget.set_level_of_detail(level)
 	$MapView/MapTexture.move_child(selected_widget, $MapView/MapTexture.get_child_count()-1)
 
 
