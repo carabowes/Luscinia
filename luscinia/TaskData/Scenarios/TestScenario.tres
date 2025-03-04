@@ -31,7 +31,6 @@ task_id = "SPLT"
 name = "Freetown Search Party"
 icon = ExtResource("5_w1nnn")
 start_location = Vector2(850, 850)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 100000,
 "people": 60,
@@ -58,7 +57,6 @@ task_id = "SPMT"
 name = "Freetown Search Party"
 icon = ExtResource("5_w1nnn")
 start_location = Vector2(850, 850)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 80000,
 "people": 40,
@@ -85,7 +83,6 @@ task_id = "SPST"
 name = "Freetown Search Party"
 icon = ExtResource("5_w1nnn")
 start_location = Vector2(850, 850)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 50000,
 "people": 20,
@@ -112,7 +109,6 @@ task_id = "SPNT"
 name = "No Search Party"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 6
@@ -173,7 +169,6 @@ task_id = "ODEARLY"
 name = "Starting Oil Defences"
 icon = ExtResource("10_ljp6v")
 start_location = Vector2(1880, 730)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "people": 10,
@@ -199,7 +194,6 @@ task_id = "ODEARLYNO"
 name = "Nothing"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "people": 0
 }
@@ -246,7 +240,6 @@ task_id = "ODT"
 name = "Oil Defences"
 icon = ExtResource("10_ljp6v")
 start_location = Vector2(1850, 720)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "people": 8,
@@ -273,7 +266,6 @@ task_id = "ODNT2"
 name = "Nothing"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -326,7 +318,6 @@ task_id = "ODLT"
 name = "Oil Defences"
 icon = ExtResource("10_ljp6v")
 start_location = Vector2(1850, 720)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 3500000,
 "people": 15,
@@ -352,7 +343,6 @@ task_id = "ODST"
 name = "Oil Defences"
 icon = ExtResource("10_ljp6v")
 start_location = Vector2(1850, 720)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 2500000,
 "people": 10,
@@ -378,7 +368,6 @@ task_id = "ODNT"
 name = "Nothing"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(1850, 720)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -417,7 +406,6 @@ task_id = "PRESHELP"
 name = "President Rescue Team"
 icon = ExtResource("13_wrf78")
 start_location = Vector2(1200, 630)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 500000,
 "people": 10,
@@ -443,7 +431,6 @@ task_id = "PRESNOHELP"
 name = "No Help"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -481,7 +468,6 @@ script = ExtResource("5_j85s3")
 task_id = "NOPRESVEHIC"
 name = "Remove Vehicles"
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "supplies": 2000,
 "vehicles": 10
@@ -547,7 +533,6 @@ task_id = "GOVRES"
 name = "Accept Resources"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {
 "funds": 0,
@@ -570,7 +555,6 @@ task_id = "IGNGOVRES"
 name = "Ignore Resources"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -609,7 +593,6 @@ task_id = "RESCUESUP"
 name = "Salvaging Supplies"
 icon = ExtResource("14_mtlhs")
 start_location = Vector2(2100, 1866)
-end_location = Vector2(0, 0)
 resources_required = {
 "people": 6,
 "vehicles": 4
@@ -635,7 +618,6 @@ task_id = "IGNORESUPP"
 name = "No Supplies"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -680,7 +662,6 @@ task_id = "SRESTSTAFF"
 name = "Staff Resting"
 icon = ExtResource("16_0k5og")
 start_location = Vector2(1100, 600)
-end_location = Vector2(0, 0)
 resources_required = {
 "people": 8
 }
@@ -703,7 +684,6 @@ task_id = "LRESTSTAFF"
 name = "Staff Resting"
 icon = ExtResource("17_m47wo")
 start_location = Vector2(1100, 600)
-end_location = Vector2(0, 0)
 resources_required = {
 "people": 15
 }
@@ -726,7 +706,6 @@ task_id = "NORESTSTAFF"
 name = "No Rest"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -773,7 +752,6 @@ task_id = "REDEPLOY"
 name = "Redpoly Medical Supplies"
 icon = ExtResource("15_ffmuv")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 200000,
 "people": 8,
@@ -797,7 +775,6 @@ task_id = "NOREDEPLOY"
 name = "No redeploy"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -828,7 +805,6 @@ task_id = "ARASS"
 name = "Aerial Assessment"
 icon = ExtResource("18_spn1d")
 start_location = Vector2(980, 970)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 200000,
 "people": 10,
@@ -854,7 +830,6 @@ task_id = "GRASS"
 name = "Ground Assessment"
 icon = ExtResource("19_adkr5")
 start_location = Vector2(980, 970)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 100000,
 "people": 8,
@@ -882,7 +857,6 @@ task_id = "GRARASS"
 name = "Ground and Air Assessment"
 icon = ExtResource("13_wrf78")
 start_location = Vector2(980, 970)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 350000,
 "people": 16,
@@ -909,7 +883,6 @@ task_id = "WAITINFO"
 name = "Wait for Information"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -956,7 +929,6 @@ task_id = "FISHOIL"
 name = "None"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -995,7 +967,6 @@ task_id = "TRAINFULL"
 name = "Training Staff"
 icon = ExtResource("17_m47wo")
 start_location = Vector2(1000, 800)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "people": 6,
@@ -1023,7 +994,6 @@ task_id = "TRAINSOME"
 name = "Training Staff"
 icon = ExtResource("16_0k5og")
 start_location = Vector2(1000, 800)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 500000,
 "people": 4,
@@ -1051,7 +1021,6 @@ task_id = "TRAINNONE"
 name = "Nothing"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -1114,7 +1083,6 @@ task_id = "SHIPSTHROUGH"
 name = "Ships through"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -1133,7 +1101,6 @@ task_id = "DELAY"
 name = "Delay Shipment"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -1172,7 +1139,6 @@ task_id = "FAITH"
 name = "Faith Popups"
 icon = ExtResource("19_adkr5")
 start_location = Vector2(1700, 900)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 500000,
 "people": 8,
@@ -1199,7 +1165,6 @@ task_id = "NOFAITH"
 name = "No Faith"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -1244,7 +1209,6 @@ task_id = "FAITHMEET"
 name = "Arrange Meeting"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 100000
 }
@@ -1265,7 +1229,6 @@ task_id = "FAITHIGNORE"
 name = "Do nothing."
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -1304,7 +1267,6 @@ task_id = "FAITHFULL"
 name = "Spiritual Support"
 icon = ExtResource("16_0k5og")
 start_location = Vector2(1700, 900)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 2000000,
 "people": 15,
@@ -1333,7 +1295,6 @@ task_id = "FAITHSPIR"
 name = "Spiritual Support"
 icon = ExtResource("16_0k5og")
 start_location = Vector2(1700, 900)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 500000,
 "people": 8,
@@ -1360,7 +1321,6 @@ task_id = "FAITHDON"
 name = "Donations"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1500000,
 "people": 7,
@@ -1384,7 +1344,6 @@ task_id = "FAITHNEITHER"
 name = "None"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -1439,7 +1398,6 @@ task_id = "FULLSUPPLY"
 name = "Aid Site Resupply"
 icon = ExtResource("14_mtlhs")
 start_location = Vector2(900, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "people": 15,
@@ -1466,7 +1424,6 @@ task_id = "HALFSUPPLY"
 name = "Aid Site Resupply"
 icon = ExtResource("21_aenyn")
 start_location = Vector2(900, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 550000,
 "people": 8,
@@ -1493,7 +1450,6 @@ task_id = "NOSUPPLY"
 name = "No Resupply"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -1532,7 +1488,6 @@ task_id = "LARGESAT"
 name = "Satellite Aid"
 icon = ExtResource("5_w1nnn")
 start_location = Vector2(1900, 900)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "people": 15,
@@ -1559,7 +1514,6 @@ task_id = "MEDSAT"
 name = "Satellite Aid"
 icon = ExtResource("5_w1nnn")
 start_location = Vector2(1900, 900)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 750000,
 "people": 10,
@@ -1586,7 +1540,6 @@ task_id = "SMALLSAT"
 name = "Satellite Aid"
 icon = ExtResource("22_x8231")
 start_location = Vector2(1900, 900)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 50000,
 "people": 5,
@@ -1613,7 +1566,6 @@ task_id = "NOSAT"
 name = "None"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 6
@@ -1652,7 +1604,6 @@ task_id = "PLAN1"
 name = "Plan 1"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {
 "funds": 8000000,
@@ -1676,7 +1627,6 @@ task_id = "PLAN2"
 name = "Plan 2"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {
 "funds": 4000000,
@@ -1700,7 +1650,6 @@ task_id = "PLAN3"
 name = "Plan 3"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {
 "funds": 3500000,
@@ -1724,7 +1673,6 @@ task_id = "PLAN4"
 name = "Plan 4"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {
 "funds": 12000000,
@@ -1748,7 +1696,6 @@ task_id = "PLAN5"
 name = "Plan 5"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {
 "funds": 9000000,
@@ -1772,7 +1719,6 @@ task_id = "PLAN6"
 name = "Plan 6"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {
 "funds": 5750000,
@@ -1816,7 +1762,6 @@ task_id = "NEWVEHICLES"
 name = "Delivering new Vehicles"
 icon = ExtResource("19_adkr5")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "people": 5,
@@ -1843,7 +1788,6 @@ task_id = "NEWSTAFF"
 name = "Transporting New Staff"
 icon = ExtResource("16_0k5og")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1200000,
 "people": 5,
@@ -1870,7 +1814,6 @@ task_id = "NEWSUPPLIES"
 name = "Transporting Supplies"
 icon = ExtResource("14_mtlhs")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 2000000,
 "people": 5,
@@ -1917,7 +1860,6 @@ task_id = "NEWVEHICLES2"
 name = "Delivering new Vehicles"
 icon = ExtResource("19_adkr5")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1200000,
 "people": 5,
@@ -1943,7 +1885,6 @@ task_id = "NEWSTAFF2"
 name = "Transporting New Staff"
 icon = ExtResource("16_0k5og")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1400000,
 "people": 5,
@@ -1969,7 +1910,6 @@ task_id = "NEWSUPPLIES2"
 name = "Transporting Supplies"
 icon = ExtResource("14_mtlhs")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 2200000,
 "people": 5,
@@ -2024,7 +1964,6 @@ task_id = "REPSUP"
 name = "Repair and Resupply"
 icon = ExtResource("5_w1nnn")
 start_location = Vector2(900, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 4000000,
 "people": 15,
@@ -2051,7 +1990,6 @@ task_id = "REPAIRS"
 name = "Repairs"
 icon = ExtResource("19_adkr5")
 start_location = Vector2(900, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 3000000,
 "people": 8,
@@ -2078,7 +2016,6 @@ task_id = "RESUPONLY"
 name = "Resupply"
 icon = ExtResource("14_mtlhs")
 start_location = Vector2(900, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "people": 8,
@@ -2105,7 +2042,6 @@ task_id = "NOSUPREP"
 name = "Nothing "
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -2144,7 +2080,6 @@ task_id = "MONKEY"
 name = "Monkey Search"
 icon = ExtResource("13_wrf78")
 start_location = Vector2(1700, 1200)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 500000,
 "people": 4,
@@ -2171,7 +2106,6 @@ task_id = "NOMONKEY"
 name = "Nothing"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -2210,7 +2144,6 @@ task_id = "MONKEYFUND"
 name = "Fund Repairs"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1500000,
 "supplies": 200
@@ -2232,7 +2165,6 @@ task_id = "NOMONKEYFUND"
 name = "No Repairs"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -2299,7 +2231,6 @@ task_id = "CHOLERASUPP"
 name = "Cholera Supplies"
 icon = ExtResource("15_ffmuv")
 start_location = Vector2(1000, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "people": 15,
@@ -2326,7 +2257,6 @@ task_id = "NOCHOLSUPP"
 name = "Nothing"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -2387,7 +2317,6 @@ task_id = "OUTBREAKRESP"
 name = "Cholera Outbreak"
 icon = ExtResource("15_ffmuv")
 start_location = Vector2(1000, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1500000,
 "people": 15,
@@ -2414,7 +2343,6 @@ task_id = "OUTBREAKVOL"
 name = "Cholera Outbreak"
 icon = ExtResource("23_tjkec")
 start_location = Vector2(1000, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 700000,
 "people": 10,
@@ -2441,7 +2369,6 @@ task_id = "OUTBREAK"
 name = "No Response"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -2496,7 +2423,6 @@ task_id = "Q"
 name = "Quarantine"
 icon = ExtResource("16_0k5og")
 start_location = Vector2(1300, 700)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 100000,
 "people": 10,
@@ -2521,7 +2447,6 @@ task_id = "TREATSTAFF"
 name = "Treatment"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "supplies": 100
@@ -2571,7 +2496,6 @@ task_id = "CHOLERALOSS"
 name = "Staff  Loss"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "people": 5
 }
@@ -2636,7 +2560,6 @@ task_id = "LARGESITE"
 name = "Setting up Aid Site"
 icon = ExtResource("14_mtlhs")
 start_location = Vector2(900, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 3000000,
 "people": 40,
@@ -2663,7 +2586,6 @@ task_id = "MEDSITE"
 name = "Setting up Aid Site"
 icon = ExtResource("14_mtlhs")
 start_location = Vector2(900, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 2500000,
 "people": 30,
@@ -2691,7 +2613,6 @@ task_id = "SMALLSITE"
 name = "Setting up Aid Site"
 icon = ExtResource("21_aenyn")
 start_location = Vector2(900, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1500000,
 "people": 10,

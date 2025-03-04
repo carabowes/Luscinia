@@ -1,5 +1,14 @@
-extends Resource
 class_name TaskData
+extends Resource
+
+
+static var default_task = TaskData.new(
+	"TaskID", "Task", null, Vector2(0,0), {"funds": 10}, {"funds": 15}, 8, []
+):
+	get:
+		return default_task.duplicate(true)
+	set(value):
+		return
 
 
 ## ID of task, is not enforced to be unique by the program. User must ensure task ID is unique.
@@ -16,17 +25,8 @@ class_name TaskData
 @export var resources_gained : Dictionary
 ## Expected time to complete task in whole hours
 @export var expected_completion_time : int
-## Dictionary of Event to Array of Event 
+## Dictionary of Event to Array of Event
 @export var effects_of_random_events : Array[EventEffect]
-
-
-static var default_task = TaskData.new(
-	"TaskID", "Task", null, Vector2(0,0), {"funds": 10}, {"funds": 15}, 8, []
-):
-	get:
-		return default_task.duplicate(true)
-	set(value):
-		return
 
 
 func _init(

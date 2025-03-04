@@ -122,6 +122,7 @@ func time_to_time_string(
 
 func start_game():
 	game_start = true
+	
 
 
 func pause_game():

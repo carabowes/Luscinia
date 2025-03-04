@@ -28,7 +28,6 @@ script = ExtResource("6_w0hgi")
 task_id = ""
 name = "Nothing"
 start_location = Vector2(-1000, -1000)
-end_location = Vector2(-1000, -1000)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
