@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://pmewkgtpqio2"]
+[gd_scene load_steps=18 format=3 uid="uid://pmewkgtpqio2"]
 
 [ext_resource type="PackedScene" uid="uid://cnpov8fcn2j0g" path="res://Scenes/map.tscn" id="1_7fdga"]
 [ext_resource type="PackedScene" uid="uid://desl373b33t23" path="res://Scenes/timer.tscn" id="2_5mpic"]
@@ -10,7 +10,11 @@
 [ext_resource type="Script" path="res://Scripts/UI/message_notification_button.gd" id="7_e8c6r"]
 [ext_resource type="PackedScene" uid="uid://b141qasjqe26u" path="res://Scenes/UI/message_page_controller.tscn" id="10_btbvl"]
 [ext_resource type="PackedScene" uid="uid://do5t8447c3iys" path="res://Scenes/UI/options_page.tscn" id="10_sexli"]
+[ext_resource type="Texture2D" uid="uid://bib3v5a1f2b2o" path="res://Sprites/UI/User.png" id="13_6oexy"]
+[ext_resource type="Texture2D" uid="uid://dmrhlqq3p4y0g" path="res://Sprites/Package.png" id="14_bdx1m"]
+[ext_resource type="Texture2D" uid="uid://dm70f566o3s32" path="res://Sprites/UI/Dollar sign.png" id="15_31668"]
 [ext_resource type="Script" path="res://notif_controller.gd" id="15_py1x5"]
+[ext_resource type="Texture2D" uid="uid://chgb1pq7fpd4c" path="res://Sprites/UI/Truck.png" id="16_clu71"]
 [ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="17_j07dy"]
 [ext_resource type="Script" path="res://ending_screen.gd" id="17_kga80"]
 
@@ -174,15 +178,15 @@ grow_vertical = 2
 script = ExtResource("17_kga80")
 turns_to_end = 18
 notifications = NodePath("../notifications")
-days_amt = NodePath("StatsBackground/VBoxContainer/DaysAmount")
-taken_personnel = NodePath("StatsBackground/VBoxContainer/ResourcesTakenRow1/PersonnelAmt")
-taken_supplies = NodePath("StatsBackground/VBoxContainer/ResourcesTakenRow1/SuppliesAmt")
-taken_funds = NodePath("StatsBackground/VBoxContainer/ResourcesTakenRow2/FundsAmt")
-taken_vehicles = NodePath("StatsBackground/VBoxContainer/ResourcesTakenRow2/VehiclesAmt")
-remain_personnel = NodePath("StatsBackground/VBoxContainer/ResourcesRemRow1/PersonnelAmt")
-remain_supplies = NodePath("StatsBackground/VBoxContainer/ResourcesRemRow1/SuppliesAmt")
-remain_funds = NodePath("StatsBackground/VBoxContainer/ResourcesRemRow2/FundsAmt")
-remain_vehicles = NodePath("StatsBackground/VBoxContainer/ResourcesRemRow2/VehiclesAmt")
+days_amt = NodePath("StatsBackground/DaysAmount")
+taken_personnel = NodePath("StatsBackground/ResourcesTaken/PersonnelAmt")
+taken_supplies = NodePath("StatsBackground/ResourcesTaken/SuppliesAmt")
+taken_funds = NodePath("StatsBackground/ResourcesTaken/FundsAmt")
+taken_vehicles = NodePath("StatsBackground/ResourcesTaken/VehiclesAmt")
+remain_personnel = NodePath("StatsBackground/ResourcesRemaining/PersonnelAmt2")
+remain_supplies = NodePath("StatsBackground/ResourcesRemaining/SuppliesAmt2")
+remain_funds = NodePath("StatsBackground/ResourcesRemaining/FundsAmt2")
+remain_vehicles = NodePath("StatsBackground/ResourcesRemaining/VehiclesAmt2")
 
 [node name="Background" type="ColorRect" parent="pages/ending_screen"]
 layout_mode = 1
@@ -215,110 +219,161 @@ vertical_alignment = 1
 [node name="StatsBackground" type="ColorRect" parent="pages/ending_screen"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.32
+anchor_top = 0.27
 anchor_right = 1.0
-anchor_bottom = 0.64
-offset_top = -3.05176e-05
-offset_bottom = -6.10352e-05
+anchor_bottom = 0.7
+offset_top = 1.52588e-05
 color = Color(0.254902, 0.560784, 0.870588, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="pages/ending_screen/StatsBackground"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 8.0
-offset_bottom = 3.05176e-05
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="DaysTaken" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer"]
+[node name="DaysTaken" type="Label" parent="pages/ending_screen/StatsBackground"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+offset_top = 0.5
+offset_right = 360.0
+offset_bottom = 28.5
+theme_override_font_sizes/font_size = 20
 text = "Days Taken:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DaysAmount" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer"]
+[node name="DaysAmount" type="Label" parent="pages/ending_screen/StatsBackground"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+offset_top = 27.5
+offset_right = 360.0
+offset_bottom = 55.5
+theme_override_font_sizes/font_size = 20
 text = "00 Days"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ResourcesTaken" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer"]
+[node name="ResourcesTaken" type="Label" parent="pages/ending_screen/StatsBackground"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "
-Resources Taken:"
+offset_top = 59.5
+offset_right = 360.0
+offset_bottom = 87.5
+theme_override_font_sizes/font_size = 20
+text = "Resources Taken:"
 horizontal_alignment = 1
 
-[node name="ResourcesTakenRow1" type="HBoxContainer" parent="pages/ending_screen/StatsBackground/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
+[node name="PersonnelSprite" type="Sprite2D" parent="pages/ending_screen/StatsBackground/ResourcesTaken"]
+position = Vector2(86, 52)
+scale = Vector2(1.83333, 1.875)
+texture = ExtResource("13_6oexy")
 
-[node name="PersonnelAmt" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer/ResourcesTakenRow1"]
+[node name="PersonnelAmt" type="Label" parent="pages/ending_screen/StatsBackground/ResourcesTaken"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "Pesonnel: 0"
+offset_left = 112.0
+offset_top = 39.5
+offset_right = 158.0
+offset_bottom = 67.5
+theme_override_font_sizes/font_size = 20
+text = "1000"
 
-[node name="SuppliesAmt" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer/ResourcesTakenRow1"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "Supplies: 0"
+[node name="SuppliesSprite" type="Sprite2D" parent="pages/ending_screen/StatsBackground/ResourcesTaken"]
+position = Vector2(214, 52)
+scale = Vector2(1.83333, 1.875)
+texture = ExtResource("14_bdx1m")
 
-[node name="ResourcesTakenRow2" type="HBoxContainer" parent="pages/ending_screen/StatsBackground/VBoxContainer"]
+[node name="SuppliesAmt" type="Label" parent="pages/ending_screen/StatsBackground/ResourcesTaken"]
 layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
+offset_left = 240.0
+offset_top = 39.5
+offset_right = 286.0
+offset_bottom = 67.5
+theme_override_font_sizes/font_size = 20
+text = "1000"
 
-[node name="FundsAmt" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer/ResourcesTakenRow2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "Funds: 0"
+[node name="FundsSprite" type="Sprite2D" parent="pages/ending_screen/StatsBackground/ResourcesTaken"]
+position = Vector2(86, 105)
+scale = Vector2(1.83333, 1.875)
+texture = ExtResource("15_31668")
 
-[node name="VehiclesAmt" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer/ResourcesTakenRow2"]
+[node name="FundsAmt" type="Label" parent="pages/ending_screen/StatsBackground/ResourcesTaken"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "Vehicles: 0"
+offset_left = 112.0
+offset_top = 89.5
+offset_right = 159.0
+offset_bottom = 117.5
+theme_override_font_sizes/font_size = 20
+text = "1000"
 
-[node name="ResourcesRemaining" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer"]
+[node name="VehicleSprite" type="Sprite2D" parent="pages/ending_screen/StatsBackground/ResourcesTaken"]
+position = Vector2(214, 105)
+scale = Vector2(1.83333, 1.875)
+texture = ExtResource("16_clu71")
+
+[node name="VehiclesAmt" type="Label" parent="pages/ending_screen/StatsBackground/ResourcesTaken"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "
-Resources Remaining:"
+offset_left = 240.0
+offset_top = 86.5
+offset_right = 286.0
+offset_bottom = 114.5
+theme_override_font_sizes/font_size = 20
+text = "1000"
+
+[node name="ResourcesRemaining" type="Label" parent="pages/ending_screen/StatsBackground"]
+layout_mode = 2
+offset_top = 193.0
+offset_right = 360.0
+offset_bottom = 224.0
+theme_override_font_sizes/font_size = 20
+text = "Resources Remaining:"
 horizontal_alignment = 1
 
-[node name="ResourcesRemRow1" type="HBoxContainer" parent="pages/ending_screen/StatsBackground/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
+[node name="PersonnelSprite" type="Sprite2D" parent="pages/ending_screen/StatsBackground/ResourcesRemaining"]
+position = Vector2(86, 54)
+scale = Vector2(1.83333, 1.875)
+texture = ExtResource("13_6oexy")
 
-[node name="PersonnelAmt" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer/ResourcesRemRow1"]
+[node name="PersonnelAmt2" type="Label" parent="pages/ending_screen/StatsBackground/ResourcesRemaining"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "Pesonnel: 0"
+offset_left = 112.0
+offset_top = 41.0
+offset_right = 159.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 20
+text = "1000"
 
-[node name="SuppliesAmt" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer/ResourcesRemRow1"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "Supplies: 0"
+[node name="SuppliesSprite" type="Sprite2D" parent="pages/ending_screen/StatsBackground/ResourcesRemaining"]
+position = Vector2(214, 54)
+scale = Vector2(1.83333, 1.875)
+texture = ExtResource("14_bdx1m")
 
-[node name="ResourcesRemRow2" type="HBoxContainer" parent="pages/ending_screen/StatsBackground/VBoxContainer"]
+[node name="SuppliesAmt2" type="Label" parent="pages/ending_screen/StatsBackground/ResourcesRemaining"]
 layout_mode = 2
-theme_override_constants/separation = 15
-alignment = 1
+offset_left = 240.0
+offset_top = 41.0
+offset_right = 286.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 20
+text = "1000"
 
-[node name="FundsAmt" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer/ResourcesRemRow2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "Funds: 0"
+[node name="FundsSprite" type="Sprite2D" parent="pages/ending_screen/StatsBackground/ResourcesRemaining"]
+position = Vector2(86, 107)
+scale = Vector2(1.83333, 1.875)
+texture = ExtResource("15_31668")
 
-[node name="VehiclesAmt" type="Label" parent="pages/ending_screen/StatsBackground/VBoxContainer/ResourcesRemRow2"]
+[node name="FundsAmt2" type="Label" parent="pages/ending_screen/StatsBackground/ResourcesRemaining"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "Vehicles: 0"
+offset_left = 112.0
+offset_top = 95.0
+offset_right = 158.0
+offset_bottom = 123.0
+theme_override_font_sizes/font_size = 20
+text = "1000"
+
+[node name="VehicleSprite" type="Sprite2D" parent="pages/ending_screen/StatsBackground/ResourcesRemaining"]
+position = Vector2(214, 107)
+scale = Vector2(1.83333, 1.875)
+texture = ExtResource("16_clu71")
+
+[node name="VehiclesAmt2" type="Label" parent="pages/ending_screen/StatsBackground/ResourcesRemaining"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 95.0
+offset_right = 287.0
+offset_bottom = 123.0
+theme_override_font_sizes/font_size = 20
+text = "1000"
 
 [node name="RestartButton" type="Button" parent="pages/ending_screen"]
 unique_name_in_owner = true
