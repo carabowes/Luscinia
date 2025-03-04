@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Scenario" load_steps=272 format=3 uid="uid://cq8ot6u2bgf8y"]
+[gd_resource type="Resource" script_class="Scenario" load_steps=333 format=3 uid="uid://cq8ot6u2bgf8y"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="1_22kjx"]
 [ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="2_lfadw"]
@@ -24,6 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://xvub4nd0gq16" path="res://Sprites/TaskSprites/Supplies.png" id="21_aenyn"]
 [ext_resource type="Texture2D" uid="uid://daeaq58evwjo3" path="res://Sprites/TaskSprites/Ambulance.png" id="22_x8231"]
 [ext_resource type="Texture2D" uid="uid://cn40g7l62e631" path="res://Sprites/TaskSprites/MedicalSupplies.png" id="23_tjkec"]
+[ext_resource type="Texture2D" uid="uid://cresf76xple43" path="res://Sprites/TaskSprites/Money.png" id="24_0v8ex"]
+[ext_resource type="Texture2D" uid="uid://bwb5fy1egi5ur" path="res://Sprites/TaskSprites/WaterSupplies.png" id="25_k300i"]
 
 [sub_resource type="Resource" id="Resource_emodc"]
 script = ExtResource("5_j85s3")
@@ -31,9 +33,8 @@ task_id = "SPLT"
 name = "Freetown Search Party"
 icon = ExtResource("5_w1nnn")
 start_location = Vector2(850, 850)
-end_location = Vector2(0, 0)
 resources_required = {
-"funds": 100000,
+"funds": 3000000,
 "people": 60,
 "supplies": 1000,
 "vehicles": 40
@@ -58,9 +59,8 @@ task_id = "SPMT"
 name = "Freetown Search Party"
 icon = ExtResource("5_w1nnn")
 start_location = Vector2(850, 850)
-end_location = Vector2(0, 0)
 resources_required = {
-"funds": 80000,
+"funds": 2000000,
 "people": 40,
 "supplies": 775,
 "vehicles": 30
@@ -85,9 +85,8 @@ task_id = "SPST"
 name = "Freetown Search Party"
 icon = ExtResource("5_w1nnn")
 start_location = Vector2(850, 850)
-end_location = Vector2(0, 0)
 resources_required = {
-"funds": 50000,
+"funds": 1000000,
 "people": 20,
 "supplies": 500,
 "vehicles": 15
@@ -112,7 +111,6 @@ task_id = "SPNT"
 name = "No Search Party"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 6
@@ -129,7 +127,7 @@ task = SubResource("Resource_4g0n7")
 script = ExtResource("6_imb53")
 name = "Freetown Government"
 image = ExtResource("8_pu47p")
-relationship = 0.0
+relationship = 1.0
 
 [sub_resource type="Resource" id="Resource_qc7dk"]
 script = ExtResource("1_22kjx")
@@ -147,7 +145,7 @@ cancel_behaviour = 0
 script = ExtResource("2_lfadw")
 task_id = Array[String](["GRASS"])
 events = Array[int]([])
-chance = 0.75
+chance = 0.2
 min_turn = 0
 max_turn = -1
 
@@ -163,9 +161,9 @@ max_turn = -1
 script = ExtResource("2_lfadw")
 task_id = Array[String](["ARASS"])
 events = Array[int]([])
-chance = 0.75
+chance = 0.4
 min_turn = 0
-max_turn = 0
+max_turn = -1
 
 [sub_resource type="Resource" id="Resource_0h3k0"]
 script = ExtResource("5_j85s3")
@@ -173,7 +171,6 @@ task_id = "ODEARLY"
 name = "Starting Oil Defences"
 icon = ExtResource("10_ljp6v")
 start_location = Vector2(1880, 730)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "people": 10,
@@ -199,7 +196,6 @@ task_id = "ODEARLYNO"
 name = "Nothing"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "people": 0
 }
@@ -246,7 +242,6 @@ task_id = "ODT"
 name = "Oil Defences"
 icon = ExtResource("10_ljp6v")
 start_location = Vector2(1850, 720)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "people": 8,
@@ -273,7 +268,6 @@ task_id = "ODNT2"
 name = "Nothing"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -326,17 +320,16 @@ task_id = "ODLT"
 name = "Oil Defences"
 icon = ExtResource("10_ljp6v")
 start_location = Vector2(1850, 720)
-end_location = Vector2(0, 0)
 resources_required = {
-"funds": 3500000,
-"people": 15,
+"funds": 5000000,
+"people": 20,
 "vehicles": 10
 }
 resources_gained = {
 "people": 15,
 "vehicles": 10
 }
-expected_completion_time = 4
+expected_completion_time = 10
 effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
 
 [sub_resource type="Resource" id="Resource_7kxht"]
@@ -352,7 +345,6 @@ task_id = "ODST"
 name = "Oil Defences"
 icon = ExtResource("10_ljp6v")
 start_location = Vector2(1850, 720)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 2500000,
 "people": 10,
@@ -362,14 +354,14 @@ resources_gained = {
 "people": 10,
 "vehicles": 3
 }
-expected_completion_time = 4
+expected_completion_time = 8
 effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
 
 [sub_resource type="Resource" id="Resource_es3k8"]
 script = ExtResource("3_8xbhe")
 response_name = "Small Defence Team"
 response_text = "We will send a small team now."
-relationship_change = 10.0
+relationship_change = 108.0
 task = SubResource("Resource_ql0bm")
 
 [sub_resource type="Resource" id="Resource_j0ux1"]
@@ -378,7 +370,6 @@ task_id = "ODNT"
 name = "Nothing"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(1850, 720)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -417,7 +408,6 @@ task_id = "PRESHELP"
 name = "President Rescue Team"
 icon = ExtResource("13_wrf78")
 start_location = Vector2(1200, 630)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 500000,
 "people": 10,
@@ -443,7 +433,6 @@ task_id = "PRESNOHELP"
 name = "No Help"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -476,12 +465,19 @@ chance = 0.7
 min_turn = 7
 max_turn = 10
 
+[sub_resource type="Resource" id="Resource_87s77"]
+script = ExtResource("2_lfadw")
+task_id = Array[String](["PRESNOHELP"])
+events = Array[int]([])
+chance = 1.0
+min_turn = 11
+max_turn = 11
+
 [sub_resource type="Resource" id="Resource_ibc8y"]
 script = ExtResource("5_j85s3")
 task_id = "NOPRESVEHIC"
 name = "Remove Vehicles"
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "supplies": 2000,
 "vehicles": 10
@@ -503,7 +499,7 @@ message = "Government officials are frustrated with the lack of response with he
 responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_benor")])
 default_response = 0
 sender = SubResource("Resource_fojvw")
-prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_n3em8")])
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_n3em8"), SubResource("Resource_87s77")])
 antirequisites = Array[ExtResource("2_lfadw")]([])
 turns_to_answer = 1
 is_repeatable = false
@@ -547,7 +543,6 @@ task_id = "GOVRES"
 name = "Accept Resources"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {
 "funds": 0,
@@ -570,7 +565,6 @@ task_id = "IGNGOVRES"
 name = "Ignore Resources"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -609,7 +603,6 @@ task_id = "RESCUESUP"
 name = "Salvaging Supplies"
 icon = ExtResource("14_mtlhs")
 start_location = Vector2(2100, 1866)
-end_location = Vector2(0, 0)
 resources_required = {
 "people": 6,
 "vehicles": 4
@@ -635,7 +628,6 @@ task_id = "IGNORESUPP"
 name = "No Supplies"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -650,7 +642,7 @@ task = SubResource("Resource_e4l1t")
 
 [sub_resource type="Resource" id="Resource_f24t8"]
 script = ExtResource("6_imb53")
-name = "Rescue NGO"
+name = "Aid NGO"
 image = ExtResource("15_ffmuv")
 relationship = 0.0
 
@@ -680,7 +672,6 @@ task_id = "SRESTSTAFF"
 name = "Staff Resting"
 icon = ExtResource("16_0k5og")
 start_location = Vector2(1100, 600)
-end_location = Vector2(0, 0)
 resources_required = {
 "people": 8
 }
@@ -703,7 +694,6 @@ task_id = "LRESTSTAFF"
 name = "Staff Resting"
 icon = ExtResource("17_m47wo")
 start_location = Vector2(1100, 600)
-end_location = Vector2(0, 0)
 resources_required = {
 "people": 15
 }
@@ -726,7 +716,6 @@ task_id = "NORESTSTAFF"
 name = "No Rest"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -773,7 +762,6 @@ task_id = "REDEPLOY"
 name = "Redpoly Medical Supplies"
 icon = ExtResource("15_ffmuv")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 200000,
 "people": 8,
@@ -797,7 +785,6 @@ task_id = "NOREDEPLOY"
 name = "No redeploy"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -828,14 +815,13 @@ task_id = "ARASS"
 name = "Aerial Assessment"
 icon = ExtResource("18_spn1d")
 start_location = Vector2(980, 970)
-end_location = Vector2(0, 0)
 resources_required = {
-"funds": 200000,
-"people": 10,
+"funds": 1500000,
+"people": 4,
 "vehicles": 2
 }
 resources_gained = {
-"people": 10,
+"people": 4,
 "vehicles": 2
 }
 expected_completion_time = 3
@@ -854,17 +840,15 @@ task_id = "GRASS"
 name = "Ground Assessment"
 icon = ExtResource("19_adkr5")
 start_location = Vector2(980, 970)
-end_location = Vector2(0, 0)
 resources_required = {
-"funds": 100000,
+"funds": 500000,
 "people": 8,
 "supplies": 0,
-"vehicles": 4
+"vehicles": 8
 }
 resources_gained = {
-"funds": 100000,
 "people": 8,
-"vehicles": 4
+"vehicles": 8
 }
 expected_completion_time = 4
 effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
@@ -882,16 +866,15 @@ task_id = "GRARASS"
 name = "Ground and Air Assessment"
 icon = ExtResource("13_wrf78")
 start_location = Vector2(980, 970)
-end_location = Vector2(0, 0)
 resources_required = {
-"funds": 350000,
-"people": 16,
+"funds": 2000000,
+"people": 12,
 "supplies": 0,
-"vehicles": 7
+"vehicles": 10
 }
 resources_gained = {
-"people": 16,
-"vehicles": 7
+"people": 12,
+"vehicles": 10
 }
 expected_completion_time = 2
 effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
@@ -909,7 +892,6 @@ task_id = "WAITINFO"
 name = "Wait for Information"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -938,17 +920,25 @@ cancel_behaviour = 4
 script = ExtResource("2_lfadw")
 task_id = Array[String](["ODNT"])
 events = Array[int]([])
-chance = 0.5
-min_turn = 0
-max_turn = 12
+chance = 0.8
+min_turn = 11
+max_turn = -1
 
 [sub_resource type="Resource" id="Resource_o2rq2"]
 script = ExtResource("2_lfadw")
 task_id = Array[String](["ODNT2"])
 events = Array[int]([])
-chance = 0.4
-min_turn = 0
-max_turn = 12
+chance = 0.6
+min_turn = 6
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_fcj4d"]
+script = ExtResource("2_lfadw")
+task_id = Array[String](["ODST"])
+events = Array[int]([])
+chance = 0.1
+min_turn = 11
+max_turn = -1
 
 [sub_resource type="Resource" id="Resource_smbcs"]
 script = ExtResource("5_j85s3")
@@ -956,7 +946,6 @@ task_id = "FISHOIL"
 name = "None"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -975,7 +964,7 @@ message = "The oil spill has spread further, contaminating vital fishing zones. 
 responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_ium7t")])
 default_response = 0
 sender = SubResource("Resource_fojvw")
-prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_3pk7o"), SubResource("Resource_o2rq2")])
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_3pk7o"), SubResource("Resource_o2rq2"), SubResource("Resource_fcj4d")])
 antirequisites = Array[ExtResource("2_lfadw")]([])
 turns_to_answer = 1
 is_repeatable = false
@@ -995,7 +984,6 @@ task_id = "TRAINFULL"
 name = "Training Staff"
 icon = ExtResource("17_m47wo")
 start_location = Vector2(1000, 800)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "people": 6,
@@ -1023,7 +1011,6 @@ task_id = "TRAINSOME"
 name = "Training Staff"
 icon = ExtResource("16_0k5og")
 start_location = Vector2(1000, 800)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 500000,
 "people": 4,
@@ -1051,7 +1038,6 @@ task_id = "TRAINNONE"
 name = "Nothing"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -1080,7 +1066,7 @@ cancel_behaviour = 0
 script = ExtResource("2_lfadw")
 task_id = Array[String](["ODLT"])
 events = Array[int]([])
-chance = 0.5
+chance = 0.8
 min_turn = 0
 max_turn = -1
 
@@ -1088,7 +1074,7 @@ max_turn = -1
 script = ExtResource("2_lfadw")
 task_id = Array[String](["ODST"])
 events = Array[int]([])
-chance = 0.3
+chance = 0.29
 min_turn = 0
 max_turn = -1
 
@@ -1105,8 +1091,8 @@ script = ExtResource("2_lfadw")
 task_id = Array[String]([])
 events = Array[int]([])
 chance = 0.8
-min_turn = 12
-max_turn = 15
+min_turn = 15
+max_turn = 18
 
 [sub_resource type="Resource" id="Resource_s6rbn"]
 script = ExtResource("5_j85s3")
@@ -1114,7 +1100,6 @@ task_id = "SHIPSTHROUGH"
 name = "Ships through"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -1133,7 +1118,6 @@ task_id = "DELAY"
 name = "Delay Shipment"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -1172,7 +1156,6 @@ task_id = "FAITH"
 name = "Faith Popups"
 icon = ExtResource("19_adkr5")
 start_location = Vector2(1700, 900)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 500000,
 "people": 8,
@@ -1199,7 +1182,6 @@ task_id = "NOFAITH"
 name = "No Faith"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -1244,7 +1226,6 @@ task_id = "FAITHMEET"
 name = "Arrange Meeting"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 100000
 }
@@ -1265,7 +1246,6 @@ task_id = "FAITHIGNORE"
 name = "Do nothing."
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -1304,7 +1284,6 @@ task_id = "FAITHFULL"
 name = "Spiritual Support"
 icon = ExtResource("16_0k5og")
 start_location = Vector2(1700, 900)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 2000000,
 "people": 15,
@@ -1333,7 +1312,6 @@ task_id = "FAITHSPIR"
 name = "Spiritual Support"
 icon = ExtResource("16_0k5og")
 start_location = Vector2(1700, 900)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 500000,
 "people": 8,
@@ -1360,7 +1338,6 @@ task_id = "FAITHDON"
 name = "Donations"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1500000,
 "people": 7,
@@ -1384,7 +1361,6 @@ task_id = "FAITHNEITHER"
 name = "None"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -1433,13 +1409,20 @@ chance = 1.0
 min_turn = 10
 max_turn = -1
 
+[sub_resource type="Resource" id="Resource_dgx6s"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 1.0
+min_turn = 13
+max_turn = -1
+
 [sub_resource type="Resource" id="Resource_3vgoh"]
 script = ExtResource("5_j85s3")
 task_id = "FULLSUPPLY"
 name = "Aid Site Resupply"
 icon = ExtResource("14_mtlhs")
 start_location = Vector2(900, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "people": 15,
@@ -1466,7 +1449,6 @@ task_id = "HALFSUPPLY"
 name = "Aid Site Resupply"
 icon = ExtResource("21_aenyn")
 start_location = Vector2(900, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 550000,
 "people": 8,
@@ -1493,7 +1475,6 @@ task_id = "NOSUPPLY"
 name = "No Resupply"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -1512,7 +1493,7 @@ message = "We need to resupply the aid sites, and do a staff rotation."
 responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_w8mro"), SubResource("Resource_ixpx6"), SubResource("Resource_c5ada")])
 default_response = 2
 sender = SubResource("Resource_fojvw")
-prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_88bt5"), SubResource("Resource_dspn1"), SubResource("Resource_nvdt3")])
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_88bt5"), SubResource("Resource_dspn1"), SubResource("Resource_nvdt3"), SubResource("Resource_dgx6s")])
 antirequisites = Array[ExtResource("2_lfadw")]([])
 turns_to_answer = 4
 is_repeatable = false
@@ -1532,7 +1513,6 @@ task_id = "LARGESAT"
 name = "Satellite Aid"
 icon = ExtResource("5_w1nnn")
 start_location = Vector2(1900, 900)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "people": 15,
@@ -1559,7 +1539,6 @@ task_id = "MEDSAT"
 name = "Satellite Aid"
 icon = ExtResource("5_w1nnn")
 start_location = Vector2(1900, 900)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 750000,
 "people": 10,
@@ -1586,7 +1565,6 @@ task_id = "SMALLSAT"
 name = "Satellite Aid"
 icon = ExtResource("22_x8231")
 start_location = Vector2(1900, 900)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 50000,
 "people": 5,
@@ -1613,7 +1591,6 @@ task_id = "NOSAT"
 name = "None"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 6
@@ -1652,7 +1629,6 @@ task_id = "PLAN1"
 name = "Plan 1"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {
 "funds": 8000000,
@@ -1676,7 +1652,6 @@ task_id = "PLAN2"
 name = "Plan 2"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {
 "funds": 4000000,
@@ -1700,7 +1675,6 @@ task_id = "PLAN3"
 name = "Plan 3"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {
 "funds": 3500000,
@@ -1724,7 +1698,6 @@ task_id = "PLAN4"
 name = "Plan 4"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {
 "funds": 12000000,
@@ -1748,7 +1721,6 @@ task_id = "PLAN5"
 name = "Plan 5"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {
 "funds": 9000000,
@@ -1772,7 +1744,6 @@ task_id = "PLAN6"
 name = "Plan 6"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {
 "funds": 5750000,
@@ -1815,8 +1786,7 @@ script = ExtResource("5_j85s3")
 task_id = "NEWVEHICLES"
 name = "Delivering new Vehicles"
 icon = ExtResource("19_adkr5")
-start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
+start_location = Vector2(700, 700)
 resources_required = {
 "funds": 1000000,
 "people": 5,
@@ -1842,8 +1812,7 @@ script = ExtResource("5_j85s3")
 task_id = "NEWSTAFF"
 name = "Transporting New Staff"
 icon = ExtResource("16_0k5og")
-start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
+start_location = Vector2(700, 700)
 resources_required = {
 "funds": 1200000,
 "people": 5,
@@ -1869,8 +1838,7 @@ script = ExtResource("5_j85s3")
 task_id = "NEWSUPPLIES"
 name = "Transporting Supplies"
 icon = ExtResource("14_mtlhs")
-start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
+start_location = Vector2(700, 700)
 resources_required = {
 "funds": 2000000,
 "people": 5,
@@ -1917,7 +1885,6 @@ task_id = "NEWVEHICLES2"
 name = "Delivering new Vehicles"
 icon = ExtResource("19_adkr5")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1200000,
 "people": 5,
@@ -1943,7 +1910,6 @@ task_id = "NEWSTAFF2"
 name = "Transporting New Staff"
 icon = ExtResource("16_0k5og")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1400000,
 "people": 5,
@@ -1969,7 +1935,6 @@ task_id = "NEWSUPPLIES2"
 name = "Transporting Supplies"
 icon = ExtResource("14_mtlhs")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 2200000,
 "people": 5,
@@ -2002,19 +1967,27 @@ turns_to_answer = 3
 is_repeatable = true
 cancel_behaviour = 0
 
-[sub_resource type="Resource" id="Resource_p1y3o"]
-script = ExtResource("2_lfadw")
-task_id = Array[String](["HALFSUPPLY"])
-events = Array[int]([])
-chance = 0.1
-min_turn = 0
-max_turn = -1
-
 [sub_resource type="Resource" id="Resource_uixxk"]
 script = ExtResource("2_lfadw")
 task_id = Array[String](["NOSUPPLY"])
 events = Array[int]([])
 chance = 0.7
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_p1y3o"]
+script = ExtResource("2_lfadw")
+task_id = Array[String](["HALFSUPPLY"])
+events = Array[int]([])
+chance = 0.3
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_6gnwu"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.4
 min_turn = 0
 max_turn = -1
 
@@ -2024,7 +1997,6 @@ task_id = "REPSUP"
 name = "Repair and Resupply"
 icon = ExtResource("5_w1nnn")
 start_location = Vector2(900, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 4000000,
 "people": 15,
@@ -2051,7 +2023,6 @@ task_id = "REPAIRS"
 name = "Repairs"
 icon = ExtResource("19_adkr5")
 start_location = Vector2(900, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 3000000,
 "people": 8,
@@ -2078,7 +2049,6 @@ task_id = "RESUPONLY"
 name = "Resupply"
 icon = ExtResource("14_mtlhs")
 start_location = Vector2(900, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "people": 8,
@@ -2105,7 +2075,6 @@ task_id = "NOSUPREP"
 name = "Nothing "
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -2124,7 +2093,7 @@ message = "Due to the lack of aid at the aid sites there has been unrest and som
 responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_xdh23"), SubResource("Resource_cpfsx"), SubResource("Resource_jjjcm"), SubResource("Resource_rp0p3")])
 default_response = 3
 sender = SubResource("Resource_fojvw")
-prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_p1y3o"), SubResource("Resource_uixxk")])
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_uixxk"), SubResource("Resource_p1y3o"), SubResource("Resource_6gnwu")])
 antirequisites = Array[ExtResource("2_lfadw")]([])
 turns_to_answer = 2
 is_repeatable = false
@@ -2134,8 +2103,8 @@ cancel_behaviour = 0
 script = ExtResource("2_lfadw")
 task_id = Array[String]([])
 events = Array[int]([])
-chance = 0.1
-min_turn = 14
+chance = 0.3
+min_turn = 5
 max_turn = -1
 
 [sub_resource type="Resource" id="Resource_7htfx"]
@@ -2144,18 +2113,17 @@ task_id = "MONKEY"
 name = "Monkey Search"
 icon = ExtResource("13_wrf78")
 start_location = Vector2(1700, 1200)
-end_location = Vector2(0, 0)
 resources_required = {
-"funds": 500000,
-"people": 4,
+"funds": 2000000,
+"people": 10,
 "supplies": 0,
-"vehicles": 2
+"vehicles": 6
 }
 resources_gained = {
-"people": 4,
-"vehicles": 2
+"people": 10,
+"vehicles": 6
 }
-expected_completion_time = 4
+expected_completion_time = 8
 effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
 
 [sub_resource type="Resource" id="Resource_v4e8f"]
@@ -2171,7 +2139,6 @@ task_id = "NOMONKEY"
 name = "Nothing"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -2210,7 +2177,6 @@ task_id = "MONKEYFUND"
 name = "Fund Repairs"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1500000,
 "supplies": 200
@@ -2232,7 +2198,6 @@ task_id = "NOMONKEYFUND"
 name = "No Repairs"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -2241,7 +2206,7 @@ effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
 [sub_resource type="Resource" id="Resource_q07jb"]
 script = ExtResource("3_8xbhe")
 response_name = "Don't help."
-response_text = "Not our monkey, not our circus."
+response_text = "We don't deem this important."
 relationship_change = -10.0
 task = SubResource("Resource_p8vdg")
 
@@ -2299,7 +2264,6 @@ task_id = "CHOLERASUPP"
 name = "Cholera Supplies"
 icon = ExtResource("15_ffmuv")
 start_location = Vector2(1000, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "people": 15,
@@ -2326,7 +2290,6 @@ task_id = "NOCHOLSUPP"
 name = "Nothing"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -2387,7 +2350,6 @@ task_id = "OUTBREAKRESP"
 name = "Cholera Outbreak"
 icon = ExtResource("15_ffmuv")
 start_location = Vector2(1000, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1500000,
 "people": 15,
@@ -2414,7 +2376,6 @@ task_id = "OUTBREAKVOL"
 name = "Cholera Outbreak"
 icon = ExtResource("23_tjkec")
 start_location = Vector2(1000, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 700000,
 "people": 10,
@@ -2441,7 +2402,6 @@ task_id = "OUTBREAK"
 name = "No Response"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {}
 resources_gained = {}
 expected_completion_time = 0
@@ -2496,7 +2456,6 @@ task_id = "Q"
 name = "Quarantine"
 icon = ExtResource("16_0k5og")
 start_location = Vector2(1300, 700)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 100000,
 "people": 10,
@@ -2521,7 +2480,6 @@ task_id = "TREATSTAFF"
 name = "Treatment"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "supplies": 100
@@ -2571,7 +2529,6 @@ task_id = "CHOLERALOSS"
 name = "Staff  Loss"
 icon = ExtResource("7_atwyf")
 start_location = Vector2(0, 0)
-end_location = Vector2(0, 0)
 resources_required = {
 "people": 5
 }
@@ -2628,7 +2585,7 @@ task_id = Array[String]([])
 events = Array[int]([])
 chance = 1.0
 min_turn = 3
-max_turn = 3
+max_turn = 10
 
 [sub_resource type="Resource" id="Resource_b1wkj"]
 script = ExtResource("5_j85s3")
@@ -2636,9 +2593,8 @@ task_id = "LARGESITE"
 name = "Setting up Aid Site"
 icon = ExtResource("14_mtlhs")
 start_location = Vector2(900, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
-"funds": 3000000,
+"funds": 7000000,
 "people": 40,
 "supplies": 5000,
 "vehicles": 15
@@ -2663,9 +2619,8 @@ task_id = "MEDSITE"
 name = "Setting up Aid Site"
 icon = ExtResource("14_mtlhs")
 start_location = Vector2(900, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
-"funds": 2500000,
+"funds": 5000000,
 "people": 30,
 "supplies": 3500,
 "vehicles": 10
@@ -2691,9 +2646,8 @@ task_id = "SMALLSITE"
 name = "Setting up Aid Site"
 icon = ExtResource("21_aenyn")
 start_location = Vector2(900, 1000)
-end_location = Vector2(0, 0)
 resources_required = {
-"funds": 1500000,
+"funds": 3000000,
 "people": 10,
 "supplies": 1000,
 "vehicles": 4
@@ -2725,10 +2679,558 @@ turns_to_answer = 3
 is_repeatable = true
 cancel_behaviour = 1
 
+[sub_resource type="Resource" id="Resource_g22x1"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.05
+min_turn = 11
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_7q78v"]
+script = ExtResource("5_j85s3")
+task_id = "OILFIREEVAC"
+name = "Oil Fire Evacuation"
+icon = ExtResource("13_wrf78")
+start_location = Vector2(1700, 900)
+resources_required = {
+"funds": 1000000,
+"people": 20,
+"supplies": 2000,
+"vehicles": 25
+}
+resources_gained = {
+"people": 20,
+"vehicles": 25
+}
+expected_completion_time = 5
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_vfw3f"]
+script = ExtResource("3_8xbhe")
+response_name = "Begin Evacuation"
+response_text = "We will begin evacuations straight away."
+relationship_change = 8.0
+task = SubResource("Resource_7q78v")
+
+[sub_resource type="Resource" id="Resource_ay1kb"]
+script = ExtResource("5_j85s3")
+task_id = "FUNDOILEVAC"
+name = "Fund Evacuation"
+icon = ExtResource("24_0v8ex")
+start_location = Vector2(0, 0)
+resources_required = {
+"funds": 4000000
+}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_yi0gj"]
+script = ExtResource("3_8xbhe")
+response_name = "Hire Evacuation Team"
+response_text = "We don't have the resources personally but we will message and help fund another NGO to help with the evacuation."
+relationship_change = 4.0
+task = SubResource("Resource_ay1kb")
+
+[sub_resource type="Resource" id="Resource_a8xbw"]
+script = ExtResource("5_j85s3")
+task_id = "OILFIRECONTAIN"
+name = "Fire Containment"
+icon = ExtResource("25_k300i")
+start_location = Vector2(1700, 900)
+resources_required = {
+"funds": 4000000,
+"people": 20,
+"supplies": 2000,
+"vehicles": 10
+}
+resources_gained = {}
+expected_completion_time = 2
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_jg4aj"]
+script = ExtResource("3_8xbhe")
+response_name = "Take Over Containment"
+response_text = "We appreciate the efforts you're taking to contain the fire. However we feel that with our resources we'll have a better chance of containment. We're sending permenant team now."
+relationship_change = -15.0
+task = SubResource("Resource_a8xbw")
+
+[sub_resource type="Resource" id="Resource_qtlpu"]
+script = ExtResource("5_j85s3")
+task_id = "OILFIRNOTHING"
+name = "Nothing"
+icon = ExtResource("7_atwyf")
+start_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_3w7q8"]
+script = ExtResource("3_8xbhe")
+response_name = "Do Nothing"
+response_text = "We can't help with this."
+relationship_change = 0.0
+task = SubResource("Resource_qtlpu")
+
+[sub_resource type="Resource" id="Resource_2aapo"]
+script = ExtResource("1_22kjx")
+message = "A fallen power line has fell down an ignited the oil spill. It's very likely to start spreading to the buildings to it nearby. We are corresponding with the government to help contain the fire, but we need your help to help evacuate surrounding citizens before the fire spreads."
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_vfw3f"), SubResource("Resource_yi0gj"), SubResource("Resource_jg4aj"), SubResource("Resource_3w7q8")])
+default_response = 3
+sender = SubResource("Resource_2n57b")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_fcj4d"), SubResource("Resource_3pk7o"), SubResource("Resource_o2rq2"), SubResource("Resource_g22x1")])
+antirequisites = Array[ExtResource("2_lfadw")]([])
+turns_to_answer = 1
+is_repeatable = false
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_261mt"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.5
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_w8p43"]
+script = ExtResource("5_j85s3")
+task_id = "FIREEVACDONVEH"
+name = "Donate Vehicles"
+icon = ExtResource("19_adkr5")
+start_location = Vector2(0, 0)
+resources_required = {
+"vehicles": 8
+}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_inwir"]
+script = ExtResource("3_8xbhe")
+response_name = "Donate Vehicles"
+response_text = "We are only in a position where we can donate vehicles at the moment."
+relationship_change = 4.0
+task = SubResource("Resource_w8p43")
+
+[sub_resource type="Resource" id="Resource_4yvsd"]
+script = ExtResource("5_j85s3")
+task_id = "FIREEVACDONSUP"
+name = "Donate Supplies"
+icon = ExtResource("21_aenyn")
+start_location = Vector2(0, 0)
+resources_required = {
+"supplies": 1000
+}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_8aaav"]
+script = ExtResource("3_8xbhe")
+response_name = "Donate Supplies"
+response_text = "We are only in a position where we can donate supplies at the moment."
+relationship_change = 4.0
+task = SubResource("Resource_4yvsd")
+
+[sub_resource type="Resource" id="Resource_1rdl8"]
+script = ExtResource("5_j85s3")
+task_id = "FIREEVACDONBOTH"
+name = "Donate Both"
+icon = ExtResource("5_w1nnn")
+start_location = Vector2(0, 0)
+resources_required = {
+"supplies": 1000,
+"vehicles": 8
+}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_lqt3w"]
+script = ExtResource("3_8xbhe")
+response_name = "Donate Both"
+response_text = "We will happily donate both of these things to you. If you need anything else for the evacuation efforts let us know."
+relationship_change = 12.0
+task = SubResource("Resource_1rdl8")
+
+[sub_resource type="Resource" id="Resource_ofb3i"]
+script = ExtResource("5_j85s3")
+task_id = "FIREEVACNODON"
+name = "Nothing"
+icon = ExtResource("7_atwyf")
+start_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_c35tv"]
+script = ExtResource("3_8xbhe")
+response_name = "No Donation."
+response_text = "We can't make a donation at this present time."
+relationship_change = -40.0
+task = SubResource("Resource_ofb3i")
+
+[sub_resource type="Resource" id="Resource_xfg01"]
+script = ExtResource("1_22kjx")
+message = "We heard you have taken over containment on the fire. We are currently evacuating the surrounding areas, but we are a bit short on vehicles and supplies. We'd appreciate a donation. "
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_inwir"), SubResource("Resource_8aaav"), SubResource("Resource_lqt3w"), SubResource("Resource_c35tv")])
+default_response = 3
+sender = SubResource("Resource_iff3j")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_261mt")])
+antirequisites = Array[ExtResource("2_lfadw")]([])
+turns_to_answer = 3
+is_repeatable = false
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_ycr2u"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 1.0
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_oj27p"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.8
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_eg2cg"]
+script = ExtResource("5_j85s3")
+task_id = "PRESSDONFUNDS"
+name = "Blame Funding"
+icon = ExtResource("7_atwyf")
+start_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_blei1"]
+script = ExtResource("3_8xbhe")
+response_name = "Blame Lack of Funding"
+response_text = "It's very hard to balance everything and we have to pick and choose where to prioritise. The evacuation efforts are still underway and while important we don't have the funds and resources to help out everywhere."
+relationship_change = 2.0
+task = SubResource("Resource_eg2cg")
+
+[sub_resource type="Resource" id="Resource_luxwo"]
+script = ExtResource("5_j85s3")
+task_id = "PRESSDONFAULT"
+name = "Admit Fault"
+icon = ExtResource("7_atwyf")
+start_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_mmwxw"]
+script = ExtResource("3_8xbhe")
+response_name = "Admit Fault"
+response_text = "This was certainly a massive error of judgement from us, and we regret not helping out. "
+relationship_change = 4.0
+task = SubResource("Resource_luxwo")
+
+[sub_resource type="Resource" id="Resource_wjmrn"]
+script = ExtResource("5_j85s3")
+task_id = "PRESSDONNOCOM"
+name = "Nothing"
+icon = ExtResource("7_atwyf")
+start_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_6ax6g"]
+script = ExtResource("3_8xbhe")
+response_name = "No Comment"
+response_text = "We will not be making a comment at this time."
+relationship_change = -10.0
+task = SubResource("Resource_wjmrn")
+
+[sub_resource type="Resource" id="Resource_cy6rh"]
+script = ExtResource("6_imb53")
+name = "The Press"
+image = ExtResource("7_atwyf")
+relationship = 0.0
+
+[sub_resource type="Resource" id="Resource_s61b5"]
+script = ExtResource("1_22kjx")
+message = "The Freetown government have made a statement that they are furious with the lack of help they are being provided with from UN OCHA in regards to the evacuation from the oil fire. Could you comment further on your decision not to donate."
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_blei1"), SubResource("Resource_mmwxw"), SubResource("Resource_6ax6g")])
+default_response = -1
+sender = SubResource("Resource_cy6rh")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_ycr2u"), SubResource("Resource_oj27p")])
+antirequisites = Array[ExtResource("2_lfadw")]([])
+turns_to_answer = 1
+is_repeatable = false
+cancel_behaviour = 0
+
+[sub_resource type="Resource" id="Resource_guyth"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.7
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_jquix"]
+script = ExtResource("5_j85s3")
+task_id = "OILFIRECONTAINCONT"
+name = "Fire Containment"
+icon = ExtResource("25_k300i")
+start_location = Vector2(1700, 900)
+resources_required = {
+"funds": 1500000,
+"supplies": 1000
+}
+resources_gained = {}
+expected_completion_time = 2
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_sed6i"]
+script = ExtResource("3_8xbhe")
+response_name = "Continue Containment"
+response_text = "We will send more resources straight away, let us know if you need more."
+relationship_change = 0.0
+task = SubResource("Resource_jquix")
+
+[sub_resource type="Resource" id="Resource_1yr6q"]
+script = ExtResource("5_j85s3")
+task_id = "OILFIRETEAMEXTRACT"
+name = "Extract Team"
+icon = ExtResource("17_m47wo")
+start_location = Vector2(1700, 900)
+resources_required = {}
+resources_gained = {
+"people": 20,
+"vehicles": 10
+}
+expected_completion_time = 2
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_v34xy"]
+script = ExtResource("3_8xbhe")
+response_name = "Extract Team"
+response_text = "We've done enough here, it's time to head back and help with aid elsewhere."
+relationship_change = 0.0
+task = SubResource("Resource_1yr6q")
+
+[sub_resource type="Resource" id="Resource_rta2v"]
+script = ExtResource("1_22kjx")
+message = "The fire remains contained but is not extinguished yet. We're fairly confident it should remain contained, but there is still a chance it could spread further. "
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_sed6i"), SubResource("Resource_v34xy")])
+default_response = 1
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_guyth")])
+antirequisites = Array[ExtResource("2_lfadw")]([])
+turns_to_answer = 2
+is_repeatable = true
+cancel_behaviour = 1
+
+[sub_resource type="Resource" id="Resource_oclfv"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.8
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_5fvrd"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.6
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_6bxuy"]
+script = ExtResource("5_j85s3")
+task_id = "BROKECONTAINACK"
+name = "Acknowledge"
+icon = ExtResource("7_atwyf")
+start_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_qdjds"]
+script = ExtResource("3_8xbhe")
+response_name = "Acknowledge."
+response_text = "We have messed up here, but we can still make a difference in other places."
+relationship_change = 0.0
+task = SubResource("Resource_6bxuy")
+
+[sub_resource type="Resource" id="Resource_ov1nm"]
+script = ExtResource("1_22kjx")
+message = "The fire has broke containment and is spreading quickly. The government are furious and have publicly called us incompetent. They are refusing are to accept further help from us with this matter."
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_qdjds")])
+default_response = 1
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_5fvrd")])
+antirequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_oclfv")])
+turns_to_answer = 0
+is_repeatable = false
+cancel_behaviour = 0
+
+[sub_resource type="Resource" id="Resource_fjrnn"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.2
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_nruci"]
+script = ExtResource("5_j85s3")
+task_id = "ACKOCHAFUNDS"
+name = "Acknowledge"
+icon = ExtResource("7_atwyf")
+start_location = Vector2(0, 0)
+resources_required = {
+"people": 0
+}
+resources_gained = {
+"funds": 5000000,
+"supplies": 3000
+}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_wsafm"]
+script = ExtResource("3_8xbhe")
+response_name = "Acknowledge"
+response_text = "Perfect."
+relationship_change = 0.0
+task = SubResource("Resource_nruci")
+
+[sub_resource type="Resource" id="Resource_h45xs"]
+script = ExtResource("1_22kjx")
+message = "UN OCHA saw your statement you made to the press about not having enough funding. They have sent us some extra funding and supplies."
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_wsafm")])
+default_response = 1
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_fjrnn")])
+antirequisites = Array[ExtResource("2_lfadw")]([])
+turns_to_answer = 1
+is_repeatable = false
+cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_827tn"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 1.0
+min_turn = 11
+max_turn = 11
+
+[sub_resource type="Resource" id="Resource_arywp"]
+script = ExtResource("5_j85s3")
+task_id = "ACKAIDMADE"
+name = "Acknowledge"
+icon = ExtResource("7_atwyf")
+start_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_nk5ej"]
+script = ExtResource("3_8xbhe")
+response_name = "Acknowledge"
+response_text = "Thanks for letting me know."
+relationship_change = 0.0
+task = SubResource("Resource_arywp")
+
+[sub_resource type="Resource" id="Resource_ay3u1"]
+script = ExtResource("1_22kjx")
+message = "It's almost been 2 days since the initial earthquake and we still don't have an aid site set up. We're risking a lot of lives by not having this yet. UN OCHA have taken over and set up a small aid site for us."
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_nk5ej")])
+default_response = -1
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_827tn")])
+antirequisites = Array[ExtResource("2_lfadw")]([])
+turns_to_answer = 0
+is_repeatable = false
+cancel_behaviour = 0
+
+[sub_resource type="Resource" id="Resource_fx2wn"]
+script = ExtResource("2_lfadw")
+task_id = Array[String]([])
+events = Array[int]([])
+chance = 0.4
+min_turn = 0
+max_turn = -1
+
+[sub_resource type="Resource" id="Resource_nnsih"]
+script = ExtResource("5_j85s3")
+task_id = "MONKSUPPLYDON"
+name = "Donating Supplies"
+icon = ExtResource("14_mtlhs")
+start_location = Vector2(1100, 1200)
+resources_required = {
+"people": 4,
+"supplies": 2000,
+"vehicles": 4
+}
+resources_gained = {
+"people": 4,
+"vehicles": 4
+}
+expected_completion_time = 3
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_sgoy8"]
+script = ExtResource("3_8xbhe")
+response_name = "Donate Supplies"
+response_text = "We can give you some replacement supplies. We will send a team over right now."
+relationship_change = 0.0
+task = SubResource("Resource_nnsih")
+
+[sub_resource type="Resource" id="Resource_0e17f"]
+script = ExtResource("5_j85s3")
+task_id = "MONKFUNDSDON"
+name = "Donating  Funds"
+icon = ExtResource("24_0v8ex")
+start_location = Vector2(0, 0)
+resources_required = {
+"funds": 3000000
+}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_eg1p6"]
+script = ExtResource("3_8xbhe")
+response_name = "Donate Funds"
+response_text = "We don't have any supplies we can give, but we can pass some money on to help with your repairs."
+relationship_change = 0.0
+task = SubResource("Resource_0e17f")
+
+[sub_resource type="Resource" id="Resource_okupx"]
+script = ExtResource("1_22kjx")
+message = "A group of wild monkeys came and destroyed all of our supplies. We need some replacements ASAP to continue providing aid."
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_sgoy8"), SubResource("Resource_eg1p6")])
+default_response = -1
+sender = SubResource("Resource_f24t8")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_fx2wn")])
+antirequisites = Array[ExtResource("2_lfadw")]([])
+turns_to_answer = 0
+is_repeatable = false
+cancel_behaviour = 0
+
 [resource]
 script = ExtResource("2_yn5ci")
 scenario_name = "Freetown"
-messages = Array[ExtResource("1_22kjx")]([SubResource("Resource_qc7dk"), SubResource("Resource_louxg"), SubResource("Resource_7v4cu"), SubResource("Resource_vbcvc"), SubResource("Resource_8bmwy"), SubResource("Resource_6c75b"), SubResource("Resource_7aat6"), SubResource("Resource_ys23c"), SubResource("Resource_utm5u"), SubResource("Resource_7sxi5"), SubResource("Resource_qayw4"), SubResource("Resource_1rfj2"), SubResource("Resource_lkvf4"), SubResource("Resource_mgw0c"), SubResource("Resource_fjl6e"), SubResource("Resource_pdchu"), SubResource("Resource_oc5gs"), SubResource("Resource_a7fn1"), SubResource("Resource_fea6p"), SubResource("Resource_wrvhb"), SubResource("Resource_diysk"), SubResource("Resource_qhqk1"), SubResource("Resource_abyp5"), SubResource("Resource_altmm"), SubResource("Resource_34y08"), SubResource("Resource_qacvn"), SubResource("Resource_ucp3e"), SubResource("Resource_3fqva"), SubResource("Resource_10l73"), SubResource("Resource_omh2w"), SubResource("Resource_3a7we")])
+messages = Array[ExtResource("1_22kjx")]([SubResource("Resource_qc7dk"), SubResource("Resource_louxg"), SubResource("Resource_7v4cu"), SubResource("Resource_vbcvc"), SubResource("Resource_8bmwy"), SubResource("Resource_6c75b"), SubResource("Resource_7aat6"), SubResource("Resource_ys23c"), SubResource("Resource_utm5u"), SubResource("Resource_7sxi5"), SubResource("Resource_qayw4"), SubResource("Resource_1rfj2"), SubResource("Resource_lkvf4"), SubResource("Resource_mgw0c"), SubResource("Resource_fjl6e"), SubResource("Resource_pdchu"), SubResource("Resource_oc5gs"), SubResource("Resource_a7fn1"), SubResource("Resource_fea6p"), SubResource("Resource_wrvhb"), SubResource("Resource_diysk"), SubResource("Resource_qhqk1"), SubResource("Resource_abyp5"), SubResource("Resource_altmm"), SubResource("Resource_34y08"), SubResource("Resource_qacvn"), SubResource("Resource_ucp3e"), SubResource("Resource_3fqva"), SubResource("Resource_10l73"), SubResource("Resource_omh2w"), SubResource("Resource_3a7we"), SubResource("Resource_2aapo"), SubResource("Resource_xfg01"), SubResource("Resource_s61b5"), SubResource("Resource_rta2v"), SubResource("Resource_ov1nm"), SubResource("Resource_h45xs"), SubResource("Resource_ay3u1"), SubResource("Resource_okupx")])
 time_step = 240
 starting_hour = 11
 resources = {
