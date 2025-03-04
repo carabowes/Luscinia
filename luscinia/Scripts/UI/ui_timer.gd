@@ -1,6 +1,7 @@
 class_name UITimer
 extends Control
 
+
 func _ready():
 	# Initialize the UI elements
 	%ClockVisual.max_value = GlobalTimer.countdown_duration
