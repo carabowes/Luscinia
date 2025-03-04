@@ -28,7 +28,7 @@ script = ExtResource("1_jafkr")
 layout_mode = 0
 offset_right = 180.0
 offset_bottom = 59.0
-color = Color(0.94902, 0.913725, 0.94902, 1)
+color = Color(0.496094, 0.746031, 1, 1)
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
 layout_mode = 0
@@ -80,7 +80,6 @@ texture_progress = ExtResource("2_2fyrh")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 text = "00:00"
 
@@ -90,14 +89,12 @@ layout_mode = 2
 [node name="DayLabel" type="Label" parent="TimerVBox/GameTimeHBox"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 text = "Day 0"
 
 [node name="ClockLabel" type="Label" parent="TimerVBox/GameTimeHBox"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 text = "00:00"
 
@@ -157,7 +154,6 @@ offset_left = 0.5
 offset_top = 0.0200005
 offset_right = 0.539989
 offset_bottom = -0.0200005
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 7
 text = "output"
 horizontal_alignment = 1
@@ -175,7 +171,6 @@ offset_left = 0.0199966
 offset_top = 0.0200005
 offset_right = -0.0200043
 offset_bottom = -0.0200005
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 7
 text = "output"
 horizontal_alignment = 1
@@ -193,7 +188,6 @@ offset_left = 0.300003
 offset_top = 0.00199509
 offset_right = -0.539997
 offset_bottom = 0.0219994
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 7
 text = "output"
 horizontal_alignment = 1
@@ -211,7 +205,6 @@ offset_left = 1.563
 offset_top = 0.0219917
 offset_right = 1.043
 offset_bottom = -0.0180054
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 7
 text = "output"
 horizontal_alignment = 1
