@@ -1,19 +1,23 @@
 extends Control
 
+signal zoom_changed
+
 @export var zoom_speed : float = 0.1
-@export var min_zoom : float = 0.5  
+@export var min_zoom : float = 0.5
 @export var max_zoom : float = 2.0
 @export var pan_speed : float = 500
-@onready var map = $MapTexture
 
 var current_scale : float = 1
 var is_dragging = false
 var last_mouse_position = Vector2.ZERO
 
+@onready var map = $MapTexture
 @onready var map_size = map.size
 @onready var viewport_size = Vector2(get_viewport().get_visible_rect().size)
 
-signal zoom_changed
+
+
+
 
 func _ready() -> void:
 	var initial_position = (viewport_size - map_size * current_scale) / 2
@@ -76,7 +80,7 @@ func _clamp_position() -> void:
 	var max_x = 0
 	var min_y = -(scaled_map_size.y - viewport_size.y)
 	var max_y = 0
-	
+
 	map.position.x = clamp(map.position.x, min_x, max_x)
 	map.position.y = clamp(map.position.y, min_y, max_y)
 
@@ -84,6 +88,7 @@ func _clamp_position() -> void:
 func _handle_touch_drag(event: InputEventScreenDrag) -> void:
 	var prev_scale = current_scale
 	map.position += event.relative
+	_clamp_position()
 	current_scale = clamp(current_scale, min_zoom, max_zoom)
 
 	if current_scale == prev_scale:

@@ -13,7 +13,7 @@ func _ready() -> void:
 	%ReturnButton.pressed.connect(func(): return_button_pressed.emit())
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update_all_labels()
 
 

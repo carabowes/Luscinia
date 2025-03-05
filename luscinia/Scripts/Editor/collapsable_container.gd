@@ -31,5 +31,5 @@ func _on_click(event: InputEvent):
 	if event.is_action_pressed("interact"):
 		is_expanded = !is_expanded
 		%Expand.text = "-" if is_expanded else "+"
-		set_item_visibility(is_expanded) 
+		set_item_visibility(is_expanded)
 		toggled.emit()

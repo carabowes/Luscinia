@@ -25,5 +25,4 @@ func render_message(text : String):
 			message_bubble_instance.set_join(true, false)
 		else:
 			message_bubble_instance.set_join(true, true)
-		
 		count += 1

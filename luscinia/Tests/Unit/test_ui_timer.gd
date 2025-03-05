@@ -138,7 +138,7 @@ func test_day_label_values_update():
 	var day_label : Label = ui_timer_instance.get_node("%DayLabel")
 	for i in range(15):
 		gut.simulate(ui_timer_instance, 1, 1)
-		assert_eq(day_label.text, "Day " + str(i))
+		assert_eq(day_label.text, "Day " + str(i+1))
 		gut.simulate(GlobalTimer, 1, 1)
 
 
