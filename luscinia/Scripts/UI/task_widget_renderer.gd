@@ -69,7 +69,7 @@ func render_resource_bubble(resource : String, widget : TaskWidget, rng : Random
 		resource_bubble, "position",
 		final_position, rng.randf_range(1.1, 1.5)
 	).set_trans(Tween.TRANS_QUINT)
-	resource_bubble_tween.finished.connect(func(): resource_bubble.queue_free())
+	#resource_bubble_tween.finished.connect(func(): resource_bubble.queue_free())
 
 
 func render_resource_bubbles(task_instance : TaskInstance, widget : TaskWidget):

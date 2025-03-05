@@ -34,6 +34,7 @@ func _process(delta: float) -> void:
 		notifications.visible = false
 		format_resource_remaining()
 		days_amt.text = "%s Turns" % str(GlobalTimer.turns)
+		GlobalTimer.pause_game()
 		self.visible = true
 	else:
 		self.visible = false
@@ -43,23 +44,23 @@ func format_resource_taken(resource: String, amt: int):
 	match resource:
 		"people":
 			personnel_amt+=amt
-			taken_personnel.text = "Personnel: %s" % str(personnel_amt)
+			taken_personnel.text = "%s" % str(personnel_amt)
 		"supplies":
 			supplies_amt+=amt
-			taken_supplies.text = "Supplies: %s" % str(supplies_amt)
+			taken_supplies.text = "%s" % str(supplies_amt)
 		"funds":
 			funds_amt+=amt
-			taken_funds.text = "Funds: %s" % str(funds_amt)
+			taken_funds.text = "%s" % ResourceManager.format_resource_value(funds_amt,0)
 		"vehicles":
 			vehicle_amt+=amt
-			taken_vehicles.text = "Vehicles: %s" % str(vehicle_amt)
+			taken_vehicles.text = "%s" % str(vehicle_amt)
 
 
 func format_resource_remaining():
-	remain_personnel.text = "Personnel: %s" % ResourceManager.available_resources["people"]
-	remain_supplies.text = "Supplies: %s" % ResourceManager.resources["supplies"]
-	remain_funds.text = "Funds: %s" % ResourceManager.resources["funds"]
-	remain_vehicles.text = "Vehicles: %s" % ResourceManager.available_resources["vehicles"]
+	remain_personnel.text = "%s" % ResourceManager.available_resources["people"]
+	remain_supplies.text = "%s" % ResourceManager.resources["supplies"]
+	remain_funds.text = "%s" % ResourceManager.format_resource_value(ResourceManager.resources["funds"],0)
+	remain_vehicles.text = "%s" % ResourceManager.available_resources["vehicles"]
 
 
 func _restart_game():

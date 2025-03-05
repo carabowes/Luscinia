@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/UI/ui_timer.gd" id="1_jafkr"]
 [ext_resource type="Texture2D" uid="uid://7v3dgwwsbwqu" path="res://Sprites/clock.png" id="2_2fyrh"]
 [ext_resource type="Texture2D" uid="uid://c27suyrk8wq" path="res://Sprites/ClockBackground.png" id="2_3ac0l"]
-[ext_resource type="Texture2D" uid="uid://d2r32fmyi8j47" path="res://Sprites/UI/OptionsButton.png" id="2_e00yx"]
+[ext_resource type="Texture2D" uid="uid://d2r32fmyi8j47" path="res://Sprites/UI/Icons/OptionsButton.png" id="2_e00yx"]
 [ext_resource type="Texture2D" uid="uid://bib3v5a1f2b2o" path="res://Sprites/UI/User.png" id="5_1iyi8"]
 [ext_resource type="Texture2D" uid="uid://dmrhlqq3p4y0g" path="res://Sprites/Package.png" id="6_5mb17"]
 [ext_resource type="Texture2D" uid="uid://dm70f566o3s32" path="res://Sprites/UI/Dollar sign.png" id="7_noqc3"]
@@ -28,7 +28,6 @@ script = ExtResource("1_jafkr")
 layout_mode = 0
 offset_right = 180.0
 offset_bottom = 59.0
-color = Color(0.94902, 0.913725, 0.94902, 1)
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
 layout_mode = 0
@@ -80,7 +79,6 @@ texture_progress = ExtResource("2_2fyrh")
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 text = "00:00"
 

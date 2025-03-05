@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbevrsfktm6jt"
-path="res://.godot/imported/MessageButton.png-ad6711deca996791351f16c25f384e9b.ctex"
+uid="uid://yd3iuysocw5o"
+path="res://.godot/imported/MessageButton_selected.png-e03d7439cf527d263211e7ea0a4fbaa9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/MessageButton.png"
-dest_files=["res://.godot/imported/MessageButton.png-ad6711deca996791351f16c25f384e9b.ctex"]
+source_file="res://Sprites/UI/Icons/MessageButton_selected.png"
+dest_files=["res://.godot/imported/MessageButton_selected.png-e03d7439cf527d263211e7ea0a4fbaa9.ctex"]
 
 [params]
 

@@ -12,4 +12,8 @@ signal task_cancelled(task_instance : TaskInstance)
 #General UI Signals
 signal task_widget_view_details_pressed(task_instance : TaskInstance)
 signal navbar_message_button_pressed
+signal message_page_open
+signal message_page_close
 signal navbar_resource_button_pressed
+signal resource_page_open
+signal resource_page_close

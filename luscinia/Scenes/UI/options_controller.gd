@@ -12,13 +12,16 @@ func _ready() -> void:
 
 func _pause_game():
 	if(self.visible):
+		pause_button.icon = load("res://Sprites/UI/Icons/OptionsButton.png")
 		_resume_game()
 	else:
+		pause_button.icon = load("res://Sprites/UI/Icons/OptionsButton_selected.png")
 		GlobalTimer.pause_game()
 		self.visible = true
 
 
 func _resume_game():
+	pause_button.icon = load("res://Sprites/UI/Icons/OptionsButton.png")
 	GlobalTimer.start_game()
 	self.visible = false
 
