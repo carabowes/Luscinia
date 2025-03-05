@@ -10,8 +10,6 @@ class_name TaskData
 @export var icon : Texture2D
 ## Corresponds to pixel location on map image for starting location
 @export var start_location : Vector2
-## Corresponds to pixel location on map image for ending location
-@export var end_location : Vector2
 ## Dictionary of Resource to Integer indicating how much of each resource is needed
 @export var resources_required : Dictionary
 ## Dictionary of Resource to Integer indicating how much of each resourced is gained on completion
@@ -22,12 +20,20 @@ class_name TaskData
 @export var effects_of_random_events : Array[EventEffect]
 
 
+static var default_task = TaskData.new(
+	"TaskID", "Task", null, Vector2(0,0), {"funds": 10}, {"funds": 15}, 8, []
+):
+	get:
+		return default_task.duplicate(true)
+	set(value):
+		return
+
+
 func _init(
 	task_id = "",
 	name = "",
 	icon = null,
 	start_location = Vector2.ZERO,
-	end_location = Vector2.ZERO,
 	resources_required = {},
 	resources_gained = {},
 	expected_completion_time = 0,
@@ -37,7 +43,6 @@ func _init(
 	self.name = name
 	self.icon = icon
 	self.start_location = start_location
-	self.end_location = end_location
 	self.resources_required = resources_required
 	self.resources_gained = resources_gained
 	self.expected_completion_time = expected_completion_time

@@ -38,22 +38,23 @@ func _end_early_button_pressed(task_instance : TaskInstance):
 	var resource_increase_end_early : Dictionary
 	for resource in ResourceManager.resources.keys():
 		var current_resource = ResourceManager.resources[resource] 
-		if resource in task_instance.task_data.resources_required and (resource == "people" or resource == "vehicles"):
-			end_early_resources[resource] = task_instance.task_data.resources_required[resource] + current_resource
-			resource_increase_end_early[resource] = task_instance.task_data.resources_required[resource]
+		if task_instance.actual_resources.has(resource):
+			end_early_resources[resource] = task_instance.actual_resources[resource] + current_resource
+			resource_increase_end_early[resource] = task_instance.actual_resources[resource]
 		else:
 			end_early_resources[resource] = current_resource
 
 	%EndEarlyResources.resources = end_early_resources
 	%EndEarlyResources.set_increments(resource_increase_end_early)
 
+	var task_data = task_instance.task_data
 	var end_on_time_resources: Dictionary
 	var resource_increase_on_time: Dictionary
 	for resource in ResourceManager.resources.keys():
 		var current_resource = ResourceManager.resources[resource] 
-		if resource in task_instance.task_data.resources_gained:
-			end_on_time_resources[resource] = task_instance.task_data.resources_gained[resource] + current_resource
-			resource_increase_on_time[resource] = task_instance.task_data.resources_gained[resource]
+		if task_data.resources_gained.has(resource):
+			end_on_time_resources[resource] = task_data.resources_gained[resource] + current_resource
+			resource_increase_on_time[resource] = task_data.resources_gained[resource]
 		else:
 			end_on_time_resources[resource] = current_resource
 
@@ -65,4 +66,4 @@ func _end_early_button_pressed(task_instance : TaskInstance):
 func _confirm_end_early_button_pressed(task_instance : TaskInstance):
 	$TaskCancelConfirmationPage.visible = false
 	visible = false
-	EventBus.task_finished.emit(task_instance, true)
+	EventBus.task_cancelled.emit(task_instance)

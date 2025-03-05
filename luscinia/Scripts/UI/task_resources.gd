@@ -34,5 +34,4 @@ func _add_elements():
 		resource_entry_instance.resource_type = resource_key
 		resource_entry_instance.name = resource_key
 		add_child(resource_entry_instance)
-		resource_entry_instance.set_owner($".")
-		resource_entry_instance.columns = 3
+		resource_entry_instance.set_owner(self)

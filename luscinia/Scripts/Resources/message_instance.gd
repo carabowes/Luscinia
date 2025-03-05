@@ -7,7 +7,6 @@ enum MessageStatus {
 	REPLIED = 2
 }
 
-static var default_message : Message = Message.new("Message failed to load. No message was passed in on initialisation!", [], -1, null, [], [], -1, false)
 ## Message information that is associated with the instance
 var message : Message
 ## The current number of turns remaining in the message
@@ -17,7 +16,8 @@ var message_status : MessageStatus
 ## The player response to the message
 var player_response : String
 
-func _init(message : Message = default_message) -> void:
+
+func _init(message : Message = Message.default_message) -> void:
 	message_status = MessageStatus.UNREAD
 	self.message = message
 	self.turns_remaining = message.turns_to_answer

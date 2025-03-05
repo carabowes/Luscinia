@@ -8,7 +8,7 @@ extends GridContainer
 @export var show_arrow : bool = true
 
 func _draw() -> void:
-	%ResourceAmount.text = number_to_text(amount)
+	%ResourceAmount.text = ResourceManager.format_resource_value(amount, 3)
 	%ResourceIcon.texture = ResourceManager.get_resource_texture(resource_type)
 	if(increase == 0):
 		%IncreaseIcon.visible = false
@@ -23,12 +23,3 @@ func _draw() -> void:
 		%IncreaseIcon.self_modulate = Color.RED
 		%ResourceAmount.self_modulate = Color.RED
 		%IncreaseIcon.flip_v = true;
-
-
-func number_to_text(number : int) -> String:
-	#There should be no good reason for the numbers to get any bigger than a 999 Million
-	if number >= 1_000_000:
-		return str(number / 1_000_000) + "M"
-	if number >= 1_000:
-		return str(number / 1_000) + "K"
-	return str(number)
