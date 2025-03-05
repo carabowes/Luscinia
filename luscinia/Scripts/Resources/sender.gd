@@ -1,6 +1,14 @@
 class_name Sender
 extends Resource
 
+
+static var default_sender : Sender = Sender.new("Anonymous", null, 0):
+	get():
+		return default_sender.duplicate(true)
+	set(value):
+		return
+
+
 ## Name of the sender
 @export var name: String
 ## Image of senders profile, similar to WhatsApp/iMessage profile picture

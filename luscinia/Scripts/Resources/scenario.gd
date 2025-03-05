@@ -29,8 +29,8 @@ extends Resource
 }
 
 func _init(
-	scenario_name : String = "Scenario", 
-	messages : Array[Message] = [], 
+	scenario_name : String = "Scenario",
+	messages : Array[Message] = [],
 	time_step: int = 60,
 	starting_hour : int = 0,
 	resources : Dictionary = resources,

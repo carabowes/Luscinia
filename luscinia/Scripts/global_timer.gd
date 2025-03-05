@@ -14,7 +14,7 @@ var game_start: bool = false
 # Clock variables
 var in_game_hours: int = 0  # Measured in hours out of 24
 var in_game_minutes: int = 0
-var in_game_days: int = 0
+var in_game_days: int = 1
 var second_accumulator: float = 0
 
 
@@ -55,37 +55,39 @@ func next_turn(turn_length: int):
 			in_game_days += 1
 	turns+= 1
 	turn_progressed.emit()
-	print("New in-game time: Day %d, %02d:%02d" % [in_game_days, in_game_hours, in_game_minutes])  # Debugging line
+	print("New in-game time: Day %d, %02d:%02d" % [in_game_days, in_game_hours, in_game_minutes])
 
 
-## Don't include an s in the minute or hour string, these will be added by the function if applicable
+## Don't include an s in the minute or hour string, these will be added by the function
+## if applicable
 ## i.e. 1 hour, 2 hours
 func turns_to_time_string(
-	turns : int, 
-	hour_string : String = "hour", 
-	minutes_string : String = "min", 
+	turns : int,
+	hour_string : String = "hour",
+	minutes_string : String = "min",
 	multiple_string: String = "s",
-	use_decimal_minutes : bool = false, 
+	use_decimal_minutes : bool = false,
 	show_minutes : bool  = true
 ):
 	return time_to_time_string(
-		turns * time_step, 
-		hour_string, 
-		minutes_string, 
+		turns * time_step,
+		hour_string,
+		minutes_string,
 		multiple_string,
-		use_decimal_minutes, 
+		use_decimal_minutes,
 		show_minutes
 	)
 
 
-## Don't include an s in the minute or hour string, these will be added by the function if applicable
+## Don't include an s in the minute or hour string, these will be added by the function
+## if applicable
 ## i.e. 1 hour, 2 hours
 func time_to_time_string(
-	minutes : int, 
-	hour_string : String = "hour", 
+	minutes : int,
+	hour_string : String = "hour",
 	minutes_string : String = "min",
 	multiple_string: String = "s",
-	use_decimal_minutes : bool  = false, 
+	use_decimal_minutes : bool  = false,
 	show_minutes : bool  = true
 ):
 	if minutes < 0:
@@ -124,6 +126,7 @@ func start_game():
 	game_start = true
 
 
+
 func pause_game():
 	game_start = false
 
@@ -134,5 +137,5 @@ func reset_clock():
 	turns = 0
 	in_game_hours = 0
 	in_game_minutes = 0
-	in_game_days = 0
+	in_game_days = 1
 	second_accumulator = 0

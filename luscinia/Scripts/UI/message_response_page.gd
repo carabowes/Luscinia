@@ -13,7 +13,6 @@ var current_selection : int = 0
 func _ready() -> void:
 	option_button_group = ButtonGroup.new()
 	option_button_group.allow_unpress = false
-	%OptionButton.button_group = option_button_group
 	%OptionButton.toggle_mode = true
 	option_button_prefab = PackedScene.new()
 	option_button_prefab.pack(%OptionButton)
@@ -50,6 +49,7 @@ func _render_option_buttons(message : Message):
 		new_option_button.pressed.connect(func(): _select_option_button(index, message))
 		option_buttons.append(new_option_button)
 		%ButtonLayout.add_child(new_option_button)
+		new_option_button.button_group = option_button_group
 		index += 1
 
 
@@ -87,11 +87,13 @@ func _render_response_info(response : Response, message : Message):
 			%TaskTitle.text = "[Default] " + %TaskTitle.text
 	if task != null:
 		if task.name.to_lower() == "nothing":
-			%EstimatedTime.text = "Choosing not to do anything could have consequences and damage relationships."
+			var txt= "Choosing not to do anything could have consequences and damage relationships."
+			%EstimatedTime.text = txt
 			%EstimatedTimeLabel.visible = false
 		else:
 			%EstimatedTimeLabel.visible = true
-			%EstimatedTime.text = GlobalTimer.turns_to_time_string(task.expected_completion_time, "hr", "min", "s", true, true)
+			%EstimatedTime.text = GlobalTimer.turns_to_time_string(
+			task.expected_completion_time, "hr", "min", "s", true, true)
 		%GainLabel.visible =  task.resources_gained != {}
 		%GainResources.resources =task.resources_gained
 		%CostLabel.visible = task.resources_required != {}
