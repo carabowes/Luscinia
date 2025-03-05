@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dwl5qh53md1wx" path="res://Sprites/UI/RedCircle.png" id="3_ohkv6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h85xp"]
-bg_color = Color(0.498039, 0.745098, 1, 1)
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7tph"]
 bg_color = Color(0, 0, 0, 1)
