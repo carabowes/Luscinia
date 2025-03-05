@@ -76,7 +76,7 @@ func render_resource_bubbles(task_instance : TaskInstance, widget : TaskWidget):
 		var amount = task_instance.task_data.resources_gained[resource]
 		while amount > 1000:
 			amount /= 1000
-		for i in range(amount):
+		for i in range(max(amount, 5)):
 			render_resource_bubble(resource, widget, rng)
 
 
