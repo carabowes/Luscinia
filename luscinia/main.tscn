@@ -255,8 +255,8 @@ text = "Resources Taken:"
 horizontal_alignment = 1
 
 [node name="PersonnelSprite" type="Sprite2D" parent="pages/ending_screen/StatsBackground/ResourcesTaken"]
-position = Vector2(86, 52)
-scale = Vector2(1.83333, 1.875)
+position = Vector2(88, 52.5)
+scale = Vector2(0.460937, 0.471414)
 texture = ExtResource("13_6oexy")
 
 [node name="PersonnelAmt" type="Label" parent="pages/ending_screen/StatsBackground/ResourcesTaken"]
@@ -269,8 +269,8 @@ theme_override_font_sizes/font_size = 20
 text = "1000"
 
 [node name="SuppliesSprite" type="Sprite2D" parent="pages/ending_screen/StatsBackground/ResourcesTaken"]
-position = Vector2(214, 52)
-scale = Vector2(1.83333, 1.875)
+position = Vector2(216, 52.5)
+scale = Vector2(0.45, 0.460228)
 texture = ExtResource("14_bdx1m")
 
 [node name="SuppliesAmt" type="Label" parent="pages/ending_screen/StatsBackground/ResourcesTaken"]
@@ -283,8 +283,8 @@ theme_override_font_sizes/font_size = 20
 text = "1000"
 
 [node name="FundsSprite" type="Sprite2D" parent="pages/ending_screen/StatsBackground/ResourcesTaken"]
-position = Vector2(86, 105)
-scale = Vector2(1.83333, 1.875)
+position = Vector2(88, 100.5)
+scale = Vector2(0.427083, 0.43679)
 texture = ExtResource("15_31668")
 
 [node name="FundsAmt" type="Label" parent="pages/ending_screen/StatsBackground/ResourcesTaken"]
@@ -297,8 +297,8 @@ theme_override_font_sizes/font_size = 20
 text = "1000"
 
 [node name="VehicleSprite" type="Sprite2D" parent="pages/ending_screen/StatsBackground/ResourcesTaken"]
-position = Vector2(214, 105)
-scale = Vector2(1.83333, 1.875)
+position = Vector2(216, 100.5)
+scale = Vector2(0.423177, 0.432795)
 texture = ExtResource("16_clu71")
 
 [node name="VehiclesAmt" type="Label" parent="pages/ending_screen/StatsBackground/ResourcesTaken"]
@@ -320,8 +320,8 @@ text = "Resources Remaining:"
 horizontal_alignment = 1
 
 [node name="PersonnelSprite" type="Sprite2D" parent="pages/ending_screen/StatsBackground/ResourcesRemaining"]
-position = Vector2(86, 54)
-scale = Vector2(1.83333, 1.875)
+position = Vector2(88, 55)
+scale = Vector2(0.502604, 0.508345)
 texture = ExtResource("13_6oexy")
 
 [node name="PersonnelAmt2" type="Label" parent="pages/ending_screen/StatsBackground/ResourcesRemaining"]
@@ -334,8 +334,8 @@ theme_override_font_sizes/font_size = 20
 text = "1000"
 
 [node name="SuppliesSprite" type="Sprite2D" parent="pages/ending_screen/StatsBackground/ResourcesRemaining"]
-position = Vector2(214, 54)
-scale = Vector2(1.83333, 1.875)
+position = Vector2(216, 55)
+scale = Vector2(0.470833, 0.481534)
 texture = ExtResource("14_bdx1m")
 
 [node name="SuppliesAmt2" type="Label" parent="pages/ending_screen/StatsBackground/ResourcesRemaining"]
@@ -348,8 +348,8 @@ theme_override_font_sizes/font_size = 20
 text = "1000"
 
 [node name="FundsSprite" type="Sprite2D" parent="pages/ending_screen/StatsBackground/ResourcesRemaining"]
-position = Vector2(86, 107)
-scale = Vector2(1.83333, 1.875)
+position = Vector2(88, 103)
+scale = Vector2(0.416665, 0.426135)
 texture = ExtResource("15_31668")
 
 [node name="FundsAmt2" type="Label" parent="pages/ending_screen/StatsBackground/ResourcesRemaining"]
@@ -362,8 +362,8 @@ theme_override_font_sizes/font_size = 20
 text = "1000"
 
 [node name="VehicleSprite" type="Sprite2D" parent="pages/ending_screen/StatsBackground/ResourcesRemaining"]
-position = Vector2(214, 107)
-scale = Vector2(1.83333, 1.875)
+position = Vector2(216, 103)
+scale = Vector2(0.416665, 0.426136)
 texture = ExtResource("16_clu71")
 
 [node name="VehiclesAmt2" type="Label" parent="pages/ending_screen/StatsBackground/ResourcesRemaining"]

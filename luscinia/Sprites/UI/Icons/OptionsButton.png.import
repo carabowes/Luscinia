@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dljf3uhmn64pw"
-path="res://.godot/imported/OptionsButton_selected.png-778003ca4c63451a2391b7912a157b3a.ctex"
+uid="uid://d2r32fmyi8j47"
+path="res://.godot/imported/OptionsButton.png-842805967549f38b7d52e30b4dd1feb0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/OptionsButton_selected.png"
-dest_files=["res://.godot/imported/OptionsButton_selected.png-778003ca4c63451a2391b7912a157b3a.ctex"]
+source_file="res://Sprites/UI/Icons/OptionsButton.png"
+dest_files=["res://.godot/imported/OptionsButton.png-842805967549f38b7d52e30b4dd1feb0.ctex"]
 
 [params]
 

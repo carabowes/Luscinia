@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/UI/ui_timer.gd" id="1_jafkr"]
 [ext_resource type="Texture2D" uid="uid://7v3dgwwsbwqu" path="res://Sprites/clock.png" id="2_2fyrh"]
 [ext_resource type="Texture2D" uid="uid://c27suyrk8wq" path="res://Sprites/ClockBackground.png" id="2_3ac0l"]
-[ext_resource type="Texture2D" uid="uid://d2r32fmyi8j47" path="res://Sprites/UI/OptionsButton.png" id="2_e00yx"]
+[ext_resource type="Texture2D" uid="uid://d2r32fmyi8j47" path="res://Sprites/UI/Icons/OptionsButton.png" id="2_e00yx"]
 [ext_resource type="Texture2D" uid="uid://bib3v5a1f2b2o" path="res://Sprites/UI/User.png" id="5_1iyi8"]
 [ext_resource type="Texture2D" uid="uid://dmrhlqq3p4y0g" path="res://Sprites/Package.png" id="6_5mb17"]
 [ext_resource type="Texture2D" uid="uid://dm70f566o3s32" path="res://Sprites/UI/Dollar sign.png" id="7_noqc3"]

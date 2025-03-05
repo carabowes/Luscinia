@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crdt0x0jw41ox"
-path="res://.godot/imported/ProceedButton.png-eb064f0cc17075aa20c82115f5f779eb.ctex"
+uid="uid://dljf3uhmn64pw"
+path="res://.godot/imported/OptionsButton_selected.png-e133b7107dc584a23af63b4f09d1e245.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/ProceedButton.png"
-dest_files=["res://.godot/imported/ProceedButton.png-eb064f0cc17075aa20c82115f5f779eb.ctex"]
+source_file="res://Sprites/UI/Icons/OptionsButton_selected.png"
+dest_files=["res://.godot/imported/OptionsButton_selected.png-e133b7107dc584a23af63b4f09d1e245.ctex"]
 
 [params]
 

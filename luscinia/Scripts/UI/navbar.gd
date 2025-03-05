@@ -25,16 +25,16 @@ func _message_button_pressed():
 
 
 func _message_button_pressed_sprite():
-	%ViewMessageHistoryButton.icon = load("res://Sprites/UI/MessageButton_selected.png")
+	%ViewMessageHistoryButton.icon = load("res://Sprites/UI/Icons/MessageButton_selected.png")
 
 
 func _message_button_sprite():
-	%ViewMessageHistoryButton.icon = load("res://Sprites/UI/MessageButton.png")
+	%ViewMessageHistoryButton.icon = load("res://Sprites/UI/Icons/MessageButton.png")
 
 
 func _resource_button_pressed_sprite():
-	%ViewResourcesButton.icon = load("res://Sprites/UI/information_icon_selected.png")
+	%ViewResourcesButton.icon = load("res://Sprites/UI/Icons/information_icon_selected.png")
 
 
 func _resource_button_sprite():
-	%ViewResourcesButton.icon = load("res://Sprites/UI/information_icon.png")
+	%ViewResourcesButton.icon = load("res://Sprites/UI/Icons/information_icon.png")
