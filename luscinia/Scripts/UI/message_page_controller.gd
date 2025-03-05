@@ -17,7 +17,6 @@ func _ready() -> void:
 			_change_page_state(MessagePageState.MESSAGE_VIEWER)
 			%MessagePage.show_message(message)
 	)
-	%MessagesReceivedPage.back_button_pressed.connect(func(): _change_page_state(MessagePageState.CLOSED))
 
 	%MessagePage.respond_button_pressed.connect(
 		func(message_instance : MessageInstance): 
@@ -25,15 +24,13 @@ func _ready() -> void:
 			%MessageResponsePage.set_message(message_instance)
 			response_page_message = message_instance
 	)
-	%MessagePage.back_button_pressed.connect(func(): _change_page_state(MessagePageState.MESSAGE_RECEIVED))
 	EventBus.message_responded.connect(_on_message_responded)
 
 	%MessageResponsePage.response_option_selected.connect(
 		func(response : Response, message_instance : MessageInstance):
-			_change_page_state(MessagePageState.CLOSED)
+			EventBus.navbar_message_button_pressed.emit()
 			EventBus.message_responded.emit(response, message_instance)
 	)
-	%MessageResponsePage.back_button_pressed.connect(func(): _change_page_state(MessagePageState.MESSAGE_VIEWER))
 
 
 func _change_page_state(new_state : MessagePageState):

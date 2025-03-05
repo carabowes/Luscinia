@@ -37,10 +37,13 @@ func _task_widget_view_details_pressed(task_instance : TaskInstance):
 
 func _navbar_message_button_pressed():
 	if current_ui_page_state == UIPageState.CLOSED:
+		EventBus.message_page_open.emit()
 		_change_page_state(UIPageState.MESSAGES)
 	elif current_ui_page_state == UIPageState.MESSAGES:
+		EventBus.message_page_close.emit()
 		_change_page_state(UIPageState.CLOSED)
 	else:
+		EventBus.message_page_open.emit()
 		_change_page_state(UIPageState.MESSAGES)
 
 
