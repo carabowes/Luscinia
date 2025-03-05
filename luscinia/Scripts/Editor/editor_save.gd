@@ -9,7 +9,7 @@ extends Resource
 
 func _init(
 	scenario : Scenario = null,
- 	node_positions : Array[Array] = [],
+	_node_positions : Array[Array] = [],
 	zoom : float = 1,
 	scroll_offset : Vector2 = Vector2.ZERO,
 	connections : Array[Dictionary] = []

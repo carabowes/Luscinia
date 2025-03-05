@@ -87,11 +87,13 @@ func _render_response_info(response : Response, message : Message):
 			%TaskTitle.text = "[Default] " + %TaskTitle.text
 	if task != null:
 		if task.name.to_lower() == "nothing":
-			%EstimatedTime.text = "Choosing not to do anything could have consequences and damage relationships."
+			var txt= "Choosing not to do anything could have consequences and damage relationships."
+			%EstimatedTime.text = txt
 			%EstimatedTimeLabel.visible = false
 		else:
 			%EstimatedTimeLabel.visible = true
-			%EstimatedTime.text = GlobalTimer.turns_to_time_string(task.expected_completion_time, "hr", "min", "s", true, true)
+			%EstimatedTime.text = GlobalTimer.turns_to_time_string(
+			task.expected_completion_time, "hr", "min", "s", true, true)
 		%GainLabel.visible =  task.resources_gained != {}
 		%GainResources.resources =task.resources_gained
 		%CostLabel.visible = task.resources_required != {}

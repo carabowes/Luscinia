@@ -14,7 +14,7 @@ func _ready() -> void:
 	EventBus.task_widget_view_details_pressed.connect(_task_widget_view_details_pressed)
 	%ResourcesPage.return_button_pressed.connect(func(): _change_page_state(UIPageState.CLOSED))
 	%TaskDetailsPage.return_button_pressed.connect(func(): _change_page_state(UIPageState.CLOSED))
-	EventBus.navbar_message_button_pressed.connect(_navbar_message_button_pressed)	
+	EventBus.navbar_message_button_pressed.connect(_navbar_message_button_pressed)
 
 
 func _navbar_resource_button_pressed():
@@ -26,7 +26,7 @@ func _navbar_resource_button_pressed():
 		_change_page_state(UIPageState.RESOURCES)
 
 
-func _task_widget_view_details_pressed(task_instance : TaskInstance):
+func _task_widget_view_details_pressed(_task_instance : TaskInstance):
 	if current_ui_page_state == UIPageState.CLOSED:
 		_change_page_state(UIPageState.TASK_DETAILS)
 	elif current_ui_page_state == UIPageState.TASK_DETAILS:
@@ -57,6 +57,8 @@ func _change_page_visibility(page : UIPageState, visibility : bool):
 		%ResourcesPage.visible = visibility
 	elif page == UIPageState.MESSAGES:
 		if visibility:
-			%MessagePageController._change_page_state(%MessagePageController.MessagePageState.MESSAGE_RECEIVED)
+			%MessagePageController._change_page_state(\
+			%MessagePageController.MessagePageState.MESSAGE_RECEIVED)
 		else:
-			%MessagePageController._change_page_state(%MessagePageController.MessagePageState.CLOSED)
+			%MessagePageController._change_page_state(\
+			%MessagePageController.MessagePageState.CLOSED)

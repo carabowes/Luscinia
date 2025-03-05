@@ -60,19 +60,19 @@ func set_node_theme(node : GraphNode):
 	node.add_theme_stylebox_override("titlebar", theme)
 
 
-func assign_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
+func assign_connection(_in_port : int, _in_node : TaskEditorGraphNode) -> bool:
 	return false
 
 
-func remove_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
+func remove_connection(_in_port : int, _in_node : TaskEditorGraphNode) -> bool:
 	return false
 
 
-func create_node_to_connect_from_empty(in_port: int):
+func create_node_to_connect_from_empty(_in_port: int):
 	return null
 
 
-func create_node_to_connect_to_empty(out_port: int):
+func create_node_to_connect_to_empty(_out_port: int):
 	return null
 
 
@@ -131,7 +131,7 @@ func add_checkbox(heading: String, default_value : bool) -> CheckBox:
 	var hbox = HBoxContainer.new()
 	hbox.custom_minimum_size.y = 30
 	label.text = heading
-	checkbox.set_pressed_no_signal(default_value) 
+	checkbox.set_pressed_no_signal(default_value)
 	hbox.add_child(label)
 	hbox.add_child(checkbox)
 	hbox.set_anchors_preset(Control.PRESET_TOP_WIDE)
@@ -141,7 +141,8 @@ func add_checkbox(heading: String, default_value : bool) -> CheckBox:
 	return checkbox
 
 
-func add_slider(heading: String, default_value: float, min_value: float, max_value: float, step : float = 0.01) -> Slider:
+func add_slider(heading: String, default_value: float, min_value: float, max_value: float,\
+	step : float = 0.01) -> Slider:
 	var label = Label.new()
 	var slider = HSlider.new()
 	label.text = heading +  ": " + str(default_value)
@@ -170,15 +171,17 @@ func add_vector_input(heading : String, default : Vector2) -> VectorInput:
 	vector_input.value = default
 	add_child(vector_input)
 	return vector_input
-#endregion 
+#endregion
 
 
 func set_port(is_input : bool, index : int, slot_type : SlotType):
 	var color = slot_colors[slot_type]
 	if is_input:
-		set_slot(index, true, slot_type, color, is_slot_enabled_right(index), get_slot_type_right(index), get_slot_color_right(index))
+		set_slot(index, true, slot_type, color, is_slot_enabled_right(index),\
+		get_slot_type_right(index), get_slot_color_right(index))
 	else:
-		set_slot(index, is_slot_enabled_left(index), get_slot_type_left(index), get_slot_color_left(index), true, slot_type, color)
+		set_slot(index, is_slot_enabled_left(index), get_slot_type_left(index),\
+		get_slot_color_left(index), true, slot_type, color)
 
 
 static func generate_fields_from_resources(resources : Dictionary) -> Array[Field]:

@@ -14,12 +14,12 @@ var set_time_params = ParameterFactory.named_parameters(
 var time_update_parmas = ParameterFactory.named_parameters(
 	['timestep', 'repeat_times', 'minute_result', 'hour_result', 'day_result'],
 	[
-		[0, 0, 0, 0, 0],
-		[1, 1, 1, 0, 0],
-		[60, 1, 0, 1, 0],
-		[1440, 1, 0, 0, 1],
-		[30, 3, 30, 1, 0],
-		[210, 7, 30, 0, 1]
+		[0, 0, 0, 0, 1],
+		[1, 1, 1, 0, 1],
+		[60, 1, 0, 1, 1],
+		[1440, 1, 0, 0, 2],
+		[30, 3, 30, 1, 1],
+		[210, 7, 30, 0, 2]
 	]
 )
 
@@ -89,7 +89,7 @@ func test_reset_clock():
 	assert_eq(GlobalTimer.turns, 0)
 	assert_eq(GlobalTimer.in_game_minutes, 0)
 	assert_eq(GlobalTimer.in_game_hours, 0)
-	assert_eq(GlobalTimer.in_game_days, 0)
+	assert_eq(GlobalTimer.in_game_days, 1)
 	assert_eq(GlobalTimer.second_accumulator, 0.0)
 
 

@@ -9,38 +9,38 @@ var message_nodes : Array[MessageGraphNode]
 var response_nodes : Array[ResponseGraphNode]
 var sender_nodes : Array[SenderGraphNode]
 var unique_senders : Dictionary
-	
+
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready():
-	set_resolution()
-	load_saves_from_dir()
-	load_scenario(scenario_to_edit)
+	_set_resolution()
+	_load_saves_from_dir()
+	_load_scenario(scenario_to_edit)
 	connect_requisites()
 	connection_request.connect(_on_connection_request)
 	disconnection_request.connect(_on_disconnect_request)
 	connection_from_empty.connect(_on_connection_from_empty)
 	connection_to_empty.connect(_on_connection_to_empty)
 	delete_nodes_request.connect(_on_deletion_request)
-	link_buttons()
+	_link_buttons()
 	%SaveButton.pressed.connect(save_scenario)
 
 
-func set_resolution():
+func _set_resolution():
 	get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 	get_window().content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
 	get_window().size = DisplayServer.screen_get_size(DisplayServer.get_primary_screen())/2
 
 
-func link_buttons():
+func _link_buttons():
 	%NewTask.pressed.connect(func(): create_node(TaskData.new, add_task))
 	%NewMessage.pressed.connect(func(): create_node(Message.new, add_message_node))
 	%NewPrereq.pressed.connect(func(): create_node(Prerequisite.new, add_requisite))
 	%NewResponse.pressed.connect(func(): create_node(Response.new, add_response))
-	%NewSender.pressed.connect(select_sender)
+	%NewSender.pressed.connect(_select_sender)
 
 
-func load_saves_from_dir(path = "res://TaskData/EditorSaves"):
+func _load_saves_from_dir(path = "res://TaskData/EditorSaves"):
 	var dir = DirAccess.open(path)
 	dir.list_dir_begin()
 	while true:
@@ -51,15 +51,15 @@ func load_saves_from_dir(path = "res://TaskData/EditorSaves"):
 	dir.list_dir_end()
 
 
-func load_scenario(scenario : Scenario):
+func _load_scenario(scenario : Scenario):
 	for save in saves:
 		if save.scenario == scenario:
-			load_save(save)
+			_load_save(save)
 			return
 	add_message_nodes(scenario.messages)
 
 
-func load_save(save : EditorSave):
+func _load_save(save : EditorSave):
 	print("Loading from save")
 	zoom = save.zoom
 	scroll_offset = save.scroll_offset
@@ -82,10 +82,11 @@ func load_save(save : EditorSave):
 		node_instance.name = node_name
 	for connection in save.connections:
 		print(connection)
-		connect_node(connection["from_node"], connection["from_port"], connection["to_node"], connection["to_port"])
+		connect_node(connection["from_node"], connection["from_port"],\
+		connection["to_node"], connection["to_port"])
 
 
-func select_sender():
+func _select_sender():
 	var popup : PopupMenu = PopupMenu.new()
 	for sender in unique_senders:
 		popup.add_item(sender.name)
@@ -113,14 +114,16 @@ func remove_from_task_node(task_node : TaskGraphNode):
 	task_nodes.erase(task_node.task.task_id)
 
 
-func setup_node(node : TaskEditorGraphNode, list_function : Callable, list_deletion_function : Callable):
+func setup_node(node : TaskEditorGraphNode, list_function : Callable,\
+	list_deletion_function : Callable):
 	list_function.call(node)
 	add_child(node)
 	node.name = str(rng.randi())
 	node.deleted.connect(func(): remove_all_connections(node); list_deletion_function.call(node))
 
 
-func create_node(data_function : Callable, node_function : Callable, connect_node : TaskEditorGraphNode = null) -> GraphNode:
+func create_node(data_function : Callable, node_function : Callable, connect_node :\
+	TaskEditorGraphNode = null) -> GraphNode:
 	var new_data = data_function.call()
 	var node : TaskEditorGraphNode
 	if new_data is Message:
@@ -147,19 +150,23 @@ func add_message_nodes(messages : Array[Message]):
 			current_cell.y += 1
 
 
-func add_message_node(message : Message = Message.new(), pos : Vector2 = Vector2.ZERO, from_load : bool = false) -> MessageGraphNode:
+func add_message_node(message : Message = Message.new(), pos : Vector2 = Vector2.ZERO,\
+	from_load : bool = false) -> MessageGraphNode:
 	var message_node : MessageGraphNode = MessageGraphNode.new(message)
 	setup_node(message_node, message_nodes.append, message_nodes.erase)
 	message_node.position_offset = pos
 	if from_load:
 		add_sender(message.sender, message_node, true)
 		add_responses(message.responses, message_node, true)
-		add_requisites(message.prerequisites, message_node, MessageGraphNode.InPortNums.PREREQUISITES, true)
-		add_requisites(message.antirequisites, message_node, MessageGraphNode.InPortNums.ANTIREQUISITES, true)
+		add_requisites(message.prerequisites, message_node,\
+		MessageGraphNode.InPortNums.PREREQUISITES, true)
+		add_requisites(message.antirequisites, message_node,\
+		MessageGraphNode.InPortNums.ANTIREQUISITES, true)
 	return message_node
 
 
-func add_sender(sender : Sender = null, message_node : MessageGraphNode = null, from_load : bool = false) -> SenderGraphNode:
+func add_sender(sender : Sender = null, message_node : MessageGraphNode = null,\
+	from_load : bool = false) -> SenderGraphNode:
 	if sender == null:
 		return
 
@@ -174,13 +181,15 @@ func add_sender(sender : Sender = null, message_node : MessageGraphNode = null, 
 	unique_senders[sender] = true
 
 	if message_node != null:
-		connect_node(sender_node.name, SenderGraphNode.OutPortNums.MESSAGE, message_node.name, MessageGraphNode.InPortNums.SENDER)
+		connect_node(sender_node.name, SenderGraphNode.OutPortNums.MESSAGE, message_node.name,\
+		MessageGraphNode.InPortNums.SENDER)
 	if from_load:
 		sender_node.position_offset = message_node.position_offset - Vector2(400, 100)
 	return sender_node
 
 
-func add_responses(responses : Array[Response], message_node : MessageGraphNode, from_load : bool = false):
+func add_responses(responses : Array[Response], message_node : MessageGraphNode,\
+	from_load : bool = false):
 	var current_y = 0
 	var start_y = -500 * floor(len(responses)/2)
 	var pos = Vector2.ZERO
@@ -191,51 +200,65 @@ func add_responses(responses : Array[Response], message_node : MessageGraphNode,
 		var response_node : ResponseGraphNode = add_response(response, message_node, from_load, pos)
 
 
-func add_response(response : Response = Response.new(), connect_node : TaskEditorGraphNode = null, from_load : bool = false, pos : Vector2 = Vector2.ZERO) -> ResponseGraphNode:
+func add_response(response : Response = Response.new(), connect_node : TaskEditorGraphNode = null,\
+	from_load : bool = false, pos : Vector2 = Vector2.ZERO) -> ResponseGraphNode:
 	var response_node : ResponseGraphNode = ResponseGraphNode.new(response)
 	setup_node(response_node, response_nodes.append, response_nodes.erase)
 	if from_load:
 		response_node.position_offset = pos
 	if connect_node is MessageGraphNode:
-		connect_node(connect_node.name, MessageGraphNode.OutPortNums.RESPONSES, response_node.name, ResponseGraphNode.InPortNums.MESSAGE)
+		connect_node(connect_node.name, MessageGraphNode.OutPortNums.RESPONSES,\
+		response_node.name, ResponseGraphNode.InPortNums.MESSAGE)
 	if connect_node is TaskGraphNode:
-		connect_node(response_node.name, ResponseGraphNode.OutPortNums.TASK, connect_node.name, TaskGraphNode.InPortNums.RESPONSE)
+		connect_node(response_node.name, ResponseGraphNode.OutPortNums.TASK,\
+		connect_node.name, TaskGraphNode.InPortNums.RESPONSE)
 	if response.task != null and from_load:
 		add_task(response.task, response_node, from_load)
 	return response_node
 
 
-func add_task(task : TaskData = TaskData.new(), connect_node : TaskEditorGraphNode = null, from_load : bool = false) -> TaskGraphNode:
+func add_task(task : TaskData = TaskData.new(), connect_node : TaskEditorGraphNode = null,\
+	from_load : bool = false) -> TaskGraphNode:
 	var task_node : TaskGraphNode = TaskGraphNode.new(task)
 	setup_node(task_node, add_to_task_nodes, remove_from_task_node)
 	if from_load:
 		task_node.position_offset = connect_node.position_offset + Vector2(800, 0)
 	if connect_node is ResponseGraphNode:
-		connect_node(connect_node.name, ResponseGraphNode.OutPortNums.TASK, task_node.name, TaskGraphNode.InPortNums.RESPONSE)
+		connect_node(connect_node.name, ResponseGraphNode.OutPortNums.TASK,\
+		task_node.name, TaskGraphNode.InPortNums.RESPONSE)
 	elif connect_node is RequisiteGraphNode:
-		connect_node(task_node.name, TaskGraphNode.OutPortNums.PREREQ, connect_node.name, RequisiteGraphNode.InPortNums.TASK)
+		connect_node(task_node.name, TaskGraphNode.OutPortNums.PREREQ,\
+		connect_node.name, RequisiteGraphNode.InPortNums.TASK)
 	return task_node
 
 
-func add_requisites(requisites : Array[Prerequisite], message_node : MessageGraphNode, port_num, from_load = false):
+func add_requisites(requisites : Array[Prerequisite], message_node : MessageGraphNode,\
+	port_num, from_load = false):
 	var x_offset = 800
 	if port_num == MessageGraphNode.InPortNums.ANTIREQUISITES:
 		x_offset = 1200
 	var current_y = 0
 	for requisite : Prerequisite in requisites:
-		var requisite_node = add_requisite(requisite, message_node, port_num == MessageGraphNode.InPortNums.ANTIREQUISITES, from_load)
-		requisite_node.position_offset = message_node.position_offset - Vector2(x_offset, -current_y * (requisite_node.size.y + 50))
+		var requisite_node = add_requisite(requisite, message_node,\
+		port_num == MessageGraphNode.InPortNums.ANTIREQUISITES, from_load)
+		requisite_node.position_offset = message_node.position_offset\
+		-Vector2(x_offset, -current_y * (requisite_node.size.y + 50))
 		current_y += 1
 
 
-func add_requisite(requisite : Prerequisite = Prerequisite.new(), connect_node : TaskEditorGraphNode = null, is_antirequisite : bool = false, from_load : bool = false) -> RequisiteGraphNode:
+func add_requisite(requisite : Prerequisite = Prerequisite.new(),\
+	connect_node : TaskEditorGraphNode = null,\
+	is_antirequisite : bool = false, _from_load : bool = false) -> RequisiteGraphNode:
 	var requisite_node : RequisiteGraphNode = RequisiteGraphNode.new(requisite)
 	setup_node(requisite_node, requisite_nodes.append, requisite_nodes.erase)
 	if connect_node is MessageGraphNode:
-		var port_num = MessageGraphNode.InPortNums.ANTIREQUISITES if is_antirequisite else MessageGraphNode.InPortNums.PREREQUISITES
-		connect_node(requisite_node.name, RequisiteGraphNode.OutPortNums.MESSAGE, connect_node.name, port_num)
+		var port_num = MessageGraphNode.InPortNums.ANTIREQUISITES\
+		if is_antirequisite else MessageGraphNode.InPortNums.PREREQUISITES
+		connect_node(requisite_node.name,\
+		RequisiteGraphNode.OutPortNums.MESSAGE, connect_node.name, port_num)
 	elif connect_node is TaskGraphNode:
-		connect_node(connect_node.name, TaskGraphNode.OutPortNums.PREREQ, requisite_node.name, RequisiteGraphNode.InPortNums.TASK)
+		connect_node(connect_node.name, TaskGraphNode.OutPortNums.PREREQ,\
+		requisite_node.name, RequisiteGraphNode.InPortNums.TASK)
 	return requisite_node
 
 
@@ -244,20 +267,23 @@ func connect_requisites():
 		for task in node.prerequisite.task_id:
 			if task_nodes.has(task):
 				var task_node = task_nodes[task]
-				connect_node(task_node.name, TaskGraphNode.OutPortNums.PREREQ, node.name, RequisiteGraphNode.InPortNums.TASK)
+				connect_node(task_node.name, TaskGraphNode.OutPortNums.PREREQ,\
+				node.name, RequisiteGraphNode.InPortNums.TASK)
 
 
 func force_one_input_connection(to_node : String, to_port : int):
 	for connection in get_connection_list():
 		if connection.to_node == to_node and connection.to_port == to_port:
-			disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+			disconnect_node(connection.from_node, connection.from_port,\
+			connection.to_node, connection.to_port)
 			return
 
 
 func force_one_output_connection(from_node : String, from_port : int):
 	for connection in get_connection_list():
 		if connection.from_node == from_node and connection.from_port == from_port:
-			disconnect_node(connection.from_node, connection.from_port, connection.to_node, connection.to_port)
+			disconnect_node(connection.from_node, connection.from_port,\
+			connection.to_node, connection.to_port)
 			return
 
 
@@ -281,20 +307,24 @@ func _on_connection_from_empty(to_node : String, to_port : int, release_position
 	if node_type is RequisiteGraphNode:
 		new_node = create_node(Prerequisite.new, add_requisite)
 		if to_port == MessageGraphNode.InPortNums.PREREQUISITES:
-			_on_connection_request(new_node.name, RequisiteGraphNode.OutPortNums.MESSAGE, output_node.name, MessageGraphNode.InPortNums.PREREQUISITES)
+			_on_connection_request(new_node.name, RequisiteGraphNode.OutPortNums.MESSAGE,\
+			output_node.name, MessageGraphNode.InPortNums.PREREQUISITES)
 		else:
-			_on_connection_request(new_node.name, RequisiteGraphNode.OutPortNums.MESSAGE, output_node.name, MessageGraphNode.InPortNums.ANTIREQUISITES)
+			_on_connection_request(new_node.name, RequisiteGraphNode.OutPortNums.MESSAGE,\
+			output_node.name, MessageGraphNode.InPortNums.ANTIREQUISITES)
 	elif node_type is TaskGraphNode:
 		new_node = create_node(TaskData.new, add_task, output_node)
 	elif node_type is SenderGraphNode:
-		select_sender()
+		_select_sender()
 	elif node_type is MessageGraphNode:
 		new_node = create_node(Message.new, add_message_node, output_node)
-		_on_connection_request(new_node.name, MessageGraphNode.OutPortNums.RESPONSES, output_node.name, ResponseGraphNode.InPortNums.MESSAGE)
+		_on_connection_request(new_node.name, MessageGraphNode.OutPortNums.RESPONSES,\
+		output_node.name, ResponseGraphNode.InPortNums.MESSAGE)
 	elif node_type is ResponseGraphNode:
 		new_node = create_node(Response.new, add_response, output_node)
 	if new_node != null:
-		new_node.position_offset = (scroll_offset + release_position)/zoom - (Vector2(new_node.size.x/2, new_node.size.y/2))
+		new_node.position_offset = (scroll_offset + release_position)/zoom\
+		- (Vector2(new_node.size.x/2, new_node.size.y/2))
 
 
 func _on_connection_to_empty(from_node : String, from_port : int, release_position: Vector2):
@@ -305,18 +335,22 @@ func _on_connection_to_empty(from_node : String, from_port : int, release_positi
 		new_node = create_node(Prerequisite.new, add_requisite, input_node)
 	elif node_type is TaskGraphNode:
 		new_node = create_node(TaskData.new, add_task)
-		_on_connection_request(input_node.name, ResponseGraphNode.OutPortNums.TASK, new_node.name, TaskGraphNode.InPortNums.RESPONSE)
+		_on_connection_request(input_node.name, ResponseGraphNode.OutPortNums.TASK,\
+		new_node.name, TaskGraphNode.InPortNums.RESPONSE)
 	elif node_type is SenderGraphNode:
-		select_sender()
+		_select_sender()
 	elif node_type is MessageGraphNode:
 		new_node = create_node(Message.new, add_message_node)
 		if input_node is SenderGraphNode:
-			_on_connection_request(input_node.name, SenderGraphNode.OutPortNums.MESSAGE, new_node.name, MessageGraphNode.InPortNums.SENDER)
+			_on_connection_request(input_node.name, SenderGraphNode.OutPortNums.MESSAGE,\
+			new_node.name, MessageGraphNode.InPortNums.SENDER)
 	elif node_type is ResponseGraphNode:
 		new_node = create_node(Response.new, add_response)
-		_on_connection_request(input_node.name, MessageGraphNode.OutPortNums.RESPONSES, new_node.name, ResponseGraphNode.InPortNums.MESSAGE)
+		_on_connection_request(input_node.name, MessageGraphNode.OutPortNums.RESPONSES,\
+		new_node.name, ResponseGraphNode.InPortNums.MESSAGE)
 	if new_node != null:
-		new_node.position_offset = (scroll_offset + release_position)/zoom - (Vector2(new_node.size.x/2, new_node.size.y/2))
+		new_node.position_offset = (scroll_offset + release_position)/zoom\
+		- (Vector2(new_node.size.x/2, new_node.size.y/2))
 
 
 func _on_disconnect_request(from_node : String, from_port : int, to_node : String, to_port : int):
@@ -342,7 +376,8 @@ func remove_all_connections(node: TaskEditorGraphNode):
 	for connection in get_connection_list():
 		if node.name == connection["from_node"] or node.name == connection["to_node"]:
 			print("Disconnecting node")
-			_on_disconnect_request(connection["from_node"], connection["from_port"], connection["to_node"], connection["to_port"])
+			_on_disconnect_request(connection["from_node"], connection["from_port"],\
+			connection["to_node"], connection["to_port"])
 
 
 func save_editor_state(editor_save: EditorSave, scenario : Scenario) -> EditorSave:
