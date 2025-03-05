@@ -1,13 +1,12 @@
 class_name MessageReceivedPage
 extends Control
 
-signal back_button_pressed
 signal message_selected(message : MessageInstance)
 var num_messages = 0
 
 func _ready():
 	MessageManager.message_sent.connect(_on_message_received)
-	%BackButton.pressed.connect(func(): back_button_pressed.emit())
+	%BackButton.pressed.connect(func(): EventBus.navbar_message_button_pressed.emit())
 
 
 func _on_message_received(message : MessageInstance):

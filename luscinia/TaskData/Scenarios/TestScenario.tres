@@ -595,7 +595,7 @@ script = ExtResource("5_j85s3")
 task_id = "RESCUESUP"
 name = "Salvaging Supplies"
 icon = ExtResource("14_mtlhs")
-start_location = Vector2(960, 755)
+start_location = Vector2(2100, 1866)
 resources_required = {
 "people": 15,
 "supplies": 0,
@@ -909,6 +909,52 @@ antirequisites = Array[ExtResource("2_lfadw")]([])
 turns_to_answer = 1
 is_repeatable = false
 cancel_behaviour = 4
+
+[sub_resource type="Resource" id="Resource_3pk7o"]
+script = ExtResource("2_lfadw")
+task_id = Array[String](["ODNT"])
+events = Array[int]([])
+chance = 0.5
+min_turn = 0
+max_turn = 12
+
+[sub_resource type="Resource" id="Resource_o2rq2"]
+script = ExtResource("2_lfadw")
+task_id = Array[String](["ODNT2"])
+events = Array[int]([])
+chance = 0.4
+min_turn = 0
+max_turn = 12
+
+[sub_resource type="Resource" id="Resource_smbcs"]
+script = ExtResource("5_j85s3")
+task_id = "FISHOIL"
+name = "None"
+icon = ExtResource("7_atwyf")
+start_location = Vector2(0, 0)
+resources_required = {}
+resources_gained = {}
+expected_completion_time = 0
+effects_of_random_events = Array[ExtResource("4_cvs8s")]([])
+
+[sub_resource type="Resource" id="Resource_ium7t"]
+script = ExtResource("3_8xbhe")
+response_name = "Acknowledge"
+response_text = "We will continue to monitor the situation."
+relationship_change = 0.0
+task = SubResource("Resource_smbcs")
+
+[sub_resource type="Resource" id="Resource_1rfj2"]
+script = ExtResource("1_22kjx")
+message = "The oil spill has spread further, contaminating vital fishing zones. This has led to unrest among local communities who rely on the fishing industry, increasing tensions with response teams."
+responses = Array[ExtResource("3_8xbhe")]([SubResource("Resource_ium7t")])
+default_response = 0
+sender = SubResource("Resource_fojvw")
+prerequisites = Array[ExtResource("2_lfadw")]([SubResource("Resource_3pk7o"), SubResource("Resource_o2rq2")])
+antirequisites = Array[ExtResource("2_lfadw")]([])
+turns_to_answer = 1
+is_repeatable = false
+cancel_behaviour = 0
 
 [sub_resource type="Resource" id="Resource_sf36a"]
 script = ExtResource("2_lfadw")
