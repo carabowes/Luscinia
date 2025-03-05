@@ -41,7 +41,7 @@ func test_reply_message():
 
 
 func test_turns_assignment(params = use_parameters(turn_params)):
-	var message : Message = MessageInstance.default_message.duplicate()
+	var message : Message = Message.default_message
 	message.turns_to_answer = params.turns
 	var message_instance : MessageInstance = MessageInstance.new(message)
 	assert_eq(message_instance.turns_remaining, params.expected_turns)

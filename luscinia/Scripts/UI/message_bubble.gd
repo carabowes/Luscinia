@@ -14,7 +14,7 @@ func _ready():
 
 
 func _draw():
-	if is_player_message: 
+	if is_player_message:
 		set_player_message_offsets()
 
 
@@ -43,7 +43,7 @@ func set_player_message_offsets():
 
 
 func set_join(joined_at_top : bool, joined_at_bottom : bool) -> StyleBoxFlat:
-	var styling : StyleBoxFlat = StyleBoxFlat.new() 
+	var styling : StyleBoxFlat = StyleBoxFlat.new()
 	styling.bg_color = Color.WHITE
 	styling.set_corner_radius_all(unjoined_corner_radius)
 	if joined_at_bottom:

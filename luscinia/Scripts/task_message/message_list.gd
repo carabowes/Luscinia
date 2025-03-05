@@ -1,9 +1,9 @@
 extends Control
 
-@onready var message_manager = $"../../message_manager"
-@onready var container = $ColorRect/VBoxContainer
 @export var message_shortened : Array[String]
 @export var message_board : MessageBoard
+@onready var message_manager = $"../../message_manager"
+@onready var container = $ColorRect/VBoxContainer
 
 
 func _ready():
