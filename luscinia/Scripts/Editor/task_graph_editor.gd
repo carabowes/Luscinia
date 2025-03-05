@@ -13,34 +13,34 @@ var unique_senders : Dictionary
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _ready():
-	set_resolution()
-	load_saves_from_dir()
-	load_scenario(scenario_to_edit)
+	_set_resolution()
+	_load_saves_from_dir()
+	_load_scenario(scenario_to_edit)
 	connect_requisites()
 	connection_request.connect(_on_connection_request)
 	disconnection_request.connect(_on_disconnect_request)
 	connection_from_empty.connect(_on_connection_from_empty)
 	connection_to_empty.connect(_on_connection_to_empty)
 	delete_nodes_request.connect(_on_deletion_request)
-	link_buttons()
+	_link_buttons()
 	%SaveButton.pressed.connect(save_scenario)
 
 
-func set_resolution():
+func _set_resolution():
 	get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 	get_window().content_scale_aspect = Window.CONTENT_SCALE_ASPECT_EXPAND
 	get_window().size = DisplayServer.screen_get_size(DisplayServer.get_primary_screen())/2
 
 
-func link_buttons():
+func _link_buttons():
 	%NewTask.pressed.connect(func(): create_node(TaskData.new, add_task))
 	%NewMessage.pressed.connect(func(): create_node(Message.new, add_message_node))
 	%NewPrereq.pressed.connect(func(): create_node(Prerequisite.new, add_requisite))
 	%NewResponse.pressed.connect(func(): create_node(Response.new, add_response))
-	%NewSender.pressed.connect(select_sender)
+	%NewSender.pressed.connect(_select_sender)
 
 
-func load_saves_from_dir(path = "res://TaskData/EditorSaves"):
+func _load_saves_from_dir(path = "res://TaskData/EditorSaves"):
 	var dir = DirAccess.open(path)
 	dir.list_dir_begin()
 	while true:
@@ -51,15 +51,15 @@ func load_saves_from_dir(path = "res://TaskData/EditorSaves"):
 	dir.list_dir_end()
 
 
-func load_scenario(scenario : Scenario):
+func _load_scenario(scenario : Scenario):
 	for save in saves:
 		if save.scenario == scenario:
-			load_save(save)
+			_load_save(save)
 			return
 	add_message_nodes(scenario.messages)
 
 
-func load_save(save : EditorSave):
+func _load_save(save : EditorSave):
 	print("Loading from save")
 	zoom = save.zoom
 	scroll_offset = save.scroll_offset
@@ -86,7 +86,7 @@ func load_save(save : EditorSave):
 		connection["to_node"], connection["to_port"])
 
 
-func select_sender():
+func _select_sender():
 	var popup : PopupMenu = PopupMenu.new()
 	for sender in unique_senders:
 		popup.add_item(sender.name)
@@ -315,7 +315,7 @@ func _on_connection_from_empty(to_node : String, to_port : int, release_position
 	elif node_type is TaskGraphNode:
 		new_node = create_node(TaskData.new, add_task, output_node)
 	elif node_type is SenderGraphNode:
-		select_sender()
+		_select_sender()
 	elif node_type is MessageGraphNode:
 		new_node = create_node(Message.new, add_message_node, output_node)
 		_on_connection_request(new_node.name, MessageGraphNode.OutPortNums.RESPONSES,\
@@ -338,7 +338,7 @@ func _on_connection_to_empty(from_node : String, from_port : int, release_positi
 		_on_connection_request(input_node.name, ResponseGraphNode.OutPortNums.TASK,\
 		new_node.name, TaskGraphNode.InPortNums.RESPONSE)
 	elif node_type is SenderGraphNode:
-		select_sender()
+		_select_sender()
 	elif node_type is MessageGraphNode:
 		new_node = create_node(Message.new, add_message_node)
 		if input_node is SenderGraphNode:
