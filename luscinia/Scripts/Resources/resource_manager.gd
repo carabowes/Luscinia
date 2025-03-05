@@ -1,10 +1,11 @@
 extends Node2D
 
+signal resource_removed(resource: String, amt: int)
+
 @export var resources = {"people": 60, "funds": 20000000, "vehicles": 50, "supplies": 10000}
 @export var available_resources = {"people": 60, "vehicles": 50}
 @export var relationships_to_update: Dictionary
 
-signal resource_removed(resource: String, amt: int)
 
 var resource_textures = {
 	"people": preload("res://Sprites/UI/User.png"),
@@ -20,17 +21,17 @@ func round_to_dp(value: float, dp: int) -> float:
 
 func format_resource_value(value: int, decimal_points: int) -> String:
 	if value >= 1000000:
-		return str(round_to_dp(value / 1000000.0, 1)) + "M" 
-	elif value >= 1000:
-		return str(round_to_dp(value / 1000.0, 1)) + "K"
-	else:
-		return str(value)
+		return str(round_to_dp(value / 1000000.0, decimal_points)) + "M"
+	if value >= 1000:
+		return str(round_to_dp(value / 1000.0, decimal_points)) + "K"
+	return str(value)
 
 func add_resources(resource_name: String, amount: int):
 	if resource_name in resources:
 		resources[resource_name] += amount
 		if resource_name in available_resources:
-			resources[resource_name] = clamp(resources[resource_name], 0, available_resources[resource_name])
+			var clamped = clamp(resources[resource_name], 0, available_resources[resource_name])
+			resources[resource_name] = clamped
 	else:
 		print("Resource not found:", resource_name)
 
@@ -89,7 +90,7 @@ func apply_end_task_resources(resources_gained : Dictionary, resources_required 
 			resources_required[resource_name] = 0
 
 		var resource_cost = resources_required[resource_name]
-		var resource_gain = resources_gained[resource_name] 
+		var resource_gain = resources_gained[resource_name]
 		#If the resoruce is a limited resource (available resource)
 		if resource_name in available_resources.keys():
 			#Permantly add or remove the difference between cost and gain
@@ -118,7 +119,8 @@ func apply_relationship_change(task_id: String, sender: Sender, task_progress: f
 	task_progress = clamp(task_progress, 0.0, 1.0)
 	# If a user ends a task early they should not get the full relationship benefits
 	# 0% = relationship lost, 50% = 0 no relationship change, 100% = relationship gain
-	var relationship_change = (relationships_to_update[task_id] * task_progress * 2) - relationships_to_update[task_id] 
+	var change = (relationships_to_update[task_id] * task_progress * 2)
+	var relationship_change = change - relationships_to_update[task_id]
 	sender.relationship += relationship_change
 	relationships_to_update.erase(task_id)
 

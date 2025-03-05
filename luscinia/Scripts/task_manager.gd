@@ -3,7 +3,7 @@ extends Node
 ##
 ## The TaskManager has 3 main functions, dispatching a task, updating a task, and ending
 ## a task. The lifecycle of a task should not be handled in any other script, although
-## requests can be made to a tasks lifecycle such as using the signal 
+## requests can be made to a tasks lifecycle such as using the signal
 ## [signal EventBus.task_cancelled]
 
 ## The list of tasks that are currently active in the game world

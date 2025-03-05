@@ -5,7 +5,7 @@ extends Resource
 
 @export var task_data : TaskData
 ## Measured in turns so if task has been going for 4 turns, current progress is 4
-@export var current_progress : int 
+@export var current_progress : int
 @export var extra_time : int
 @export var current_location : Vector2
 @export var is_completed : bool
@@ -16,8 +16,9 @@ extends Resource
 			push_error("Invalid type assigned to 'message'. Expected 'Message', got '%s'." % value)
 		else:
 			message = value
-## sender property to allow shorthand of task_instance.sender rather than task_instance.message.sender
-var sender : Sender: 
+## sender property to allow shorthand of task_instance.sender rather than
+## task_instance.message.sender
+var sender : Sender:
 	get:
 		if message:
 			return message.sender
@@ -49,8 +50,7 @@ func get_remaining_time():
 func get_completion_rate() -> float:
 	if task_data.expected_completion_time == 0:
 		return 1.0
-	else:
-		return float(current_progress)/float(get_total_time())
+	return float(current_progress)/float(get_total_time())
 
 
 func update_task():

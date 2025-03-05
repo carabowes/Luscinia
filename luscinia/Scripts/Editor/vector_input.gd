@@ -20,14 +20,14 @@ var heading : String:
 func _ready():
 	%XInput.text_changed.connect(func(text):
 		if text.is_valid_int():
-			%XInput.self_modulate = Color.WHITE
+			%XInput.self_modulate = Color.WHITE;
 			value_changed.emit(value)
 		else:
 			%XInput.self_modulate = Color.RED
 	)
 	%YInput.text_changed.connect(func(text):
 		if text.is_valid_int():
-			%YInput.self_modulate = Color.WHITE
+			%YInput.self_modulate = Color.WHITE;
 			value_changed.emit(value)
 		else:
 			%YInput.self_modulate = Color.RED
@@ -37,12 +37,10 @@ func _ready():
 func get_x_value() -> int:
 	if %XInput.text.is_valid_int():
 		return %XInput.text.to_int()
-	else:
-		return 0
+	return 0
 
 
 func get_y_value() -> int:
 	if %YInput.text.is_valid_int():
 		return %YInput.text.to_int()
-	else:
-		return 0
+	return 0

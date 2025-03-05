@@ -60,7 +60,7 @@ func handle_expired_message(message_instance : MessageInstance):
 	var message : Message = message_instance.message
 	if message.default_response != -1 and message.default_response < len(message.responses):
 		var default_response: Response = message.responses[message.default_response]
-		EventBus.message_responded.emit(default_response, message_instance)  
+		EventBus.message_responded.emit(default_response, message_instance)
 	else:
 		message_instance.reply(null) #No default response, but still set message to responded
 		if message_instance.message.is_repeatable:
@@ -69,7 +69,7 @@ func handle_expired_message(message_instance : MessageInstance):
 
 func update_responded_message(response : Response, message_instance : MessageInstance):
 	unreplied_messages -= 1
-	if unreplied_messages == 0: 
+	if unreplied_messages == 0:
 		EventBus.all_messages_read.emit()
 	message_instance.reply(response)
 
@@ -99,8 +99,9 @@ func _on_task_cancelled(task_instance : TaskInstance):
 	var cancel_behaviour = task_instance.message.cancel_behaviour
 	var message : Message = task_instance.message
 	if cancel_behaviour == Message.CancelBehaviour.FORCE_RESEND  and not message.is_repeatable:
-		#This is the only way to queue a message send at the moment. Resending the message to the pool with no prereqs 
-		var message_copy : Message = message.duplicate() 
+		#This is the only way to queue a message send at the moment. Resending the message to
+		#the pool with no prereqs
+		var message_copy : Message = message.duplicate()
 		message.prerequisites = []
 		message.antirequisites = []
 		messages_to_send.append(message_copy)

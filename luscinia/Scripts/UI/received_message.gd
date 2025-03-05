@@ -3,12 +3,13 @@ extends Control
 
 signal message_clicked(message_instace : MessageInstance)
 
+static var default_message : MessageInstance = MessageInstance.new()
+
 @export_enum("SideBadge:0", "ProfileBadge:1") var unread_badge_location : int
 @export var answer_now_color: Color
 @export var time_remaining_color: Color
 
 var message_info : MessageInstance
-static var default_message : MessageInstance = MessageInstance.new()
 
 
 func _ready() -> void:
