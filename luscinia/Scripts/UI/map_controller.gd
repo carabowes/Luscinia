@@ -88,6 +88,7 @@ func _clamp_position() -> void:
 func _handle_touch_drag(event: InputEventScreenDrag) -> void:
 	var prev_scale = current_scale
 	map.position += event.relative
+	_clamp_position()
 	current_scale = clamp(current_scale, min_zoom, max_zoom)
 
 	if current_scale == prev_scale:

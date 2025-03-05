@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Scenario" load_steps=365 format=3]
+[gd_resource type="Resource" script_class="Scenario" load_steps=303 format=3 uid="uid://cq8ot6u2bgf8y"]
 
 [ext_resource type="Script" path="res://Scripts/Resources/message.gd" id="1_22kjx"]
 [ext_resource type="Script" path="res://Scripts/Resources/prerequisite.gd" id="2_lfadw"]
@@ -6,33 +6,18 @@
 [ext_resource type="Script" path="res://Scripts/Resources/response.gd" id="3_8xbhe"]
 [ext_resource type="Script" path="res://Scripts/Resources/event_effect.gd" id="4_cvs8s"]
 [ext_resource type="Script" path="res://Scripts/Resources/task_data.gd" id="5_j85s3"]
-[ext_resource type="Texture2D" path="res://Sprites/TaskSprites/TruckAmbulance.png" id="5_w1nnn"]
 [ext_resource type="Script" path="res://Scripts/Resources/sender.gd" id="6_imb53"]
-[ext_resource type="Texture2D" path="res://Sprites/icon.svg" id="7_atwyf"]
-[ext_resource type="Texture2D" path="res://TaskData/Freetown/FreetownGovLogo.png" id="8_pu47p"]
-[ext_resource type="Texture2D" path="res://Sprites/TaskSprites/Oil.png" id="10_ljp6v"]
-[ext_resource type="Texture2D" path="res://TaskData/Freetown/UNOCHALogo.png" id="11_htxw2"]
-[ext_resource type="Texture2D" path="res://TaskData/Freetown/EnviroLogo.png" id="12_4bxv7"]
-[ext_resource type="Texture2D" path="res://Sprites/TaskSprites/HelicopterTruck.png" id="13_wrf78"]
-[ext_resource type="Texture2D" path="res://Sprites/TaskSprites/TwoSupplies.png" id="14_mtlhs"]
-[ext_resource type="Texture2D" path="res://Sprites/TaskSprites/TwoMedicalSupplies.png" id="15_ffmuv"]
-[ext_resource type="Texture2D" path="res://Sprites/TaskSprites/ThreePeople.png" id="16_0k5og"]
-[ext_resource type="Texture2D" path="res://Sprites/TaskSprites/SixPeople.png" id="17_m47wo"]
-[ext_resource type="Texture2D" path="res://Sprites/TaskSprites/Helicopter.png" id="18_spn1d"]
-[ext_resource type="Texture2D" path="res://Sprites/TaskSprites/Truck.png" id="19_adkr5"]
-[ext_resource type="Texture2D" path="res://Sprites/clock.png" id="21_6kxnt"]
-[ext_resource type="Texture2D" path="res://Sprites/TaskSprites/Supplies.png" id="21_aenyn"]
-[ext_resource type="Texture2D" path="res://Sprites/TaskSprites/Ambulance.png" id="22_x8231"]
-[ext_resource type="Texture2D" path="res://Sprites/TaskSprites/MedicalSupplies.png" id="23_tjkec"]
-[ext_resource type="Texture2D" path="res://Sprites/TaskSprites/Money.png" id="24_0v8ex"]
-[ext_resource type="Texture2D" path="res://Sprites/TaskSprites/WaterSupplies.png" id="25_k300i"]
-[ext_resource type="Texture2D" path="res://Sprites/TaskSprites/MedicalAid.png" id="26_et00n"]
+[ext_resource type="Texture2D" uid="uid://d1cwe1f3jk3ca" path="res://Sprites/icon.svg" id="7_atwyf"]
+[ext_resource type="Texture2D" uid="uid://7v3dgwwsbwqu" path="res://Sprites/clock.png" id="21_6kxnt"]
+
+[sub_resource type="Resource" id="Resource_fskwo"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/TruckAmbulance.png"
 
 [sub_resource type="Resource" id="Resource_emodc"]
 script = ExtResource("5_j85s3")
 task_id = "SPLT"
 name = "Freetown Search Party"
-icon = ExtResource("5_w1nnn")
+icon = SubResource("Resource_fskwo")
 start_location = Vector2(850, 850)
 resources_required = {
 "funds": 3000000,
@@ -54,11 +39,14 @@ response_text = "We can send a large team right now."
 relationship_change = 20.0
 task = SubResource("Resource_emodc")
 
+[sub_resource type="Resource" id="Resource_ql4uo"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/TruckAmbulance.png"
+
 [sub_resource type="Resource" id="Resource_e0def"]
 script = ExtResource("5_j85s3")
 task_id = "SPMT"
 name = "Freetown Search Party"
-icon = ExtResource("5_w1nnn")
+icon = SubResource("Resource_ql4uo")
 start_location = Vector2(850, 850)
 resources_required = {
 "funds": 2000000,
@@ -80,11 +68,14 @@ response_text = "We can send a medium team now."
 relationship_change = 10.0
 task = SubResource("Resource_e0def")
 
+[sub_resource type="Resource" id="Resource_gxlan"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/TruckAmbulance.png"
+
 [sub_resource type="Resource" id="Resource_uqsnc"]
 script = ExtResource("5_j85s3")
 task_id = "SPST"
 name = "Freetown Search Party"
-icon = ExtResource("5_w1nnn")
+icon = SubResource("Resource_gxlan")
 start_location = Vector2(850, 850)
 resources_required = {
 "funds": 1000000,
@@ -124,11 +115,14 @@ response_text = "We're not going to send a team to help."
 relationship_change = -15.0
 task = SubResource("Resource_4g0n7")
 
+[sub_resource type="Resource" id="Resource_pygxa"]
+metadata/__load_path__ = "res://TaskData/Freetown/FreetownGovLogo.png"
+
 [sub_resource type="Resource" id="Resource_iff3j"]
 script = ExtResource("6_imb53")
 name = "Freetown Government"
-image = ExtResource("8_pu47p")
-relationship = 1.0
+image = SubResource("Resource_pygxa")
+relationship = 0.0
 
 [sub_resource type="Resource" id="Resource_qc7dk"]
 script = ExtResource("1_22kjx")
@@ -166,11 +160,14 @@ chance = 0.4
 min_turn = 0
 max_turn = 6
 
+[sub_resource type="Resource" id="Resource_x5klv"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/Oil.png"
+
 [sub_resource type="Resource" id="Resource_0h3k0"]
 script = ExtResource("5_j85s3")
 task_id = "ODEARLY"
 name = "Starting Oil Defences"
-icon = ExtResource("10_ljp6v")
+icon = SubResource("Resource_x5klv")
 start_location = Vector2(1880, 730)
 resources_required = {
 "funds": 1000000,
@@ -211,10 +208,13 @@ response_text = "We have more important things to focus on at the moment."
 relationship_change = 0.0
 task = SubResource("Resource_kovun")
 
+[sub_resource type="Resource" id="Resource_2l0ut"]
+metadata/__load_path__ = "res://TaskData/Freetown/UNOCHALogo.png"
+
 [sub_resource type="Resource" id="Resource_fojvw"]
 script = ExtResource("6_imb53")
 name = "UN OCHA Agent"
-image = ExtResource("11_htxw2")
+image = SubResource("Resource_2l0ut")
 relationship = 0.0
 
 [sub_resource type="Resource" id="Resource_louxg"]
@@ -237,11 +237,14 @@ chance = 1.0
 min_turn = 0
 max_turn = -1
 
+[sub_resource type="Resource" id="Resource_e7kn5"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/Oil.png"
+
 [sub_resource type="Resource" id="Resource_6l5w1"]
 script = ExtResource("5_j85s3")
 task_id = "ODT"
 name = "Oil Defences"
-icon = ExtResource("10_ljp6v")
+icon = SubResource("Resource_e7kn5")
 start_location = Vector2(1850, 720)
 resources_required = {
 "funds": 1000000,
@@ -281,10 +284,13 @@ response_text = "We can't help, sorry."
 relationship_change = -50.0
 task = SubResource("Resource_p722o")
 
+[sub_resource type="Resource" id="Resource_df3nm"]
+metadata/__load_path__ = "res://TaskData/Freetown/EnviroLogo.png"
+
 [sub_resource type="Resource" id="Resource_2n57b"]
 script = ExtResource("6_imb53")
 name = "Environmental Agency"
-image = ExtResource("12_4bxv7")
+image = SubResource("Resource_df3nm")
 relationship = 0.0
 
 [sub_resource type="Resource" id="Resource_7v4cu"]
@@ -315,11 +321,14 @@ chance = 1.0
 min_turn = 8
 max_turn = 8
 
+[sub_resource type="Resource" id="Resource_2krqb"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/Oil.png"
+
 [sub_resource type="Resource" id="Resource_ik32o"]
 script = ExtResource("5_j85s3")
 task_id = "ODLT"
 name = "Oil Defences"
-icon = ExtResource("10_ljp6v")
+icon = SubResource("Resource_2krqb")
 start_location = Vector2(1850, 720)
 resources_required = {
 "funds": 5000000,
@@ -340,11 +349,14 @@ response_text = "We will send a large team now."
 relationship_change = 30.0
 task = SubResource("Resource_ik32o")
 
+[sub_resource type="Resource" id="Resource_ephfm"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/Oil.png"
+
 [sub_resource type="Resource" id="Resource_ql0bm"]
 script = ExtResource("5_j85s3")
 task_id = "ODST"
 name = "Oil Defences"
-icon = ExtResource("10_ljp6v")
+icon = SubResource("Resource_ephfm")
 start_location = Vector2(1850, 720)
 resources_required = {
 "funds": 2500000,
@@ -403,11 +415,14 @@ chance = 1.0
 min_turn = 2
 max_turn = 2
 
+[sub_resource type="Resource" id="Resource_oofgd"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/HelicopterTruck.png"
+
 [sub_resource type="Resource" id="Resource_xgsjx"]
 script = ExtResource("5_j85s3")
 task_id = "PRESHELP"
 name = "President Rescue Team"
-icon = ExtResource("13_wrf78")
+icon = SubResource("Resource_oofgd")
 start_location = Vector2(1200, 630)
 resources_required = {
 "funds": 1000000,
@@ -590,12 +605,16 @@ chance = 0.2
 min_turn = 4
 max_turn = 10
 
+[sub_resource type="Resource" id="Resource_il0ac"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/TwoSupplies.png"
+
 [sub_resource type="Resource" id="Resource_e0c1r"]
 script = ExtResource("5_j85s3")
 task_id = "RESCUESUP"
 name = "Salvaging Supplies"
-icon = ExtResource("14_mtlhs")
-start_location = Vector2(960, 755)
+icon = SubResource("Resource_il0ac")
+start_location = Vector2(2100, 1866)
+end_location = Vector2(0, 0)
 resources_required = {
 "people": 15,
 "supplies": 0,
@@ -634,10 +653,13 @@ response_text = "Sorry, I'm afraid we can't help with this."
 relationship_change = -20.0
 task = SubResource("Resource_e4l1t")
 
+[sub_resource type="Resource" id="Resource_pjqnc"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/TwoMedicalSupplies.png"
+
 [sub_resource type="Resource" id="Resource_f24t8"]
 script = ExtResource("6_imb53")
-name = "Aid NGO"
-image = ExtResource("15_ffmuv")
+name = "Rescue NGO"
+image = SubResource("Resource_pjqnc")
 relationship = 0.0
 
 [sub_resource type="Resource" id="Resource_ys23c"]
@@ -660,11 +682,14 @@ chance = 0.1
 min_turn = 6
 max_turn = -1
 
+[sub_resource type="Resource" id="Resource_3ebwq"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/ThreePeople.png"
+
 [sub_resource type="Resource" id="Resource_8cic8"]
 script = ExtResource("5_j85s3")
 task_id = "SRESTSTAFF"
 name = "Staff Resting"
-icon = ExtResource("16_0k5og")
+icon = SubResource("Resource_3ebwq")
 start_location = Vector2(1100, 600)
 resources_required = {
 "people": 8
@@ -682,11 +707,14 @@ response_text = "We can only let a small group rest at the moment."
 relationship_change = 0.0
 task = SubResource("Resource_8cic8")
 
+[sub_resource type="Resource" id="Resource_dowhi"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/SixPeople.png"
+
 [sub_resource type="Resource" id="Resource_uywu1"]
 script = ExtResource("5_j85s3")
 task_id = "LRESTSTAFF"
 name = "Staff Resting"
-icon = ExtResource("17_m47wo")
+icon = SubResource("Resource_dowhi")
 start_location = Vector2(1100, 600)
 resources_required = {
 "people": 15
@@ -750,11 +778,14 @@ chance = 0.05
 min_turn = 0
 max_turn = -1
 
+[sub_resource type="Resource" id="Resource_0iili"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/TwoMedicalSupplies.png"
+
 [sub_resource type="Resource" id="Resource_fxulm"]
 script = ExtResource("5_j85s3")
 task_id = "REDEPLOY"
 name = "Redpoly Medical Supplies"
-icon = ExtResource("15_ffmuv")
+icon = SubResource("Resource_0iili")
 start_location = Vector2(0, 0)
 resources_required = {
 "funds": 2000000,
@@ -803,11 +834,14 @@ turns_to_answer = 2
 is_repeatable = false
 cancel_behaviour = 4
 
+[sub_resource type="Resource" id="Resource_5n0hh"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/Helicopter.png"
+
 [sub_resource type="Resource" id="Resource_bt5oy"]
 script = ExtResource("5_j85s3")
 task_id = "ARASS"
 name = "Aerial Assessment"
-icon = ExtResource("18_spn1d")
+icon = SubResource("Resource_5n0hh")
 start_location = Vector2(980, 970)
 resources_required = {
 "funds": 1500000,
@@ -828,11 +862,14 @@ response_text = "We should conduct an aerial assessment to get a view of the tru
 relationship_change = 0.0
 task = SubResource("Resource_bt5oy")
 
+[sub_resource type="Resource" id="Resource_nwsol"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/Truck.png"
+
 [sub_resource type="Resource" id="Resource_83ior"]
 script = ExtResource("5_j85s3")
 task_id = "GRASS"
 name = "Ground Assessment"
-icon = ExtResource("19_adkr5")
+icon = SubResource("Resource_nwsol")
 start_location = Vector2(980, 970)
 resources_required = {
 "funds": 500000,
@@ -854,11 +891,14 @@ response_text = "We can get a good idea of what happened with a g round team"
 relationship_change = 0.0
 task = SubResource("Resource_83ior")
 
+[sub_resource type="Resource" id="Resource_88gqg"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/HelicopterTruck.png"
+
 [sub_resource type="Resource" id="Resource_5hitq"]
 script = ExtResource("5_j85s3")
 task_id = "GRARASS"
 name = "Ground and Air Assessment"
-icon = ExtResource("13_wrf78")
+icon = SubResource("Resource_88gqg")
 start_location = Vector2(980, 970)
 resources_required = {
 "funds": 2000000,
@@ -918,11 +958,14 @@ chance = 0.1
 min_turn = 4
 max_turn = -1
 
+[sub_resource type="Resource" id="Resource_q1qxb"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/SixPeople.png"
+
 [sub_resource type="Resource" id="Resource_63vqb"]
 script = ExtResource("5_j85s3")
 task_id = "TRAINFULL"
 name = "Training Staff"
-icon = ExtResource("17_m47wo")
+icon = SubResource("Resource_q1qxb")
 start_location = Vector2(1000, 800)
 resources_required = {
 "funds": 1000000,
@@ -945,11 +988,14 @@ response_text = "This sound great, we'll send some staff over right now to help 
 relationship_change = 0.0
 task = SubResource("Resource_63vqb")
 
+[sub_resource type="Resource" id="Resource_n0mkc"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/ThreePeople.png"
+
 [sub_resource type="Resource" id="Resource_dnkgn"]
 script = ExtResource("5_j85s3")
 task_id = "TRAINSOME"
 name = "Training Staff"
-icon = ExtResource("16_0k5og")
+icon = SubResource("Resource_n0mkc")
 start_location = Vector2(1000, 800)
 resources_required = {
 "funds": 500000,
@@ -1090,11 +1136,14 @@ chance = 0.3
 min_turn = 10
 max_turn = -1
 
+[sub_resource type="Resource" id="Resource_rbooi"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/Truck.png"
+
 [sub_resource type="Resource" id="Resource_ux8bc"]
 script = ExtResource("5_j85s3")
 task_id = "FAITH"
 name = "Faith Popups"
-icon = ExtResource("19_adkr5")
+icon = SubResource("Resource_rbooi")
 start_location = Vector2(1700, 900)
 resources_required = {
 "funds": 1500000,
@@ -1218,11 +1267,14 @@ chance = 1.0
 min_turn = 0
 max_turn = -1
 
+[sub_resource type="Resource" id="Resource_fwbfo"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/ThreePeople.png"
+
 [sub_resource type="Resource" id="Resource_qxkh3"]
 script = ExtResource("5_j85s3")
 task_id = "FAITHFULL"
 name = "Spiritual Support"
-icon = ExtResource("16_0k5og")
+icon = SubResource("Resource_fwbfo")
 start_location = Vector2(1700, 900)
 resources_required = {
 "funds": 2000000,
@@ -1246,11 +1298,14 @@ response_text = "We believe these ideas are good and will implement them straigh
 relationship_change = 50.0
 task = SubResource("Resource_qxkh3")
 
+[sub_resource type="Resource" id="Resource_mhg7u"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/ThreePeople.png"
+
 [sub_resource type="Resource" id="Resource_ts0uu"]
 script = ExtResource("5_j85s3")
 task_id = "FAITHSPIR"
 name = "Spiritual Support"
-icon = ExtResource("16_0k5og")
+icon = SubResource("Resource_mhg7u")
 start_location = Vector2(1700, 900)
 resources_required = {
 "funds": 500000,
@@ -1349,19 +1404,14 @@ chance = 1.0
 min_turn = 10
 max_turn = -1
 
-[sub_resource type="Resource" id="Resource_dgx6s"]
-script = ExtResource("2_lfadw")
-task_id = Array[String]([])
-events = Array[int]([])
-chance = 1.0
-min_turn = 13
-max_turn = -1
+[sub_resource type="Resource" id="Resource_xxo85"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/TwoSupplies.png"
 
 [sub_resource type="Resource" id="Resource_3vgoh"]
 script = ExtResource("5_j85s3")
 task_id = "FULLSUPPLY"
 name = "Aid Site Resupply"
-icon = ExtResource("14_mtlhs")
+icon = SubResource("Resource_xxo85")
 start_location = Vector2(900, 1000)
 resources_required = {
 "funds": 1000000,
@@ -1383,11 +1433,14 @@ response_text = "We can do a full resupply."
 relationship_change = 0.0
 task = SubResource("Resource_3vgoh")
 
+[sub_resource type="Resource" id="Resource_kbg8w"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/Supplies.png"
+
 [sub_resource type="Resource" id="Resource_8blxx"]
 script = ExtResource("5_j85s3")
 task_id = "HALFSUPPLY"
 name = "Aid Site Resupply"
-icon = ExtResource("21_aenyn")
+icon = SubResource("Resource_kbg8w")
 start_location = Vector2(900, 1000)
 resources_required = {
 "funds": 550000,
@@ -1447,11 +1500,14 @@ chance = 1.0
 min_turn = 5
 max_turn = -1
 
+[sub_resource type="Resource" id="Resource_pp1js"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/TruckAmbulance.png"
+
 [sub_resource type="Resource" id="Resource_3ovro"]
 script = ExtResource("5_j85s3")
 task_id = "LARGESAT"
 name = "Satellite Aid"
-icon = ExtResource("5_w1nnn")
+icon = SubResource("Resource_pp1js")
 start_location = Vector2(1900, 900)
 resources_required = {
 "funds": 3000000,
@@ -1473,11 +1529,14 @@ response_text = "We'll send a large convoy to meet these needs."
 relationship_change = 0.0
 task = SubResource("Resource_3ovro")
 
+[sub_resource type="Resource" id="Resource_fyaat"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/TruckAmbulance.png"
+
 [sub_resource type="Resource" id="Resource_ys8un"]
 script = ExtResource("5_j85s3")
 task_id = "MEDSAT"
 name = "Satellite Aid"
-icon = ExtResource("5_w1nnn")
+icon = SubResource("Resource_fyaat")
 start_location = Vector2(1900, 900)
 resources_required = {
 "funds": 2000000,
@@ -1499,11 +1558,14 @@ response_text = "We can send a convoy to help provide aid in these remote sites.
 relationship_change = 0.0
 task = SubResource("Resource_ys8un")
 
+[sub_resource type="Resource" id="Resource_o6tqs"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/Ambulance.png"
+
 [sub_resource type="Resource" id="Resource_f85g4"]
 script = ExtResource("5_j85s3")
 task_id = "SMALLSAT"
 name = "Satellite Aid"
-icon = ExtResource("22_x8231")
+icon = SubResource("Resource_o6tqs")
 start_location = Vector2(1900, 900)
 resources_required = {
 "funds": 1000000,
@@ -1721,12 +1783,16 @@ chance = 1.0
 min_turn = 5
 max_turn = -1
 
+[sub_resource type="Resource" id="Resource_oms81"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/Truck.png"
+
 [sub_resource type="Resource" id="Resource_nmcl5"]
 script = ExtResource("5_j85s3")
 task_id = "NEWVEHICLES"
 name = "Delivering new Vehicles"
-icon = ExtResource("19_adkr5")
-start_location = Vector2(700, 700)
+icon = SubResource("Resource_oms81")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1000000,
 "people": 5,
@@ -1747,12 +1813,16 @@ response_text = "We would like some more vehicles please."
 relationship_change = 0.0
 task = SubResource("Resource_nmcl5")
 
+[sub_resource type="Resource" id="Resource_rqwbj"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/ThreePeople.png"
+
 [sub_resource type="Resource" id="Resource_gocrh"]
 script = ExtResource("5_j85s3")
 task_id = "NEWSTAFF"
 name = "Transporting New Staff"
-icon = ExtResource("16_0k5og")
-start_location = Vector2(700, 700)
+icon = SubResource("Resource_rqwbj")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
 resources_required = {
 "funds": 1200000,
 "people": 5,
@@ -1773,12 +1843,16 @@ response_text = "We would like some more staff please."
 relationship_change = 0.0
 task = SubResource("Resource_gocrh")
 
+[sub_resource type="Resource" id="Resource_qww01"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/TwoSupplies.png"
+
 [sub_resource type="Resource" id="Resource_oorr5"]
 script = ExtResource("5_j85s3")
 task_id = "NEWSUPPLIES"
 name = "Transporting Supplies"
-icon = ExtResource("14_mtlhs")
-start_location = Vector2(700, 700)
+icon = SubResource("Resource_qww01")
+start_location = Vector2(0, 0)
+end_location = Vector2(0, 0)
 resources_required = {
 "funds": 2000000,
 "people": 5,
@@ -1819,11 +1893,14 @@ chance = 1.0
 min_turn = 0
 max_turn = -1
 
+[sub_resource type="Resource" id="Resource_8vxl4"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/Truck.png"
+
 [sub_resource type="Resource" id="Resource_pc4on"]
 script = ExtResource("5_j85s3")
 task_id = "NEWVEHICLES2"
 name = "Delivering new Vehicles"
-icon = ExtResource("19_adkr5")
+icon = SubResource("Resource_8vxl4")
 start_location = Vector2(0, 0)
 resources_required = {
 "funds": 1200000,
@@ -1844,11 +1921,14 @@ response_text = "We would like some more vehicles please."
 relationship_change = 0.0
 task = SubResource("Resource_pc4on")
 
+[sub_resource type="Resource" id="Resource_nnjof"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/ThreePeople.png"
+
 [sub_resource type="Resource" id="Resource_ww6si"]
 script = ExtResource("5_j85s3")
 task_id = "NEWSTAFF2"
 name = "Transporting New Staff"
-icon = ExtResource("16_0k5og")
+icon = SubResource("Resource_nnjof")
 start_location = Vector2(0, 0)
 resources_required = {
 "funds": 1400000,
@@ -1869,11 +1949,14 @@ response_text = "We would like some more staff please."
 relationship_change = 0.0
 task = SubResource("Resource_ww6si")
 
+[sub_resource type="Resource" id="Resource_i4sfc"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/TwoSupplies.png"
+
 [sub_resource type="Resource" id="Resource_ai60k"]
 script = ExtResource("5_j85s3")
 task_id = "NEWSUPPLIES2"
 name = "Transporting Supplies"
-icon = ExtResource("14_mtlhs")
+icon = SubResource("Resource_i4sfc")
 start_location = Vector2(0, 0)
 resources_required = {
 "funds": 2200000,
@@ -1915,27 +1998,14 @@ chance = 0.7
 min_turn = 0
 max_turn = -1
 
-[sub_resource type="Resource" id="Resource_p1y3o"]
-script = ExtResource("2_lfadw")
-task_id = Array[String](["HALFSUPPLY"])
-events = Array[int]([])
-chance = 0.3
-min_turn = 0
-max_turn = -1
-
-[sub_resource type="Resource" id="Resource_6gnwu"]
-script = ExtResource("2_lfadw")
-task_id = Array[String](["ACKAIDMADE"])
-events = Array[int]([])
-chance = 0.4
-min_turn = 0
-max_turn = -1
+[sub_resource type="Resource" id="Resource_q367s"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/TruckAmbulance.png"
 
 [sub_resource type="Resource" id="Resource_7b4hu"]
 script = ExtResource("5_j85s3")
 task_id = "REPSUP"
 name = "Repair and Resupply"
-icon = ExtResource("5_w1nnn")
+icon = SubResource("Resource_q367s")
 start_location = Vector2(900, 1000)
 resources_required = {
 "funds": 4000000,
@@ -1957,11 +2027,14 @@ response_text = "We will send what we can for the repairs, and some aid for the 
 relationship_change = 0.0
 task = SubResource("Resource_7b4hu")
 
+[sub_resource type="Resource" id="Resource_c5jaa"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/Truck.png"
+
 [sub_resource type="Resource" id="Resource_tbu7o"]
 script = ExtResource("5_j85s3")
 task_id = "REPAIRS"
 name = "Repairs"
-icon = ExtResource("19_adkr5")
+icon = SubResource("Resource_c5jaa")
 start_location = Vector2(900, 1000)
 resources_required = {
 "funds": 3000000,
@@ -1983,11 +2056,14 @@ response_text = "We appreciate the concerns of the citizens, but we can only sen
 relationship_change = 0.0
 task = SubResource("Resource_tbu7o")
 
+[sub_resource type="Resource" id="Resource_8yury"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/TwoSupplies.png"
+
 [sub_resource type="Resource" id="Resource_8271q"]
 script = ExtResource("5_j85s3")
 task_id = "RESUPONLY"
 name = "Resupply"
-icon = ExtResource("14_mtlhs")
+icon = SubResource("Resource_8yury")
 start_location = Vector2(900, 1000)
 resources_required = {
 "funds": 1000000,
@@ -2047,11 +2123,14 @@ chance = 0.3
 min_turn = 10
 max_turn = -1
 
+[sub_resource type="Resource" id="Resource_f7tq6"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/HelicopterTruck.png"
+
 [sub_resource type="Resource" id="Resource_7htfx"]
 script = ExtResource("5_j85s3")
 task_id = "MONKEY"
 name = "Monkey Search"
-icon = ExtResource("13_wrf78")
+icon = SubResource("Resource_f7tq6")
 start_location = Vector2(1700, 1200)
 resources_required = {
 "funds": 2000000,
@@ -2178,11 +2257,14 @@ chance = 1.0
 min_turn = 7
 max_turn = 7
 
+[sub_resource type="Resource" id="Resource_ibfye"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/TwoMedicalSupplies.png"
+
 [sub_resource type="Resource" id="Resource_3eikn"]
 script = ExtResource("5_j85s3")
 task_id = "CHOLERASUPP"
 name = "Cholera Supplies"
-icon = ExtResource("15_ffmuv")
+icon = SubResource("Resource_ibfye")
 start_location = Vector2(1000, 1000)
 resources_required = {
 "funds": 1000000,
@@ -2264,11 +2346,14 @@ chance = 0.6
 min_turn = 12
 max_turn = -1
 
+[sub_resource type="Resource" id="Resource_wc2gu"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/TwoMedicalSupplies.png"
+
 [sub_resource type="Resource" id="Resource_ipk7h"]
 script = ExtResource("5_j85s3")
 task_id = "OUTBREAKRESP"
 name = "Cholera Outbreak"
-icon = ExtResource("15_ffmuv")
+icon = SubResource("Resource_wc2gu")
 start_location = Vector2(1000, 1000)
 resources_required = {
 "funds": 1500000,
@@ -2290,11 +2375,14 @@ response_text = "Sending a team now."
 relationship_change = 25.0
 task = SubResource("Resource_ipk7h")
 
+[sub_resource type="Resource" id="Resource_h6p3e"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/MedicalSupplies.png"
+
 [sub_resource type="Resource" id="Resource_vh5n7"]
 script = ExtResource("5_j85s3")
 task_id = "OUTBREAKVOL"
 name = "Cholera Outbreak"
-icon = ExtResource("23_tjkec")
+icon = SubResource("Resource_h6p3e")
 start_location = Vector2(1000, 1000)
 resources_required = {
 "funds": 700000,
@@ -2370,11 +2458,14 @@ chance = 1.0
 min_turn = 14
 max_turn = -1
 
+[sub_resource type="Resource" id="Resource_af0rt"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/ThreePeople.png"
+
 [sub_resource type="Resource" id="Resource_ac4n7"]
 script = ExtResource("5_j85s3")
 task_id = "Q"
 name = "Quarantine"
-icon = ExtResource("16_0k5og")
+icon = SubResource("Resource_af0rt")
 start_location = Vector2(1300, 700)
 resources_required = {
 "funds": 1500000,
@@ -2491,11 +2582,14 @@ chance = 1.0
 min_turn = 4
 max_turn = 4
 
+[sub_resource type="Resource" id="Resource_75s6d"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/TwoSupplies.png"
+
 [sub_resource type="Resource" id="Resource_b1wkj"]
 script = ExtResource("5_j85s3")
 task_id = "LARGESITE"
 name = "Setting up Aid Site"
-icon = ExtResource("14_mtlhs")
+icon = SubResource("Resource_75s6d")
 start_location = Vector2(900, 1000)
 resources_required = {
 "funds": 7000000,
@@ -2517,11 +2611,14 @@ response_text = "We will set up a large aid site in Freetown."
 relationship_change = 0.0
 task = SubResource("Resource_b1wkj")
 
+[sub_resource type="Resource" id="Resource_46e61"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/TwoSupplies.png"
+
 [sub_resource type="Resource" id="Resource_06l1b"]
 script = ExtResource("5_j85s3")
 task_id = "MEDSITE"
 name = "Setting up Aid Site"
-icon = ExtResource("14_mtlhs")
+icon = SubResource("Resource_46e61")
 start_location = Vector2(900, 1000)
 resources_required = {
 "funds": 5000000,
@@ -2544,11 +2641,14 @@ response_text = "We should set up an aid site in Freetown."
 relationship_change = 0.0
 task = SubResource("Resource_06l1b")
 
+[sub_resource type="Resource" id="Resource_0knbo"]
+metadata/__load_path__ = "res://Sprites/TaskSprites/Supplies.png"
+
 [sub_resource type="Resource" id="Resource_3bmc4"]
 script = ExtResource("5_j85s3")
 task_id = "SMALLSITE"
 name = "Setting up Aid Site"
-icon = ExtResource("21_aenyn")
+icon = SubResource("Resource_0knbo")
 start_location = Vector2(900, 1000)
 resources_required = {
 "funds": 3000000,
