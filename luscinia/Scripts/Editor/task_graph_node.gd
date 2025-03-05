@@ -1,7 +1,6 @@
 class_name TaskGraphNode
 extends TaskEditorGraphNode
 
-var task : TaskData
 
 enum InPortNums {
 	RESPONSE = 0
@@ -11,21 +10,23 @@ enum OutPortNums {
 	PREREQ = 0
 }
 
+var task : TaskData
+
 func _init(task : TaskData):
 	super()
 	self.task = task
 	title = "Task Node"
-	
+
 	var response_label = Label.new()
 	response_label.text = "Response"
 	add_child(response_label)
 	set_port(true, response_label.get_index(), SlotType.RESPONSE_TO_TASK)
-	
+
 	add_spacer()
-	
+
 	var task_name_input = add_input("Task Name", task.name)
 	task_name_input.text_changed.connect(_on_task_name_changed)
-	
+
 	var task_id_input = add_input("Task ID", str(task.task_id))
 	task_id_input.text_changed.connect(func(text): _on_task_id_changed(text, task_id_input))
 	if(task.task_id == ""):
@@ -33,24 +34,28 @@ func _init(task : TaskData):
 	else:
 		task_id_input.self_modulate = Color.WHITE
 	set_port(false, task_id_input.get_index(), SlotType.TASK_TO_PREQ)
-	
+
 	var task_time_input = add_input("Expected Completion Time", str(task.expected_completion_time))
 	task_time_input.text_changed.connect(func(text): _on_task_time_changed(text, task_time_input))
-	
+
 	var icon_selector : ImageSelector = add_image_selector("Task Icon", task.icon)
 	icon_selector.image_selected.connect(_on_image_selected)
-	
+
 	var vector_input : VectorInput = add_vector_input("Location", task.start_location)
 	vector_input.value_changed.connect(func(new_location): task.start_location = new_location)
-	
-	var resources_required_fields : Array[Field] = generate_fields_from_resources(task.resources_required)
+
+	var resources_required_fields : Array[Field] =\
+	generate_fields_from_resources(task.resources_required)
 	for field in resources_required_fields:
-		field.field_changed.connect(func(resource_type, value): _on_resource_required_field_changed(resource_type, value, field))
+		field.field_changed.connect(func(resource_type, value):\
+		_on_resource_required_field_changed(resource_type, value, field))
 	add_collapsible_container("Resources Required", resources_required_fields)
-	
-	var resources_gained_fields : Array[Field] = generate_fields_from_resources(task.resources_gained)
+
+	var resources_gained_fields : Array[Field] =\
+	generate_fields_from_resources(task.resources_gained)
 	for field in resources_gained_fields:
-		field.field_changed.connect(func(resource_type, value): _on_resource_gained_field_changed(resource_type, value, field))
+		field.field_changed.connect(func(resource_type, value):\
+		_on_resource_gained_field_changed(resource_type, value, field))
 	add_collapsible_container("Resources Gained", resources_gained_fields)
 
 
@@ -59,7 +64,7 @@ func _on_task_name_changed(new_name : String):
 
 
 func _on_task_id_changed(new_id : String, input : LineEdit):
-	if new_id == "": 
+	if new_id == "":
 		input.self_modulate = Color.RED
 	else:
 		input.self_modulate = Color.WHITE
@@ -67,7 +72,7 @@ func _on_task_id_changed(new_id : String, input : LineEdit):
 
 
 func _on_task_time_changed(new_time : String, input : LineEdit):
-	if new_time == "": 
+	if new_time == "":
 		new_time = "-1"
 		input.self_modulate = Color.RED
 	else:
@@ -85,7 +90,8 @@ func _on_image_selected(image : Texture):
 func _on_resource_required_field_changed(resource: String, new_resource : String, input : Field):
 	if new_resource == "": new_resource = "0"
 	if not new_resource.is_valid_int():
-		input.field_value = str(task.resources_required[resource]) if task.resources_required.has(resource) else "0"
+		input.field_value = str(task.resources_required[resource])\
+		if task.resources_required.has(resource) else "0"
 		return
 	if new_resource == "0" and task.resources_required.has(resource):
 		task.resources_required.erase(resource)
@@ -96,7 +102,8 @@ func _on_resource_required_field_changed(resource: String, new_resource : String
 
 func _on_resource_gained_field_changed(resource: String, new_resource : String, input : Field):
 	if not new_resource.is_valid_int():
-		input.field_value = str(task.resources_gained[resource]) if task.resources_gained.has(resource) else "0"
+		input.field_value = str(task.resources_gained[resource])\
+		if task.resources_gained.has(resource) else "0"
 		return
 	if new_resource == "0" and task.resources_gained.has(resource):
 		task.resources_gained.erase(resource)
