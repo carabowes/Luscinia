@@ -25,14 +25,13 @@ func _add_elements():
 		var value_is_int = resources[resource_key] is int
 		var key_is_string = resource_key is String
 		var value_is_zero = resources[resource_key] == 0 if value_is_int else false
-		
+
 		if not value_is_int or not key_is_string or value_is_zero:
 			continue
-		
+
 		var resource_entry_instance : ResourceEntry = load(resource_entry_path).instantiate()
 		resource_entry_instance.amount = resources[resource_key]
 		resource_entry_instance.resource_type = resource_key
 		resource_entry_instance.name = resource_key
 		add_child(resource_entry_instance)
-		resource_entry_instance.set_owner($".")
-		resource_entry_instance.columns = 3
+		resource_entry_instance.set_owner(self)

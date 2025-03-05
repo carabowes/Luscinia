@@ -1,8 +1,6 @@
 class_name RequisiteGraphNode
 extends TaskEditorGraphNode
 
-var prerequisite : Prerequisite
-
 enum OutPortNums
 {
 	MESSAGE = 0
@@ -13,26 +11,28 @@ enum InPortNums
 	TASK = 0
 }
 
+var prerequisite : Prerequisite
+
 func _init(prerequisite : Prerequisite):
 	super()
 	self.prerequisite = prerequisite
-	
+
 	title = "Requisite Node"
-	
+
 	var task_labels = Label.new()
 	task_labels.text = "Tasks"
 	add_child(task_labels)
 	set_port(true, task_labels.get_index(), SlotType.TASK_TO_PREQ)
-	
+
 	var chance_input = add_slider("Chance", prerequisite.chance, 0, 1)
 	chance_input.value_changed.connect(_on_chance_changed)
-	
+
 	var min_turn_input = add_input("Minimum Turn", str(prerequisite.min_turn))
 	min_turn_input.text_changed.connect(func(value): _on_min_turn_changed(value, min_turn_input))
-	
+
 	var max_turn_input = add_input("Maximum Turn", str(prerequisite.max_turn))
 	max_turn_input.text_changed.connect(func(value): _on_max_turn_changed(value, max_turn_input))
-	
+
 	var output_label = Label.new()
 	output_label.text = "Output"
 	add_child(output_label)
@@ -44,7 +44,7 @@ func _on_chance_changed(value):
 
 
 func _on_min_turn_changed(value : String, input : LineEdit):
-	if value == "" or not value.is_valid_int(): 
+	if value == "" or not value.is_valid_int():
 		value = "0"
 		input.self_modulate = Color.RED
 	else:
@@ -53,7 +53,7 @@ func _on_min_turn_changed(value : String, input : LineEdit):
 
 
 func _on_max_turn_changed(value : String, input : LineEdit):
-	if value == "" or not value.is_valid_int(): 
+	if value == "" or not value.is_valid_int():
 		value = "-1"
 		input.self_modulate = Color.RED
 	else:
