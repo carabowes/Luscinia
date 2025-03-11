@@ -1,19 +1,83 @@
-[gd_scene load_steps=16 format=3 uid="uid://c70krmks36rto"]
+[gd_scene load_steps=28 format=3 uid="uid://c70krmks36rto"]
 
 [ext_resource type="Script" path="res://Scripts/UI/task_details.gd" id="1_dalyu"]
 [ext_resource type="Script" path="res://Scripts/UI/time_progress_bar.gd" id="1_stskc"]
-[ext_resource type="Theme" uid="uid://r2tvepfwkafu" path="res://Themes/primary_button.tres" id="2_qc17l"]
-[ext_resource type="PackedScene" uid="uid://bxndjmqmmnwuu" path="res://Scenes/UI/task_resources.tscn" id="4_xomxh"]
+[ext_resource type="FontFile" uid="uid://bm50ve2s6rkjl" path="res://Sprites/Fonts/ReadexPro-Medium.ttf" id="4_o7qor"]
 [ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="4_yi0aj"]
+[ext_resource type="Shader" path="res://Sprites/Shaders/repeated_background.gdshader" id="6_srtcr"]
+[ext_resource type="Texture2D" uid="uid://babyw5cjoen2v" path="res://Sprites/TaskSprites/Helicopter.png" id="7_jic60"]
+[ext_resource type="StyleBox" uid="uid://ugfhky37gq56" path="res://Themes/blue_shadow_box.tres" id="7_nqlq6"]
+[ext_resource type="Texture2D" uid="uid://cep3uutbm3nbm" path="res://Sprites/Circle.png" id="8_1k2fi"]
+[ext_resource type="FontFile" uid="uid://dqb15p2ijprjy" path="res://Sprites/Fonts/ReadexPro-Bold.ttf" id="8_ipgpy"]
+[ext_resource type="Texture2D" uid="uid://c27suyrk8wq" path="res://Sprites/ClockBackground.png" id="9_py5jy"]
+[ext_resource type="Texture2D" uid="uid://d1cwe1f3jk3ca" path="res://Sprites/icon.svg" id="10_ee8lu"]
+[ext_resource type="Script" path="res://Scripts/UI/task_resources.gd" id="12_71iam"]
+[ext_resource type="StyleBox" uid="uid://m1yvfqw46qis" path="res://Themes/task_details_box.tres" id="12_phs64"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swbtu"]
-bg_color = Color(0.956863, 0.929412, 0.952941, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fd5up"]
+bg_color = Color(0.254902, 0.560784, 0.870588, 1)
 
-[sub_resource type="Theme" id="Theme_71kbt"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_so8a6"]
+shader = ExtResource("6_srtcr")
+shader_parameter/color_tint = Color(0.4462, 0.67318, 0.97, 0.423529)
+shader_parameter/offset_amount = 2.3
+shader_parameter/texture_size = 54.6
+shader_parameter/rotation = 345.0
+shader_parameter/scroll_speed = Vector2(0.125, -0.062)
 
-[sub_resource type="LabelSettings" id="LabelSettings_2l6xi"]
-font_size = 24
-font_color = Color(0.254902, 0.560784, 0.870588, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y2ewk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qffn1"]
+font = ExtResource("8_ipgpy")
+font_color = Color(0.778179, 0, 0.218861, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v5fiu"]
+font = ExtResource("4_o7qor")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l73l2"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7owwg"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="Theme" id="Theme_4jjbl"]
+Button/colors/font_color = Color(0.254902, 0.560784, 0.870588, 1)
+Button/colors/font_focus_color = Color(0.956863, 0.929412, 0.952941, 1)
+Button/colors/font_hover_color = Color(0.956863, 0.929412, 0.952941, 1)
+Button/colors/font_hover_pressed_color = Color(0.956863, 0.929412, 0.952941, 1)
+Button/colors/font_pressed_color = Color(0.956863, 0.929412, 0.952941, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_l73l2")
+Button/styles/focus = SubResource("StyleBoxFlat_l73l2")
+Button/styles/hover = SubResource("StyleBoxFlat_l73l2")
+Button/styles/normal = SubResource("StyleBoxFlat_l73l2")
+Button/styles/pressed = SubResource("StyleBoxFlat_l73l2")
+Label/colors/font_color = Color(1, 0.584314, 0, 1)
+Panel/styles/panel = SubResource("StyleBoxFlat_7owwg")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8y31"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+shadow_color = Color(0, 0, 0, 0.223529)
+shadow_size = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_tbdnm"]
+font = ExtResource("8_ipgpy")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyk4g"]
 bg_color = Color(0.207843, 0.376471, 0.690196, 1)
@@ -30,33 +94,24 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_p5ny5"]
+font = ExtResource("4_o7qor")
 font_size = 14
 outline_size = 1
 
-[sub_resource type="LabelSettings" id="LabelSettings_57w7t"]
-font_color = Color(0.290196, 0.266667, 0.34902, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_l5vve"]
-font_size = 24
-font_color = Color(0.254902, 0.560784, 0.870588, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_pwbwb"]
-font_color = Color(0.259294, 0.259294, 0.259294, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_a30pv"]
-font_color = Color(0.306923, 0.306923, 0.306923, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_ve24j"]
+font = ExtResource("4_o7qor")
+font_color = Color(0, 0, 0, 1)
 
 [node name="TaskDetails" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 96.0
-offset_bottom = -72.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 1
 script = ExtResource("1_dalyu")
 
 [node name="Background" type="Panel" parent="."]
@@ -66,51 +121,271 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_swbtu")
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_fd5up")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Background"]
+[node name="ScrollingBackground" type="TextureRect" parent="Background"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_so8a6")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("7_jic60")
+expand_mode = 1
+stretch_mode = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Background/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
-
-[node name="Elements" type="VBoxContainer" parent="Background/ScrollContainer/MarginContainer"]
-layout_mode = 2
-theme = SubResource("Theme_71kbt")
-
-[node name="ReturnButton" type="Button" parent="Background/ScrollContainer/MarginContainer/Elements"]
+[node name="ReturnButton" type="Button" parent="Background/ScrollingBackground"]
 unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-theme = ExtResource("2_qc17l")
-text = "  Back  "
+layout_mode = 1
+offset_left = 15.0
+offset_top = 23.0
+offset_right = 47.0
+offset_bottom = 55.0
+theme_override_colors/font_color = Color(0.898246, 0.000257283, 0.000140253, 1)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(0.273873, 0.273873, 0.273873, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_y2ewk")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_y2ewk")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_y2ewk")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_y2ewk")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_y2ewk")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_y2ewk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_y2ewk")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_y2ewk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_y2ewk")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_y2ewk")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_y2ewk")
+icon = ExtResource("8_1k2fi")
+expand_icon = true
 
-[node name="TaskTitle" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements"]
+[node name="Label" type="Label" parent="Background/ScrollingBackground/ReturnButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "X"
+label_settings = SubResource("LabelSettings_qffn1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TaskCancellation" type="Panel" parent="Background"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="Background/TaskCancellation"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/TaskCancellation/Margin"]
 layout_mode = 2
-text = "Providing Aid in Koza "
-label_settings = SubResource("LabelSettings_2l6xi")
+
+[node name="AreYouSureLabel" type="RichTextLabel" parent="Background/TaskCancellation/Margin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 55)
+layout_mode = 2
+size_flags_vertical = 0
+bbcode_enabled = true
+text = "[center][font=Sprites/Fonts/ReadexPro-Medium.ttf][font_size=20]Are you sure you want to end this task [font=Sprites/Fonts/ReadexPro-Bold.ttf]early[/font]?[/font_size]
+"
+scroll_active = false
+
+[node name="Spacer4" type="Control" parent="Background/TaskCancellation/Margin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="EndEarlyLabel" type="Label" parent="Background/TaskCancellation/Margin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+text = "If you end the task now, this is what your resources will look like."
+label_settings = SubResource("LabelSettings_v5fiu")
+horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="PaddingBar" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements"]
-modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 2)
+[node name="EndNowContainer" type="Panel" parent="Background/TaskCancellation/Margin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("7_nqlq6")
+
+[node name="Margin" type="MarginContainer" parent="Background/TaskCancellation/Margin/VBoxContainer/EndNowContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 0
+
+[node name="EndNowResources" type="GridContainer" parent="Background/TaskCancellation/Margin/VBoxContainer/EndNowContainer/Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 4
+script = ExtResource("12_71iam")
+icon_color = Color(0.254902, 0.560784, 0.870588, 1)
+text_color = Color(1, 1, 1, 1)
+use_vertical = true
+use_circle = true
+
+[node name="Spacer2" type="Control" parent="Background/TaskCancellation/Margin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="TaskProgressBar" type="ProgressBar" parent="Background/ScrollContainer/MarginContainer/Elements" node_paths=PackedStringArray("text_label")]
+[node name="FullTimeLabel" type="Label" parent="Background/TaskCancellation/Margin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+text = "If you wait for the task to finish, this is what your resources would look like."
+label_settings = SubResource("LabelSettings_v5fiu")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="EndLaterCointer" type="Panel" parent="Background/TaskCancellation/Margin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("7_nqlq6")
+
+[node name="Margin" type="MarginContainer" parent="Background/TaskCancellation/Margin/VBoxContainer/EndLaterCointer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 0
+
+[node name="FullTimeResources" type="GridContainer" parent="Background/TaskCancellation/Margin/VBoxContainer/EndLaterCointer/Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 0
+columns = 4
+script = ExtResource("12_71iam")
+icon_color = Color(0.254902, 0.560784, 0.870588, 1)
+text_color = Color(1, 1, 1, 1)
+use_vertical = true
+use_circle = true
+
+[node name="Spacer3" type="Control" parent="Background/TaskCancellation/Margin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="Background/TaskCancellation/Margin/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="CancelEndButton" type="Button" parent="Background/TaskCancellation/Margin/VBoxContainer/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_4jjbl")
+text = "     Back     "
+
+[node name="ConfirmEndButton" type="Button" parent="Background/TaskCancellation/Margin/VBoxContainer/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme = SubResource("Theme_4jjbl")
+text = "    Confirm    "
+
+[node name="TaskDetails" type="Panel" parent="Background"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = 74.0
+offset_right = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(185, 726)
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_m8y31")
+
+[node name="Margin" type="MarginContainer" parent="Background/TaskDetails"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 30
+
+[node name="Arrangement" type="VBoxContainer" parent="Background/TaskDetails/Margin"]
+layout_mode = 2
+
+[node name="TitleContainer" type="HBoxContainer" parent="Background/TaskDetails/Margin/Arrangement"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="CircleMask" type="TextureRect" parent="Background/TaskDetails/Margin/Arrangement/TitleContainer"]
+clip_children = 1
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("9_py5jy")
+expand_mode = 3
+
+[node name="SenderIcon" type="TextureRect" parent="Background/TaskDetails/Margin/Arrangement/TitleContainer/CircleMask"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_ee8lu")
+expand_mode = 2
+
+[node name="TaskTitle" type="Label" parent="Background/TaskDetails/Margin/Arrangement/TitleContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Providing Aid to Settlements in Koza"
+label_settings = SubResource("LabelSettings_tbdnm")
+vertical_alignment = 1
+autowrap_mode = 2
+text_overrun_behavior = 3
+max_lines_visible = 2
+
+[node name="Spacer2" type="Control" parent="Background/TaskDetails/Margin/Arrangement"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="TaskProgressBar" type="ProgressBar" parent="Background/TaskDetails/Margin/Arrangement" node_paths=PackedStringArray("text_label")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
@@ -124,7 +399,7 @@ total_task_time = 7.0
 text_label = NodePath("Label")
 padding = 5
 
-[node name="Label" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements/TaskProgressBar"]
+[node name="Label" type="Label" parent="Background/TaskDetails/Margin/Arrangement/TaskProgressBar"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -140,61 +415,40 @@ text = "0hrs left"
 label_settings = SubResource("LabelSettings_p5ny5")
 vertical_alignment = 1
 
-[node name="PaddingBar2" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements"]
-modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 5)
+[node name="Spacer" type="Control" parent="Background/TaskDetails/Margin/Arrangement"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="ResourcesUsedTitle" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "Resources Used"
-label_settings = SubResource("LabelSettings_57w7t")
-
-[node name="ResourcesUsed" parent="Background/ScrollContainer/MarginContainer/Elements" instance=ExtResource("4_xomxh")]
-unique_name_in_owner = true
-modulate = Color(0.290196, 0.266667, 0.34902, 1)
+[node name="ResourceLabelContainer" type="HBoxContainer" parent="Background/TaskDetails/Margin/Arrangement"]
 layout_mode = 2
 
-[node name="PaddingBar3" type="Panel" parent="Background/ScrollContainer/MarginContainer/Elements"]
-modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 5)
+[node name="CurrentResourcesLabel" type="Label" parent="Background/TaskDetails/Margin/Arrangement/ResourceLabelContainer"]
 layout_mode = 2
-
-[node name="OnCompletionTitle" type="Label" parent="Background/ScrollContainer/MarginContainer/Elements"]
-layout_mode = 2
-size_flags_vertical = 0
-text = "On Completion
-"
-label_settings = SubResource("LabelSettings_57w7t")
-
-[node name="OnCompletion" parent="Background/ScrollContainer/MarginContainer/Elements" instance=ExtResource("4_xomxh")]
-unique_name_in_owner = true
-modulate = Color(0.290196, 0.266667, 0.34902, 1)
-layout_mode = 2
-
-[node name="EndEarlyButton" type="Button" parent="Background/ScrollContainer/MarginContainer/Elements"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("4_yi0aj")
-text = "    End Early    "
-
-[node name="TaskCancelConfirmationPage" type="Panel" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_swbtu")
+text = "Current Resources"
+label_settings = SubResource("LabelSettings_ve24j")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Margin" type="MarginContainer" parent="TaskCancelConfirmationPage"]
+[node name="OnCompletionLabel" type="Label" parent="Background/TaskDetails/Margin/Arrangement/ResourceLabelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "On Completion"
+label_settings = SubResource("LabelSettings_ve24j")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResourcesContainer" type="HBoxContainer" parent="Background/TaskDetails/Margin/Arrangement"]
+custom_minimum_size = Vector2(0, 207)
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="CurrentResourcesContainer" type="Panel" parent="Background/TaskDetails/Margin/Arrangement/ResourcesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("12_phs64")
+
+[node name="Margin" type="MarginContainer" parent="Background/TaskDetails/Margin/Arrangement/ResourcesContainer/CurrentResourcesContainer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -202,105 +456,57 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 0
 
-[node name="VContainer" type="VBoxContainer" parent="TaskCancelConfirmationPage/Margin"]
-layout_mode = 2
-
-[node name="AreYouSureLabel" type="Label" parent="TaskCancelConfirmationPage/Margin/VContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Are you sure you want to end this task early?"
-label_settings = SubResource("LabelSettings_l5vve")
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="ProgressBarMargin" type="MarginContainer" parent="TaskCancelConfirmationPage/Margin/VContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_right = 20
-
-[node name="EndEarlyProgressBar" type="ProgressBar" parent="TaskCancelConfirmationPage/Margin/VContainer/ProgressBarMargin" node_paths=PackedStringArray("text_label")]
+[node name="ResourcesUsed" type="GridContainer" parent="Background/TaskDetails/Margin/Arrangement/ResourcesContainer/CurrentResourcesContainer/Margin"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_xyk4g")
-theme_override_styles/fill = SubResource("StyleBoxFlat_2btxq")
-max_value = 7.0
-value = 7.0
-show_percentage = false
-script = ExtResource("1_stskc")
-total_task_time = 7.0
-text_label = NodePath("ProgressBarLabel")
-padding = 5
+columns = 2
+script = ExtResource("12_71iam")
+icon_color = Color(0.254902, 0.560784, 0.870588, 1)
+text_color = Color(1, 1, 1, 1)
+use_vertical = true
+use_circle = true
 
-[node name="ProgressBarLabel" type="Label" parent="TaskCancelConfirmationPage/Margin/VContainer/ProgressBarMargin/EndEarlyProgressBar"]
+[node name="OnCompletionContainer" type="Panel" parent="Background/TaskDetails/Margin/Arrangement/ResourcesContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("12_phs64")
+
+[node name="Margin" type="MarginContainer" parent="Background/TaskDetails/Margin/Arrangement/ResourcesContainer/OnCompletionContainer"]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 9.0
-offset_top = -11.0
-offset_right = -7.0
-offset_bottom = 12.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "0hrs left"
-label_settings = SubResource("LabelSettings_p5ny5")
-vertical_alignment = 1
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 0
 
-[node name="EndEarlyResourcesLabel" type="Label" parent="TaskCancelConfirmationPage/Margin/VContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Here's how your resources will look like after ending the task early."
-label_settings = SubResource("LabelSettings_pwbwb")
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="EndEarlyResources" parent="TaskCancelConfirmationPage/Margin/VContainer" instance=ExtResource("4_xomxh")]
+[node name="OnCompletion" type="GridContainer" parent="Background/TaskDetails/Margin/Arrangement/ResourcesContainer/OnCompletionContainer/Margin"]
 unique_name_in_owner = true
-self_modulate = Color(1, 1, 1, 1)
 layout_mode = 2
-mouse_filter = 2
+theme_override_constants/h_separation = 0
+columns = 2
+script = ExtResource("12_71iam")
+icon_color = Color(0.254902, 0.560784, 0.870588, 1)
+text_color = Color(1, 1, 1, 1)
+use_vertical = true
+use_circle = true
 
-[node name="FullTimeResourcesLabel" type="Label" parent="TaskCancelConfirmationPage/Margin/VContainer"]
+[node name="Spacer3" type="Control" parent="Background/TaskDetails/Margin/Arrangement"]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-size_flags_vertical = 1
-text = "This is how your resources would look if you let the task finish to completion."
-label_settings = SubResource("LabelSettings_a30pv")
-horizontal_alignment = 1
-autowrap_mode = 2
 
-[node name="FullTimeResources" parent="TaskCancelConfirmationPage/Margin/VContainer" instance=ExtResource("4_xomxh")]
-unique_name_in_owner = true
-self_modulate = Color(1, 1, 1, 1)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Buttons" type="HBoxContainer" parent="TaskCancelConfirmationPage/Margin/VContainer"]
-layout_mode = 2
-theme_override_constants/separation = 30
-alignment = 1
-
-[node name="CancelEndButton" type="Button" parent="TaskCancelConfirmationPage/Margin/VContainer/Buttons"]
+[node name="EndEarlyButton" type="Button" parent="Background/TaskDetails/Margin/Arrangement"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 8
 theme = ExtResource("4_yi0aj")
-text = "     Back     "
-
-[node name="ConfirmEndButton" type="Button" parent="TaskCancelConfirmationPage/Margin/VContainer/Buttons"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme = ExtResource("4_yi0aj")
-text = "    Confirm    "
-
-[connection signal="pressed" from="Background/ScrollContainer/MarginContainer/Elements/ReturnButton" to="." method="hide_details"]
+text = "    End Early    "

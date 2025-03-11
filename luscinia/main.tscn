@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://pmewkgtpqio2"]
+[gd_scene load_steps=19 format=3 uid="uid://pmewkgtpqio2"]
 
 [ext_resource type="PackedScene" uid="uid://cnpov8fcn2j0g" path="res://Scenes/map.tscn" id="1_7fdga"]
 [ext_resource type="PackedScene" uid="uid://desl373b33t23" path="res://Scenes/timer.tscn" id="2_5mpic"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://1ygif2bywt5u" path="res://Scenes/navbar.tscn" id="5_5vcs1"]
 [ext_resource type="Theme" uid="uid://r2tvepfwkafu" path="res://Themes/primary_button.tres" id="6_mil05"]
 [ext_resource type="Script" path="res://Scripts/UI/message_notification_button.gd" id="7_e8c6r"]
-[ext_resource type="PackedScene" uid="uid://b141qasjqe26u" path="res://Scenes/UI/message_page_controller.tscn" id="10_btbvl"]
+[ext_resource type="PackedScene" uid="uid://cgs63cbetmeet" path="res://Scenes/UI/message_page_controller.tscn" id="10_btbvl"]
 [ext_resource type="PackedScene" uid="uid://do5t8447c3iys" path="res://Scenes/UI/options_page.tscn" id="10_sexli"]
 [ext_resource type="Texture2D" uid="uid://bib3v5a1f2b2o" path="res://Sprites/UI/User.png" id="13_6oexy"]
 [ext_resource type="Texture2D" uid="uid://dmrhlqq3p4y0g" path="res://Sprites/Package.png" id="14_bdx1m"]
@@ -17,6 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://chgb1pq7fpd4c" path="res://Sprites/UI/Truck.png" id="16_clu71"]
 [ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="17_j07dy"]
 [ext_resource type="Script" path="res://ending_screen.gd" id="17_kga80"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxxba"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -27,18 +30,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="map" parent="." instance=ExtResource("1_7fdga")]
-
-[node name="navbar" parent="." instance=ExtResource("5_5vcs1")]
-layout_mode = 1
-offset_top = -80.0
-
-[node name="timer" parent="." instance=ExtResource("2_5mpic")]
-layout_mode = 1
-anchors_preset = 10
-anchor_bottom = 0.0
-offset_right = -120.0
-offset_bottom = 0.0
-grow_vertical = 1
 
 [node name="pages" type="Control" parent="."]
 layout_mode = 1
@@ -85,8 +76,6 @@ offset_bottom = -701.179
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-offset_top = 0.0
-offset_bottom = 0.0
 
 [node name="notifications" type="Control" parent="pages" node_paths=PackedStringArray("task_widget_renderer", "start_task_notif_label", "end_task_notif_label")]
 z_index = 100
@@ -407,3 +396,12 @@ grow_vertical = 2
 theme = ExtResource("17_j07dy")
 theme_override_font_sizes/font_size = 32
 text = "Exit"
+
+[node name="navbar" parent="." instance=ExtResource("5_5vcs1")]
+layout_mode = 1
+offset_top = -80.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fxxba")
+
+[node name="timer" parent="." instance=ExtResource("2_5mpic")]
+layout_mode = 1
+offset_right = -120.0

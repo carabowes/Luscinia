@@ -14,32 +14,26 @@ script = ExtResource("1_wkvxj")
 
 [node name="Resource 0" parent="." instance=ExtResource("2_r1vf5")]
 layout_mode = 2
-size_flags_horizontal = 6
 amount = 6
 increase = 4
 
 [node name="Resource 1" parent="." instance=ExtResource("2_r1vf5")]
 layout_mode = 2
-size_flags_horizontal = 6
 amount = 2
 increase = -1
 
 [node name="Resource 2" parent="." instance=ExtResource("2_r1vf5")]
 layout_mode = 2
-size_flags_horizontal = 6
 amount = 4
 
 [node name="Resource 3" parent="." instance=ExtResource("2_r1vf5")]
 layout_mode = 2
-size_flags_horizontal = 6
 amount = 4
 
 [node name="Resource 4" parent="." instance=ExtResource("2_r1vf5")]
 layout_mode = 2
-size_flags_horizontal = 6
 amount = 4
 
 [node name="Resource 5" parent="." instance=ExtResource("2_r1vf5")]
 layout_mode = 2
-size_flags_horizontal = 6
 amount = 4
