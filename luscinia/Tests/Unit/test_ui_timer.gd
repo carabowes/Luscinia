@@ -133,6 +133,10 @@ func test_day_label_values_update():
 	GlobalTimer.set_time(0,1)
 	GlobalTimer.time_step = 60 * 24
 	GlobalTimer.start_game()
+	GlobalTimer.in_game_minutes = 0
+	GlobalTimer.in_game_hours = 0
+	GlobalTimer.in_game_days = 1
+	GlobalTimer.turns = 0
 	ui_timer_instance = ui_timer_scene.instantiate()
 	add_child_autofree(ui_timer_instance)
 	var day_label : Label = ui_timer_instance.get_node("%DayLabel")

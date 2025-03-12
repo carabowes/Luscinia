@@ -3,6 +3,7 @@ extends GutTest
 var scenario_manager
 var mock_scenario
 
+
 func before_each():
 	scenario_manager = load("res://Scripts/Resources/scenario_manager.gd").new()
 	
@@ -12,14 +13,17 @@ func before_each():
 	mock_scenario.time_step = 2
 	mock_scenario.resources = {"people": 60, "funds": 20000000, "vehicles": 50, "supplies": 10000}
 	mock_scenario.available_resources = {"people": 60, "vehicles": 50}
-	
+
+
 func test_set_scenario_valid():
 	scenario_manager.set_scenario(mock_scenario)
 	assert_eq(scenario_manager.current_scenario, mock_scenario, "Scenario should be set correctly")
 
+
 func test_set_scenario_invalid():
 	scenario_manager.set_scenario(null)
 	assert_eq(scenario_manager.current_scenario, null, "Scenario should remain null if input is invalid")
+
 
 func test_apply_scenario_settings():
 	scenario_manager.current_scenario = mock_scenario

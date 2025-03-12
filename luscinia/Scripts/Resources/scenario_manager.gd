@@ -36,3 +36,8 @@ func apply_scenario_settings() -> void:
 
 	MessageManager.scenario = current_scenario
 	MessageManager.reset_messages()
+
+
+func default_scenario():
+	GlobalTimer.set_hour(0)
+	GlobalTimer.set_time_step(60)
