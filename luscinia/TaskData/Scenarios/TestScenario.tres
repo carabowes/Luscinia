@@ -3555,7 +3555,7 @@ starting_hour = 11
 resources = {
 "funds": 20000000,
 "people": 60,
-"supplies": 100000,
+"supplies": 10000,
 "vehicles": 50
 }
 available_resources = {
