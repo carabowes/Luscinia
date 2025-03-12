@@ -5,7 +5,7 @@ signal message_sent(message: MessageInstance)
 @export var scenario : Scenario
 var messages_to_send : Array[Message] = []
 var messages_to_receive: Array[MessageInstance]
-var unread_messages : int = 0
+var unread_messages : Array[MessageInstance]
 #var task_completed: Array[TaskData]
 var message_start_turn = {}
 var occurred_events: Array[Event.EventType]
@@ -28,7 +28,7 @@ func reset_messages():
 	messages_to_send.clear()
 	messages_to_send = scenario.messages.duplicate(true)
 	messages_to_receive.clear()
-	unread_messages = 0
+	unread_messages = []
 	message_start_turn.clear()
 	occurred_events.clear()
 
@@ -53,8 +53,7 @@ func find_messages_to_send():
 			selected_messages.append(message)
 			send_message(message)
 	for message in selected_messages:
-		messages_to_send.erase(message)
-	unread_messages += len(selected_messages)
+		messages_to_send.erase(message)#
 
 
 func handle_expired_message(message_instance : MessageInstance):
@@ -74,8 +73,10 @@ func update_responded_message(response : Response, message_instance : MessageIns
 
 func send_message(message : Message):
 	var message_instance = MessageInstance.new(message)
+	unread_messages.append(message_instance)
 	messages_to_receive.append(message_instance)
 	message_sent.emit(message_instance)
+	print("Unread:", len(unread_messages))
 
 
 func check_expired_messages():
@@ -89,8 +90,9 @@ func check_expired_messages():
 
 
 func _on_message_read(message: MessageInstance):
-	unread_messages -= 1
-	if(unread_messages == 0):
+	unread_messages.erase(message)
+	print("Unread:", len(unread_messages))
+	if(len(unread_messages) == 0):
 		EventBus.all_messages_read.emit()
 
 
