@@ -7,6 +7,11 @@ var current_task_instance : TaskInstance
 
 
 func _ready() -> void:
+	%ConfirmEndButton.pressed.connect(
+		func():
+			EventBus.task_cancelled.emit(current_task_instance)
+			visible = false
+	)
 	%CancelEndButton.pressed.connect(_show_task_details)
 	%ReturnButton.pressed.connect(func(): return_button_pressed.emit())
 	%EndEarlyButton.pressed.connect(_show_end_early_page)
@@ -68,6 +73,7 @@ func _set_end_early_ui(task_instance : TaskInstance):
 
 func _show_task_details():
 	visible = true;
+	%TaskDetails.pivot_offset = %TaskDetails.size
 	%TaskDetails.scale.y = 0;
 	%TaskDetails.visible = true
 	get_tree().create_tween().tween_property(
@@ -76,6 +82,7 @@ func _show_task_details():
 
 
 func _hide_task_details():
+	%TaskDetails.pivot_offset = %TaskDetails.size
 	var hide_tween = get_tree().create_tween()
 	hide_tween.tween_property(
 		%TaskDetails, "scale", Vector2(1, 0), 0.25

@@ -6,13 +6,13 @@
 [ext_resource type="Theme" uid="uid://bau28uma7h4s8" path="res://Sprites/UI/themes/details_page_theme.tres" id="4_yi0aj"]
 [ext_resource type="Shader" path="res://Sprites/Shaders/repeated_background.gdshader" id="6_srtcr"]
 [ext_resource type="Texture2D" uid="uid://babyw5cjoen2v" path="res://Sprites/TaskSprites/Helicopter.png" id="7_jic60"]
-[ext_resource type="StyleBox" uid="uid://ugfhky37gq56" path="res://Themes/blue_shadow_box.tres" id="7_nqlq6"]
+[ext_resource type="StyleBox" path="res://Themes/blue_shadow_box.tres" id="7_nqlq6"]
 [ext_resource type="Texture2D" uid="uid://cep3uutbm3nbm" path="res://Sprites/Circle.png" id="8_1k2fi"]
 [ext_resource type="FontFile" uid="uid://dqb15p2ijprjy" path="res://Sprites/Fonts/ReadexPro-Bold.ttf" id="8_ipgpy"]
 [ext_resource type="Texture2D" uid="uid://c27suyrk8wq" path="res://Sprites/ClockBackground.png" id="9_py5jy"]
 [ext_resource type="Texture2D" uid="uid://d1cwe1f3jk3ca" path="res://Sprites/icon.svg" id="10_ee8lu"]
 [ext_resource type="Script" path="res://Scripts/UI/task_resources.gd" id="12_71iam"]
-[ext_resource type="StyleBox" uid="uid://m1yvfqw46qis" path="res://Themes/task_details_box.tres" id="12_phs64"]
+[ext_resource type="StyleBox" path="res://Themes/task_details_box.tres" id="12_phs64"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fd5up"]
 bg_color = Color(0.254902, 0.560784, 0.870588, 1)
