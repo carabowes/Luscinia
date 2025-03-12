@@ -132,10 +132,23 @@ func pause_game():
 
 
 func reset_clock():
-	countdown_duration = (cd_minutes * 60) + cd_seconds
-	current_time_left = countdown_duration
-	turns = 0
-	in_game_hours = 0
-	in_game_minutes = 0
-	in_game_days = 1
-	second_accumulator = 0
+	if ScenarioManager.current_scenario:
+		cd_minutes = ScenarioManager.current_scenario.starting_hour
+		cd_seconds = 0
+		time_step = ScenarioManager.current_scenario.time_step
+
+		countdown_duration = (cd_minutes * 60) + cd_seconds
+		current_time_left = countdown_duration
+		turns = 0
+		in_game_hours = ScenarioManager.current_scenario.starting_hour
+		in_game_minutes = 0
+		in_game_days = 1
+		second_accumulator = 0
+
+
+func set_hour(hour: int):
+	in_game_hours = hour
+
+
+func set_time_step(step: int):
+	time_step = step
