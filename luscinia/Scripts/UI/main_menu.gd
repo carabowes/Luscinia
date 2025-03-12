@@ -72,7 +72,7 @@ func change_to_scenario1():
 	if scenario1_resource:
 		# Set the scenario and apply its settings
 		ScenarioManager.set_scenario(scenario1_resource)
-		
+
 		# Start the game
 		GlobalTimer.start_game()
 		get_tree().change_scene_to_file("res://main.tscn")

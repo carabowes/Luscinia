@@ -29,7 +29,7 @@ func create_widget(task_instance : TaskInstance):
 
 	$MapController/MapTexture.add_child(task_widget_instance)
 	task_widgets.append(task_widget_instance)
-	
+
 	if(use_spawn_animation):
 		task_widget_instance.get_node("%Scaler").scale = Vector2.ZERO
 		var widget_tween = get_tree().create_tween()
@@ -37,7 +37,7 @@ func create_widget(task_instance : TaskInstance):
 		widget_tween.tween_property(
 			task_widget_instance.get_node("%Scaler"), "scale", Vector2.ONE, 0.3
 		).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-		
+
 
 	task_widget_instance.widget_selected.connect(update_selected_widget)
 	task_widget_instance._switch_to_low_lod()

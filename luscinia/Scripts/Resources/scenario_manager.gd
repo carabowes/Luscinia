@@ -8,7 +8,7 @@ func set_scenario(scenario: Scenario) -> void:
 	if scenario == null:
 		push_error("Invalid scenario provided")
 		return
-	
+
 	current_scenario = scenario
 	apply_scenario_settings()
 
@@ -26,11 +26,12 @@ func apply_scenario_settings() -> void:
 	for resource_name in current_scenario.resources:
 		if resource_name in ResourceManager.resources:
 			ResourceManager.resources[resource_name] = current_scenario.resources[resource_name]
-	
+
 
 	for resource_name in current_scenario.available_resources:
 		if resource_name in ResourceManager.available_resources:
-			ResourceManager.available_resources[resource_name] = current_scenario.available_resources[resource_name]
+			ResourceManager.available_resources[resource_name] = \
+			current_scenario.available_resources[resource_name]
 
 
 	MessageManager.scenario = current_scenario
