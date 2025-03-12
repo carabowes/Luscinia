@@ -8,6 +8,10 @@ func before_each():
 	add_child_autofree(task_details)
 
 
+func after_all():
+	ResourceManager.reset_resources()
+
+
 func test_set_details():
 	var task_instance : TaskInstance = TaskInstance.new()
 	task_details._set_task_instance(task_instance)
@@ -41,3 +45,28 @@ func test_set_end_early_ui():
 	task_details._set_end_early_ui(task_instance)
 	assert_eq(task_details.get_node("%EndNowResources").resources, {"funds": 0, "people": 100, "vehicles": 0, "supplies": 0})
 	assert_eq(task_details.get_node("%FullTimeResources").resources, {"funds": 500, "people": 0, "vehicles": 0, "supplies": 0})
+
+
+func test_show_task_details():
+	task_details._show_task_details()
+	assert_eq(task_details.visible, true)
+	assert_almost_eq(task_details.get_node("%TaskDetails").scale.y, 0.0, 0.01)
+	assert_eq(task_details.get_node("%TaskDetails").visible, true)
+	await wait_seconds(0.25)
+	assert_eq(task_details.get_node("%TaskDetails").scale.y, 1.0)
+
+
+func test_hide_task_details():
+	task_details._hide_task_details()
+	await wait_seconds(0.3)
+	assert_eq(task_details.get_node("%TaskDetails").visible, false)
+	assert_almost_eq(task_details.get_node("%TaskDetails").scale.y, 0.0, 0.01)
+
+
+func test_connections():
+	assert_connected(task_details.get_node("%ConfirmEndButton"), task_details, "pressed")
+	assert_connected(task_details.get_node("%CancelEndButton"), task_details, "pressed")
+	assert_connected(task_details.get_node("%ReturnButton"), task_details, "pressed")
+	assert_connected(task_details.get_node("%EndEarlyButton"), task_details, "pressed")
+	assert_connected(EventBus, task_details, "task_widget_view_details_pressed")
+	assert_connected(GlobalTimer, task_details, "turn_progressed")
