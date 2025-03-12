@@ -1,11 +1,13 @@
 class_name MessagePage
 extends Control
 
+signal back_button_pressed
 signal respond_button_pressed(message : Message)
 var message  = preload("res://Scenes/UI/message.tscn")
 
+
 func _ready():
-	%BackButton.pressed.connect(func(): EventBus.navbar_message_button_pressed.emit())
+	%BackButton.pressed.connect(func(): back_button_pressed.emit())
 
 
 func show_message(message_instance : MessageInstance):
