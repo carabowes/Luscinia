@@ -14,6 +14,8 @@ func before_each():
 	test_message = Message.new("Message", [test_response, test_response])
 	test_message.default_response = -1
 	test_instance = MessageInstance.new(test_message)
+	GlobalTimer.time_step = 60
+
 
 
 func test_set_message():

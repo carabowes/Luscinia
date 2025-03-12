@@ -127,5 +127,5 @@ func apply_relationship_change(task_id: String, sender: Sender, task_progress: f
 
 func reset_resources():
 	resources = {"people": 60, "funds": 20000000, "vehicles": 50, "supplies": 10000}
-	available_resources = {"people": 60, "vehicles": 80}
+	available_resources = {"people": 60, "vehicles": 50}
 	relationships_to_update.clear()

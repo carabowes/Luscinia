@@ -3553,12 +3553,12 @@ messages = Array[ExtResource("1_22kjx")]([SubResource("Resource_qc7dk"), SubReso
 time_step = 240
 starting_hour = 11
 resources = {
-"funds": 100,
-"people": 100,
-"supplies": 100000,
-"vehicles": 80
+"funds": 20000000,
+"people": 60,
+"supplies": 10000,
+"vehicles": 50
 }
 available_resources = {
-"people": 100,
-"vehicles": 80
+"people": 60,
+"vehicles": 50
 }
