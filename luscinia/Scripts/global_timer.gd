@@ -139,3 +139,11 @@ func reset_clock():
 	in_game_minutes = 0
 	in_game_days = 1
 	second_accumulator = 0
+
+
+func set_hour(hour: int):
+	in_game_hours = hour
+
+
+func set_time_step(step: int):
+	time_step = step
