@@ -1,6 +1,7 @@
 class_name MessageResponsePage
 extends Control
 
+signal back_button_pressed
 signal response_option_selected(response : Response, message : MessageInstance)
 
 var option_button_prefab : PackedScene
@@ -15,7 +16,7 @@ func _ready() -> void:
 	%OptionButton.toggle_mode = true
 	option_button_prefab = PackedScene.new()
 	option_button_prefab.pack(%OptionButton)
-	%BackButton.pressed.connect(func(): EventBus.navbar_message_button_pressed.emit())
+	%BackButton.pressed.connect(func(): back_button_pressed.emit())
 
 
 func _option_selected(message_instance : MessageInstance):

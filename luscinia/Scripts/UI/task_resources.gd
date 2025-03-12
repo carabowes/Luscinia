@@ -7,6 +7,13 @@ extends GridContainer
 		resources = value
 		_add_elements()
 
+@export_group("Visual")
+@export var icon_color : Color = Color.BLACK
+@export var text_color : Color = Color.BLACK
+@export var circle_color : Color = Color.WHITE
+@export var use_vertical : bool = false
+@export var use_circle : bool = false
+
 var resource_entry_path = "res://Scenes/UI/resource_entry.tscn"
 
 
@@ -33,5 +40,10 @@ func _add_elements():
 		resource_entry_instance.amount = resources[resource_key]
 		resource_entry_instance.resource_type = resource_key
 		resource_entry_instance.name = resource_key
+		resource_entry_instance.columns = 1 if use_vertical else 3
+		resource_entry_instance.icon_color = icon_color
+		resource_entry_instance.circle_color = circle_color
+		resource_entry_instance.text_color =  text_color
+		resource_entry_instance.use_circle = use_circle
 		add_child(resource_entry_instance)
 		resource_entry_instance.set_owner(self)
