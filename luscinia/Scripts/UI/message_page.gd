@@ -78,7 +78,7 @@ func _set_contact_info(sender : Sender):
 	%ContactProfile.texture = sender.image
 	# Set the sender's name label
 	%ContactNameLabel.text = sender.name
-	# Set the relationship status color for the sender
+	# Set the relationship status colour for the sender
 	%ContactRelationBar.self_modulate = sender.get_relationship_color()
 	# Set the relationship value of the sender
 	%ContactRelationBar.value = sender.relationship

@@ -1,9 +1,9 @@
 class_name MessageBubble
 extends Control
 
-# Exported variables to allow for color customisation for player and non-player messages
-@export var non_player_color : Color   # Color for non-player messages
-@export var player_color : Color       # Color for player messages
+# Exported variables to allow for colour customisation for player and non-player messages
+@export var non_player_color : Color   # Colour for non-player messages
+@export var player_color : Color       # Colour for player messages
 var maximum_size = 300                 # Maximum width of the message bubble
 var is_player_message = false          # Flag to check if the message is from the player
 var unjoined_corner_radius = 15        # Corner radius for unjoined messages
@@ -33,13 +33,13 @@ func set_text(text : String):
 # Set the message to be either a player message or a non-player message
 func set_player_message(is_player_message : bool):
 	self.is_player_message = is_player_message  # Set the flag
-	# If it's a player message, change the background color to the player color,
-	# otherwise to the non-player color
+	# If it's a player message, change the background colour to the player colour,
+	# otherwise to the non-player colour
 	if is_player_message:
 		%Background.self_modulate = player_color
 	else:
 		%Background.self_modulate = non_player_color
-	_update_layout()  # Update the layout after changing the background color
+	_update_layout()  # Update the layout after changing the background colour
 
 
 # Adjusts the alignment and offset for player messages (aligns them to the right)
@@ -58,7 +58,7 @@ func set_player_message_offsets():
 func set_join(joined_at_top : bool, joined_at_bottom : bool) -> StyleBoxFlat:
 	# Create a new StyleBoxFlat for styling the background of the message bubble
 	var styling : StyleBoxFlat = StyleBoxFlat.new()
-	styling.bg_color = Color.WHITE  # Set background color to white
+	styling.bg_color = Color.WHITE  # Set background colour to white
 	styling.set_corner_radius_all(unjoined_corner_radius)  # Set all corners
 	# to the unjoined corner radius
 
