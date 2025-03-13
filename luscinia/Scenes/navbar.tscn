@@ -9,19 +9,11 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h85xp"]
 bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7tph"]
-bg_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-shadow_color = Color(0, 0, 0, 0)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_64rup"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n5gp4"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_of4mu"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gromn"]
-bg_color = Color(0.6, 0.6, 0.6, 0.0431373)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3721i"]
 
 [node name="Navbar" type="Panel"]
 custom_minimum_size = Vector2(0, 80)
@@ -49,9 +41,17 @@ grow_vertical = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
-theme_override_styles/hover = SubResource("StyleBoxFlat_u7tph")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_n5gp4")
-theme_override_styles/normal = SubResource("StyleBoxFlat_gromn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_64rup")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_64rup")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_64rup")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_64rup")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_64rup")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_64rup")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_64rup")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_64rup")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_64rup")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_64rup")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_64rup")
 icon = ExtResource("1_hhk0i")
 flat = true
 
@@ -63,15 +63,24 @@ offset_left = 30.0
 offset_top = 15.0
 offset_right = 46.0
 offset_bottom = 31.0
+pivot_offset = Vector2(8, 8)
 texture = ExtResource("3_ohkv6")
 
 [node name="SkipTimeButton" type="Button" parent="NavbarLayout"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
-theme_override_styles/hover = SubResource("StyleBoxFlat_u7tph")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_n5gp4")
-theme_override_styles/normal = SubResource("StyleBoxFlat_gromn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_of4mu")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_of4mu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_of4mu")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_of4mu")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_of4mu")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_of4mu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_of4mu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_of4mu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_of4mu")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_of4mu")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_of4mu")
 icon = ExtResource("1_24llj")
 flat = true
 
@@ -79,8 +88,16 @@ flat = true
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
-theme_override_styles/hover = SubResource("StyleBoxFlat_u7tph")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_n5gp4")
-theme_override_styles/normal = SubResource("StyleBoxFlat_gromn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3721i")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_3721i")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3721i")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_3721i")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_3721i")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_3721i")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3721i")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_3721i")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3721i")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_3721i")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3721i")
 icon = ExtResource("3_b18yf")
 flat = true

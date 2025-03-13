@@ -28,9 +28,12 @@ func _init(message : Message = Message.default_message) -> void:
 func reply(response : Response):
 	if response != null:
 		player_response = response.response_text
+	if message_status == MessageStatus.UNREAD:
+		EventBus.message_read.emit(self)
 	message_status = MessageStatus.REPLIED
 
 
 func read():
 	if message_status == MessageStatus.UNREAD:
+		EventBus.message_read.emit(self)
 		message_status = MessageStatus.READ

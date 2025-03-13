@@ -1,6 +1,7 @@
 extends Node
 
 #Message signals
+signal message_read(message : MessageInstance)
 signal message_responded(response : Response, message : MessageInstance)
 signal all_messages_read(message : Message)
 

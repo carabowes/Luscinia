@@ -49,6 +49,7 @@ func test_message_notification_bubble():
 	MessageManager.message_sent.emit(null)
 	assert_true(bubble.visible, "Bubble should appear on a message sent")
 	EventBus.all_messages_read.emit()
+	await wait_seconds(0.5)
 	assert_false(bubble.visible, "Bubble should dissappear when all messages are read")
 
 
