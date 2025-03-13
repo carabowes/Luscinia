@@ -42,7 +42,7 @@ func _process(_delta: float):
 	if has_unread_messages and not message_page_open:
 		%ViewMessageHistoryButton.pivot_offset = %ViewMessageHistoryButton.size/2
 		
-		# Equation: https://www.desmos.com/calculator/dii6mdyhbp
+		# Equation: https://www.desmos.com/calculator/kexu1pkndk
 		var shake_intensity = 45
 		var shake_time = 2.5 #A larger value means less time
 		var time = Time.get_unix_time_from_system()
