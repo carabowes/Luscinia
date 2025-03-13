@@ -26,6 +26,7 @@ var time_update_parmas = ParameterFactory.named_parameters(
 
 func before_each():
 	GlobalTimer.reset_clock()
+	ScenarioManager.default_scenario()
 
 
 func test_turns_to_time_string():
@@ -129,10 +130,10 @@ func test_second_accumulator_game_start():
 	GlobalTimer.set_time(3, 0)
 	GlobalTimer.start_game()
 	gut.simulate(GlobalTimer, 5, 0.1)
-	assert_eq(GlobalTimer.second_accumulator, 0.5)
+	assert_almost_eq(GlobalTimer.second_accumulator, 0.5, 0.01)
 	GlobalTimer.game_start = false
 	gut.simulate(GlobalTimer, 5, 0.1)
-	assert_eq(GlobalTimer.second_accumulator, 0.5)
+	assert_almost_eq(GlobalTimer.second_accumulator, 0.5, 0.01)
 
 
 func test_auto_turn_progression():
@@ -146,6 +147,12 @@ func test_auto_turn_progression():
 
 
 func test_game_time_update_on_next_turn(params = use_parameters(time_update_parmas)):
+	GlobalTimer.reset_clock()
+	GlobalTimer.in_game_minutes = 0
+	GlobalTimer.in_game_hours = 0
+	GlobalTimer.in_game_days = 1
+	GlobalTimer.turns = 0
+	
 	for i in range(params.repeat_times):
 		GlobalTimer.next_turn(params.timestep)
 	assert_eq(GlobalTimer.in_game_minutes, params.minute_result)

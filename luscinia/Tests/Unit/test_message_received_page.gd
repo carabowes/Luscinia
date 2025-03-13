@@ -34,10 +34,10 @@ func test_new_message_at_top():
 
 
 func test_back_button():
-	watch_signals(page_instance)
+	watch_signals(EventBus)
 	var back_button : Button = page_instance.get_node("%BackButton")
 	back_button.pressed.emit()
-	assert_signal_emitted(page_instance, "back_button_pressed", "back_button_pressed should emit a signal when back button is pressed")
+	assert_signal_emitted(EventBus, "navbar_message_button_pressed")
 
 
 func test_message_selected():
