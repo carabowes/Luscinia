@@ -26,6 +26,7 @@ func format_resource_value(value: int, decimal_points: int) -> String:
 		return str(round_to_dp(value / 1000.0, decimal_points)) + "K"
 	return str(value)
 
+
 func add_resources(resource_name: String, amount: int):
 	if resource_name in resources:
 		resources[resource_name] += amount
