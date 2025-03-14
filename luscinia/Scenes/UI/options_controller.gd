@@ -1,6 +1,6 @@
 extends Control
 
-@onready var pause_button = $"../../timer/PauseButton"
+@onready var pause_button = $"../../Timer/PauseButton"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,6 +9,7 @@ func _ready() -> void:
 	$RestartButton.connect("pressed", _restart_game)
 	$ExitButton.connect("pressed", _exit_game)
 
+# TODO
 
 func _pause_game():
 	if(self.visible):
@@ -16,26 +17,19 @@ func _pause_game():
 		_resume_game()
 	else:
 		pause_button.icon = load("res://Sprites/UI/Icons/OptionsButton_selected.png")
-		GlobalTimer.pause_game()
+		GameManager.pause_game()
 		self.visible = true
 
 
 func _resume_game():
 	pause_button.icon = load("res://Sprites/UI/Icons/OptionsButton.png")
-	GlobalTimer.start_game()
 	self.visible = false
+	GameManager.resume_game()
 
 
 func _restart_game():
-	GlobalTimer.reset_clock()
-	ResourceManager.reset_resources()
-	MessageManager.reset_messages()
-	get_tree().reload_current_scene()
-	GlobalTimer.start_game()
+	GameManager.restart_game()
 
 
 func _exit_game():
-	GlobalTimer.reset_clock()
-	ResourceManager.reset_resources()
-	MessageManager.reset_messages()
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	GameManager.exit_game()

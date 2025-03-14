@@ -14,9 +14,9 @@ var task_widget_prefab = "res://Scenes/task_widget.tscn"
 
 
 func _ready() -> void:
-	EventBus.task_started.connect(func(task : TaskInstance): create_widget(task))
-	GlobalTimer.turn_progressed.connect(render_widgets)
-	EventBus.task_finished.connect(delete_widget)
+	GameManager.task_started.connect(func(task : TaskInstance): create_widget(task))
+	GameManager.turn_progressed.connect(render_widgets)
+	GameManager.task_finished.connect(delete_widget)
 	$MapController.zoom_changed.connect(render_widgets)
 
 
@@ -47,7 +47,6 @@ func render_resource_bubble(resource : String, widget : TaskWidget, rng : Random
 	var resource_bubble : Control = %ResourceBubble.duplicate()
 	add_child(resource_bubble)
 	resource_bubble.get_child(0).texture = ResourceManager.get_resource_texture(resource)
-	# Set initial position to center of widget
 	resource_bubble.position = widget.position  + widget.size/2
 	# Generate random point in a circle with radius 1
 	var offset = Vector2(rng.randf_range(-1, 1), rng.randf_range(-1, 1)).normalized()
@@ -68,7 +67,6 @@ func render_resource_bubble(resource : String, widget : TaskWidget, rng : Random
 		resource_bubble, "position",
 		final_position, rng.randf_range(1.1, 1.5)
 	).set_trans(Tween.TRANS_QUINT)
-	#resource_bubble_tween.finished.connect(func(): resource_bubble.queue_free())
 
 
 func render_resource_bubbles(task_instance : TaskInstance, widget : TaskWidget):
@@ -81,7 +79,7 @@ func render_resource_bubbles(task_instance : TaskInstance, widget : TaskWidget):
 			render_resource_bubble(resource, widget, rng)
 
 
-func delete_widget(task_instance : TaskInstance):
+func delete_widget(task_instance : TaskInstance, _cancelled : bool):
 	for widget in task_widgets:
 		if widget.task_info != task_instance:
 			continue
@@ -123,7 +121,7 @@ func update_selected_widget(selected_widget : TaskWidget):
 	$MapController/MapTexture.get_child_count()-1)
 
 
-func render_widgets():
+func render_widgets(_new_turn : int = 0):
 	for widget in task_widgets:
 		var current_scale = $MapController.current_scale
 		widget.scale = Vector2.ONE * widget_size / current_scale

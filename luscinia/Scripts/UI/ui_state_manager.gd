@@ -10,23 +10,23 @@ enum UIPageState {
 var current_ui_page_state : UIPageState = UIPageState.CLOSED
 
 func _ready() -> void:
-	EventBus.navbar_resource_button_pressed.connect(_navbar_resource_button_pressed)
-	EventBus.task_widget_view_details_pressed.connect(_task_widget_view_details_pressed)
+	GameManager.navbar_resource_button_pressed.connect(_navbar_resource_button_pressed)
+	GameManager.task_widget_view_details_pressed.connect(_task_widget_view_details_pressed)
 	%ResourcesPage.return_button_pressed.connect(func(): _change_page_state(UIPageState.CLOSED))
-	%ResourcesPage.return_button_pressed.connect(func(): EventBus.resource_page_close.emit())
+	%ResourcesPage.return_button_pressed.connect(func(): GameManager.resource_page_close.emit())
 	%TaskDetailsPage.return_button_pressed.connect(func(): _change_page_state(UIPageState.CLOSED))
-	EventBus.navbar_message_button_pressed.connect(_navbar_message_button_pressed)
+	GameManager.navbar_message_button_pressed.connect(_navbar_message_button_pressed)
 
 
 func _navbar_resource_button_pressed():
 	if current_ui_page_state == UIPageState.CLOSED:
-		EventBus.resource_page_open.emit()
+		GameManager.resource_page_open.emit()
 		_change_page_state(UIPageState.RESOURCES)
 	elif current_ui_page_state == UIPageState.RESOURCES:
-		EventBus.resource_page_close.emit()
+		GameManager.resource_page_close.emit()
 		_change_page_state(UIPageState.CLOSED)
 	else:
-		EventBus.resource_page_open.emit()
+		GameManager.resource_page_open.emit()
 		_change_page_state(UIPageState.RESOURCES)
 
 
@@ -41,13 +41,13 @@ func _task_widget_view_details_pressed(_task_instance : TaskInstance):
 
 func _navbar_message_button_pressed():
 	if current_ui_page_state == UIPageState.CLOSED:
-		EventBus.message_page_open.emit()
+		GameManager.message_page_open.emit()
 		_change_page_state(UIPageState.MESSAGES)
 	elif current_ui_page_state == UIPageState.MESSAGES:
-		EventBus.message_page_close.emit()
+		GameManager.message_page_close.emit()
 		_change_page_state(UIPageState.CLOSED)
 	else:
-		EventBus.message_page_open.emit()
+		GameManager.message_page_open.emit()
 		_change_page_state(UIPageState.MESSAGES)
 
 

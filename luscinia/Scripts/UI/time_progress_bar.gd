@@ -14,6 +14,7 @@ extends ProgressBar
 		if Engine.is_editor_hint():
 			queue_redraw()
 
+var game_timer : GameTimer
 
 func _draw() -> void:
 	custom_minimum_size.y = text_label.size.y + padding
@@ -30,4 +31,6 @@ func update_text():
 	var time_percent = total_task_time * current_percent
 	var turns = ceil(time_percent)
 	if(text_label != null):
-		text_label.text = GlobalTimer.turns_to_time_string(turns, "hr", "min", "s", true, true) + " left"
+		text_label.text = GameTimer.turns_to_time_string(
+			game_timer, turns, "hr", "min", "s", true, true
+		) + " left"

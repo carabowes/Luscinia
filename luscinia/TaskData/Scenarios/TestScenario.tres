@@ -3550,6 +3550,7 @@ cancel_behaviour = 0
 script = ExtResource("2_yn5ci")
 scenario_name = "Freetown"
 messages = Array[ExtResource("1_22kjx")]([SubResource("Resource_qc7dk"), SubResource("Resource_louxg"), SubResource("Resource_7v4cu"), SubResource("Resource_vbcvc"), SubResource("Resource_8bmwy"), SubResource("Resource_6c75b"), SubResource("Resource_7aat6"), SubResource("Resource_ys23c"), SubResource("Resource_utm5u"), SubResource("Resource_7sxi5"), SubResource("Resource_qayw4"), SubResource("Resource_lkvf4"), SubResource("Resource_mgw0c"), SubResource("Resource_fjl6e"), SubResource("Resource_pdchu"), SubResource("Resource_oc5gs"), SubResource("Resource_a7fn1"), SubResource("Resource_fea6p"), SubResource("Resource_wrvhb"), SubResource("Resource_diysk"), SubResource("Resource_qhqk1"), SubResource("Resource_abyp5"), SubResource("Resource_altmm"), SubResource("Resource_34y08"), SubResource("Resource_ucp3e"), SubResource("Resource_3fqva"), SubResource("Resource_10l73"), SubResource("Resource_omh2w"), SubResource("Resource_3a7we"), SubResource("Resource_1rfj2"), SubResource("Resource_2aapo"), SubResource("Resource_s61b5"), SubResource("Resource_xfg01"), SubResource("Resource_rta2v"), SubResource("Resource_ov1nm"), SubResource("Resource_h45xs"), SubResource("Resource_qacvn"), SubResource("Resource_okupx"), SubResource("Resource_ay3u1"), SubResource("Resource_2t67y"), SubResource("Resource_qvjkf"), SubResource("Resource_4tc5k"), SubResource("Resource_1mdkn")])
+number_of_turns = 18
 time_step = 240
 starting_hour = 11
 resources = {

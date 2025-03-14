@@ -2,16 +2,19 @@ extends Control
 
 var has_unread_messages : bool = false
 var message_page_open : bool = false
+var game_timer : GameTimer
+
+
 func _ready() -> void:
 	%ViewResourcesButton.pressed.connect(_view_resource_button_pressed)
 	%SkipTimeButton.pressed.connect(_skip_time_button_pressed)
 	%ViewMessageHistoryButton.pressed.connect(_message_button_pressed)
-	MessageManager.message_sent.connect(_show_notif_bubble)
-	EventBus.all_messages_read.connect(_hide_notif_bubble)
-	EventBus.message_page_open.connect(_message_button_pressed_sprite)
-	EventBus.message_page_close.connect(_message_button_sprite)
-	EventBus.resource_page_open.connect(_resource_button_pressed_sprite)
-	EventBus.resource_page_close.connect(_resource_button_sprite)
+	GameManager.message_sent.connect(_show_notif_bubble)
+	GameManager.all_messages_read.connect(_hide_notif_bubble)
+	GameManager.message_page_open.connect(_message_button_pressed_sprite)
+	GameManager.message_page_close.connect(_message_button_sprite)
+	GameManager.resource_page_open.connect(_resource_button_pressed_sprite)
+	GameManager.resource_page_close.connect(_resource_button_sprite)
 
 
 func _show_notif_bubble(_message : MessageInstance):
@@ -52,15 +55,15 @@ func _process(_delta: float):
 
 
 func _view_resource_button_pressed():
-	EventBus.navbar_resource_button_pressed.emit()
+	GameManager.navbar_resource_button_pressed.emit()
 
 
 func _skip_time_button_pressed():
-	GlobalTimer.next_turn(GlobalTimer.time_step) #skip a turn
+	GameManager.next_turn(game_timer)
 
 
 func _message_button_pressed():
-	EventBus.navbar_message_button_pressed.emit()
+	GameManager.navbar_message_button_pressed.emit()
 
 
 func _message_button_pressed_sprite():

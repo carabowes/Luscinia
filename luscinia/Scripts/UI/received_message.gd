@@ -10,10 +10,11 @@ static var default_message : MessageInstance = MessageInstance.new()
 @export var time_remaining_color: Color
 
 var message_info : MessageInstance
+var game_timer : GameTimer
 
 
 func _ready() -> void:
-	GlobalTimer.turn_progressed.connect(func(): queue_redraw())
+	GameManager.turn_progressed.connect(func(_new_turn : int): queue_redraw())
 
 
 func _draw():
@@ -39,7 +40,8 @@ func _render_message_info():
 			%TimeRemainingLabel.text = "ANSWER NOW!"
 			%TimeRemainingLabel.self_modulate = answer_now_color
 		else:
-			%TimeRemainingLabel.text = GlobalTimer.turns_to_time_string(
+			%TimeRemainingLabel.text = GameTimer.turns_to_time_string(
+				game_timer,
 				message_info.turns_remaining,
 				"HOUR",
 				"MIN",
@@ -73,8 +75,11 @@ func _render_badge_location():
 		%ContactUnreadBadge.visible = true
 
 
-static func new_instance(message_info : MessageInstance = default_message) -> ReceivedMessage:
+static func new_instance(
+	message_info : MessageInstance = default_message, game_timer : GameTimer = null
+) -> ReceivedMessage:
 	var message_scene : PackedScene = load("res://Scenes/UI/received_message.tscn")
 	var message_object : ReceivedMessage = message_scene.instantiate()
 	message_object.message_info = message_info
+	message_object.game_timer = game_timer
 	return message_object

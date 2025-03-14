@@ -3,91 +3,88 @@ extends GutTest
 var resources = {}
 var available_resources = {}
 var sender : Sender
+var task_instance : TaskInstance
+var resource_manager : ResourceManager
 
 
 func before_each():
-	ResourceManager.resources = {"people": 100, "funds": 1000, "vehicles": 80, "supplies": 10000}
-	ResourceManager.available_resources = {"people": 100, "vehicles": 80, "supplies": 10000}
-	ResourceManager.relationships_to_update.clear()	
+	resource_manager = ResourceManager.new(
+		{"people": 100, "funds": 1000, "vehicles": 80, "supplies": 10000},
+		{"people": 100, "vehicles": 80, "supplies": 10000}
+	)
+	task_instance = TaskInstance.new()
 	sender = Sender.new("Test Sender",null,50)
+	task_instance.message.sender = sender
+	task_instance.task_data.task_id = "Test"
+	add_child_autofree(resource_manager)
 
 
 func test_add_resources():
-	ResourceManager.add_resources("funds", 500)
-	assert_eq(ResourceManager.resources["funds"],1500,"funds should equal 1500")
+	resource_manager.add_resources("funds", 500)
+	assert_eq(resource_manager.resources["funds"],1500,"funds should equal 1500")
 
 
 func test_remove_resources():
-	ResourceManager.remove_resources("funds", 500)
-	assert_eq(ResourceManager.resources["funds"],500,"funds should equal 500")
+	resource_manager.remove_resources("funds", 500)
+	assert_eq(resource_manager.resources["funds"],500,"funds should equal 500")
 
 
 func test_remove_resources_not_negative():
-	ResourceManager.remove_resources("funds", 1100)
-	assert_eq(ResourceManager.resources["funds"],0,"funds should equal 0, cannot be negative")
+	resource_manager.remove_resources("funds", 1100)
+	assert_eq(resource_manager.resources["funds"],0,"funds should equal 0, cannot be negative")
 
 
 func test_add_available_resources():
-	ResourceManager.add_available_resources("people", 500)
-	assert_eq(ResourceManager.available_resources["people"],600,"people should equal 600")
+	resource_manager.add_available_resources("people", 500)
+	assert_eq(resource_manager.available_resources["people"],600,"people should equal 600")
 
 
 func test_remove_available_resources():
-	ResourceManager.remove_available_resources("people", 50)
-	assert_eq(ResourceManager.available_resources["people"],50,"people should equal 50")
+	resource_manager.remove_available_resources("people", 50)
+	assert_eq(resource_manager.available_resources["people"],50,"people should equal 50")
 
 
 func test_apply_start_task_resources():
-	ResourceManager.apply_start_task_resources({"people": 50, "funds": 500, "vehicles": 40, "supplies": 5000})
-	assert_eq(ResourceManager.resources["people"], 50, "'people' should be equal to 50")
-	assert_eq(ResourceManager.resources["funds"], 500, "'funds' should be equal to 500")
-	assert_eq(ResourceManager.resources["vehicles"], 40, "'people' should be equal to 40")
-	assert_eq(ResourceManager.resources["supplies"], 5000, "'supplies' should be equal to 5000")
+	task_instance.task_data.resources_required = {"people": 50, "funds": 500, "vehicles": 40, "supplies": 5000}
+	resource_manager.apply_start_task_resources(task_instance)
+	assert_eq(resource_manager.resources["people"], 50, "'people' should be equal to 50")
+	assert_eq(resource_manager.resources["funds"], 500, "'funds' should be equal to 500")
+	assert_eq(resource_manager.resources["vehicles"], 40, "'people' should be equal to 40")
+	assert_eq(resource_manager.resources["supplies"], 5000, "'supplies' should be equal to 5000")
 
 
 func test_apply_end_task_resources():
-	ResourceManager.apply_start_task_resources({"people": 50, "funds": 500, "vehicles": 40, "supplies": 5000})
-	ResourceManager.apply_end_task_resources(
-		{"people": 100, "funds": 500, "vehicles": 40, "supplies": 5000},
-		{"people": 50, "funds": 500, "vehicles": 80, "supplies": 5000},
-	)
-	assert_eq(ResourceManager.resources["people"], 150, "'people' should be equal to 150")
-	assert_eq(ResourceManager.resources["funds"], 1000, "'funds' should be equal to 1000")
-	assert_eq(ResourceManager.resources["vehicles"], 40, "'vehicles' should be equal to 40")
-	assert_eq(ResourceManager.resources["supplies"], 10000, "'supplies' should be equal to 10000")
-	assert_eq(ResourceManager.available_resources["people"], 150, "'people' available should be equal to 150")
-	assert_eq(ResourceManager.available_resources["vehicles"], 40, "'vehicles' available should be equal to 40")
+	task_instance.task_data.resources_required = {"people": 50, "funds": 500, "vehicles": 40, "supplies": 5000}
+	task_instance.task_data.resources_gained = {"people": 100, "funds": 500, "vehicles": 40, "supplies": 5000}
+	resource_manager.apply_start_task_resources(task_instance)
+	resource_manager.apply_end_task_resources(task_instance, false)
+	assert_eq(resource_manager.resources["people"], 150, "'people' should be equal to 150")
+	assert_eq(resource_manager.resources["funds"], 1000, "'funds' should be equal to 1000")
+	assert_eq(resource_manager.resources["vehicles"], 80, "'vehicles' should be equal to 40")
+	assert_eq(resource_manager.resources["supplies"], 10000, "'supplies' should be equal to 10000")
+	assert_eq(resource_manager.available_resources["people"], 150, "'people' available should be equal to 150")
+	assert_eq(resource_manager.available_resources["vehicles"], 80, "'vehicles' available should be equal to 40")
 
 
 func test_apply_end_task_resources_loss_overflow():
-	ResourceManager.apply_start_task_resources({"vehicles": 80})
-	ResourceManager.apply_end_task_resources(
-		{},
-		{"vehicles": 40},
-	)
-	assert_eq(ResourceManager.available_resources["vehicles"], 40, "'vehicles' available should be equal to 40")
-	ResourceManager.apply_end_task_resources(
-		{"vehicles": 80},
-		{"vehicles": 80},
-	)
-	assert_eq(ResourceManager.available_resources["vehicles"], 40, "'vehicles' available should be equal to 40")
-	assert_eq(ResourceManager.resources["vehicles"], 40, "'vehicles' should be equal to 40")
+	task_instance.task_data.resources_required = { "vehicles": 80}
+	task_instance.task_data.resources_gained = { "vehicles": 40}
+	resource_manager.apply_start_task_resources(task_instance)
+	resource_manager.apply_end_task_resources(task_instance, false)
+	assert_eq(resource_manager.available_resources["vehicles"], 40, "'vehicles' available should be equal to 40")
+	task_instance.task_data.resources_gained = { "vehicles": 80}
+	resource_manager.apply_end_task_resources(task_instance, false)
+	assert_eq(resource_manager.available_resources["vehicles"], 40, "'vehicles' available should be equal to 40")
+	assert_eq(resource_manager.resources["vehicles"], 40, "'vehicles' should be equal to 40")
 
 
 func test_apply_end_task_resources_gain_overflow():
-	ResourceManager.apply_start_task_resources({"vehicles": 80})
-	ResourceManager.apply_end_task_resources(
-		{"vehicles": 40},
-		{}
-	)
-	assert_eq(ResourceManager.available_resources["vehicles"], 120, "'vehicles' available should be equal to 40")
-	assert_eq(ResourceManager.resources["vehicles"], 40, "'vehicles' should be equal to 40")
-	ResourceManager.apply_end_task_resources(
-		{"vehicles": 80},
-		{"vehicles": 80},
-	)
-	assert_eq(ResourceManager.available_resources["vehicles"], 120, "'vehicles' available should be equal to 40")
-	assert_eq(ResourceManager.resources["vehicles"], 120, "'vehicles' should be equal to 120")
+	task_instance.task_data.resources_required = { "vehicles": 40}
+	task_instance.task_data.resources_gained = { "vehicles": 80}
+	resource_manager.apply_start_task_resources(task_instance)
+	resource_manager.apply_end_task_resources(task_instance, false)
+	assert_eq(resource_manager.available_resources["vehicles"], 120, "'vehicles' available should be equal to 120")
+	assert_eq(resource_manager.resources["vehicles"], 120, "'vehicles' should be equal to 40")
 
 
 func test_get_resource_texture():
@@ -96,31 +93,38 @@ func test_get_resource_texture():
 
 
 func test_queue_relationship_change():
-	ResourceManager.queue_relationship_change("Test", 10)
-	assert_eq(ResourceManager.relationships_to_update["Test"], 10, "Task 'Test' should have relationship change of 10")
+	task_instance.relationship_change = 10
+	resource_manager.queue_relationship_change(task_instance)
+	assert_eq(resource_manager.relationships_to_update["Test"], 10.0, "Task 'Test' should have relationship change of 10")
 
 
 func test_apply_relationship_change_full_progress():
-	ResourceManager.queue_relationship_change("Test", 10)
-	ResourceManager.apply_relationship_change("Test", sender, 1.0)
+	task_instance.current_progress = task_instance.task_data.expected_completion_time
+	task_instance.relationship_change = 10
+	resource_manager.queue_relationship_change(task_instance)
+	resource_manager.apply_relationship_change(task_instance, false)
 	assert_eq(sender.relationship, 60.0, "Relationship should increase by 10 when task is fully completed")
-	assert_false(ResourceManager.relationships_to_update.has("Test"), "Task 'Test' should be removed from relationships_to_update")
+	assert_false(resource_manager.relationships_to_update.has("Test"), "Task 'Test' should be removed from relationships_to_update")
 
 
 func test_apply_relationship_change_half_progress():
-	ResourceManager.queue_relationship_change("Test", 10)
-	ResourceManager.apply_relationship_change("Test", sender, 0.5)
+	task_instance.current_progress = task_instance.task_data.expected_completion_time/2
+	task_instance.relationship_change = 10
+	resource_manager.queue_relationship_change(task_instance)
+	resource_manager.apply_relationship_change(task_instance, false)
 	assert_eq(sender.relationship, 50.0, "Relationship should remain unchanged when task progress is 50%")
 
 
 func test_apply_relationship_change_zero_progress():
-	ResourceManager.queue_relationship_change("Test", 10)
-	ResourceManager.apply_relationship_change("Test", sender, 0.0)
+	task_instance.current_progress = 0
+	task_instance.relationship_change = 10
+	resource_manager.queue_relationship_change(task_instance)
+	resource_manager.apply_relationship_change(task_instance, false)
 	assert_eq(sender.relationship, 40.0, "Relationship should decrease by 10 when task is not completed")
 
 
 func test_apply_relationship_change_no_task():
-	ResourceManager.apply_relationship_change("Test99", sender, 1.0)  # Task ID Test99 was never queued
+	resource_manager.apply_relationship_change(task_instance, false) #Task was never queued
 	assert_eq(sender.relationship, 50.0, "Relationship should remain unchanged when task ID is not found")
 
 
@@ -141,6 +145,6 @@ func test_format_resource_value():
 
 
 func test_format_resource_value_with_resource():
-	var supplies = ResourceManager.resources["supplies"]
+	var supplies = resource_manager.resources["supplies"]
 	var formatted_resource = ResourceManager.format_resource_value(supplies,2)
 	assert_eq(formatted_resource, "10K", "supplies should be 10k")

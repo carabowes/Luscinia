@@ -13,7 +13,7 @@ var task_info: TaskInstance
 func _ready():
 	%ViewMoreButton.pressed.connect(_show_task_details_page)
 	if(use_update_animation):
-		GlobalTimer.turn_progressed.connect(_on_new_turn)
+		GameManager.turn_progressed.connect(_on_new_turn)
 
 
 func _draw() -> void:
@@ -72,7 +72,6 @@ func render_task_info():
 
 
 func _switch_to_low_lod():
-	print("Switching")
 	%TaskNameMed.visible = false
 	%LowDetailWidget.visible = true
 	%HighDetailWidget.visible = false
@@ -91,10 +90,10 @@ func _switch_to_high_lod():
 
 
 func _show_task_details_page():
-	EventBus.task_widget_view_details_pressed.emit(task_info)
+	GameManager.task_widget_view_details_pressed.emit(task_info)
 
 
-func _on_new_turn():
+func _on_new_turn(_new_turn : int):
 	var tween = get_tree().create_tween()
 	tween.tween_property(
 		%Scaler, "scale",Vector2.ONE * 0.7, 0.15

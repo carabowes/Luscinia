@@ -6,5 +6,5 @@ func _ready() -> void:
 	func(message: MessageInstance) -> void:
 		%NotificationBubble.visible = true
 	)
-	pressed.connect(func(): EventBus.navbar_message_button_pressed.emit())
-	EventBus.all_messages_read.connect(func(): %NotificationBubble.visible = false)
+	pressed.connect(func(): GameManager.navbar_message_button_pressed.emit())
+	GameManager.all_messages_read.connect(func(): %NotificationBubble.visible = false)

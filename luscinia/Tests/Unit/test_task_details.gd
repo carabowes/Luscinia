@@ -1,15 +1,15 @@
 extends GutTest
 
 var task_details : TaskDetails
+var resource_manager : ResourceManager
 
 
 func before_each():
 	task_details = load("res://Scenes/task_details.tscn").instantiate()
 	add_child_autofree(task_details)
-
-
-func after_all():
-	ResourceManager.reset_resources()
+	resource_manager = ResourceManager.new({"funds": 0, "people": 0, "vehicles": 0, "supplies": 0}, {"funds": 0, "people": 0, "vehicles": 0, "supplies": 0})
+	add_child_autofree(resource_manager)
+	task_details.resource_manager = resource_manager
 
 
 func test_set_details():
@@ -37,7 +37,7 @@ func test_set_details_ui():
 
 
 func test_set_end_early_ui():
-	ResourceManager.resources = {"funds": 0, "people": 0, "vehicles": 0, "supplies": 0}
+	resource_manager.resources = {"funds": 0, "people": 0, "vehicles": 0, "supplies": 0}
 	var task_data : TaskData = TaskData.default_task
 	task_data.resources_gained = {"funds": 500}
 	task_data.resources_required = {"people": 100}
@@ -68,5 +68,5 @@ func test_connections():
 	assert_connected(task_details.get_node("%CancelEndButton"), task_details, "pressed")
 	assert_connected(task_details.get_node("%ReturnButton"), task_details, "pressed")
 	assert_connected(task_details.get_node("%EndEarlyButton"), task_details, "pressed")
-	assert_connected(EventBus, task_details, "task_widget_view_details_pressed")
-	assert_connected(GlobalTimer, task_details, "turn_progressed")
+	assert_connected(GameManager, task_details, "task_widget_view_details_pressed")
+	assert_connected(GameManager, task_details, "turn_progressed")

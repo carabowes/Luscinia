@@ -10,6 +10,7 @@ extends Resource
 @export var current_location : Vector2
 @export var is_completed : bool
 @export var actual_resources : Dictionary
+@export var relationship_change : float
 @export var message : Message:
 	set(value):
 		if not value is Message:
@@ -26,7 +27,8 @@ var sender : Sender:
 
 
 func _init(
-	task_data : TaskData = TaskData.default_task, message : Message = Message.default_message
+	task_data : TaskData = TaskData.default_task, message : Message = Message.default_message,
+	relationship_change : float = 0
 ):
 	self.task_data = task_data
 	self.current_progress = 0
@@ -37,6 +39,7 @@ func _init(
 	if(self.actual_resources.has("funds")):
 		self.actual_resources["funds"] = 0
 	self.message = message
+	self.relationship_change = relationship_change
 
 
 func get_total_time():
@@ -51,6 +54,13 @@ func get_completion_rate() -> float:
 	if task_data.expected_completion_time == 0:
 		return 1.0
 	return float(current_progress)/float(get_total_time())
+
+
+func get_gained_resources(cancelled : bool) -> Dictionary:
+	if cancelled:
+		return actual_resources
+	else:
+		return task_data.resources_gained
 
 
 func update_task():

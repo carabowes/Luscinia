@@ -9,9 +9,9 @@ var task_widget_prefab = "res://Scenes/task_widget.tscn"
 
 
 func _ready() -> void:
-	EventBus.task_started.connect(func(task : TaskInstance): create_widget(task))
-	GlobalTimer.turn_progressed.connect(render_widgets)
-	EventBus.task_finished.connect(delete_widget)
+	GameManager.task_started.connect(func(task : TaskInstance): create_widget(task))
+	GameManager.turn_progressed.connect(render_widgets)
+	GameManager.task_finished.connect(delete_widget)
 	$MapView.zoom_changed.connect(render_widgets)
 
 
@@ -24,7 +24,7 @@ func create_widget(task_instance : TaskInstance):
 	task_widgets.append(task_widget_instance)
 
 	task_widget_instance.widget_selected.connect(update_selected_widget)
-	render_widgets()
+	render_widgets(0)
 
 
 func delete_widget(task_instance : TaskInstance, _cancelled : bool):
@@ -57,7 +57,7 @@ func update_selected_widget(selected_widget : TaskWidget):
 	$MapView/MapTexture.move_child(selected_widget, $MapView/MapTexture.get_child_count()-1)
 
 
-func render_widgets():
+func render_widgets(_new_turn : int):
 	for widget in task_widgets:
 		var current_scale = $MapView.current_scale
 		widget.scale = Vector2.ONE * widget_size / current_scale

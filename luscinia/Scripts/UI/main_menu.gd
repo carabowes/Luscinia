@@ -2,6 +2,9 @@ extends Control
 
 @export var scenario1_resource: Scenario
 
+var cd_minutes : int
+var cd_seconds : int
+
 func _ready() -> void:
 	%PlayButton.connect("button_down", show_modes_button)
 	%Scenario1Button.connect("button_down", change_to_scenario1)
@@ -31,12 +34,14 @@ func show_modes_button():
 
 
 func single_mode():
-	GlobalTimer.set_time(1,0)
+	cd_minutes = 1
+	cd_seconds = 0
 	show_scenarios_button()
 
 
 func discuss_mode():
-	GlobalTimer.set_time(5,0)
+	cd_minutes = 5
+	cd_seconds = 0
 	show_scenarios_button()
 
 
@@ -71,10 +76,7 @@ func hide_scenario_button():
 func change_to_scenario1():
 	if scenario1_resource:
 		# Set the scenario and apply its settings
-		ScenarioManager.set_scenario(scenario1_resource)
-
-		# Start the game
-		GlobalTimer.start_game()
 		get_tree().change_scene_to_file("res://main.tscn")
+		GameManager.start_game(scenario1_resource, cd_minutes, cd_seconds)
 	else:
 		print("Error: Scenario 1 resource not assigned")
