@@ -1,10 +1,7 @@
-# Extends Node2D, allowing this script to be attached to a scene node
 extends Node2D
 
-# Signal emitted when a resource is removed, providing the resource name and amount
 signal resource_removed(resource: String, amt: int)
 
-# Dictionary containing total resources available in the game
 @export var resources = {
 	"people": 60,
 	"funds": 20000000,
@@ -12,16 +9,13 @@ signal resource_removed(resource: String, amt: int)
 	"supplies": 10000
 }
 
-# Dictionary containing resources that are currently available for use
 @export var available_resources = {
 	"people": 60,
 	"vehicles": 50
 }
 
-# Dictionary for tracking relationship updates (e.g., changes in player reputation)
 @export var relationships_to_update: Dictionary
 
-# Dictionary mapping resource names to their corresponding texture assets
 var resource_textures = {
 	"people": preload("res://Sprites/UI/User.png"),
 	"funds": preload("res://Sprites/UI/Dollar sign.png"),
@@ -49,7 +43,6 @@ func format_resource_value(value: int, decimal_points: int) -> String:
 func add_resources(resource_name: String, amount: int):
 	if resource_name in resources:
 		resources[resource_name] += amount
-		# If the resource is also tracked in available_resources, clamp its value
 		if resource_name in available_resources:
 			var clamped = clamp(resources[resource_name], 0, available_resources[resource_name])
 			resources[resource_name] = clamped
@@ -62,7 +55,6 @@ func remove_resources(resource_name: String, amount: int):
 	if resource_name in resources:
 		resources[resource_name] -= amount
 		resource_removed.emit(resource_name, amount)  # Notify listeners of the removal
-		# Ensure resource count does not drop below zero
 		if resources[resource_name] < 0:
 			resources[resource_name] = 0
 	else:
@@ -149,7 +141,6 @@ func apply_relationship_change(task_id: String, sender: Sender, task_progress: f
 	if not relationships_to_update.has(task_id) or sender == null:
 		return
 
-	# Clamp task progress between 0 and 1
 	task_progress = clamp(task_progress, 0.0, 1.0)
 
 	# Adjust relationship change based on task completion percentage
