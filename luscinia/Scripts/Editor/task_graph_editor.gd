@@ -51,6 +51,7 @@ func _load_saves_from_dir(path = "res://TaskData/EditorSaves"):
 	dir.list_dir_end()
 
 
+# Loads the scenario based on the provided Scenario object
 func _load_scenario(scenario : Scenario):
 	for save in saves:
 		if save.scenario == scenario:
@@ -59,6 +60,7 @@ func _load_scenario(scenario : Scenario):
 	add_message_nodes(scenario.messages)
 
 
+# Loads a specific saved scenario, including its nodes and connections
 func _load_save(save : EditorSave):
 	print("Loading from save")
 	zoom = save.zoom
@@ -86,6 +88,7 @@ func _load_save(save : EditorSave):
 		connection["to_node"], connection["to_port"])
 
 
+# Opens a popup menu to select or create a sender node
 func _select_sender():
 	var popup : PopupMenu = PopupMenu.new()
 	for sender in unique_senders:
@@ -98,6 +101,7 @@ func _select_sender():
 	popup.index_pressed.connect(sender_selected)
 
 
+# Handles the sender selection from the popup
 func sender_selected(index : int):
 	var sender_node
 	if index == len(unique_senders):
@@ -106,6 +110,7 @@ func sender_selected(index : int):
 		sender_node = create_node(func(): return unique_senders.keys()[index], add_sender)
 
 
+# Adds a task node to the dictionary of task nodes
 func add_to_task_nodes(task_node : TaskGraphNode):
 	task_nodes[task_node.task.task_id] = task_node
 
@@ -139,6 +144,7 @@ func center_node(node : GraphNode):
 	node.position_offset = (scroll_offset + size / 2) / zoom - node.size / 2;
 
 
+# Adds message nodes based on the provided list of messages
 func add_message_nodes(messages : Array[Message]):
 	var task_section_size = Vector2(3500, 3000)
 	var current_cell = Vector2(0,0)
@@ -150,6 +156,7 @@ func add_message_nodes(messages : Array[Message]):
 			current_cell.y += 1
 
 
+# Adds a single message node to the graph
 func add_message_node(message : Message = Message.new(), pos : Vector2 = Vector2.ZERO,\
 	from_load : bool = false) -> MessageGraphNode:
 	var message_node : MessageGraphNode = MessageGraphNode.new(message)
@@ -165,6 +172,7 @@ func add_message_node(message : Message = Message.new(), pos : Vector2 = Vector2
 	return message_node
 
 
+# Adds a sender node to the graph and connects it to a message node if needed
 func add_sender(sender : Sender = null, message_node : MessageGraphNode = null,\
 	from_load : bool = false) -> SenderGraphNode:
 	if sender == null:
@@ -188,6 +196,7 @@ func add_sender(sender : Sender = null, message_node : MessageGraphNode = null,\
 	return sender_node
 
 
+# Adds response nodes to a message node
 func add_responses(responses : Array[Response], message_node : MessageGraphNode,\
 	from_load : bool = false):
 	var current_y = 0
@@ -200,6 +209,7 @@ func add_responses(responses : Array[Response], message_node : MessageGraphNode,
 		var response_node : ResponseGraphNode = add_response(response, message_node, from_load, pos)
 
 
+# Adds a response node to the graph and connects it if necessary
 func add_response(response : Response = Response.new(), connect_node : TaskEditorGraphNode = null,\
 	from_load : bool = false, pos : Vector2 = Vector2.ZERO) -> ResponseGraphNode:
 	var response_node : ResponseGraphNode = ResponseGraphNode.new(response)
@@ -217,6 +227,7 @@ func add_response(response : Response = Response.new(), connect_node : TaskEdito
 	return response_node
 
 
+# Adds a task node to the graph and connects it if needed
 func add_task(task : TaskData = TaskData.new(), connect_node : TaskEditorGraphNode = null,\
 	from_load : bool = false) -> TaskGraphNode:
 	var task_node : TaskGraphNode = TaskGraphNode.new(task)
@@ -232,6 +243,7 @@ func add_task(task : TaskData = TaskData.new(), connect_node : TaskEditorGraphNo
 	return task_node
 
 
+# Adds prerequisite nodes to a message node
 func add_requisites(requisites : Array[Prerequisite], message_node : MessageGraphNode,\
 	port_num, from_load = false):
 	var x_offset = 800
@@ -246,6 +258,7 @@ func add_requisites(requisites : Array[Prerequisite], message_node : MessageGrap
 		current_y += 1
 
 
+# Adds a single prerequisite or antirequisite node to the graph
 func add_requisite(requisite : Prerequisite = Prerequisite.new(),\
 	connect_node : TaskEditorGraphNode = null,\
 	is_antirequisite : bool = false, _from_load : bool = false) -> RequisiteGraphNode:
@@ -262,6 +275,7 @@ func add_requisite(requisite : Prerequisite = Prerequisite.new(),\
 	return requisite_node
 
 
+# Connects prerequisites to the corresponding task nodes
 func connect_requisites():
 	for node in requisite_nodes:
 		for task in node.prerequisite.task_id:
@@ -271,6 +285,7 @@ func connect_requisites():
 				node.name, RequisiteGraphNode.InPortNums.TASK)
 
 
+# Ensures that only one input connection exists to a node
 func force_one_input_connection(to_node : String, to_port : int):
 	for connection in get_connection_list():
 		if connection.to_node == to_node and connection.to_port == to_port:
@@ -279,6 +294,7 @@ func force_one_input_connection(to_node : String, to_port : int):
 			return
 
 
+# Ensures that only one output connection exists to a node
 func force_one_output_connection(from_node : String, from_port : int):
 	for connection in get_connection_list():
 		if connection.from_node == from_node and connection.from_port == from_port:
@@ -287,6 +303,7 @@ func force_one_output_connection(from_node : String, from_port : int):
 			return
 
 
+# Ensures that only one output connection exists from a node
 func _on_connection_request(from_node : String, from_port : int, to_node : String, to_port : int):
 	var input_node : TaskEditorGraphNode = get_node(from_node)
 	var output_node : TaskEditorGraphNode = get_node(to_node)
@@ -300,6 +317,7 @@ func _on_connection_request(from_node : String, from_port : int, to_node : Strin
 	connect_node(from_node, from_port, to_node, to_port)
 
 
+# Handles a connection when a node is connected from an empty area
 func _on_connection_from_empty(to_node : String, to_port : int, release_position : Vector2):
 	var output_node : TaskEditorGraphNode = get_node(to_node)
 	var node_type = output_node.create_node_to_connect_from_empty(to_port)
@@ -406,6 +424,7 @@ func save_editor_state(editor_save: EditorSave, scenario : Scenario) -> EditorSa
 	return editor_save
 
 
+# Saves the scenario to a specified file
 func save_scenario():
 	var messages : Array[Message]
 	for message_node : MessageGraphNode in message_nodes:
