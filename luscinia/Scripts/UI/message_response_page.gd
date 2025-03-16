@@ -1,3 +1,4 @@
+class_name MessageResponsePage
 extends Control
 
 signal back_button_pressed

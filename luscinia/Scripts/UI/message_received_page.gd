@@ -1,3 +1,4 @@
+class_name MessageReceivedPage
 extends Control
 
 signal message_selected(message : MessageInstance)
