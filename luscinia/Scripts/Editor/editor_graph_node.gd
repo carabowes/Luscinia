@@ -186,7 +186,7 @@ func set_port(is_input : bool, index : int, slot_type : SlotType):
 
 static func generate_fields_from_resources(resources : Dictionary) -> Array[Field]:
 	var fields : Array[Field] = []
-	for resource in ResourceManager.resources.keys():
+	for resource in ["funds", "people", "supplies", "vehicles"]:
 		var field : Field = field_prefab.instantiate()
 		field.field_name = resource
 		if resources.has(resource):
