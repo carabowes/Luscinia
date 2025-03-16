@@ -32,15 +32,15 @@ func test_view_resources_button_signal_emits_correctly():
 	
 	
 func test_view_resource_toggle():
-	watch_signals(GameManager)
+	watch_signals(UIEvent)
 	navbar._view_resource_button_pressed()
-	assert_signal_emitted(GameManager, "navbar_resource_button_pressed")
+	assert_signal_emitted(UIEvent, "navbar_resource_button_pressed")
 	
 
 func test_message_button_emits_signal():
-	watch_signals(GameManager)
+	watch_signals(UIEvent)
 	navbar._message_button_pressed()
-	assert_signal_emitted(GameManager, "navbar_message_button_pressed", "Navbar Button pressed signal not emitted")
+	assert_signal_emitted(UIEvent, "navbar_message_button_pressed", "Navbar Button pressed signal not emitted")
 
 
 func test_message_notification_bubble():

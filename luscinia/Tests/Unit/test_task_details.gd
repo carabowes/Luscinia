@@ -68,5 +68,5 @@ func test_connections():
 	assert_connected(task_details.get_node("%CancelEndButton"), task_details, "pressed")
 	assert_connected(task_details.get_node("%ReturnButton"), task_details, "pressed")
 	assert_connected(task_details.get_node("%EndEarlyButton"), task_details, "pressed")
-	assert_connected(GameManager, task_details, "task_widget_view_details_pressed")
+	assert_connected(UIEvent, task_details, "task_widget_view_details_pressed")
 	assert_connected(GameManager, task_details, "turn_progressed")

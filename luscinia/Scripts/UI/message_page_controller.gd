@@ -40,7 +40,7 @@ func _ready() -> void:
 
 	%MessageResponsePage.response_option_selected.connect(
 		func(response : Response, message_instance : MessageInstance):
-			GameManager.navbar_message_button_pressed.emit()
+			UIEvent.navbar_message_button_pressed.emit()
 			GameManager.message_responded.emit(response, message_instance)
 	)
 	%MessageResponsePage.back_button_pressed.connect(func(): _change_page_state(

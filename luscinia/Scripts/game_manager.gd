@@ -30,15 +30,6 @@ signal game_paused()
 signal game_resumed()
 signal game_exited()
 
-#General UI Signals
-signal task_widget_view_details_pressed(task_instance : TaskInstance)
-signal navbar_message_button_pressed
-signal message_page_open
-signal message_page_close
-signal navbar_resource_button_pressed
-signal resource_page_open
-signal resource_page_close
-
 
 func start_game(scenario : Scenario, cd_minutes : int, cd_seconds : int):
 	game = Game.new(scenario.deep_duplicate(), cd_minutes, cd_seconds)

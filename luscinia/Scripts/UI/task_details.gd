@@ -17,7 +17,7 @@ func _ready() -> void:
 	%CancelEndButton.pressed.connect(_show_task_details)
 	%ReturnButton.pressed.connect(func(): return_button_pressed.emit())
 	%EndEarlyButton.pressed.connect(_show_end_early_page)
-	GameManager.task_widget_view_details_pressed.connect(_open_task_details)
+	UIEvent.task_widget_view_details_pressed.connect(_open_task_details)
 	GameManager.turn_progressed.connect(_on_time_progressed)
 
 

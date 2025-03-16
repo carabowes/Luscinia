@@ -34,10 +34,10 @@ func test_new_message_at_top():
 
 
 func test_back_button():
-	watch_signals(GameManager)
+	watch_signals(UIEvent)
 	var back_button : Button = page_instance.get_node("%BackButton")
 	back_button.pressed.emit()
-	assert_signal_emitted(GameManager, "navbar_message_button_pressed")
+	assert_signal_emitted(UIEvent, "navbar_message_button_pressed")
 
 
 func test_message_selected():

@@ -90,7 +90,7 @@ func _switch_to_high_lod():
 
 
 func _show_task_details_page():
-	GameManager.task_widget_view_details_pressed.emit(task_info)
+	UIEvent.task_widget_view_details_pressed.emit(task_info)
 
 
 func _on_new_turn(_new_turn : int):

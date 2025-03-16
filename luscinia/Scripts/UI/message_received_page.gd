@@ -7,7 +7,7 @@ var game_timer : GameTimer
 
 func _ready():
 	GameManager.message_sent.connect(_on_message_received)
-	%BackButton.pressed.connect(func(): GameManager.navbar_message_button_pressed.emit())
+	%BackButton.pressed.connect(func(): UIEvent.navbar_message_button_pressed.emit())
 
 
 func _on_message_received(message : MessageInstance):

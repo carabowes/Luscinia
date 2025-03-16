@@ -11,10 +11,10 @@ func _ready() -> void:
 	%ViewMessageHistoryButton.pressed.connect(_message_button_pressed)
 	GameManager.message_sent.connect(_show_notif_bubble)
 	GameManager.all_messages_read.connect(_hide_notif_bubble)
-	GameManager.message_page_open.connect(_message_button_pressed_sprite)
-	GameManager.message_page_close.connect(_message_button_sprite)
-	GameManager.resource_page_open.connect(_resource_button_pressed_sprite)
-	GameManager.resource_page_close.connect(_resource_button_sprite)
+	UIEvent.message_page_open.connect(_message_button_pressed_sprite)
+	UIEvent.message_page_close.connect(_message_button_sprite)
+	UIEvent.resource_page_open.connect(_resource_button_pressed_sprite)
+	UIEvent.resource_page_close.connect(_resource_button_sprite)
 
 
 func _show_notif_bubble(_message : MessageInstance):
@@ -55,7 +55,7 @@ func _process(_delta: float):
 
 
 func _view_resource_button_pressed():
-	GameManager.navbar_resource_button_pressed.emit()
+	UIEvent.navbar_resource_button_pressed.emit()
 
 
 func _skip_time_button_pressed():
@@ -63,7 +63,7 @@ func _skip_time_button_pressed():
 
 
 func _message_button_pressed():
-	GameManager.navbar_message_button_pressed.emit()
+	UIEvent.navbar_message_button_pressed.emit()
 
 
 func _message_button_pressed_sprite():
