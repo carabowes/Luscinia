@@ -7,6 +7,7 @@ extends Resource
 @export var scroll_offset : Vector2
 @export var connections : Array[Dictionary]
 
+
 func _init(
 	scenario : Scenario = null,
 	_node_positions : Array[Array] = [],

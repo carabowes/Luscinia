@@ -1,10 +1,8 @@
 class_name TaskInstance
 extends Resource
 
-#This resource will only be created at runtime
 
 @export var task_data : TaskData
-## Measured in turns so if task has been going for 4 turns, current progress is 4
 @export var current_progress : int
 @export var extra_time : int
 @export var current_location : Vector2
@@ -16,8 +14,6 @@ extends Resource
 			push_error("Invalid type assigned to 'message'. Expected 'Message', got '%s'." % value)
 		else:
 			message = value
-## sender property to allow shorthand of task_instance.sender rather than
-## task_instance.message.sender
 var sender : Sender:
 	get:
 		if message:
@@ -55,12 +51,10 @@ func get_completion_rate() -> float:
 
 func update_task():
 	current_progress += 1
-	# Lerp supplies to 0, like they're being used
 	if(actual_resources.has("supplies")):
 		var supplies = task_data.resources_required["supplies"]
 		var completion_rate = get_completion_rate()
 		var new_supplies = int(lerp(supplies, 0, completion_rate))
-		# Selecting min to prevent supplies from increasing if extra time is added
 		actual_resources["supplies"] = min(new_supplies, supplies)
 
 	if current_progress >= get_total_time():
