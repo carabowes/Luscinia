@@ -1,7 +1,6 @@
 class_name TaskGraphNode
 extends TaskEditorGraphNode
 
-
 enum InPortNums {
 	RESPONSE = 0
 }
@@ -11,6 +10,7 @@ enum OutPortNums {
 }
 
 var task : TaskData
+
 
 func _init(task : TaskData):
 	super()
@@ -44,11 +44,12 @@ func _init(task : TaskData):
 	var vector_input : VectorInput = add_vector_input("Location", task.start_location)
 	vector_input.value_changed.connect(func(new_location): task.start_location = new_location)
 
-	var resources_required_fields : Array[Field] =\
-	generate_fields_from_resources(task.resources_required)
+	var resources_required_fields : Array[Field] = generate_fields_from_resources(\
+	task.resources_required)
 	for field in resources_required_fields:
 		field.field_changed.connect(func(resource_type, value):\
 		_on_resource_required_field_changed(resource_type, value, field))
+
 	add_collapsible_container("Resources Required", resources_required_fields)
 
 	var resources_gained_fields : Array[Field] =\
@@ -59,10 +60,12 @@ func _init(task : TaskData):
 	add_collapsible_container("Resources Gained", resources_gained_fields)
 
 
+# Updates the task's name when the input field is changed.
 func _on_task_name_changed(new_name : String):
 	task.name = new_name
 
 
+# Updates the task's ID when the input field is changed and validates it.
 func _on_task_id_changed(new_id : String, input : LineEdit):
 	if new_id == "":
 		input.self_modulate = Color.RED
@@ -71,6 +74,7 @@ func _on_task_id_changed(new_id : String, input : LineEdit):
 	task.task_id = new_id
 
 
+# Updates the task's expected completion time when the input field is changed.
 func _on_task_time_changed(new_time : String, input : LineEdit):
 	if new_time == "":
 		new_time = "-1"
@@ -83,10 +87,17 @@ func _on_task_time_changed(new_time : String, input : LineEdit):
 	task.expected_completion_time = new_time.to_int()
 
 
+# Updates the task's icon when a new image is selected.
 func _on_image_selected(image : Texture):
 	task.icon = image
 
 
+# Updates the task's start location when the input vector changes.
+func _on_vector_input_changed(new_location : Vector2):
+	task.start_location = new_location
+
+
+# Updates the required resources for the task when a resource field is changed.
 func _on_resource_required_field_changed(resource: String, new_resource : String, input : Field):
 	if new_resource == "": new_resource = "0"
 	if not new_resource.is_valid_int():
@@ -100,6 +111,7 @@ func _on_resource_required_field_changed(resource: String, new_resource : String
 		task.resources_required[resource] = int(new_resource)
 
 
+# Updates the gained resources for the task when a resource field is changed.
 func _on_resource_gained_field_changed(resource: String, new_resource : String, input : Field):
 	if not new_resource.is_valid_int():
 		input.field_value = str(task.resources_gained[resource])\
@@ -112,6 +124,7 @@ func _on_resource_gained_field_changed(resource: String, new_resource : String, 
 		task.resources_gained[resource] = int(new_resource)
 
 
+# Assigns a connection to the node.
 func assign_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
 	if in_port == InPortNums.RESPONSE and in_node is ResponseGraphNode:
 		in_node.response.task = task
@@ -120,6 +133,7 @@ func assign_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
 	return true
 
 
+# Removes a connection from the node.
 func remove_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
 	if in_port == InPortNums.RESPONSE and in_node is ResponseGraphNode:
 		in_node.response.task = null
@@ -128,12 +142,14 @@ func remove_connection(in_port : int, in_node : TaskEditorGraphNode) -> bool:
 	return true
 
 
+# Creates a new node to connect from an empty input port.
 func create_node_to_connect_from_empty(in_port: int):
 	if in_port == InPortNums.RESPONSE:
 		return ResponseGraphNode.new(Response.new())
 	return null
 
 
+# Creates a new node to connect to an empty output port.
 func create_node_to_connect_to_empty(out_port: int):
 	if out_port == OutPortNums.PREREQ:
 		return RequisiteGraphNode.new(Prerequisite.new())
