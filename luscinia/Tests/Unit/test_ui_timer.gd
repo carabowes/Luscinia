@@ -28,7 +28,7 @@ var clock_visual_parameters = ParameterFactory.named_parameters(
 
 
 func before_all():
-	ui_timer_scene = load("res://Scenes/timer.tscn")
+	ui_timer_scene = load("res://Scenes/UI/timer.tscn")
 
 
 func before_each():

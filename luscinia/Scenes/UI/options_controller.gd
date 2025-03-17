@@ -9,7 +9,6 @@ func _ready() -> void:
 	$RestartButton.connect("pressed", _restart_game)
 	$ExitButton.connect("pressed", _exit_game)
 
-# TODO
 
 func _pause_game():
 	if(self.visible):

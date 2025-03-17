@@ -3,7 +3,7 @@ extends GutTest
 var navbar
 
 func before_each():
-	navbar = load("res://Scenes/navbar.tscn").instantiate()
+	navbar = load("res://Scenes/UI/navbar.tscn").instantiate()
 	add_child(navbar)
 
 

@@ -17,8 +17,8 @@ config/icon="res://Sprites/icon.svg"
 
 [autoload]
 
-GameManager="*res://Scripts/game_manager.gd"
-UIEvent="*res://Scripts/ui_event_bus.gd"
+GameManager="*res://Scripts/Managers/game_manager.gd"
+UIEvent="*res://Scripts/Managers/ui_event_bus.gd"
 
 [display]
 

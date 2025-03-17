@@ -5,7 +5,7 @@ var resource_manager : ResourceManager
 
 
 func before_each():
-	task_details = load("res://Scenes/task_details.tscn").instantiate()
+	task_details = load("res://Scenes/UI/task_details.tscn").instantiate()
 	add_child_autofree(task_details)
 	resource_manager = ResourceManager.new({"funds": 0, "people": 0, "vehicles": 0, "supplies": 0}, {"funds": 0, "people": 0, "vehicles": 0, "supplies": 0})
 	add_child_autofree(resource_manager)
