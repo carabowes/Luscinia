@@ -1,7 +1,5 @@
 extends Node
 
-var game : Game
-
 #Time Signals
 signal turn_progressed(new_turn : int)
 
@@ -30,6 +28,8 @@ signal game_paused()
 signal game_resumed()
 signal game_exited()
 
+
+var game : Game
 
 func start_game(scenario : Scenario, cd_minutes : int, cd_seconds : int):
 	game = Game.new(scenario.deep_duplicate(), cd_minutes, cd_seconds)

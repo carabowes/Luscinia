@@ -3,8 +3,8 @@ extends Resource
 
 static var default_scenario = Scenario.new(
 	"Default", [], 12, 60, 0,
-	{"funds": 5, "people": 5, "vehicles": 5, "supplies": 5}, 
-	{"people": 5, "vehicles": 5} 
+	{"funds": 5, "people": 5, "vehicles": 5, "supplies": 5},
+	{"people": 5, "vehicles": 5}
 ):
 	get:
 		return default_scenario.deep_duplicate()

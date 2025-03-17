@@ -13,10 +13,10 @@ func _init(scenario : Scenario, cd_minutes : int, cd_seconds : int) -> void:
 	task_manager = TaskManager.new()
 	message_manager = MessageManager.new(scenario.messages, task_manager)
 	game_timer = GameTimer.new(
-		cd_minutes, cd_seconds, scenario.time_step, 
+		cd_minutes, cd_seconds, scenario.time_step,
 		scenario.starting_hour, scenario.number_of_turns
 	)
-	
+
 	add_child(resource_manager)
 	add_child(task_manager)
 	add_child(message_manager)

@@ -25,13 +25,13 @@ func find_messages_to_send(new_turn : int):
 	for message in messages_to_send:
 		var antirequisite_failed : bool = false
 		for antirequisite in message.antirequisites:
-			if validate_prerequisite(antirequisite, new_turn): 
+			if validate_prerequisite(antirequisite, new_turn):
 				antirequisite_failed = true
 				break
 		if antirequisite_failed:
 			continue
 		for prerequisite in message.prerequisites:
-			if validate_prerequisite(prerequisite, new_turn): 
+			if validate_prerequisite(prerequisite, new_turn):
 				selected_messages.append(message)
 				send_message(message)
 				break

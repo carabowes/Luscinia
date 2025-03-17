@@ -39,7 +39,7 @@ func update_resource_ui():
 	if resources == {} or available_resources == {}:
 		return
 	%PersonnelAmt.text = "%s / %s" % [
-		ResourceManager.format_resource_value(resources["people"],2), 
+		ResourceManager.format_resource_value(resources["people"],2),
 		ResourceManager.format_resource_value(available_resources["people"],2)
 	]
 	%SuppliesAmt.text = "%s" % [

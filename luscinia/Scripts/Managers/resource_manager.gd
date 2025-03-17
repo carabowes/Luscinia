@@ -1,6 +1,13 @@
 class_name ResourceManager
 extends Node2D
 
+static var resource_textures = {
+	"people": preload("res://Sprites/UI/User.png"),
+	"funds": preload("res://Sprites/UI/Dollar sign.png"),
+	"vehicles": preload("res://Sprites/UI/Truck.png"),
+	"supplies": preload("res://Sprites/Package.png"),
+}
+
 var resources = {"people": 60, "funds": 20000000, "vehicles": 50, "supplies": 10000}
 var available_resources = {"people": 60, "vehicles": 50}
 var relationships_to_update: Dictionary
@@ -13,14 +20,6 @@ func _init(resources : Dictionary, available_resources : Dictionary) -> void:
 	GameManager.task_started.connect(queue_relationship_change)
 	GameManager.task_finished.connect(apply_end_task_resources)
 	GameManager.task_finished.connect(apply_relationship_change)
-
-
-static var resource_textures = {
-	"people": preload("res://Sprites/UI/User.png"),
-	"funds": preload("res://Sprites/UI/Dollar sign.png"),
-	"vehicles": preload("res://Sprites/UI/Truck.png"),
-	"supplies": preload("res://Sprites/Package.png"),
-}
 
 static func round_to_dp(value: float, dp: int) -> float:
 	var factor = pow(10, dp)
@@ -97,7 +96,7 @@ func apply_start_task_resources(task_instance : TaskInstance):
 func apply_end_task_resources(task_instance : TaskInstance, cancelled : bool):
 	var resources_gained = task_instance.get_gained_resources(cancelled)
 	var resources_required = task_instance.task_data.resources_required
-	
+
 	for resource_name in resources.keys():
 		#Fill the dictionary with 0 value if key is missing to prevent accessing non existing value
 		if not resources_gained.has(resource_name):

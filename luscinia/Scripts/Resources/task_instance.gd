@@ -59,8 +59,7 @@ func get_completion_rate() -> float:
 func get_gained_resources(cancelled : bool) -> Dictionary:
 	if cancelled:
 		return actual_resources
-	else:
-		return task_data.resources_gained
+	return task_data.resources_gained
 
 
 func update_task():
