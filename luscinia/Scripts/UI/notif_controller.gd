@@ -1,6 +1,5 @@
 extends Control
 
-@export var message_board : MessageBoard
 @export var task_widget_renderer : TaskWidgetRenderer
 @export var start_task_notif_label: Label
 @export var end_task_notif_label: Label

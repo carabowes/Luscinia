@@ -4,7 +4,6 @@ extends Node
 signal game_finished
 
 # Timer variables
-#personal = 1min, discussion = 5min
 var max_turns : int = 0
 var cd_minutes: int = 5
 var cd_seconds: int = 0
@@ -15,7 +14,7 @@ var time_step = 60  #Measured in minutes
 var paused: bool = false
 
 # Clock variables
-var in_game_hours: int = 0  # Measured in hours out of 24
+var in_game_hours: int = 0
 var in_game_minutes: int = 0
 var in_game_days: int = 1
 var second_accumulator: float = 0
@@ -33,14 +32,16 @@ func _init(cd_minutes : int, cd_seconds : int, time_step : int, start_hour : int
 func _process(delta : float):
 	if paused:
 		return
-	second_accumulator += delta
+	second_accumulator += delta  # Accumulate time (delta represents seconds per frame)
+	# Decrease the countdown every second
 	if current_time_left > 0 and second_accumulator >= 1.0 - 0.001:
 		second_accumulator -= 1
 		current_time_left -= 1
-	if current_time_left == 0:
+	if current_time_left == 0:  # When the countdown ends, progress to the next turn
 		next_turn(time_step)
 
 
+# Set the countdown time (in minutes and seconds) and reset countdown
 func set_time(minutes: int, seconds: int):
 	if minutes < 0:
 		minutes = 0
@@ -55,27 +56,28 @@ func set_time(minutes: int, seconds: int):
 	current_time_left = countdown_duration
 
 
+# Move to the next turn and update in-game time
 func next_turn(turn_length: int):
 	if paused:
 		return
 	var skip_time_seconds = turn_length * 60
 	current_time_left = countdown_duration
 	second_accumulator = 0
-
+	# Update in-game time
 	in_game_minutes += turn_length
-	while in_game_minutes >= 60:  # Handle hour overflow
+	while in_game_minutes >= 60:
 		in_game_minutes -= 60
 		in_game_hours += 1
-		if in_game_hours >= 24:  # Handle day overflow
+		if in_game_hours >= 24:
 			in_game_hours -= 24
 			in_game_days += 1
 	current_turn+= 1
 	GameManager.turn_progressed.emit(current_turn)
 	if current_turn >= max_turns:
 		game_finished.emit()
-	#print("New in-game time: Day %d, %02d:%02d" % [in_game_days, in_game_hours, in_game_minutes])
 
 
+# Convert total minutes to a human-readable time string (e.g., 2 hours 30 min)
 static func turns_to_time_string(
 	timer : GameTimer,
 	turns : int,
@@ -96,9 +98,9 @@ static func turns_to_time_string(
 	)
 
 
-## Don't include an s in the minute or hour string, these will be added by the function
-## if applicable
-## i.e. 1 hour, 2 hours
+# Don't include an s in the minute or hour string, these will be added by the function
+# if applicable
+# i.e. 1 hour, 2 hours
 static func time_to_time_string(
 	minutes : int,
 	hour_string : String = "hour",
@@ -109,15 +111,17 @@ static func time_to_time_string(
 ):
 	if minutes < 0:
 		minutes = 0
-	var hours : int = int(floor(minutes / 60))
-	var spare_minutes : int = minutes - (hours * 60)
-	var time_string : String = ""
+	var hours: int = int(floor(minutes / 60))  # Calculate hours
+	var spare_minutes: int = minutes - (hours * 60)  # Remaining minutes
+	var time_string: String = ""
 
+	# Construct time string
 	if hours != 0 or minutes == 0 or use_decimal_minutes or not show_minutes:
 		time_string += str(hours)
 
+		# Handle decimal minutes if applicable
 		if use_decimal_minutes and show_minutes:
-			var decimal_minutes : String = str(floor((float(spare_minutes) / 60.0) * 100))
+			var decimal_minutes: String = str(floor((float(spare_minutes) / 60.0) * 100))
 			if len(decimal_minutes) == 1:
 				decimal_minutes = "0" + decimal_minutes
 			if decimal_minutes[-1] == "0":

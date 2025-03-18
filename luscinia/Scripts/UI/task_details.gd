@@ -21,18 +21,21 @@ func _ready() -> void:
 	GameManager.turn_progressed.connect(_on_time_progressed)
 
 
+# Opens the task details UI for a given task instance
 func _open_task_details(task_instance : TaskInstance):
 	_set_task_instance(task_instance)
-	%TaskCancellation.visible = false;
+	%TaskCancellation.visible = false
 	_show_task_details()
 
 
+# Sets the task instance and updates UI elements accordingly
 func _set_task_instance(task_instance : TaskInstance):
 	current_task_instance = task_instance
 	_set_details_ui(task_instance)
 	_set_end_early_ui(task_instance)
 
 
+# Updates the main task details UI
 func _set_details_ui(task_instance : TaskInstance):
 	current_task_instance = task_instance
 	%ScrollingBackground.texture = task_instance.task_data.icon
@@ -44,6 +47,7 @@ func _set_details_ui(task_instance : TaskInstance):
 	%SenderIcon.texture = task_instance.sender.image
 
 
+# Updates the UI for ending a task early, adjusting resource calculations
 func _set_end_early_ui(task_instance : TaskInstance):
 	var end_early_resources : Dictionary
 	var resource_increase_end_early : Dictionary
@@ -59,6 +63,7 @@ func _set_end_early_ui(task_instance : TaskInstance):
 	%EndNowResources.resources = end_early_resources
 	%EndNowResources.set_increments(resource_increase_end_early)
 
+	# Calculate resources if task is completed on time
 	var task_data = task_instance.task_data
 	var end_on_time_resources: Dictionary
 	var resource_increase_on_time: Dictionary
@@ -74,16 +79,19 @@ func _set_end_early_ui(task_instance : TaskInstance):
 	%FullTimeResources.set_increments(resource_increase_on_time)
 
 
+# Displays the task details panel with an animation
 func _show_task_details():
-	visible = true;
+	visible = true
 	%TaskDetails.pivot_offset = %TaskDetails.size
-	%TaskDetails.scale.y = 0;
+	%TaskDetails.scale.y = 0
 	%TaskDetails.visible = true
+
 	get_tree().create_tween().tween_property(
 		%TaskDetails, "scale", Vector2.ONE, 0.25
 	).set_trans(Tween.TRANS_QUAD)
 
 
+# Hides the task details panel with an animation
 func _hide_task_details():
 	%TaskDetails.pivot_offset = %TaskDetails.size
 	var hide_tween = get_tree().create_tween()
@@ -93,16 +101,19 @@ func _hide_task_details():
 	hide_tween.finished.connect(func(): %TaskDetails.visible = false)
 
 
+# Shows the early cancellation UI and hides task details
 func _show_end_early_page():
-	%TaskCancellation.visible = true;
+	%TaskCancellation.visible = true
 	_hide_task_details()
 
 
+# Updates task details when time progresses
 func _on_time_progressed(_new_turn : int):
 	if(current_task_instance != null and visible):
 		_set_task_instance(current_task_instance)
 
 
+# Handles the confirmation of ending a task early
 func _confirm_end_early_button_pressed():
 	%TaskCancellation.visible = false;
 	visible = false;

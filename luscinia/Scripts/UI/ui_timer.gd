@@ -17,10 +17,12 @@ func _ready():
 	GameManager.resource_updated.connect(update_resource_ui)
 
 
+# Called every frame to update the UI in real-time
 func _process(_delta):
 	update_timer_ui()
 
 
+# Update the main timer UI elements with the latest values
 func update_timer_ui():
 	if game_timer == null:
 		return
@@ -31,6 +33,7 @@ func update_timer_ui():
 	%ClockLabel.text = "%02d:%02d" % [game_timer.in_game_hours, game_timer.in_game_minutes]
 
 
+# Update the resource-related UI elements
 func update_resource_ui():
 	if resource_manager == null:
 		return
@@ -54,6 +57,7 @@ func update_resource_ui():
 	]
 
 
+# Helper function to format time in minutes and seconds
 func format_time_with_seconds(seconds: int) -> String:
 	var minutes = int(seconds) / 60
 	var secs = int(seconds) % 60
