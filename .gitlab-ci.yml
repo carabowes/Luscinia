@@ -36,7 +36,7 @@ lint:
   before_script:
     - pip install "gdtoolkit==4.*"
   script:
-    - gdlint luscinia/Scripts/Resources/resource_manager.gd
+    - gdlint luscinia/Scripts/
   allow_failure: false  
   rules:
     - if: '$CI_COMMIT_BRANCH' 
