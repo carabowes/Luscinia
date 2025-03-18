@@ -100,8 +100,11 @@ func _on_message_read(message: MessageInstance):
 
 # Handles the event when a task is finished; may involve resending repeatable messages
 func _on_task_finished(task_instance : TaskInstance, cancelled : bool):
+	if cancelled:
+		_on_task_cancelled(task_instance)
 	if task_instance.message.is_repeatable:
 		messages_to_send.append(task_instance.message)
+
 
 
 # Handles the event when a task is cancelled; may involve resending certain messages
