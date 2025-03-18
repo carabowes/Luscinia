@@ -3,7 +3,7 @@ extends GutTest
 var navbar
 
 func before_each():
-	navbar = load("res://Scenes/navbar.tscn").instantiate()
+	navbar = load("res://Scenes/UI/navbar.tscn").instantiate()
 	add_child(navbar)
 
 
@@ -32,28 +32,30 @@ func test_view_resources_button_signal_emits_correctly():
 	
 	
 func test_view_resource_toggle():
-	watch_signals(EventBus)
+	watch_signals(UIEvent)
 	navbar._view_resource_button_pressed()
-	assert_signal_emitted(EventBus, "navbar_resource_button_pressed")
+	assert_signal_emitted(UIEvent, "navbar_resource_button_pressed")
 	
 
 func test_message_button_emits_signal():
-	watch_signals(EventBus)
+	watch_signals(UIEvent)
 	navbar._message_button_pressed()
-	assert_signal_emitted(EventBus, "navbar_message_button_pressed", "Navbar Button pressed signal not emitted")
+	assert_signal_emitted(UIEvent, "navbar_message_button_pressed", "Navbar Button pressed signal not emitted")
 
 
 func test_message_notification_bubble():
 	var bubble : Control = navbar.get_node("%NewMessageNotif")
 	assert_false(bubble.visible, "Notif bubble should be hidden initally")
-	MessageManager.message_sent.emit(null)
+	GameManager.message_sent.emit(null)
 	assert_true(bubble.visible, "Bubble should appear on a message sent")
-	EventBus.all_messages_read.emit()
+	GameManager.all_messages_read.emit()
 	await wait_seconds(0.5)
 	assert_false(bubble.visible, "Bubble should dissappear when all messages are read")
 
 
 func test_skip_time_button_increments_turn():
-	var initial_turn_count = GlobalTimer.turns
+	var timer : GameTimer = GameTimer.new(5, 0, 60, 0, 0)
+	var initial_turn_count = timer.current_turn
+	navbar.game_timer = timer
 	navbar._skip_time_button_pressed()
-	assert_eq(GlobalTimer.turns, initial_turn_count + 1, "Turn count should increment when skipping time")
+	assert_eq(timer.current_turn, initial_turn_count + 1, "Turn count should increment when skipping time")

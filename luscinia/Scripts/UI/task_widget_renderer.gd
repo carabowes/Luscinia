@@ -11,13 +11,13 @@ signal resource_gained(resource: String, amt: int)
 @export var use_spawn_animation : bool = true
 
 var task_widgets : Array[TaskWidget]
-var task_widget_prefab = "res://Scenes/task_widget.tscn"
+var task_widget_prefab = "res://Scenes/UI/task_widget.tscn"
 
 
 func _ready() -> void:
-	EventBus.task_started.connect(func(task: TaskInstance): create_widget(task))
-	GlobalTimer.turn_progressed.connect(render_widgets)
-	EventBus.task_finished.connect(delete_widget)
+	GameManager.task_started.connect(func(task : TaskInstance): create_widget(task))
+	GameManager.turn_progressed.connect(render_widgets)
+	GameManager.task_finished.connect(delete_widget)
 	$MapController.zoom_changed.connect(render_widgets)
 
 
@@ -55,9 +55,8 @@ func render_resource_bubble(resource: String, widget: TaskWidget, rng: RandomNum
 	add_child(resource_bubble)
 
 	resource_bubble.get_child(0).texture = ResourceManager.get_resource_texture(resource)
-	resource_bubble.position = widget.position + widget.size / 2  # Center on widget
-
-	# Generate a random explosion position around the widget
+	resource_bubble.position = widget.position  + widget.size/2
+	# Generate random point in a circle with radius 1
 	var offset = Vector2(rng.randf_range(-1, 1), rng.randf_range(-1, 1)).normalized()
 	var split_calculation = widget.DEFAULT_SIZE * rng.randf_range(0.7, 1)
 	var explode_position = resource_bubble.position + offset * split_calculation
@@ -69,8 +68,10 @@ func render_resource_bubble(resource: String, widget: TaskWidget, rng: RandomNum
 	resource_bubble_tween.tween_property(resource_bubble, "position", explode_position,\
 	rng.randf_range(0.15, 0.2)).set_trans(Tween.TRANS_SINE)
 	resource_bubble_tween.tween_interval(rng.randf_range(0.2, 0.9))
-	resource_bubble_tween.tween_property(resource_bubble, "position", final_position,\
-	rng.randf_range(1.1, 1.5)).set_trans(Tween.TRANS_QUINT)
+	resource_bubble_tween.tween_property(
+		resource_bubble, "position",
+		final_position, rng.randf_range(1.1, 1.5)
+	).set_trans(Tween.TRANS_QUINT)
 
 
 # Triggers resource bubbles when a task is completed
@@ -85,7 +86,7 @@ func render_resource_bubbles(task_instance : TaskInstance, widget : TaskWidget):
 
 
 # Handles task completion and widget deletion
-func delete_widget(task_instance : TaskInstance):
+func delete_widget(task_instance : TaskInstance, _cancelled : bool):
 	for widget in task_widgets:
 		if widget.task_info != task_instance:
 			continue
@@ -136,7 +137,7 @@ func update_selected_widget(selected_widget : TaskWidget):
 
 
 # Refreshes widget rendering based on zoom
-func render_widgets():
+func render_widgets(_new_turn : int = 0):
 	for widget in task_widgets:
 		var current_scale = $MapController.current_scale
 		widget.scale = Vector2.ONE * widget_size / current_scale  # Scale widget based on zoom

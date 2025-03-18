@@ -4,22 +4,21 @@ extends Control
 signal return_button_pressed
 
 var current_task_instance : TaskInstance
+var resource_manager : ResourceManager
+var game_timer : GameTimer:
+	set(value):
+		game_timer = value
+		%TaskProgressBar.game_timer = game_timer
+var task_manager : TaskManager
 
 
 func _ready() -> void:
-	# Connect UI buttons to their respective functions
-	%ConfirmEndButton.pressed.connect(
-		func():
-			EventBus.task_cancelled.emit(current_task_instance)
-			visible = false
-	)
+	%ConfirmEndButton.pressed.connect(_confirm_end_early_button_pressed)
 	%CancelEndButton.pressed.connect(_show_task_details)
 	%ReturnButton.pressed.connect(func(): return_button_pressed.emit())
 	%EndEarlyButton.pressed.connect(_show_end_early_page)
-
-	# Connect global events
-	EventBus.task_widget_view_details_pressed.connect(_open_task_details)
-	GlobalTimer.turn_progressed.connect(_on_time_progressed)
+	UIEvent.task_widget_view_details_pressed.connect(_open_task_details)
+	GameManager.turn_progressed.connect(_on_time_progressed)
 
 
 # Opens the task details UI for a given task instance
@@ -52,10 +51,9 @@ func _set_details_ui(task_instance : TaskInstance):
 func _set_end_early_ui(task_instance : TaskInstance):
 	var end_early_resources : Dictionary
 	var resource_increase_end_early : Dictionary
-
-	# Calculate resources available if task is ended early
-	for resource in ResourceManager.resources.keys():
-		var current_resource = ResourceManager.resources[resource]
+	var resources : Dictionary = resource_manager.resources
+	for resource in resources.keys():
+		var current_resource = resources[resource]
 		if task_instance.actual_resources.has(resource):
 			end_early_resources[resource] = task_instance.actual_resources[resource] + current_resource
 			resource_increase_end_early[resource] = task_instance.actual_resources[resource]
@@ -69,9 +67,8 @@ func _set_end_early_ui(task_instance : TaskInstance):
 	var task_data = task_instance.task_data
 	var end_on_time_resources: Dictionary
 	var resource_increase_on_time: Dictionary
-
-	for resource in ResourceManager.resources.keys():
-		var current_resource = ResourceManager.resources[resource]
+	for resource in resources.keys():
+		var current_resource = resources[resource]
 		if task_data.resources_gained.has(resource):
 			end_on_time_resources[resource] = task_data.resources_gained[resource] + current_resource
 			resource_increase_on_time[resource] = task_data.resources_gained[resource]
@@ -111,13 +108,13 @@ func _show_end_early_page():
 
 
 # Updates task details when time progresses
-func _on_time_progressed():
-	if current_task_instance != null and visible:
+func _on_time_progressed(_new_turn : int):
+	if(current_task_instance != null and visible):
 		_set_task_instance(current_task_instance)
 
 
 # Handles the confirmation of ending a task early
 func _confirm_end_early_button_pressed():
-	%TaskCancellation.visible = false
-	visible = false
-	EventBus.task_cancelled.emit(current_task_instance)
+	%TaskCancellation.visible = false;
+	visible = false;
+	task_manager.cancel_task(current_task_instance)

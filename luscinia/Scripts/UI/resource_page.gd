@@ -2,23 +2,19 @@ extends Control
 
 signal return_button_pressed
 
-@export var resources = {}
-@export var available_resources = {}
+var resources = {}
+var available_resources = {}
+var resource_manager : ResourceManager:
+	set(value):
+		resource_manager = value
+		resources = resource_manager.resources
+		available_resources = resource_manager.available_resources
+		update_all_labels()
 
 
 func _ready() -> void:
-	resources = ResourceManager.resources
-	available_resources = ResourceManager.available_resources
-
-	visibility_changed.connect(update_all_labels)
-
-	update_all_labels()
-
+	GameManager.resource_updated.connect(update_all_labels)
 	%ReturnButton.pressed.connect(func(): return_button_pressed.emit())
-
-
-func _process(_delta: float) -> void:
-	update_all_labels()
 
 
 # Updates a specific label with resource information

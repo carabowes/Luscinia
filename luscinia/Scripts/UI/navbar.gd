@@ -2,18 +2,19 @@ extends Control
 
 var has_unread_messages : bool = false
 var message_page_open : bool = false
+var game_timer : GameTimer
 
 
 func _ready() -> void:
 	%ViewResourcesButton.pressed.connect(_view_resource_button_pressed)
 	%SkipTimeButton.pressed.connect(_skip_time_button_pressed)
 	%ViewMessageHistoryButton.pressed.connect(_message_button_pressed)
-	MessageManager.message_sent.connect(_show_notif_bubble)
-	EventBus.all_messages_read.connect(_hide_notif_bubble)
-	EventBus.message_page_open.connect(_message_button_pressed_sprite)
-	EventBus.message_page_close.connect(_message_button_sprite)
-	EventBus.resource_page_open.connect(_resource_button_pressed_sprite)
-	EventBus.resource_page_close.connect(_resource_button_sprite)
+	GameManager.message_sent.connect(_show_notif_bubble)
+	GameManager.all_messages_read.connect(_hide_notif_bubble)
+	UIEvent.message_page_open.connect(_message_button_pressed_sprite)
+	UIEvent.message_page_close.connect(_message_button_sprite)
+	UIEvent.resource_page_open.connect(_resource_button_pressed_sprite)
+	UIEvent.resource_page_close.connect(_resource_button_sprite)
 
 
 # Shows the notification bubble when a new message is received
@@ -46,8 +47,8 @@ func _hide_notif_bubble():
 # if there are unread messages
 func _process(_delta: float):
 	if has_unread_messages and not message_page_open:
-		%ViewMessageHistoryButton.pivot_offset = %ViewMessageHistoryButton.size / 2
-
+		%ViewMessageHistoryButton.pivot_offset = %ViewMessageHistoryButton.size/2
+		# Equation: https://www.desmos.com/calculator/kexu1pkndk
 		var shake_intensity = 45
 		var shake_time = 2.5
 		var time = Time.get_unix_time_from_system()
@@ -55,19 +56,20 @@ func _process(_delta: float):
 		var rot = sin(shake_intensity * time) * c
 		%ViewMessageHistoryButton.rotation = rot / 10
 
+
 # Button press for viewing resources
 func _view_resource_button_pressed():
-	EventBus.navbar_resource_button_pressed.emit()
+	UIEvent.navbar_resource_button_pressed.emit()
 
 
 # Button press for skipping time (next turn)
 func _skip_time_button_pressed():
-	GlobalTimer.next_turn(GlobalTimer.time_step)
+	GameManager.next_turn(game_timer)
 
 
 # Button press for viewing messages
 func _message_button_pressed():
-	EventBus.navbar_message_button_pressed.emit()
+	UIEvent.navbar_message_button_pressed.emit()
 
 
 # Update UI when the message page is opened (update button icon and reset shake effect)

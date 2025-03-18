@@ -37,8 +37,7 @@ func reply(response: Response):
 
 	# If the message was unread before, emit an event indicating it has been read
 	if message_status == MessageStatus.UNREAD:
-		EventBus.message_read.emit(self)
-
+		GameManager.message_read.emit(self)
 	message_status = MessageStatus.REPLIED
 
 
@@ -46,5 +45,5 @@ func reply(response: Response):
 func read():
 	# If the message is currently unread, mark it as read and emit an event
 	if message_status == MessageStatus.UNREAD:
-		EventBus.message_read.emit(self)
+		GameManager.message_read.emit(self)
 		message_status = MessageStatus.READ

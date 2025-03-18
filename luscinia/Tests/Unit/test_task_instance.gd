@@ -12,7 +12,6 @@ func before_each():
 		task_data,
 		test_message
 	)
-	print(test_message.sender)
 	task_instance.current_progress = 4
 	task_instance.extra_time = 2
 	task_instance.current_location = Vector2(5,5)

@@ -8,6 +8,15 @@ enum MessagePageState {
 	MESSAGE_RESPONSE
 }
 
+var game_timer : GameTimer:
+	set(value):
+		game_timer = value
+		%MessagesReceivedPage.game_timer = game_timer
+		%MessageResponsePage.game_timer = game_timer
+var resource_manager : ResourceManager:
+	set(value):
+		resource_manager = value
+		%MessageResponsePage.resource_manager = resource_manager
 var current_message_page_state : MessagePageState = MessagePageState.CLOSED
 var response_page_message : MessageInstance
 
@@ -31,13 +40,13 @@ func _ready() -> void:
 	%MessagePage.back_button_pressed.connect(\
 	func(): _change_page_state(MessagePageState.MESSAGE_RECEIVED))
 
-	EventBus.message_responded.connect(_on_message_responded)
+	GameManager.message_responded.connect(_on_message_responded)
 
 	# Connect the response option selected on the MessageResponsePage to emit the response event
 	%MessageResponsePage.response_option_selected.connect(
 		func(response : Response, message_instance : MessageInstance):
-			EventBus.navbar_message_button_pressed.emit()
-			EventBus.message_responded.emit(response, message_instance)
+			UIEvent.navbar_message_button_pressed.emit()
+			GameManager.message_responded.emit(response, message_instance)
 	)
 
 	# Connect the back button on the MessageResponsePage to return to MESSAGE_VIEWER state

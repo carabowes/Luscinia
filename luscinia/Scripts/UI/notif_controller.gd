@@ -1,6 +1,5 @@
 extends Control
 
-@export var message_board : MessageBoard
 @export var task_widget_renderer : TaskWidgetRenderer
 @export var start_task_notif_label: Label
 @export var end_task_notif_label: Label
@@ -14,14 +13,14 @@ var task_end_notif_text = ""
 var got_report: bool = false
 
 func _ready() -> void:
-	GlobalTimer.connect("turn_progressed",show_turn_notif)
+	GameManager.connect("turn_progressed",show_turn_notif)
 	#message_board.connect("resource_spent", format_spent_resource_text)
-	EventBus.task_started.connect(show_task_start_notif)
+	GameManager.task_started.connect(show_task_start_notif)
 	#task_widget_renderer.connect("resource_gained", format_gained_resource_text)
-	EventBus.task_finished.connect(show_task_end_notif)
+	GameManager.task_finished.connect(show_task_end_notif)
 
 
-func show_task_end_notif(task: TaskInstance):
+func show_task_end_notif(task: TaskInstance, _cancelled : bool):
 	if task != null :
 		if task.task_data.resources_gained == {}:
 			return
@@ -65,7 +64,7 @@ func show_task_start_notif(task: TaskInstance):
 	tween2.tween_property(%task_start_notification,"position", Vector2(-360,205),0.2)
 
 
-func show_turn_notif():
+func show_turn_notif(_new_turn : int):
 	if(!showing):
 		showing = true
 		await turn_notif_coroutine()

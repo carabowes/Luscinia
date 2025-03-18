@@ -1,7 +1,8 @@
 extends GutTest
 
-var ui_timer_instance : Node
+var ui_timer_instance : UITimer
 var ui_timer_scene : PackedScene
+var timer : GameTimer
 
 var timer_label_parameters = ParameterFactory.named_parameters(
 	['minutes', 'seconds', 'time_label_result'],
@@ -27,11 +28,15 @@ var clock_visual_parameters = ParameterFactory.named_parameters(
 
 
 func before_all():
-	ui_timer_scene = load("res://Scenes/timer.tscn")
+	ui_timer_scene = load("res://Scenes/UI/timer.tscn")
 
 
 func before_each():
-	GlobalTimer.reset_clock()
+	ui_timer_instance = ui_timer_scene.instantiate()
+	timer = GameTimer.new(5, 0, 60, 0, 0)
+	add_child_autofree(timer)
+	add_child_autofree(ui_timer_instance)
+	ui_timer_instance.game_timer = timer
 
 
 func test_ui_timer_script_exists():
@@ -41,20 +46,14 @@ func test_ui_timer_script_exists():
 
 
 func test_ui_timer_scene_exists():
-	ui_timer_instance = ui_timer_scene.instantiate()
-	add_child_autofree(ui_timer_instance)
 	assert_not_null(ui_timer_instance)
 
 
 func test_clock_visual_exists():
-	ui_timer_instance = ui_timer_scene.instantiate()
-	add_child_autofree(ui_timer_instance)
 	assert_not_null(ui_timer_instance.get_node_or_null("%ClockVisual"))
 
 
 func test_timer_label_exists():
-	ui_timer_instance = ui_timer_scene.instantiate()
-	add_child_autofree(ui_timer_instance)
 	assert_not_null(ui_timer_instance.get_node_or_null("%TimerLabel"))
 
 
@@ -65,14 +64,10 @@ func test_day_label_exists():
 
 
 func test_clock_label_exists():
-	ui_timer_instance = ui_timer_scene.instantiate()
-	add_child_autofree(ui_timer_instance)
 	assert_not_null(ui_timer_instance.get_node_or_null("%ClockLabel"))
 
 
 func test_clock_visual_has_textures():
-	ui_timer_instance = ui_timer_scene.instantiate()
-	add_child_autofree(ui_timer_instance)
 	var clock_visual : TextureProgressBar = ui_timer_instance.get_node("%ClockVisual")
 	assert_not_null(clock_visual.texture_under)
 	assert_not_null(clock_visual.texture_progress)
@@ -80,8 +75,6 @@ func test_clock_visual_has_textures():
 
 
 func test_clock_visual_correct_display_settings():
-	ui_timer_instance = ui_timer_scene.instantiate()
-	add_child_autofree(ui_timer_instance)
 	var clock_visual : TextureProgressBar = ui_timer_instance.get_node("%ClockVisual")
 	assert_eq(clock_visual.fill_mode, TextureProgressBar.FillMode.FILL_COUNTER_CLOCKWISE)
 	assert_true(clock_visual.nine_patch_stretch)
@@ -90,70 +83,59 @@ func test_clock_visual_correct_display_settings():
 
 
 func test_clock_visual_max_value(params = use_parameters(clock_visual_parameters)):
-	GlobalTimer.set_time(params.minutes,params.seconds)
-	ui_timer_instance = ui_timer_scene.instantiate()
-	add_child_autofree(ui_timer_instance)
+	timer.set_time(params.minutes,params.seconds)
+	ui_timer_instance.game_timer = timer
 	assert_eq(ui_timer_instance.get_node("%ClockVisual").max_value, params.max_value_result)
 
 
 func test_clock_visual_value(params = use_parameters(clock_visual_parameters)):
-	GlobalTimer.set_time(params.minutes,params.seconds)
-	ui_timer_instance = ui_timer_scene.instantiate()
-	add_child_autofree(ui_timer_instance)
+	timer.set_time(params.minutes,params.seconds)
+	ui_timer_instance.game_timer = timer
 	assert_eq(ui_timer_instance.get_node("%ClockVisual").value, params.max_value_result)
 
 
 func test_clock_visual_min_value():
-	GlobalTimer.set_time(50,50)
-	ui_timer_instance = ui_timer_scene.instantiate()
-	add_child_autofree(ui_timer_instance)
+	timer.set_time(50,50)
+	ui_timer_instance.game_timer = timer
 	assert_eq(ui_timer_instance.get_node("%ClockVisual").min_value, 0.0)
 
 
 func test_clock_visual_updates():
-	GlobalTimer.set_time(1,0)
-	GlobalTimer.start_game()
-	ui_timer_instance = ui_timer_scene.instantiate()
+	timer.set_time(1,0)
+	ui_timer_instance.game_timer = timer
 	var clock_visual : TextureProgressBar = ui_timer_instance.get_node("%ClockVisual")
-	add_child_autofree(ui_timer_instance)
 	for i in range(15):
-		gut.simulate(GlobalTimer, 1, 5)
+		gut.simulate(timer, 1, 5)
 		gut.simulate(ui_timer_instance, 1, 5)
-		assert_eq(clock_visual.value, float(GlobalTimer.current_time_left))
+		assert_eq(clock_visual.value, float(timer.current_time_left))
 
 
 func test_timer_label_values(params = use_parameters(timer_label_parameters)):
-	GlobalTimer.set_time(params.minutes,params.seconds)
-	ui_timer_instance = ui_timer_scene.instantiate()
-	add_child_autofree(ui_timer_instance)
+	timer.set_time(params.minutes,params.seconds)
+	ui_timer_instance.game_timer = timer
 	assert_eq(ui_timer_instance.get_node("%TimerLabel").text, params.time_label_result)
 
 
 func test_day_label_values_update():
-	GlobalTimer.set_time(0,1)
-	GlobalTimer.time_step = 60 * 24
-	GlobalTimer.start_game()
-	GlobalTimer.in_game_minutes = 0
-	GlobalTimer.in_game_hours = 0
-	GlobalTimer.in_game_days = 1
-	GlobalTimer.turns = 0
-	ui_timer_instance = ui_timer_scene.instantiate()
-	add_child_autofree(ui_timer_instance)
+	timer.set_time(0,1)
+	timer.time_step = 60 * 24
+	timer.in_game_minutes = 0
+	timer.in_game_hours = 0
+	timer.in_game_days = 1
+	timer.current_turn = 0
+	ui_timer_instance.game_timer = timer
 	var day_label : Label = ui_timer_instance.get_node("%DayLabel")
 	for i in range(15):
 		gut.simulate(ui_timer_instance, 1, 1)
 		assert_eq(day_label.text, "Day " + str(i+1))
-		gut.simulate(GlobalTimer, 1, 1)
+		gut.simulate(timer, 1, 1)
 
 
 func test_clock_label_values_update():
-	GlobalTimer.set_time(0,1)
-	GlobalTimer.time_step = 7
-	GlobalTimer.start_game()
-	ui_timer_instance = ui_timer_scene.instantiate()
-	add_child_autofree(ui_timer_instance)
+	timer.set_time(0,1)
+	timer.time_step = 7
 	var day_label : Label = ui_timer_instance.get_node("%ClockLabel")
 	for i in range(15):
 		gut.simulate(ui_timer_instance, 1, 1)
-		assert_eq(day_label.text, "%02d:%02d" % [GlobalTimer.in_game_hours, GlobalTimer.in_game_minutes])
-		gut.simulate(GlobalTimer, 1, 1)
+		assert_eq(day_label.text, "%02d:%02d" % [timer.in_game_hours, timer.in_game_minutes])
+		gut.simulate(timer, 1, 1)
