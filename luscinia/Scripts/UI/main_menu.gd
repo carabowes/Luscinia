@@ -2,6 +2,8 @@ extends Control
 
 # Scenario resource that will be loaded when Scenario 1 is selected
 @export var scenario1_resource: Scenario
+var cd_minutes : int
+var cd_seconds : int
 
 
 # Called when the node enters the scene tree (initialisation)
@@ -40,14 +42,16 @@ func show_modes_button():
 
 # Sets the game mode to single-player mode and shows the scenario selection
 func single_mode():
-	GlobalTimer.set_time(1, 0)  # Set the game time step for single mode
-	show_scenarios_button()  # Show scenario selection buttons
+	cd_minutes = 1
+	cd_seconds = 0
+	show_scenarios_button()
 
 
 # Sets the game mode to discussion mode and shows the scenario selection
 func discuss_mode():
-	GlobalTimer.set_time(5, 0)  # Set the game time step for discussion mode
-	show_scenarios_button()  # Show scenario selection buttons
+	cd_minutes = 5
+	cd_seconds = 0
+	show_scenarios_button()
 
 
 # Handles the back button press by hiding scenario buttons and showing play button
@@ -87,11 +91,7 @@ func hide_scenario_button():
 # Changes to Scenario 1 by applying its settings and starting the game
 func change_to_scenario1():
 	if scenario1_resource:
-		# Set the selected scenario
-		ScenarioManager.set_scenario(scenario1_resource)
-
-		# Start the game and switch scenes
-		GlobalTimer.start_game()
-		get_tree().change_scene_to_file("res://main.tscn")
+		# Set the scenario and apply its settings
+		GameManager.start_game(scenario1_resource, cd_minutes, cd_seconds)
 	else:
 		print("Error: Scenario 1 resource not assigned")

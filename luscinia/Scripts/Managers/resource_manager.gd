@@ -1,22 +1,7 @@
+class_name ResourceManager
 extends Node2D
 
-signal resource_removed(resource: String, amt: int)
-
-@export var resources = {
-	"people": 60,
-	"funds": 20000000,
-	"vehicles": 50,
-	"supplies": 10000
-}
-
-@export var available_resources = {
-	"people": 60,
-	"vehicles": 50
-}
-
-@export var relationships_to_update: Dictionary
-
-var resource_textures = {
+static var resource_textures = {
 	"people": preload("res://Sprites/UI/User.png"),
 	"funds": preload("res://Sprites/UI/Dollar sign.png"),
 	"vehicles": preload("res://Sprites/UI/Truck.png"),
@@ -24,14 +9,28 @@ var resource_textures = {
 }
 
 
+var resources = {}
+var available_resources = {}
+var relationships_to_update: Dictionary
+
+
+func _init(resources : Dictionary, available_resources : Dictionary) -> void:
+	self.resources = resources
+	self.available_resources = available_resources
+	GameManager.task_started.connect(apply_start_task_resources)
+	GameManager.task_started.connect(queue_relationship_change)
+	GameManager.task_finished.connect(apply_end_task_resources)
+	GameManager.task_finished.connect(apply_relationship_change)
+
+
 # Rounds a floating-point value to a specified number of decimal places
-func round_to_dp(value: float, dp: int) -> float:
+static func round_to_dp(value: float, dp: int) -> float:
 	var factor = pow(10, dp)
 	return round(value * factor) / factor
 
 
 # Formats large numerical resource values into readable text (e.g., "1.5M" for millions)
-func format_resource_value(value: int, decimal_points: int) -> String:
+static func format_resource_value(value: int, decimal_points: int) -> String:
 	if value >= 1000000:
 		return str(round_to_dp(value / 1000000.0, decimal_points)) + "M"
 	if value >= 1000:
@@ -48,17 +47,19 @@ func add_resources(resource_name: String, amount: int):
 			resources[resource_name] = clamped
 	else:
 		print("Resource not found:", resource_name)
+	GameManager.resource_updated.emit()
 
 
 # Removes resources from the total resource pool and emits a signal if necessary
 func remove_resources(resource_name: String, amount: int):
 	if resource_name in resources:
 		resources[resource_name] -= amount
-		resource_removed.emit(resource_name, amount)  # Notify listeners of the removal
 		if resources[resource_name] < 0:
 			resources[resource_name] = 0
 	else:
 		print("Resource not found:", resource_name)
+	GameManager.resource_updated.emit()
+	GameManager.resource_removed.emit(resource_name, amount)
 
 
 # Adds to the available resources pool
@@ -67,17 +68,18 @@ func add_available_resources(resource_name: String, amount: int):
 		available_resources[resource_name] += amount
 	else:
 		print("Resource not found:", resource_name)
+	GameManager.resource_updated.emit()
 
 
 # Removes available resources and ensures they don't drop below zero
 func remove_available_resources(resource_name: String, amount: int):
 	if resource_name in resources:
 		available_resources[resource_name] -= amount
-		resource_removed.emit(resource_name, amount)
 		if available_resources[resource_name] < 0:
 			available_resources[resource_name] = 0
 	else:
 		print("Resource not found:", resource_name)
+	GameManager.resource_updated.emit()
 
 
 # Adds or removes available resources depending on whether the amount is positive or negative
@@ -95,14 +97,17 @@ func has_sufficient_resource(resource_name: String, amount: int) -> bool:
 
 
 # Deducts resources when a task starts
-func apply_start_task_resources(resources_required: Dictionary):
+func apply_start_task_resources(task_instance : TaskInstance):
+	var resources_required = task_instance.task_data.resources_required
 	for resource_name in resources_required:
 		var resource_cost = resources_required[resource_name]
 		remove_resources(resource_name, resource_cost)
 
 
 # Adjusts resources when a task ends, considering both resource costs and gains
-func apply_end_task_resources(resources_gained: Dictionary, resources_required: Dictionary):
+func apply_end_task_resources(task_instance : TaskInstance, cancelled : bool):
+	var resources_gained = task_instance.get_gained_resources(cancelled)
+	var resources_required = task_instance.task_data.resources_required
 	for resource_name in resources.keys():
 		# Ensure dictionaries contain all resource keys with a default value of 0
 		if not resources_gained.has(resource_name):
@@ -124,7 +129,7 @@ func apply_end_task_resources(resources_gained: Dictionary, resources_required: 
 
 
 # Returns the texture associated with a given resource name
-func get_resource_texture(resource_name: String) -> Texture:
+static func get_resource_texture(resource_name: String) -> Texture:
 	if resource_name in resource_textures:
 		return resource_textures[resource_name]
 	print("Texture for resource not found:", resource_name)
@@ -132,12 +137,16 @@ func get_resource_texture(resource_name: String) -> Texture:
 
 
 # Queues a relationship change, storing it in the dictionary for later processing
-func queue_relationship_change(task_id: String, relationship_change: int):
-	relationships_to_update[task_id] = relationship_change
+func queue_relationship_change(task_instance : TaskInstance):
+	relationships_to_update[task_instance.task_data.task_id] = task_instance.relationship_change
 
 
 # Applies a relationship change to a sender based on task progress
-func apply_relationship_change(task_id: String, sender: Sender, task_progress: float):
+func apply_relationship_change(task_instance : TaskInstance, _cancelled : bool):
+	var task_id : String = task_instance.task_data.task_id
+	var sender : Sender = task_instance.sender
+	var task_progress = task_instance.get_completion_rate()
+
 	if not relationships_to_update.has(task_id) or sender == null:
 		return
 

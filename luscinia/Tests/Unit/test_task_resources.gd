@@ -5,7 +5,7 @@ var task_resources_instance : TaskResources
 var test_add_elements_paramaters = ParameterFactory.named_parameters(
 	['resources', 'expected_keys', 'expected_values'],
 	[
-		[ResourceManager.resources, ResourceManager.resources.keys(), ResourceManager.resources.values()],
+		[{"funds": 100, "people": 50, "supplies": 50, "vehicles": 1000}, ["funds", "people", "supplies", "vehicles"], [100, 50, 50, 1000]],
 		[{}, [], []],
 		[{"test": "test", "test2": 10}, ["test2"], [10]],
 		[{"test": 0, "test2": 5.5, "test3": 7, "test4": 9}, ["test3", "test4"], [7, 9]]
@@ -19,9 +19,9 @@ func before_each():
 
 func test_getters_and_setters():
 	assert_eq(task_resources_instance.resources, {}, "Resources should be empty initially")
-	task_resources_instance.resources = ResourceManager.resources
+	task_resources_instance.resources = Scenario.default_scenario.resources
 	assert_eq(task_resources_instance.get_child_count(), 4)
-	assert_eq(task_resources_instance.resources, ResourceManager.resources)
+	assert_eq(task_resources_instance.resources, Scenario.default_scenario.resources)
 
 
 func test_add_elements_normal_values(params = use_parameters(test_add_elements_paramaters)):

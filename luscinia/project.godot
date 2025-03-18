@@ -17,12 +17,8 @@ config/icon="res://Sprites/icon.svg"
 
 [autoload]
 
-ResourceManager="*res://Scripts/Resources/resource_manager.gd"
-GlobalTimer="*res://Scripts/global_timer.gd"
-MessageManager="*res://Scenes/message_manager.tscn"
-EventBus="*res://Scripts/event_bus.gd"
-TaskManager="*res://Scripts/task_manager.gd"
-ScenarioManager="*res://Scripts/Resources/scenario_manager.gd"
+GameManager="*res://Scripts/Managers/game_manager.gd"
+UIEvent="*res://Scripts/Managers/ui_event_bus.gd"
 
 [display]
 

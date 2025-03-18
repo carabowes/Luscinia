@@ -10,6 +10,8 @@ var option_buttons : Array[Button]
 var option_button_group : ButtonGroup
 
 var current_selection : int = 0
+var game_timer : GameTimer
+var resource_manager : ResourceManager
 
 
 func _ready() -> void:
@@ -85,8 +87,8 @@ func _select_option_button(index : int, message : Message):
 func _set_sufficient_resources(resources : Dictionary):
 	var insufficient_resources = {}
 	for resource in resources:
-		if not ResourceManager.has_sufficient_resource(resource, resources[resource]):
-			# If not, mark the resource as insufficient
+		var resource_amount = resources[resource]
+		if not resource_manager.has_sufficient_resource(resource, resources[resource]):
 			insufficient_resources[resource] = -1
 
 	# If there are no insufficient resources, allow the ConfirmButton to be visible and valid
@@ -118,8 +120,9 @@ func _render_response_info(response : Response, message : Message):
 			%EstimatedTimeLabel.visible = false
 		else:
 			%EstimatedTimeLabel.visible = true
-			%EstimatedTime.text = GlobalTimer.turns_to_time_string(
-			task.expected_completion_time, "hr", "min", "s", true, true)
+			%EstimatedTime.text = GameTimer.turns_to_time_string(
+				game_timer, task.expected_completion_time, "hr", "min", "s", true, true
+			)
 		%GainLabel.visible =  task.resources_gained != {}
 		%GainResources.resources = task.resources_gained
 		%CostLabel.visible = task.resources_required != {}

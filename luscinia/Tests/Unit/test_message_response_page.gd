@@ -5,16 +5,22 @@ var test_task : TaskData
 var test_response : Response
 var test_message : Message 
 var test_instance : MessageInstance
+var resource_manager : ResourceManager
 
 func before_each():
+	resource_manager = ResourceManager.new({"funds": 100}, {})
+	add_child_autofree(resource_manager)
 	page_instance = load("res://Scenes/UI/message_response_page.tscn").instantiate()
+	page_instance.resource_manager = resource_manager
 	add_child_autofree(page_instance)
+	var timer : GameTimer = GameTimer.new(5,0,60,0,1)
+	add_child_autofree(timer)
+	page_instance.game_timer = timer
 	test_task = TaskData.new("id", "Task", null, Vector2.ZERO, {"funds": 100}, {"funds": 100}, 4)
 	test_response = Response.new("Response", "Text", 0, test_task)
 	test_message = Message.new("Message", [test_response, test_response])
 	test_message.default_response = -1
 	test_instance = MessageInstance.new(test_message)
-	GlobalTimer.time_step = 60
 
 
 
@@ -57,19 +63,19 @@ func test_default_response():
 
 
 func test_insufficient_resources():
-	page_instance._set_sufficient_resources({"funds": ResourceManager.resources["funds"] + 1})
+	page_instance._set_sufficient_resources({"funds": resource_manager.resources["funds"] + 1})
 	assert_eq(page_instance.get_node("%InvalidResourcesLabel").visible, true)
 	assert_eq(page_instance.get_node("%ConfirmButton").visible, false)
 
 
 func test_sufficient_resources():
-	page_instance._set_sufficient_resources({"funds": ResourceManager.resources["funds"]})
+	page_instance._set_sufficient_resources({"funds": resource_manager.resources["funds"]})
 	assert_eq(page_instance.get_node("%InvalidResourcesLabel").visible, false)
 	assert_eq(page_instance.get_node("%ConfirmButton").visible, true)
 
 
 func test_insufficient_resources_is_called():
-	test_message.responses[0].task.resources_required["funds"] = ResourceManager.resources["funds"] + 1
+	test_message.responses[0].task.resources_required["funds"] = resource_manager.resources["funds"] + 1
 	page_instance._render_response_info(test_message.responses[0], test_message)
 	assert_eq(page_instance.get_node("%InvalidResourcesLabel").visible, true)
 
