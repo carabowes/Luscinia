@@ -6,6 +6,8 @@ extends Control
 
 var showing: bool = false
 
+var show_time: bool = false
+
 var task_start_notif_text = ""
 var got_name: bool = false
 
@@ -65,18 +67,22 @@ func show_task_start_notif(task: TaskInstance):
 
 
 func show_turn_notif(_new_turn : int):
-	if(!showing):
-		showing = true
+	if(!show_time):
+		show_time = true
 		await turn_notif_coroutine()
 
 
 func turn_notif_coroutine():
+	$time_skip_notification.position = Vector2(-136, 3) 
 	var tween1 = get_tree().create_tween()
+	print("start show")
 	#og -360, 205
 	#center 0, 205
-	tween1.tween_property(%time_skip_notification,"position", Vector2(0,205),0.2)
-	await get_tree().create_timer(0.5).timeout #2s
+	tween1.tween_property($time_skip_notification,"position", Vector2(0,3),0.2)
+	await tween1.finished
+	await get_tree().create_timer(0.3).timeout
 	var tween2 = get_tree().create_tween()
-	tween2.tween_property(%time_skip_notification,"position", Vector2(-360,205),0.2)
-	await get_tree().create_timer(0.2).timeout #2s
-	showing = false
+	tween2.tween_property($time_skip_notification,"position", Vector2(-136,3),0.2)
+	await tween2.finished
+	print("can show")
+	show_time = false

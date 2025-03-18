@@ -97,9 +97,9 @@ end_task_notif_label = NodePath("task_end_notification/end_text")
 [node name="task_start_notification" type="ColorRect" parent="pages/notifications"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -360.0
-offset_top = 205.0
-offset_bottom = 333.0
+offset_left = -64.0
+offset_top = -3.0
+offset_bottom = 605.0
 color = Color(0.254902, 0.560784, 0.870588, 1)
 
 [node name="start_text" type="Label" parent="pages/notifications/task_start_notification"]
@@ -110,15 +110,59 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 13
+text = "Task Start
+
+       : -1000
+
+       : -1000
+
+       : -1000
+
+       : -1000"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Person" type="TextureRect" parent="pages/notifications/task_start_notification"]
+self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
+offset_top = 248.0
+offset_right = 24.0
+offset_bottom = 272.0
+texture = ExtResource("13_6oexy")
+expand_mode = 1
+
+[node name="Supplies" type="TextureRect" parent="pages/notifications/task_start_notification"]
+self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
+offset_left = 2.0
+offset_top = 292.0
+offset_right = 22.0
+offset_bottom = 313.0
+texture = ExtResource("14_bdx1m")
+expand_mode = 1
+
+[node name="Person3" type="TextureRect" parent="pages/notifications/task_start_notification"]
+self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
+offset_top = 332.0
+offset_right = 24.0
+offset_bottom = 356.0
+texture = ExtResource("15_31668")
+expand_mode = 1
+
+[node name="Person4" type="TextureRect" parent="pages/notifications/task_start_notification"]
+self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
+offset_left = 3.0
+offset_top = 377.0
+offset_right = 23.0
+offset_bottom = 398.0
+texture = ExtResource("16_clu71")
+expand_mode = 1
 
 [node name="task_end_notification" type="ColorRect" parent="pages/notifications"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -360.0
-offset_top = 205.0
-offset_bottom = 333.0
+offset_left = 360.0
+offset_top = -3.0
+offset_right = 424.0
+offset_bottom = 605.0
 color = Color(0.254902, 0.560784, 0.870588, 1)
 
 [node name="end_text" type="Label" parent="pages/notifications/task_end_notification"]
@@ -129,15 +173,58 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 13
+text = "Task Start
+
+       : -1000
+
+       : -1000
+
+       : -1000
+
+       : -1000"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Person" type="TextureRect" parent="pages/notifications/task_end_notification"]
+self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
+offset_top = 248.0
+offset_right = 24.0
+offset_bottom = 272.0
+texture = ExtResource("13_6oexy")
+expand_mode = 1
+
+[node name="Supplies" type="TextureRect" parent="pages/notifications/task_end_notification"]
+self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
+offset_left = 2.0
+offset_top = 292.0
+offset_right = 22.0
+offset_bottom = 313.0
+texture = ExtResource("14_bdx1m")
+expand_mode = 1
+
+[node name="Person3" type="TextureRect" parent="pages/notifications/task_end_notification"]
+self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
+offset_top = 332.0
+offset_right = 24.0
+offset_bottom = 356.0
+texture = ExtResource("15_31668")
+expand_mode = 1
+
+[node name="Person4" type="TextureRect" parent="pages/notifications/task_end_notification"]
+self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
+offset_left = 3.0
+offset_top = 377.0
+offset_right = 23.0
+offset_bottom = 398.0
+texture = ExtResource("16_clu71")
+expand_mode = 1
 
 [node name="time_skip_notification" type="ColorRect" parent="pages/notifications"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -360.0
-offset_top = 205.0
-offset_bottom = 333.0
+offset_left = -136.0
+offset_top = 3.0
+offset_bottom = 37.0
 color = Color(0.254902, 0.560784, 0.870588, 1)
 
 [node name="skip_text" type="Label" parent="pages/notifications/time_skip_notification"]
@@ -147,7 +234,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 48
 text = "Time Skipped!"
 horizontal_alignment = 1
 vertical_alignment = 1
