@@ -73,7 +73,7 @@ func show_turn_notif(_new_turn : int):
 
 
 func turn_notif_coroutine():
-	$time_skip_notification.position = Vector2(-136, 3) 
+	$time_skip_notification.position = Vector2(-136, 3)
 	var tween1 = get_tree().create_tween()
 	print("start show")
 	#og -360, 205
