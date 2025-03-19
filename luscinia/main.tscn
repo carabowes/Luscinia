@@ -97,7 +97,7 @@ end_task_notif_label = NodePath("task_end_notification/end_text")
 [node name="task_start_notification" type="ColorRect" parent="pages/notifications"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -64.0
+offset_left = -72.0
 offset_top = -3.0
 offset_bottom = 605.0
 color = Color(0.254902, 0.560784, 0.870588, 1)
@@ -112,13 +112,14 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 13
 text = "Task Start
 
-       : -1000
 
-       : -1000
 
-       : -1000
 
-       : -1000"
+
+
+
+
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -131,6 +132,15 @@ offset_bottom = 272.0
 texture = ExtResource("13_6oexy")
 expand_mode = 1
 
+[node name="StartPerson" type="Label" parent="pages/notifications/task_start_notification/Person"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 24.0
+offset_top = 3.0
+offset_right = 71.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 14
+
 [node name="Supplies" type="TextureRect" parent="pages/notifications/task_start_notification"]
 self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
 layout_mode = 0
@@ -141,7 +151,15 @@ offset_bottom = 313.0
 texture = ExtResource("14_bdx1m")
 expand_mode = 1
 
-[node name="Person3" type="TextureRect" parent="pages/notifications/task_start_notification"]
+[node name="StartSupplies" type="Label" parent="pages/notifications/task_start_notification/Supplies"]
+unique_name_in_owner = true
+offset_left = 23.0
+offset_top = 1.0
+offset_right = 70.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 14
+
+[node name="Funds" type="TextureRect" parent="pages/notifications/task_start_notification"]
 self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
 layout_mode = 0
 offset_top = 332.0
@@ -150,7 +168,15 @@ offset_bottom = 356.0
 texture = ExtResource("15_31668")
 expand_mode = 1
 
-[node name="Person4" type="TextureRect" parent="pages/notifications/task_start_notification"]
+[node name="StartFunds" type="Label" parent="pages/notifications/task_start_notification/Funds"]
+unique_name_in_owner = true
+offset_left = 24.0
+offset_top = 3.0
+offset_right = 71.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 14
+
+[node name="Vehicles" type="TextureRect" parent="pages/notifications/task_start_notification"]
 self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
 layout_mode = 0
 offset_left = 3.0
@@ -160,12 +186,20 @@ offset_bottom = 398.0
 texture = ExtResource("16_clu71")
 expand_mode = 1
 
+[node name="StartVehicles" type="Label" parent="pages/notifications/task_start_notification/Vehicles"]
+unique_name_in_owner = true
+offset_left = 23.0
+offset_top = 1.0
+offset_right = 70.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 14
+
 [node name="task_end_notification" type="ColorRect" parent="pages/notifications"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 360.0
 offset_top = -3.0
-offset_right = 424.0
+offset_right = 432.0
 offset_bottom = 605.0
 color = Color(0.254902, 0.560784, 0.870588, 1)
 
@@ -177,15 +211,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 13
-text = "Task Start
+text = "Task End
 
-       : -1000
 
-       : -1000
 
-       : -1000
 
-       : -1000"
+
+
+
+
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -198,6 +233,14 @@ offset_bottom = 272.0
 texture = ExtResource("13_6oexy")
 expand_mode = 1
 
+[node name="EndPerson" type="Label" parent="pages/notifications/task_end_notification/Person"]
+unique_name_in_owner = true
+offset_left = 24.0
+offset_top = 2.0
+offset_right = 71.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 14
+
 [node name="Supplies" type="TextureRect" parent="pages/notifications/task_end_notification"]
 self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
 layout_mode = 0
@@ -208,6 +251,14 @@ offset_bottom = 313.0
 texture = ExtResource("14_bdx1m")
 expand_mode = 1
 
+[node name="EndSupplies" type="Label" parent="pages/notifications/task_end_notification/Supplies"]
+unique_name_in_owner = true
+offset_left = 23.0
+offset_top = 1.0
+offset_right = 70.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 14
+
 [node name="Person3" type="TextureRect" parent="pages/notifications/task_end_notification"]
 self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
 layout_mode = 0
@@ -216,6 +267,14 @@ offset_right = 24.0
 offset_bottom = 356.0
 texture = ExtResource("15_31668")
 expand_mode = 1
+
+[node name="EndFunds" type="Label" parent="pages/notifications/task_end_notification/Person3"]
+unique_name_in_owner = true
+offset_left = 24.0
+offset_top = 3.0
+offset_right = 71.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 14
 
 [node name="Person4" type="TextureRect" parent="pages/notifications/task_end_notification"]
 self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
@@ -226,6 +285,14 @@ offset_right = 23.0
 offset_bottom = 398.0
 texture = ExtResource("16_clu71")
 expand_mode = 1
+
+[node name="EndVehicles" type="Label" parent="pages/notifications/task_end_notification/Person4"]
+unique_name_in_owner = true
+offset_left = 23.0
+offset_top = 1.0
+offset_right = 70.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 14
 
 [node name="time_skip_notification" type="ColorRect" parent="pages/notifications"]
 unique_name_in_owner = true
