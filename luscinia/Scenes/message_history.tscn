@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dveuyhljvjf4q"]
-
-[ext_resource type="Script" path="res://Scripts/task_message/message_history.gd" id="11_da54n"]
+[gd_scene format=3 uid="uid://bbwwfurghhtd6"]
 
 [node name="MessageHistory" type="Control"]
 layout_mode = 3
@@ -12,7 +10,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("11_da54n")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1

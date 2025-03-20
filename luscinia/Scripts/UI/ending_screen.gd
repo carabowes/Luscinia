@@ -1,6 +1,5 @@
 extends Control
 
-@export var turns_to_end: int
 @export var notifications: Control
 
 @export_group("Ending Screen Text Labels")
@@ -21,23 +20,24 @@ var supplies_amt: int = 0
 var funds_amt: int = 0
 var vehicle_amt: int = 0
 
+var resource_manager : ResourceManager
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	%RestartButton.connect("pressed", _restart_game)
 	%ExitButton.connect("pressed", _exit_game)
-	ResourceManager.connect("resource_removed", format_resource_taken)
+	GameManager.resource_removed.connect(format_resource_taken)
+	GameManager.game_finished.connect(end_game)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if(GlobalTimer.turns == turns_to_end):
-		notifications.visible = false
-		format_resource_remaining()
-		days_amt.text = "%s Turns" % str(GlobalTimer.turns)
-		GlobalTimer.pause_game()
-		self.visible = true
-	else:
-		self.visible = false
+func end_game(game : Game):
+	notifications.visible = false
+	format_resource_remaining()
+	days_amt.text = "%s Turns" % str(game.game_timer.current_turn)
+	GameManager.pause_game()
+	self.visible = true
 
 
 func format_resource_taken(resource: String, amt: int):
@@ -57,22 +57,17 @@ func format_resource_taken(resource: String, amt: int):
 
 
 func format_resource_remaining():
-	remain_personnel.text = "%s" % ResourceManager.available_resources["people"]
-	remain_supplies.text = "%s" % ResourceManager.resources["supplies"]
-	remain_funds.text = "%s" % ResourceManager.format_resource_value(ResourceManager.resources["funds"],0)
-	remain_vehicles.text = "%s" % ResourceManager.available_resources["vehicles"]
+	var available_resources = resource_manager.available_resources
+	var resources = resource_manager.resources
+	remain_personnel.text = "%s" % available_resources["people"]
+	remain_supplies.text = "%s" % resources["supplies"]
+	remain_funds.text = "%s" % ResourceManager.format_resource_value(resources["funds"],0)
+	remain_vehicles.text = "%s" % available_resources["vehicles"]
 
 
 func _restart_game():
-	GlobalTimer.reset_clock()
-	ResourceManager.reset_resources()
-	MessageManager.reset_messages()
-	get_tree().reload_current_scene()
-	GlobalTimer.start_game()
+	GameManager.restart_game()
 
 
 func _exit_game():
-	GlobalTimer.reset_clock()
-	ResourceManager.reset_resources()
-	MessageManager.reset_messages()
-	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	GameManager.exit_game()

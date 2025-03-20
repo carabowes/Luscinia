@@ -10,7 +10,6 @@ task_id = ""
 name = "Establishing Contact with Villages"
 icon = ExtResource("2_5xvc7")
 start_location = Vector2(800, 600)
-end_location = Vector2(1000, 400)
 resources_required = {
 "funds": 100,
 "people": 40,

@@ -14,7 +14,7 @@ var change_lod_parameters = ParameterFactory.named_parameters(
 )
 
 func before_all():
-	task_widget_scene = load("res://Scenes/task_widget.tscn")
+	task_widget_scene = load("res://Scenes/UI/task_widget.tscn")
 
 
 func test_task_widget_script_exists():
