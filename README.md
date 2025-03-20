@@ -93,7 +93,7 @@ You can also document commands to lint the code or run tests. These steps help t
 Show your appreciation to those who have contributed to the project.
 
 ## License
-For open source projects, say how it is licensed.
+The project is under the Creative Commons Attribution 4.0 International [license](https://stgit.dcs.gla.ac.uk/team-project-h/2024/sh07/sh07-main/-/blob/main/LICENSE). The project contributors are listed [here](https://stgit.dcs.gla.ac.uk/team-project-h/2024/sh07/sh07-main/-/blob/main/CONTRIBUTORS?ref_type=heads).
 
 ## Project status
 If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
