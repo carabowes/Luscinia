@@ -34,10 +34,10 @@ func test_new_message_at_top():
 
 
 func test_back_button():
-	watch_signals(page_instance)
+	watch_signals(UIEvent)
 	var back_button : Button = page_instance.get_node("%BackButton")
 	back_button.pressed.emit()
-	assert_signal_emitted(page_instance, "back_button_pressed", "back_button_pressed should emit a signal when back button is pressed")
+	assert_signal_emitted(UIEvent, "navbar_message_button_pressed")
 
 
 func test_message_selected():
@@ -51,5 +51,5 @@ func test_message_selected():
 
 
 func test_message_sent_connection():
-	MessageManager.message_sent.emit(MessageInstance.new())
+	GameManager.message_sent.emit(MessageInstance.new())
 	assert_eq(page_instance.get_node("%MessagesReceived").get_child_count(), 2) #2 because seperator is there

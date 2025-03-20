@@ -11,21 +11,14 @@ static var default_task = TaskData.new(
 		return
 
 
-## ID of task, is not enforced to be unique by the program. User must ensure task ID is unique.
+
 @export var task_id : String
-## Name of task
 @export var name : String
-## Icon of task
 @export var icon : Texture2D
-## Corresponds to pixel location on map image for starting location
 @export var start_location : Vector2
-## Dictionary of Resource to Integer indicating how much of each resource is needed
 @export var resources_required : Dictionary
-## Dictionary of Resource to Integer indicating how much of each resourced is gained on completion
 @export var resources_gained : Dictionary
-## Expected time to complete task in whole hours
 @export var expected_completion_time : int
-## Dictionary of Event to Array of Event
 @export var effects_of_random_events : Array[EventEffect]
 
 

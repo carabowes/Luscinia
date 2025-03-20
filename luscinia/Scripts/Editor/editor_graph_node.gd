@@ -17,6 +17,7 @@ static var image_selector_prefab = preload("res://Scenes/Editor/image_selector.t
 static var choice_picker_prefab = preload("res://Scenes/Editor/choice_picker.tscn")
 static var vector_input_prefab = preload("res://Scenes/Editor/vector_input.tscn")
 
+
 var slot_colors = [
 	Color.REBECCA_PURPLE,
 	Color.DODGER_BLUE,
@@ -25,6 +26,7 @@ var slot_colors = [
 	Color.FIREBRICK
 ]
 
+
 func _init():
 	resizable = true
 	custom_minimum_size.x = 300
@@ -32,6 +34,7 @@ func _init():
 	set_node_theme(self)
 
 
+# Adds a delete button to the node, which allows for node deletion
 func add_delete_button():
 	var delete_button = Button.new()
 	delete_button.text = "X"
@@ -40,12 +43,14 @@ func add_delete_button():
 	delete_button.pressed.connect(delete_node)
 
 
+# Deletes the node and emits a signal
 func delete_node():
 	queue_free()
 	deleted.emit()
 
 
-func set_node_theme(node : GraphNode):
+# Sets the theme for the node based on its type (Task, Message, etc.)
+func set_node_theme(node: GraphNode):
 	var theme : StyleBoxFlat = node.get_theme_stylebox("titlebar").duplicate()
 	if node is TaskGraphNode:
 		theme.bg_color = Color.FIREBRICK
@@ -60,24 +65,30 @@ func set_node_theme(node : GraphNode):
 	node.add_theme_stylebox_override("titlebar", theme)
 
 
-func assign_connection(_in_port : int, _in_node : TaskEditorGraphNode) -> bool:
+# Placeholder for assigning connections between nodes
+func assign_connection(_in_port: int, _in_node: TaskEditorGraphNode) -> bool:
 	return false
 
 
-func remove_connection(_in_port : int, _in_node : TaskEditorGraphNode) -> bool:
+# Placeholder for removing connections between nodes
+func remove_connection(_in_port: int, _in_node: TaskEditorGraphNode) -> bool:
 	return false
 
 
+# Placeholder function for creating a node to connect from an empty port
 func create_node_to_connect_from_empty(_in_port: int):
 	return null
 
 
+# Placeholder function for creating a node to connect to an empty port
 func create_node_to_connect_to_empty(_out_port: int):
 	return null
 
-
 #region Add Inputs
-func add_input(heading : String, current_value : String) -> LineEdit:
+
+
+# Adds an input field to the node with a heading and current value
+func add_input(heading: String, current_value: String) -> LineEdit:
 	var label = Label.new()
 	label.text = heading
 	add_child(label)
@@ -87,7 +98,8 @@ func add_input(heading : String, current_value : String) -> LineEdit:
 	return input
 
 
-func add_large_input(heading : String, current_value : String) -> TextEdit:
+# Adds a larger input field (TextEdit) with a heading and current value
+func add_large_input(heading: String, current_value: String) -> TextEdit:
 	var label = Label.new()
 	label.text = heading
 	add_child(label)
@@ -100,16 +112,18 @@ func add_large_input(heading : String, current_value : String) -> TextEdit:
 	return input
 
 
-func add_image_selector(heading: String, texture : Texture) -> ImageSelector:
-	var image_selector : ImageSelector = image_selector_prefab.instantiate()
+# Adds an image selector to the node with a heading and a texture
+func add_image_selector(heading: String, texture: Texture) -> ImageSelector:
+	var image_selector: ImageSelector = image_selector_prefab.instantiate()
 	image_selector.current_image = texture
 	image_selector.text = heading
 	add_child(image_selector)
 	return image_selector
 
 
-func add_collapsible_container(heading : String, fields : Array[Field])  -> CollapsibleContainer:
-	var collapsible_container : CollapsibleContainer = collapsible_container_prefab.instantiate()
+# Adds a collapsible container with a heading and an array of fields
+func add_collapsible_container(heading: String, fields: Array[Field]) -> CollapsibleContainer:
+	var collapsible_container: CollapsibleContainer = collapsible_container_prefab.instantiate()
 	collapsible_container.text = heading
 	for field in fields:
 		collapsible_container.add_child(field)
@@ -118,14 +132,16 @@ func add_collapsible_container(heading : String, fields : Array[Field])  -> Coll
 	return collapsible_container
 
 
-func add_spacer(size : int = 20) -> Control:
+# Adds a spacer control to the node, typically used for layout spacing
+func add_spacer(size: int = 20) -> Control:
 	var spacer = Control.new()
 	spacer.custom_minimum_size.y = size
 	add_child(spacer)
 	return spacer
 
 
-func add_checkbox(heading: String, default_value : bool) -> CheckBox:
+# Adds a checkbox with a label and a default value
+func add_checkbox(heading: String, default_value: bool) -> CheckBox:
 	var checkbox = CheckBox.new()
 	var label = Label.new()
 	var hbox = HBoxContainer.new()
@@ -141,11 +157,12 @@ func add_checkbox(heading: String, default_value : bool) -> CheckBox:
 	return checkbox
 
 
-func add_slider(heading: String, default_value: float, min_value: float, max_value: float,\
-	step : float = 0.01) -> Slider:
+# Adds a slider with a label, default value, min/max range, and step size
+func add_slider(heading: String, default_value: float,\
+	min_value: float, max_value: float, step: float = 0.01) -> Slider:
 	var label = Label.new()
 	var slider = HSlider.new()
-	label.text = heading +  ": " + str(default_value)
+	label.text = heading + ": " + str(default_value)
 	slider.step = step
 	slider.min_value = min_value
 	slider.max_value = max_value
@@ -157,24 +174,28 @@ func add_slider(heading: String, default_value: float, min_value: float, max_val
 	return slider
 
 
-func add_choice_picker(heading: String, values : Dictionary, default_option) -> ChoicePicker:
-	var choice_picker : ChoicePicker = choice_picker_prefab.instantiate()
+# Adds a choice picker with a heading and possible values, setting the default option
+func add_choice_picker(heading: String, values: Dictionary, default_option) -> ChoicePicker:
+	var choice_picker: ChoicePicker = choice_picker_prefab.instantiate()
 	choice_picker.text = heading
 	choice_picker.set_values(str(default_option), values)
 	add_child(choice_picker)
 	return choice_picker
 
 
-func add_vector_input(heading : String, default : Vector2) -> VectorInput:
-	var vector_input : VectorInput = vector_input_prefab.instantiate()
+# Adds a vector input field with a heading and default value
+func add_vector_input(heading: String, default: Vector2) -> VectorInput:
+	var vector_input: VectorInput = vector_input_prefab.instantiate()
 	vector_input.heading = heading
 	vector_input.value = default
 	add_child(vector_input)
 	return vector_input
+
 #endregion
 
 
-func set_port(is_input : bool, index : int, slot_type : SlotType):
+# Sets the connection port for the node, determining whether it's an input or output
+func set_port(is_input: bool, index: int, slot_type: SlotType):
 	var color = slot_colors[slot_type]
 	if is_input:
 		set_slot(index, true, slot_type, color, is_slot_enabled_right(index),\
@@ -184,10 +205,11 @@ func set_port(is_input : bool, index : int, slot_type : SlotType):
 		get_slot_color_left(index), true, slot_type, color)
 
 
-static func generate_fields_from_resources(resources : Dictionary) -> Array[Field]:
-	var fields : Array[Field] = []
-	for resource in ResourceManager.resources.keys():
-		var field : Field = field_prefab.instantiate()
+# Generates fields from the available resources for the node
+static func generate_fields_from_resources(resources: Dictionary) -> Array[Field]:
+	var fields: Array[Field] = []
+	for resource in ["funds", "people", "supplies", "vehicles"]:
+		var field: Field = field_prefab.instantiate()
 		field.field_name = resource
 		if resources.has(resource):
 			field.field_value = str(resources[resource])

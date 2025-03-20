@@ -70,7 +70,7 @@ func test_add_image_selector():
 
 func test_generate_fields_from_resources_empty():
 	var fields : Array[Field] = TaskEditorGraphNode.generate_fields_from_resources({})
-	assert_eq(len(fields), len(ResourceManager.resources))
+	assert_eq(len(fields), 4)
 	for field in fields:
 		assert_eq(field.field_value, "0")
 		assert_ne(field.field_name, "")
@@ -79,7 +79,7 @@ func test_generate_fields_from_resources_empty():
 
 func test_generate_fields_from_resources_values():
 	var fields : Array[Field] = TaskEditorGraphNode.generate_fields_from_resources({"funds": 100})
-	assert_eq(len(fields), len(ResourceManager.resources))
+	assert_eq(len(fields), 4)
 	for field in fields:
 		if field.field_name == "funds":
 			assert_eq(field.field_value, "100")
