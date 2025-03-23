@@ -38,7 +38,6 @@ func update_timer_ui():
 	%TimerLabel.text = format_time_with_seconds(game_timer.current_time_left)
 	%DayLabel.text = "Day %d" % game_timer.in_game_days
 	%ClockLabel.text = "%02d:%02d" % [game_timer.in_game_hours, game_timer.in_game_minutes]
-	start_animation()
 
 
 # Update the resource-related UI elements
@@ -78,7 +77,7 @@ func start_animation():
 	is_animating = true
 	var tween = get_tree().create_tween()
 	tween.tween_property(%ClockVisual, "scale", Vector2.ONE * 1.05, 0.2)
-	tween.parallel().tween_property(%ClockVisual, "modulate", Color.YELLOW, 0.2)
+	tween.parallel().tween_property(%ClockVisual, "modulate", Color.RED, 0.2)
 	tween.tween_property(%ClockVisual, "scale", Vector2.ONE, 0.2)
 	tween.parallel().tween_property(%ClockVisual, "modulate", Color.WHITE, 0.2)
 	tween.tween_interval(0.6)
