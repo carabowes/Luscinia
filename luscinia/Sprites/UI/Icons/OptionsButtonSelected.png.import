@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dljf3uhmn64pw"
-path="res://.godot/imported/OptionsButton_selected.png-e133b7107dc584a23af63b4f09d1e245.ctex"
+uid="uid://2j4t4u7w0rf0"
+path="res://.godot/imported/OptionsButtonSelected.png-4c6def94a8ee900c7b4bb7f564121da1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/Icons/OptionsButton_selected.png"
-dest_files=["res://.godot/imported/OptionsButton_selected.png-e133b7107dc584a23af63b4f09d1e245.ctex"]
+source_file="res://Sprites/UI/Icons/OptionsButtonSelected.png"
+dest_files=["res://.godot/imported/OptionsButtonSelected.png-4c6def94a8ee900c7b4bb7f564121da1.ctex"]
 
 [params]
 
@@ -21,14 +21,14 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
+roughness/mode=1
 roughness/src_normal=""
 process/fix_alpha_border=true
-process/premult_alpha=false
+process/premult_alpha=true
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

@@ -15,7 +15,7 @@ func _pause_game():
 		pause_button.icon = load("res://Sprites/UI/Icons/OptionsButton.png")
 		_resume_game()
 	else:
-		pause_button.icon = load("res://Sprites/UI/Icons/OptionsButton_selected.png")
+		pause_button.icon = load("res://Sprites/UI/Icons/OptionsButtonSelected.png")
 		GameManager.pause_game()
 		self.visible = true
 

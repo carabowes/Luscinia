@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://desl373b33t23"]
+[gd_scene load_steps=16 format=3 uid="uid://desl373b33t23"]
 
 [ext_resource type="Script" path="res://Scripts/UI/ui_timer.gd" id="1_jafkr"]
 [ext_resource type="Texture2D" uid="uid://7v3dgwwsbwqu" path="res://Sprites/clock.png" id="2_2fyrh"]
 [ext_resource type="Texture2D" uid="uid://c27suyrk8wq" path="res://Sprites/ClockBackground.png" id="2_3ac0l"]
-[ext_resource type="Texture2D" uid="uid://d2r32fmyi8j47" path="res://Sprites/UI/Icons/OptionsButton.png" id="2_e00yx"]
+[ext_resource type="Texture2D" uid="uid://dljf3uhmn64pw" path="res://Sprites/UI/Icons/OptionsButton.png" id="2_e00yx"]
 [ext_resource type="Texture2D" uid="uid://bib3v5a1f2b2o" path="res://Sprites/UI/User.png" id="5_1iyi8"]
 [ext_resource type="FontFile" uid="uid://dqb15p2ijprjy" path="res://Sprites/Fonts/ReadexPro-Bold.ttf" id="5_uvvvr"]
 [ext_resource type="Texture2D" uid="uid://dmrhlqq3p4y0g" path="res://Sprites/Package.png" id="6_5mb17"]
@@ -31,6 +31,8 @@ font = ExtResource("6_ljluh")
 font_size = 7
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vpqyf"]
+
 [node name="Timer" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -50,15 +52,6 @@ script = ExtResource("1_jafkr")
 layout_mode = 0
 offset_right = 180.0
 offset_bottom = 59.0
-
-[node name="PauseButton" type="Button" parent="."]
-layout_mode = 2
-offset_left = 144.0
-offset_top = 12.0
-offset_right = 179.0
-offset_bottom = 47.0
-icon = ExtResource("2_e00yx")
-flat = true
 
 [node name="TimerVBox" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -158,9 +151,9 @@ mouse_filter = 2
 [node name="Person" type="TextureRect" parent="ResourceDisplay/SpriteHolder"]
 self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
 layout_mode = 0
-offset_left = 18.5
+offset_left = 28.5
 offset_top = 8.5
-offset_right = 30.5
+offset_right = 40.5
 offset_bottom = 20.5
 texture = ExtResource("5_1iyi8")
 expand_mode = 1
@@ -168,9 +161,9 @@ expand_mode = 1
 [node name="Supplies" type="TextureRect" parent="ResourceDisplay/SpriteHolder"]
 self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
 layout_mode = 0
-offset_left = 52.5
+offset_left = 76.5
 offset_top = 8.5
-offset_right = 64.5
+offset_right = 88.5
 offset_bottom = 20.5
 texture = ExtResource("6_5mb17")
 expand_mode = 1
@@ -178,9 +171,9 @@ expand_mode = 1
 [node name="Person3" type="TextureRect" parent="ResourceDisplay/SpriteHolder"]
 self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
 layout_mode = 0
-offset_left = 19.0
+offset_left = 29.0
 offset_top = 33.5
-offset_right = 31.0
+offset_right = 41.0
 offset_bottom = 45.5
 texture = ExtResource("7_noqc3")
 expand_mode = 1
@@ -188,9 +181,9 @@ expand_mode = 1
 [node name="Person4" type="TextureRect" parent="ResourceDisplay/SpriteHolder"]
 self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
 layout_mode = 0
-offset_left = 52.5
+offset_left = 77.0
 offset_top = 33.5
-offset_right = 64.5
+offset_right = 89.0
 offset_bottom = 45.5
 texture = ExtResource("8_7ajq0")
 expand_mode = 1
@@ -199,6 +192,7 @@ expand_mode = 1
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_right = 32.0
 offset_bottom = 60.0
 grow_horizontal = 2
 
@@ -284,5 +278,26 @@ text = "output"
 label_settings = SubResource("LabelSettings_31idv")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PauseButton" type="Button" parent="."]
+layout_mode = 2
+offset_left = 12.5
+offset_top = 10.5
+offset_right = 31.5
+offset_bottom = 29.5
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vpqyf")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpqyf")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vpqyf")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_vpqyf")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_vpqyf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vpqyf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vpqyf")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vpqyf")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vpqyf")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vpqyf")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vpqyf")
+icon = ExtResource("2_e00yx")
+icon_alignment = 1
+expand_icon = true
 
 [connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
