@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3bq0ao1mlqby"
-path="res://.godot/imported/ProceedButton_selected.png-f55458b6f5ed736dc3a194f858d124a0.ctex"
+uid="uid://c21sx8uduxls3"
+path="res://.godot/imported/ProceedButtonSelected.png-905b1b07d0e3741b04b550eca3148f89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/Icons/ProceedButton_selected.png"
-dest_files=["res://.godot/imported/ProceedButton_selected.png-f55458b6f5ed736dc3a194f858d124a0.ctex"]
+source_file="res://Sprites/UI/Icons/ProceedButtonSelected.png"
+dest_files=["res://.godot/imported/ProceedButtonSelected.png-905b1b07d0e3741b04b550eca3148f89.ctex"]
 
 [params]
 

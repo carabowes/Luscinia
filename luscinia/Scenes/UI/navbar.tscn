@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://1ygif2bywt5u"]
+[gd_scene load_steps=10 format=3 uid="uid://1ygif2bywt5u"]
 
 [ext_resource type="Script" path="res://Scripts/UI/navbar.gd" id="1_2fvq5"]
-[ext_resource type="Texture2D" uid="uid://crdt0x0jw41ox" path="res://Sprites/UI/Icons/ProceedButton.png" id="1_24llj"]
 [ext_resource type="Texture2D" uid="uid://dbevrsfktm6jt" path="res://Sprites/UI/Icons/MessageButton.png" id="1_hhk0i"]
-[ext_resource type="Texture2D" uid="uid://dd65myswp443" path="res://Sprites/UI/Icons/information_icon.png" id="3_b18yf"]
 [ext_resource type="Texture2D" uid="uid://dwl5qh53md1wx" path="res://Sprites/UI/RedCircle.png" id="3_ohkv6"]
-[ext_resource type="Texture2D" uid="uid://2j4t4u7w0rf0" path="res://Sprites/UI/Icons/OptionsButtonSelected.png" id="6_0l5rt"]
+[ext_resource type="Texture2D" uid="uid://crdt0x0jw41ox" path="res://Sprites/UI/Icons/ProceedButton.png" id="4_c2uxx"]
+[ext_resource type="Texture2D" uid="uid://c57j0kbuqu2pd" path="res://Sprites/UI/Icons/ResourcesButton.png" id="5_6a1jt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h85xp"]
 bg_color = Color(1, 1, 1, 1)
@@ -15,8 +14,6 @@ bg_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_of4mu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3721i"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ghysg"]
 
 [node name="Navbar" type="Panel"]
 custom_minimum_size = Vector2(0, 80)
@@ -36,16 +33,16 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 36.0
-offset_top = 20.0
+offset_top = 21.0
 offset_right = -36.0
-offset_bottom = -20.0
+offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ViewMessageHistoryButton" type="Button" parent="NavbarLayout"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_64rup")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_64rup")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_64rup")
@@ -58,23 +55,29 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_64rup")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_64rup")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_64rup")
 icon = ExtResource("1_hhk0i")
-flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="NewMessageNotif" type="TextureRect" parent="NavbarLayout/ViewMessageHistoryButton"]
 unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 30.0
-offset_top = 15.0
-offset_right = 46.0
-offset_bottom = 31.0
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 7.5
+offset_top = -24.0
+offset_right = 23.5
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset = Vector2(8, 8)
 texture = ExtResource("3_ohkv6")
 
 [node name="SkipTimeButton" type="Button" parent="NavbarLayout"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_of4mu")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_of4mu")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_of4mu")
@@ -86,13 +89,15 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_of4mu")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_of4mu")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_of4mu")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_of4mu")
-icon = ExtResource("1_24llj")
+icon = ExtResource("4_c2uxx")
 flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="ViewResourcesButton" type="Button" parent="NavbarLayout"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3721i")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_3721i")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_3721i")
@@ -104,23 +109,7 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_3721i")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_3721i")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_3721i")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3721i")
-icon = ExtResource("3_b18yf")
+icon = ExtResource("5_6a1jt")
 flat = true
-
-[node name="PauseButton" type="Button" parent="NavbarLayout"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ghysg")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ghysg")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_ghysg")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ghysg")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ghysg")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_ghysg")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_ghysg")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_ghysg")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_ghysg")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ghysg")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_ghysg")
-icon = ExtResource("6_0l5rt")
 icon_alignment = 1
 expand_icon = true

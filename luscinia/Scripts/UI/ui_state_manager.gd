@@ -21,13 +21,10 @@ func _ready() -> void:
 # Handle the navbar resource button press event
 func _navbar_resource_button_pressed():
 	if current_ui_page_state == UIPageState.CLOSED:
-		UIEvent.resource_page_open.emit()
 		_change_page_state(UIPageState.RESOURCES)
 	elif current_ui_page_state == UIPageState.RESOURCES:
-		UIEvent.resource_page_close.emit()
 		_change_page_state(UIPageState.CLOSED)
 	else:
-		UIEvent.resource_page_open.emit()
 		_change_page_state(UIPageState.RESOURCES)
 
 
@@ -44,13 +41,10 @@ func _task_widget_view_details_pressed(_task_instance : TaskInstance):
 # Handle the navbar message button press event
 func _navbar_message_button_pressed():
 	if current_ui_page_state == UIPageState.CLOSED:
-		UIEvent.message_page_open.emit()
 		_change_page_state(UIPageState.MESSAGES)
 	elif current_ui_page_state == UIPageState.MESSAGES:
-		UIEvent.message_page_close.emit()
 		_change_page_state(UIPageState.CLOSED)
 	else:
-		UIEvent.message_page_open.emit()
 		_change_page_state(UIPageState.MESSAGES)
 
 
@@ -66,11 +60,17 @@ func _change_page_visibility(page : UIPageState, visibility : bool):
 	if page == UIPageState.TASK_DETAILS:
 		%TaskDetailsPage.visible = visibility
 	elif page == UIPageState.RESOURCES:
+		if not visibility:
+			UIEvent.resource_page_close.emit()
+		if visibility:
+			UIEvent.resource_page_open.emit()
 		%ResourcesPage.visible = visibility
 	elif page == UIPageState.MESSAGES:
 		# If showing messages page, switch state to MESSAGE_RECEIVED
 		if visibility:
+			UIEvent.message_page_open.emit()
 			%MessagePageController._change_page_state(\
 			%MessagePageController.MessagePageState.MESSAGE_RECEIVED)
 		else:
+			UIEvent.message_page_close.emit()
 			%MessagePageController._change_page_state(%MessagePageController.MessagePageState.CLOSED)

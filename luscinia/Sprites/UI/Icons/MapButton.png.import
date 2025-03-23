@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vhj0fcug0iy3"
-path="res://.godot/imported/information_icon_selected.png-59618018a462e1b1545d276c8c602d96.ctex"
+uid="uid://csuvoow44wgja"
+path="res://.godot/imported/MapButton.png-85d805535c79b1045fb1afd9a874642c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/Icons/information_icon_selected.png"
-dest_files=["res://.godot/imported/information_icon_selected.png-59618018a462e1b1545d276c8c602d96.ctex"]
+source_file="res://Sprites/UI/Icons/MapButton.png"
+dest_files=["res://.godot/imported/MapButton.png-85d805535c79b1045fb1afd9a874642c.ctex"]
 
 [params]
 

@@ -65,6 +65,12 @@ func _view_resource_button_pressed():
 # Button press for skipping time (next turn)
 func _skip_time_button_pressed():
 	GameManager.next_turn(game_timer)
+	%SkipTimeButton.icon = load("res://Sprites/UI/Icons/ProceedButtonSelected.png")
+	%SkipTimeButton.pivot_offset = %SkipTimeButton.size/2
+	var tween = get_tree().create_tween()
+	tween.tween_property(%SkipTimeButton, "scale", Vector2(1.1, 0.95), 0.1)
+	tween.tween_property(%SkipTimeButton, "scale", Vector2.ONE, 0.1)
+	tween.tween_callback(func(): %SkipTimeButton.icon = load("res://Sprites/UI/Icons/ProceedButton.png"))
 
 
 # Button press for viewing messages
@@ -75,9 +81,13 @@ func _message_button_pressed():
 # Update UI when the message page is opened (update button icon and reset shake effect)
 func _message_button_pressed_sprite():
 	message_page_open = true  # Mark the message page as open
+	%ViewMessageHistoryButton.pivot_offset = %ViewMessageHistoryButton.size/2
+	var tween = get_tree().create_tween()
+	tween.tween_property(%ViewMessageHistoryButton, "scale", Vector2(1.1, 0.95), 0.1)
+	tween.tween_property(%ViewMessageHistoryButton, "scale", Vector2.ONE, 0.1)
 	%ViewMessageHistoryButton.pivot_offset = %ViewMessageHistoryButton.size / 2  # Reset pivot
 	%ViewMessageHistoryButton.rotation = 0  # Reset the rotation to 0 (remove shake effect)
-	%ViewMessageHistoryButton.icon = load("res://Sprites/UI/Icons/MessageButton_selected.png")
+	%ViewMessageHistoryButton.icon = load("res://Sprites/UI/Icons/MessageButtonSelected.png")
 
 
 # Update UI when the message page is closed (reset button icon)
@@ -88,9 +98,13 @@ func _message_button_sprite():
 
 # Update UI when the resource page is opened (highlight resource button)
 func _resource_button_pressed_sprite():
-	%ViewResourcesButton.icon = load("res://Sprites/UI/Icons/information_icon_selected.png")
+	%ViewResourcesButton.pivot_offset = %ViewResourcesButton.size/2
+	var tween = get_tree().create_tween()
+	tween.tween_property(%ViewResourcesButton, "scale", Vector2(1.1, 0.95), 0.1)
+	tween.tween_property(%ViewResourcesButton, "scale", Vector2.ONE, 0.1)
+	%ViewResourcesButton.icon = load("res://Sprites/UI/Icons/ResourcesButtonPressed.png")
 
 
 # Update UI when the resource page is closed (reset resource button icon)
 func _resource_button_sprite():
-	%ViewResourcesButton.icon = load("res://Sprites/UI/Icons/information_icon.png")
+	%ViewResourcesButton.icon = load("res://Sprites/UI/Icons/ResourcesButton.png")
