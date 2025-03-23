@@ -67,7 +67,6 @@ stretch_mode = 0
 
 [node name="ClockVisual" type="TextureProgressBar" parent="TimerVBox/TimerHBox/AspectRatioContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(24.41, 0)
 layout_mode = 2
 value = 90.0
 fill_mode = 5

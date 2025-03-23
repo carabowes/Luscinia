@@ -11,6 +11,8 @@ var resource_manager : ResourceManager:
 		resource_manager = value
 		if value != null:
 			update_resource_ui()
+var is_animating : bool = false
+var animation_progress : float = 0
 
 
 func _ready():
@@ -26,11 +28,17 @@ func _process(_delta):
 func update_timer_ui():
 	if game_timer == null:
 		return
+	%ClockVisual.pivot_offset = %ClockVisual.size/2
 	%ClockVisual.max_value = game_timer.countdown_duration
 	%ClockVisual.value = game_timer.current_time_left
+	if floor(%ClockVisual.value) == floor(%ClockVisual.max_value/2):
+		start_animation()
+	if %ClockVisual.value < %ClockVisual.max_value*0.1:
+		start_animation()
 	%TimerLabel.text = format_time_with_seconds(game_timer.current_time_left)
 	%DayLabel.text = "Day %d" % game_timer.in_game_days
 	%ClockLabel.text = "%02d:%02d" % [game_timer.in_game_hours, game_timer.in_game_minutes]
+	start_animation()
 
 
 # Update the resource-related UI elements
@@ -62,3 +70,16 @@ func format_time_with_seconds(seconds: int) -> String:
 	var minutes = int(seconds) / 60
 	var secs = int(seconds) % 60
 	return "%02d:%02d" % [minutes, secs]
+
+
+func start_animation():
+	if is_animating:
+		return
+	is_animating = true
+	var tween = get_tree().create_tween()
+	tween.tween_property(%ClockVisual, "scale", Vector2.ONE * 1.05, 0.2)
+	tween.parallel().tween_property(%ClockVisual, "modulate", Color.YELLOW, 0.2)
+	tween.tween_property(%ClockVisual, "scale", Vector2.ONE, 0.2)
+	tween.parallel().tween_property(%ClockVisual, "modulate", Color.WHITE, 0.2)
+	tween.tween_interval(0.6)
+	tween.tween_callback(func(): is_animating = false)
