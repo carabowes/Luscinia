@@ -1,13 +1,35 @@
-[gd_scene load_steps=9 format=3 uid="uid://desl373b33t23"]
+[gd_scene load_steps=15 format=3 uid="uid://desl373b33t23"]
 
 [ext_resource type="Script" path="res://Scripts/UI/ui_timer.gd" id="1_jafkr"]
 [ext_resource type="Texture2D" uid="uid://7v3dgwwsbwqu" path="res://Sprites/clock.png" id="2_2fyrh"]
 [ext_resource type="Texture2D" uid="uid://c27suyrk8wq" path="res://Sprites/ClockBackground.png" id="2_3ac0l"]
 [ext_resource type="Texture2D" uid="uid://d2r32fmyi8j47" path="res://Sprites/UI/Icons/OptionsButton.png" id="2_e00yx"]
 [ext_resource type="Texture2D" uid="uid://bib3v5a1f2b2o" path="res://Sprites/UI/User.png" id="5_1iyi8"]
+[ext_resource type="FontFile" uid="uid://dqb15p2ijprjy" path="res://Sprites/Fonts/ReadexPro-Bold.ttf" id="5_uvvvr"]
 [ext_resource type="Texture2D" uid="uid://dmrhlqq3p4y0g" path="res://Sprites/Package.png" id="6_5mb17"]
+[ext_resource type="FontFile" uid="uid://bm50ve2s6rkjl" path="res://Sprites/Fonts/ReadexPro-Medium.ttf" id="6_ljluh"]
 [ext_resource type="Texture2D" uid="uid://dm70f566o3s32" path="res://Sprites/UI/Dollar sign.png" id="7_noqc3"]
 [ext_resource type="Texture2D" uid="uid://chgb1pq7fpd4c" path="res://Sprites/UI/Truck.png" id="8_7ajq0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6rh80"]
+bg_color = Color(0.113725, 0.101961, 0.113725, 1)
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+anti_aliasing_size = 0.25
+
+[sub_resource type="LabelSettings" id="LabelSettings_nrifq"]
+font = ExtResource("5_uvvvr")
+font_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_fsty4"]
+font = ExtResource("6_ljluh")
+font_size = 10
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_31idv"]
+font = ExtResource("6_ljluh")
+font_size = 7
+font_color = Color(0, 0, 0, 1)
 
 [node name="Timer" type="Control"]
 layout_mode = 3
@@ -29,14 +51,6 @@ layout_mode = 0
 offset_right = 180.0
 offset_bottom = 59.0
 
-[node name="ColorRect" type="ColorRect" parent="Background"]
-layout_mode = 0
-offset_left = 28.0
-offset_top = 12.0
-offset_right = 72.0
-offset_bottom = 28.0
-color = Color(0.254902, 0.560784, 0.870588, 1)
-
 [node name="PauseButton" type="Button" parent="."]
 layout_mode = 2
 offset_left = 144.0
@@ -52,12 +66,13 @@ anchors_preset = -1
 anchor_right = 0.291
 offset_left = 7.0
 offset_top = 5.0
-offset_right = -0.00400543
+offset_right = 1.99599
 offset_bottom = 53.0
 grow_horizontal = 2
 
 [node name="TimerHBox" type="HBoxContainer" parent="TimerVBox"]
 layout_mode = 2
+theme_override_constants/separation = -3
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="TimerVBox/TimerHBox"]
 custom_minimum_size = Vector2(30, 30)
@@ -67,6 +82,7 @@ stretch_mode = 0
 
 [node name="ClockVisual" type="TextureProgressBar" parent="TimerVBox/TimerHBox/AspectRatioContainer"]
 unique_name_in_owner = true
+z_index = 1
 layout_mode = 2
 value = 90.0
 fill_mode = 5
@@ -74,12 +90,28 @@ nine_patch_stretch = true
 texture_under = ExtResource("2_3ac0l")
 texture_progress = ExtResource("2_2fyrh")
 
-[node name="TimerLabel" type="Label" parent="TimerVBox/TimerHBox"]
-unique_name_in_owner = true
+[node name="TimerBackground" type="Panel" parent="TimerVBox/TimerHBox"]
+custom_minimum_size = Vector2(0, 17)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_6rh80")
+
+[node name="TimerLabel" type="Label" parent="TimerVBox/TimerHBox/TimerBackground"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 10
 text = "00:00"
+label_settings = SubResource("LabelSettings_nrifq")
+vertical_alignment = 1
 
 [node name="GameTimeHBox" type="HBoxContainer" parent="TimerVBox"]
 layout_mode = 2
@@ -87,16 +119,22 @@ layout_mode = 2
 [node name="DayLabel" type="Label" parent="TimerVBox/GameTimeHBox"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 text = "Day 0"
+label_settings = SubResource("LabelSettings_fsty4")
+horizontal_alignment = 1
 
 [node name="ClockLabel" type="Label" parent="TimerVBox/GameTimeHBox"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 text = "00:00"
+label_settings = SubResource("LabelSettings_fsty4")
+horizontal_alignment = 1
 
 [node name="ResourceDisplay" type="Control" parent="."]
 layout_mode = 1
@@ -166,6 +204,7 @@ grow_horizontal = 2
 
 [node name="PersonnelAmt" type="Label" parent="ResourceDisplay/ResourceAmt"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -177,13 +216,15 @@ offset_top = 0.0200005
 offset_right = 0.539989
 offset_bottom = -0.0200005
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 7
+theme_override_fonts/font = ExtResource("6_ljluh")
 text = "output"
+label_settings = SubResource("LabelSettings_31idv")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SuppliesAmt" type="Label" parent="ResourceDisplay/ResourceAmt"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.531
@@ -195,13 +236,16 @@ offset_top = 0.0200005
 offset_right = -0.0200043
 offset_bottom = -0.0200005
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ljluh")
 theme_override_font_sizes/font_size = 7
 text = "output"
+label_settings = SubResource("LabelSettings_31idv")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="FundsAmt" type="Label" parent="ResourceDisplay/ResourceAmt"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -213,13 +257,16 @@ offset_top = 0.00199509
 offset_right = -0.539997
 offset_bottom = 0.0219994
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ljluh")
 theme_override_font_sizes/font_size = 7
 text = "output"
+label_settings = SubResource("LabelSettings_31idv")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TransportAmt" type="Label" parent="ResourceDisplay/ResourceAmt"]
 unique_name_in_owner = true
+texture_filter = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.531
@@ -231,8 +278,10 @@ offset_top = 0.0219917
 offset_right = 1.043
 offset_bottom = -0.0180054
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ljluh")
 theme_override_font_sizes/font_size = 7
 text = "output"
+label_settings = SubResource("LabelSettings_31idv")
 horizontal_alignment = 1
 vertical_alignment = 1
 
