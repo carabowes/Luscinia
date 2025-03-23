@@ -1,6 +1,6 @@
 extends Control
 
-@onready var pause_button = $"../../Timer/PauseButton"
+@onready var pause_button = $"../Timer/PauseButton"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

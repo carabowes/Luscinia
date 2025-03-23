@@ -82,13 +82,9 @@ layout_mode = 1
 [node name="notifications" type="Control" parent="pages" node_paths=PackedStringArray("task_widget_renderer", "start_task_notif_label", "end_task_notif_label")]
 z_index = 100
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -360.0
-offset_bottom = -607.0
 grow_horizontal = 2
-grow_vertical = 2
 script = ExtResource("15_py1x5")
 task_widget_renderer = NodePath("../../map")
 start_task_notif_label = NodePath("task_start_notification/start_text")
@@ -98,7 +94,7 @@ end_task_notif_label = NodePath("task_end_notification/end_text")
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = -72.0
-offset_top = -3.0
+offset_top = 3.0
 offset_bottom = 605.0
 color = Color(0.254902, 0.560784, 0.870588, 1)
 
@@ -122,6 +118,7 @@ text = "Task Start
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Person" type="TextureRect" parent="pages/notifications/task_start_notification"]
 self_modulate = Color(0.201527, 0.201527, 0.201527, 1)
@@ -153,6 +150,7 @@ expand_mode = 1
 
 [node name="StartSupplies" type="Label" parent="pages/notifications/task_start_notification/Supplies"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 23.0
 offset_top = 1.0
 offset_right = 70.0
@@ -170,6 +168,7 @@ expand_mode = 1
 
 [node name="StartFunds" type="Label" parent="pages/notifications/task_start_notification/Funds"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 24.0
 offset_top = 3.0
 offset_right = 71.0
@@ -188,6 +187,7 @@ expand_mode = 1
 
 [node name="StartVehicles" type="Label" parent="pages/notifications/task_start_notification/Vehicles"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 23.0
 offset_top = 1.0
 offset_right = 70.0
@@ -198,7 +198,7 @@ theme_override_font_sizes/font_size = 14
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 360.0
-offset_top = -3.0
+offset_top = 3.0
 offset_right = 432.0
 offset_bottom = 605.0
 color = Color(0.254902, 0.560784, 0.870588, 1)
@@ -235,6 +235,7 @@ expand_mode = 1
 
 [node name="EndPerson" type="Label" parent="pages/notifications/task_end_notification/Person"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 24.0
 offset_top = 2.0
 offset_right = 71.0
@@ -253,6 +254,7 @@ expand_mode = 1
 
 [node name="EndSupplies" type="Label" parent="pages/notifications/task_end_notification/Supplies"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 23.0
 offset_top = 1.0
 offset_right = 70.0
@@ -270,6 +272,7 @@ expand_mode = 1
 
 [node name="EndFunds" type="Label" parent="pages/notifications/task_end_notification/Person3"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 24.0
 offset_top = 3.0
 offset_right = 71.0
@@ -288,6 +291,7 @@ expand_mode = 1
 
 [node name="EndVehicles" type="Label" parent="pages/notifications/task_end_notification/Person4"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 23.0
 offset_top = 1.0
 offset_right = 70.0
@@ -296,10 +300,14 @@ theme_override_font_sizes/font_size = 14
 
 [node name="time_skip_notification" type="ColorRect" parent="pages/notifications"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = -136.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -360.0
 offset_top = 3.0
-offset_bottom = 37.0
+offset_right = -360.0
+offset_bottom = 30.0
+grow_horizontal = 2
 color = Color(0.254902, 0.560784, 0.870588, 1)
 
 [node name="skip_text" type="Label" parent="pages/notifications/time_skip_notification"]
@@ -313,10 +321,6 @@ text = "Time Skipped!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="options_page" parent="pages" instance=ExtResource("10_sexli")]
-visible = false
-layout_mode = 1
-
 [node name="Navbar" parent="." instance=ExtResource("5_5vcs1")]
 unique_name_in_owner = true
 layout_mode = 1
@@ -328,9 +332,15 @@ unique_name_in_owner = true
 layout_mode = 1
 offset_right = -120.0
 
+[node name="options_page" parent="." instance=ExtResource("10_sexli")]
+visible = false
+z_index = 5
+layout_mode = 1
+
 [node name="EndingScreen" type="Control" parent="." node_paths=PackedStringArray("notifications", "days_amt", "taken_personnel", "taken_supplies", "taken_funds", "taken_vehicles", "remain_personnel", "remain_supplies", "remain_funds", "remain_vehicles")]
 unique_name_in_owner = true
 visible = false
+z_index = 6
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -68,14 +68,11 @@ func show_turn_notif(_new_turn : int):
 
 func turn_notif_coroutine():
 	$time_skip_notification.position = Vector2(-136, 3)
-	var tween1 = get_tree().create_tween()
-	print("start show")
-	#og -360, 205
-	#center 0, 205
-	tween1.tween_property($time_skip_notification,"position", Vector2(0,3),0.2)
-	await tween1.finished
-	await get_tree().create_timer(0.3).timeout
-	var tween2 = get_tree().create_tween()
-	tween2.tween_property($time_skip_notification,"position", Vector2(-136,3),0.2)
-	await tween2.finished
-	print("can show")
+	var tween = get_tree().create_tween()
+	var target_position : Vector2 = $time_skip_notification.position
+	target_position.x = 0
+	$time_skip_notification.position = Vector2(-$time_skip_notification.size.x, target_position.y)
+	tween.tween_property($time_skip_notification,"position", target_position, 0.2)
+	tween.tween_interval(0.5)
+	target_position.x = $time_skip_notification.size.x
+	tween.tween_property($time_skip_notification,"position", target_position,0.2)
